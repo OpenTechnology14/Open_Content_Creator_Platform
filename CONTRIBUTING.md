@@ -92,3 +92,11 @@ contributor license agreement. The maintainer may later ask for a sign-off on ea
 Much of this repository is written with AI coding tools, under the rules in [`AGENTS.md`](AGENTS.md). Contributions made
 with them are welcome on the same terms: you are responsible for what you submit, it must pass the same checks, and it must
 not contain material you have no right to contribute. Do not paste output that reproduces someone else's copyrighted work.
+
+
+## Commit and review privacy
+
+Use a project identity or your GitHub noreply address for commits when you want to keep your
+personal email private. Inspect the staged diff and author before pushing. Do not copy private
+account inventories, private PR discussions, Actions logs or workstation paths into public PRs.
+The public edition begins with fresh source history; it is not a mirror of a private checkout.

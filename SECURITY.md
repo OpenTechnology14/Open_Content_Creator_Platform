@@ -9,7 +9,7 @@ realtime media stays on the creator's workstation.
 ## Reporting a vulnerability
 
 Do not open a public issue that contains exploit details, credentials, private media or personal data. Report privately using
-[OWNER-SET: security reporting channel, see OSS-D04 in docs/proposals/PROPOSAL_OPEN_SOURCE_RELEASE_PLAN.md]. Include the affected
+[GitHub private vulnerability reporting](https://github.com/OpenTechnology14/Open_Content_Creator_Platform/security/advisories/new). Include the affected
 commit or version, the impact, steps to reproduce with synthetic data, and a suggested mitigation if you have one.
 
 The maintainer will acknowledge a report within 5 business days, give a triage update within 10 business days, and coordinate
