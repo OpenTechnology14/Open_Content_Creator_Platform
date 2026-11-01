@@ -1,0 +1,7 @@
+# Shared local test runtime. Install via scripts/setup/stream_autopilot.py install.
+-r ../../modules/ai-agents/stream_host/requirements.txt
+-r ../../modules/automation-control/stream_director/requirements.txt
+-r ../../modules/automation-control/show_planner/requirements.txt
+-r ../../modules/audio-production/tts/requirements.txt
+-r ../../modules/content-creation/stream_shorts/requirements.txt
+pytest==8.3.2

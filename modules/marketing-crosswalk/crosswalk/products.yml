@@ -1,0 +1,78 @@
+# Product identity for each target. Values transcribed from MARKETING.md §1 and §3e.
+schema_version: 1
+
+products:
+  opentechnology:
+    name: OpenTechnology
+    # MARKETING.md §1: "when posting the app anywhere (directories, forums, socials),
+    # link the blog app page — not the raw app URL."
+    link: https://www.opentechnologyblog.com/open-technology-app
+    tagline: Salesforce, Jira & Monday alternative with easy templates
+    one_liner: >-
+      The all-in-one alternative to Salesforce, Jira, and Monday.com — with a built-in
+      client portal and ready-to-use project templates.
+    pricing: Free tier · Starter $20/mo · Pro $120/mo · Self-host license $299 one-time
+    wedge:
+      - All-in-one — queues + Kanban + dashboards + automations + AI + client portal in one app
+      - Ready-to-use templates — spin up a workspace in one click, no blank canvas
+      - Price — flat plans with a real free tier, not per-seat forever
+    competitors: [Salesforce, Jira, Asana, "Monday.com", ClickUp]
+
+  stream-extend:
+    name: Stream Extend
+    link: https://streamextend.com
+    tagline: One dashboard for OBS, AI effects, overlays, and agents
+    one_liner: >-
+      Wraps OBS, realtime AI effects, broadcast graphics, audio routing, and AI agents into one
+      dashboard you can drive from any device — without a subscription for local features.
+    # product-spec.md §Pricing
+    pricing: $20 one-time per app · Free tier for all local features · Connect $5/mo · Pro $12/mo · Team $25/mo
+    wedge:
+      - One dashboard instead of a plugin per capability
+      - Everything works locally with no subscription — cloud adds only remote access, push, sync, and multi-user
+      - $20 one-time, not per-seat forever
+    competitors: [Streamlabs, StreamElements, "OBS alone", vMix, "NVIDIA Broadcast"]
+
+  content-extend:
+    # ⚠️ NAMING IS UNSETTLED — read before generating any public-facing copy.
+    # REPOSITORY_ALIGNMENT.md §"Naming decision": "The product and GitHub repository are
+    # ContentExtend", but README.md, the roadmap Products table, product-spec.md, and the live
+    # domain all say "Creator Extend" / creatorextend.com. The policy says new product-facing
+    # documentation uses ContentExtend; the marketing surfaces have not been migrated, and a
+    # rename requires an approved proposal covering bundle IDs, URLs, and store listings.
+    #
+    # `name` below follows the surfaces a reader actually sees today. Do not publish a directory
+    # listing or comparison page under either name until the rename proposal is resolved — see
+    # this module's README "Known gaps".
+    name: Creator Extend
+    alias: ContentExtend
+    link: https://creatorextend.com
+    tagline: One pipeline for ComfyUI, Blender, Krita, and your own photo library
+    one_liner: >-
+      Wraps ComfyUI, Blender, Krita, sports CV, and generation trained on your own photographs
+      into one pipeline — running on your GPU, with no subscription for local features.
+    # product-spec.md §Pricing — identical to Stream Extend
+    pricing: $20 one-time per app · Free tier for all local features · Connect $5/mo · Pro $12/mo · Team $25/mo
+    wedge:
+      - One pipeline instead of four apps that do not talk to each other
+      - Trained on your photographs, on your GPU — the corpus never leaves the workstation
+      - $20 one-time, not a creative-suite subscription
+    competitors: ["Adobe Creative Cloud", "Photoshop Generative Fill", Firefly, "Topaz", "manual export/import"]
+
+
+  ai-learning:
+    # Not a product for sale: a free learning series. `link` is the blog root because the series
+    # has no page of its own until lesson 1 is published — update it then.
+    name: AI Learning Series
+    link: https://www.opentechnologyblog.com
+    tagline: Learn to work with AI by watching it built live
+    one_liner: >-
+      Four live-streamed lessons on working with AI — model usage, prompting with project and
+      context, building apps with documentation, rules, and skills, and cutting cost with an AI
+      workflow — each with a written post you can follow along with.
+    pricing: Free — watch the streams, read the posts
+    wedge:
+      - Taught by building on a real task, on screen, not from slides
+      - One lesson builds on the last — cost comes last because you cannot cut what you do not understand
+      - Every lesson leaves a written reference, not just a recording
+    competitors: ["Trial-and-error prompting", "Copy-pasted prompt lists", "Vendor documentation alone"]

@@ -1,0 +1,185 @@
+# Crosswalk targets — external repositories whose marketing docs this module writes into.
+#
+# Nothing here is a code dependency. The generator resolves a target to a local
+# checkout, verifies every declared doc + anchor exists, and refuses to render
+# if an anchor has moved. That check is the whole point: BLOG_MARKETING_CONNECTION.md
+# in the target repo states plainly that nothing alerts on drift today.
+schema_version: 1
+
+targets:
+  task-management:
+    repo: OpenTechnology14/OpenTechnologyApp
+    description: >-
+      OpenTechApp — the all-in-one PM / client-portal app. Owns the go-to-market
+      machine (ICPs, channel playbook, directory tracker) that this platform's
+      modules plug into.
+    # Resolution order: --target-path flag, then this env var, then default_path
+    # relative to the hybrid-creator-platform repo root.
+    path_env: OPENTECHAPP_REPO_PATH
+    default_path: ../OpenTechnologyApp
+
+    docs:
+      marketing_playbook:
+        path: MARKETING.md
+        description: Growth channel strategy — ICPs, channels 3a-3f, directory tracker.
+        anchors:
+          positioning: "## 1. Positioning"
+          icps: "## 2. Who to target (ICPs, in priority order)"
+          channels: "## 3. Channel playbook"
+          reddit: "### 3a. Reddit — your proven channel (double down)"
+          x_twitter: "### 3b. X / Twitter — search & reply (your current scheme) + build-in-public"
+          linkedin: "### 3c. LinkedIn — follow the followers (your current scheme) + content"
+          seo: "### 3d. SEO comparison pages — the compounding channel (highest ROI long-term)"
+          directories: "### 3e. Directories & launches — one-time spikes + durable backlinks"
+          email: "### 3f. Brevo / direct email — one-time send, not a drip sequence"
+          content_engine: "## 4. Content engine (make one thing become five)"
+          metrics: "## 6. Funnel & metrics (track so you know what's working)"
+
+      blog_marketing_connection:
+        path: docs/readable/BLOG_MARKETING_CONNECTION.md
+        description: >-
+          Per-template map of which blog post / course lab / lead email covers what.
+          Hand-maintained and self-declared drift-prone — the surface this module exists to feed.
+        anchors:
+          what_this_is: "## 1. What this connection is"
+          per_template: "## 2. What exists today, per template"
+          keeping_current: "## 3. Keeping this current"
+
+    # Where generated drafts land inside the target repo under `generate --apply`.
+    # A directory, never an in-place edit of a hand-written doc: a human moves the
+    # draft into MARKETING.md. See README §"Why --apply never edits in place".
+    draft_dir: docs/readable/crosswalk-drafts
+
+  hybrid-creator-platform:
+    repo: OpenTechnology14/Open_Content_Creator_Platform
+    description: >-
+      This repository. Stream Extend's marketing surfaces live here today — README.md carries the
+      product overview, installation and module links, and product-spec.md owns the pricing model
+      and the "Guides as Content" plan. REPOSITORY_ALIGNMENT.md makes this the canonical source;
+      StreamExtend is a downstream distribution repo, not where this copy is authored.
+    path_env: HCP_REPO_PATH
+    default_path: .
+
+    docs:
+      readme:
+        path: README.md
+        description: Product overview, installation, quickstart and module registry.
+        anchors:
+          why: "## Why it exists"
+          get_started: "## Quickstart"
+          features: "## What is in this repository"
+          modules: "## Design system and module registry"
+
+      product_spec:
+        path: docs/architecture/product-spec.md
+        description: >-
+          Pricing model, cloud-gated feature list, and §"Marketing: Guides as Content" — the
+          spec for turning setup docs into website pages.
+        anchors:
+          products: "## Products"
+          pricing: "## Pricing"
+          marketing: "## Marketing: Guides as Content"
+          build_order: "## Build Order"
+
+      marketing_playbook:
+        path: MARKETING.md
+        description: >-
+          This repository's own go-to-market playbook for Stream Extend and Creator Extend. Same section
+          numbering as OpenTechnologyApp's MARKETING.md; every numbered section names the registry modules
+          it depends on, and tests/marketing_crosswalk/test_playbook.py checks its repeated tables.
+        anchors:
+          positioning: "## 1. Positioning"
+          icps: "## 2. Who to target (ICPs, in priority order)"
+          channels: "## 3. Channel playbook"
+          reddit: "### 3a. Reddit — value-first, 9:1 rule"
+          x_twitter: "### 3b. X — saved searches + build-in-public"
+          linkedin: "### 3c. LinkedIn — business-value angle"
+          seo: "### 3d. SEO guide and comparison pages — setup docs as content"
+          directories: "### 3e. Directories & launches — gated, nothing submitted"
+          email: "### 3f. Direct email — no list exists here"
+          live_streams: "### 3g. Live streams — Nova marketing shows"
+          content_engine: "## 4. Content engine (make one thing become five)"
+          cadence: "## 5. Realistic weekly cadence"
+          metrics: "## 6. Funnel & metrics (track what can actually be measured)"
+          first_30_days: "## 7. First 30 days (do these in order)"
+          mistakes: "## 8. Mistakes to avoid"
+
+      ai_learning:
+        path: docs/learning/README.md
+        description: >-
+          The AI Learning Series index — syllabus, stream format, and where each lesson is
+          delivered. Authored in this repo; the blog, app, and product sites are delivery surfaces.
+        anchors:
+          syllabus: "## Syllabus"
+          stream_format: "## Stream format"
+          surfaces: "## Where each lesson is delivered"
+
+    draft_dir: docs/marketing-drafts
+
+  opentechnology-blog:
+    repo: OpenTechnology14/OpenTechnologyBlog
+    description: >-
+      The public OpenTechnology blog. Owns the AI content inventory that every generated post
+      is logged in. Delivery target for the AI Learning Series: the written lessons publish here.
+    path_env: OTBLOG_REPO_PATH
+    default_path: ../OpenTechnologyBlog
+
+    docs:
+      ai_inventory:
+        path: docs/AI_CONTENT_INVENTORY.md
+        description: Running log of every AI-assisted post — a post with no row here is a process miss.
+        anchors:
+          posts: "## Posts"
+
+      ai_control_layer:
+        path: docs/AI_CONTROL_LAYER_MODULE.md
+        description: AI Control Layer sources, claim ledger and release boundaries.
+        anchors:
+          surfaces: "## Purpose and surfaces"
+          claims: "## Launch claim ledger"
+
+      chatbot_routing:
+        path: docs/CHATBOT_ROUTING_MODULE.md
+        description: Chatbot Routing sources, claim ledger and release boundaries.
+        anchors:
+          surfaces: "## Purpose and surfaces"
+          claims: "## Launch claim ledger"
+
+    # Not an in-place edit of the inventory or any post: a human moves the draft into content/blog
+    # and adds the inventory row in the same PR, as the inventory itself requires.
+    draft_dir: docs/crosswalk-drafts
+
+  # ── Discovery-only targets (added 2026-10-20) ────────────────────────────────────────────
+  # `optional: true` — nothing is verified against these checkouts yet (no `docs` are declared), so
+  # `validate` logs the absence instead of failing on a machine, or a CI runner, without them.
+  myfeed:
+    repo: OpenTechnology14/MyFeed
+    description: MyFeed, a separate single-user local media reader. Discovery-only.
+    path_env: MYFEED_REPO_PATH
+    default_path: ../MyFeed
+    optional: true
+    docs: {}
+
+  ironfall:
+    repo: OpenTechnology14/Ironfall
+    description: Ironfall, a UE 5.8 game specification and C++ project. Discovery-only.
+    path_env: IRONFALL_REPO_PATH
+    default_path: ../Ironfall
+    optional: true
+    docs: {}
+
+  animalhouse:
+    repo: none (local project, no remote yet)
+    description: AnimalHouse, a UE 5.8 animal-collection game prototype. Discovery-only.
+    path_env: ANIMALHOUSE_PATH
+    default_path: ../AnimalHouse
+    optional: true
+    docs: {}
+
+  gist:
+    repo: OpenTechnology14/Gist
+    description: Gist, a separate grocery list and product-directory web app. Discovery-only.
+    path_env: GIST_REPO_PATH
+    default_path: ../Gist
+    optional: true
+    docs: {}

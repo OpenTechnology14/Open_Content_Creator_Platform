@@ -1,0 +1,82 @@
+# Discovery record for gist: Gist — a separate product in its own repository. Discovery-only.
+#
+# `subjects: []` is deliberate: nothing is generated and no status claim is made. `status` below
+# describes the underlying project (code and docs found), not marketing content, using the mechanical
+# rule in schema.md § Discovery-only modules.
+schema_version: 1
+
+module: gist
+product: none  # no products.yml entry until the owner approves marketing copy
+source_docs:
+  project: "the project directory or repository named in discovery.files; see discovery.counts.basis"
+
+asset_landing: {}
+channels: {}
+plan_notes: {}
+
+# Required by the loader. A placeholder, not an audience.
+icps:
+  unspecified:
+    rank: 1
+    who: "Not defined — a discovery-only module has no audience until it is promoted"
+    why_they_switch: "n/a"
+    where: "n/a"
+
+# ── Discovery metadata (see ../schema.md § Discovery metadata) ────────────────────────
+# Read by humans and agents, ignored by the loader. Canonical index: ../modules.yml
+discovery:
+  status: drafted
+  last_verified: 2026-10-24
+  notes: >-
+    A mobile-first grocery list and food health-scoring web app (React 18 and Vite 5, with Vercel
+    API routes and Supabase or Turso schemas) in its own repository. It scores products from Open
+    Food Facts (Nutri-Score, NOVA group, additive risk, a 0-100 Gist Score), scans barcodes and
+    keeps a product directory. API intake is built; scraping, AI-assisted scraping, manual scan or
+    label-OCR intake, a cosmetic product type and the directory speed work are PROPOSED in its own
+    queue (PROP-001, PROP-002), not features. Route a request here when it is about Gist, its
+    directory or its intake pipeline.
+  discovery_keywords:
+    ["Gist", "Gist app", "gist-app", "Gist Score", "product directory", "directory build",
+     "product intake", "intake pipeline", "grocery", "grocery list", "grocery app", "food health",
+     "cosmetics", "cosmetic products", "barcode scan", "barcode scanner", "label OCR", "OCR",
+     "Nutri-Score", "NOVA group", "additive risk", "Open Food Facts", "PROP-001", "PROP-002"]
+  not_to_be_confused_with:
+    - "GitHub Gist (gist.github.com) — an unrelated code-snippet service. This Gist is a grocery and product-directory app in its own repository."
+    - "task-management — the OpenTechnologyApp project/queue app. Gist is a separate repository and a separate product."
+    - "myfeed — another separate product, a feed reader. Gist's 'intake pipeline' is product-data intake for its directory, not feed or source intake."
+    - "This repository's image intake (docs/IMAGE_INTAKE.md) and the nature-generation and cityscape-generation modules take photographs for a generation corpus. Gist's intake is barcode, scrape and label-OCR intake of products."
+    - "PROP-001 and PROP-002, with their INTAKE-D, SCHEMA-D and SPEED-D gates, are proposals in Gist's own queue (docs/proposals/PROPOSAL_WORK_QUEUE.md there), not features and not this repository's P-NNN proposals."
+  counts:
+    basis: "find/grep on the Gist checkout (main @ 34e4e83, clean), 2026-10-24. code_files: js, jsx and mjs files tracked (api, scripts, src and vite.config.js). doc_files: *.md under docs/ plus the root; the four skills and the pull-request template are not counted, and 10 is exactly the bar for `drafted`. test_files: none tracked. proposals: '### PROP-' headings in docs/proposals/PROPOSAL_WORK_QUEUE.md. inline_style_objects: occurrences of `style={{` in src/GroceryAppV3_Web.jsx. Numbers only; navigation aid, not evidence."
+    subjects: 0
+    code_files: 7
+    doc_files: 10
+    test_files: 0
+    proposals: 2
+    sql_schemas: 2
+    api_functions: 2
+    npm_scripts: 3
+    inline_style_objects: 266
+  files:
+    target_repo: "OpenTechnology14/Gist"
+    claude_md: "CLAUDE.md"
+    readme: "README.md"
+    product_intake: "docs/design/PRODUCT_INTAKE_PROCEDURE.md"
+    speed_review: "docs/design/DIRECTORY_BUILD_SPEED_REVIEW.md"
+    proposal_queue: "docs/proposals/PROPOSAL_WORK_QUEUE.md"
+    design_pointer: "docs/design/DESIGN-SYSTEM-POINTER.md"
+    app: "src/GroceryAppV3_Web.jsx"
+    schema: "supabase_schema.sql"
+    turso_schema: "turso_schema.sql"
+
+subjects: []
+
+# ── Promotion: how this stops being discovery-only ─────────────────────────────────────
+promotion:
+  blocked_on: "Owner decision to market Gist, with owner-approved copy and ICPs"
+  steps:
+    - "Decide whether Gist is marketed at all and to whom; define its ICPs in this file (the placeholder above is not an audience)"
+    - "Add a products.yml entry with owner-approved tagline, one-liner, pricing and competitors, then set `product:` here"
+    - "Declare the target's marketing docs and anchors in targets.yml; keep `optional` until a checkout is expected on every machine"
+    - "Add subjects, each with a `status` and a `status_evidence` line that exists in the Gist repo; never claim PROP-001 or PROP-002 work (scraping, label OCR, cosmetics, speed) as shipped"
+    - "Give it a Nova persona and show profile; tests/automation_control/test_personality_bindings.py then requires them"

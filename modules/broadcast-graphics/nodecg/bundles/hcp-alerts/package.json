@@ -1,0 +1,24 @@
+{
+  "name": "hcp-alerts",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Webhook-driven alert overlays for OBS",
+  "nodecg": {
+    "compatibleRange": "^2.0.0",
+    "dashboardPanels": [
+      {
+        "name": "alerts",
+        "title": "Alert Controls",
+        "file": "alerts.html",
+        "width": 4
+      }
+    ],
+    "graphics": [
+      {
+        "file": "alert.html",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+# Discovery record for ironfall: Ironfall — a game in its own repository. Discovery-only.
+#
+# `subjects: []` is deliberate: nothing is generated and no status claim is made. `status` below
+# describes the underlying project (code and docs found), not marketing content, using the mechanical
+# rule in schema.md § Discovery-only modules.
+schema_version: 1
+
+module: ironfall
+product: none  # no products.yml entry until the owner approves marketing copy
+source_docs:
+  project: "the project directory or repository named in discovery.files; see discovery.counts.basis"
+
+asset_landing: {}
+channels: {}
+plan_notes: {}
+
+# Required by the loader. A placeholder, not an audience.
+icps:
+  unspecified:
+    rank: 1
+    who: "Not defined — a discovery-only module has no audience until it is promoted"
+    why_they_switch: "n/a"
+    where: "n/a"
+
+# ── Discovery metadata (see ../schema.md § Discovery metadata) ────────────────────────
+# Read by humans and agents, ignored by the loader. Canonical index: ../modules.yml
+discovery:
+  status: drafted
+  last_verified: 2026-10-20
+  notes: >-
+    A beginner-built, third-person, free-aim medieval PvPvE extraction game in Unreal Engine 5.8.
+    The repository is the source-of-truth specification (build guides, machine-readable design data,
+    an acceptance checklist and verifier scripts) plus the C++ gameplay project. This repository's
+    own P-NNN proposal queue and agent-doc conventions were modelled on Ironfall's; those are
+    process documents, not the game.
+  discovery_keywords:
+    ["Ironfall", "Iron Fall", "iron-fall", "ironfall game", "ironfall-unreal-blueprint-spec",
+     "Unreal Blueprint spec", "UE 5.8", "UE5.8", "Unreal Engine 5.8", "extraction game", "PvPvE",
+     "medieval extraction", "free-aim", "castle-town map"]
+  not_to_be_confused_with:
+    - "animalhouse — a separate UE 5.8 game. AnimalHouse's own agent context calls IronFall 'a reference project, not this project's design specification'."
+    - "This repository's proposal queue and agent-doc conventions (the P-NNN queue, VERIFICATION-MATRIX, DOC-UPDATE-MATRIX) were modelled on Ironfall's. They are process documents, not the game."
+  counts:
+    basis: "find on a local clone of OpenTechnology14/Ironfall (branch hf-t15b-boundary-ut @ 1dc7239, clean), 2026-10-20. code_files: .h/.cpp under Ironfall/Source. doc_files: *.md under Docs/ and Agent/ plus the root. build_scripts: *.py under Scripts/. automation_test_files: Source files containing IMPLEMENT_SIMPLE_AUTOMATION_TEST. content_assets: .uasset/.umap under Ironfall/Content. engine: the uproject's EngineAssociation. Navigation aid, not evidence."
+    subjects: 0
+    code_files: 56
+    doc_files: 46
+    build_scripts: 13
+    automation_test_files: 13
+    content_assets: 262
+    engine: "5.8"
+  files:
+    target_repo: "OpenTechnology14/Ironfall"
+    readme: "README.md"
+    claude_md: "CLAUDE.md"
+    roadmap: "ROADMAP.md"
+    proposals: "Docs/PROPOSALS.md"
+    game_design: "Data/game-design.yaml"
+    acceptance: "Tests/ACCEPTANCE-CHECKLIST.md"
+    project: "Ironfall/Ironfall.uproject"
+
+subjects: []
+
+# ── Promotion: how this stops being discovery-only ─────────────────────────────────────
+promotion:
+  blocked_on: "Owner decision to market Ironfall, with owner-approved copy and ICPs"
+  steps:
+    - "Decide whether Ironfall is marketed and to whom; define its ICPs in this file (the placeholder below is not an audience)"
+    - "Add a products.yml entry with owner-approved copy, then set `product:` here"
+    - "Declare the target's marketing docs and anchors in targets.yml"
+    - "Add subjects with `status` and a `status_evidence` line that exists in the Ironfall repo (its module-completion tracker is the natural source)"
+    - "Give it a Nova persona and show profile before any subject is added"

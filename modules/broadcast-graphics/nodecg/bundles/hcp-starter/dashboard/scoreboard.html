@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  body { font-family: system-ui, sans-serif; padding: 12px; }
+  label { display: block; margin: 8px 0 2px; font-size: 12px; opacity: 0.7; }
+  input { width: 100%; padding: 6px 8px; box-sizing: border-box; }
+  .row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div><label>Home</label><input id="home" type="number" value="0" /></div>
+    <div><label>Away</label><input id="away" type="number" value="0" /></div>
+    <div><label>Clock</label><input id="clock" type="text"  value="00:00" /></div>
+  </div>
+  <script>
+    const rep = nodecg.Replicant('scoreboard');
+    const h = document.getElementById('home');
+    const a = document.getElementById('away');
+    const c = document.getElementById('clock');
+    rep.on('change', (v) => {
+      if (!v) return;
+      h.value = v.home; a.value = v.away; c.value = v.clock;
+    });
+    const push = () => { rep.value = { home: +h.value, away: +a.value, clock: c.value }; };
+    [h, a, c].forEach(el => el.addEventListener('change', push));
+  </script>
+</body>
+</html>

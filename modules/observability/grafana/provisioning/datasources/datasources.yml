@@ -1,0 +1,24 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    uid: prometheus  # pinned — see the comment below for why
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: false
+
+  - name: Loki
+    type: loki
+    uid: loki  # pinned — see the comment below for why
+    access: proxy
+    url: http://loki:3100
+    editable: false
+
+# Both uids are pinned deliberately. The dashboards under ../../dashboards/*.json
+# reference their Loki/Prometheus panels by exactly these literal uids
+# ("datasource": {"type": "loki", "uid": "loki"}, etc.) — without an explicit
+# uid here, Grafana auto-generates one on provisioning that will not match,
+# and the panel shows "Datasource not found" instead of data. Never remove
+# these without updating every "uid" reference in the dashboard JSON to match.

@@ -1,0 +1,3 @@
+[default]
+description = "Read the bundled social profile/logo catalog, persist validated active profile/account routing, start the fixed loopback account service, begin catalog-scoped OAuth, and read redacted connections. No arbitrary command, URL, or path execution."
+permissions = ["allow-snapshot", "allow-selection", "allow-activate-profile", "allow-save-selection", "allow-start", "allow-status", "allow-authorize", "allow-connections", "allow-disconnect"]

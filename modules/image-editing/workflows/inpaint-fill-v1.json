@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "description": "Generative fill / masked-region inpaint. LoadImage (node 2) and LoadImage-as-mask (node 3) are injected at runtime by callers — see modules/realtime-ai/background-removal/repaint_region.py and modules/image-editing/krita/scripts/. Mask convention: white = repaint, black = keep.",
+    "required_models": ["SDXL Inpainting or Flux Fill"],
+    "custom_nodes": [],
+    "status": "GPU-run verified 2026-09-02 on Apple M1 Pro/Metal (P-043). Checkpoint loading fixed from a nonexistent single-file name to UNETLoader+DualCLIPLoader+VAELoader, see workflows/README.md — repaint_region.py never references node 1, unaffected."
+  },
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "sdxl-inpainting-0.1-unet.fp16.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "1b": {
+    "class_type": "DualCLIPLoader",
+    "inputs": {
+      "clip_name1": "sdxl-inpainting-0.1-clip_g.fp16.safetensors",
+      "clip_name2": "sdxl-inpainting-0.1-clip_l.fp16.safetensors",
+      "type": "sdxl"
+    }
+  },
+  "1c": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "sdxl-inpainting-0.1-vae.fp16.safetensors"
+    }
+  },
+  "2": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "PLACEHOLDER_IMAGE"
+    }
+  },
+  "3": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "PLACEHOLDER_MASK"
+    }
+  },
+  "4": {
+    "class_type": "ImageToMask",
+    "inputs": {
+      "image": ["3", 0],
+      "channel": "red"
+    }
+  },
+  "5": {
+    "class_type": "VAEEncodeForInpaint",
+    "inputs": {
+      "pixels": ["2", 0],
+      "vae": ["1c", 0],
+      "mask": ["4", 0],
+      "grow_mask_by": 6
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "PLACEHOLDER_PROMPT",
+      "clip": ["1b", 0]
+    }
+  },
+  "7": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "lowres, bad quality, blurry, watermark, seam, discontinuity",
+      "clip": ["1b", 0]
+    }
+  },
+  "8": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": ["1", 0],
+      "positive": ["6", 0],
+      "negative": ["7", 0],
+      "latent_image": ["5", 0],
+      "seed": 0,
+      "steps": 30,
+      "cfg": 7.0,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 1.0
+    }
+  },
+  "9": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": ["8", 0],
+      "vae": ["1c", 0]
+    }
+  },
+  "10": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": ["9", 0],
+      "filename_prefix": "repaint"
+    }
+  }
+}

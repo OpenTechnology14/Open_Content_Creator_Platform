@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-launch-obs"
+description = "Enables the launch_obs command without any pre-configured scope."
+commands.allow = ["launch_obs"]
+
+[[permission]]
+identifier = "deny-launch-obs"
+description = "Denies the launch_obs command without any pre-configured scope."
+commands.deny = ["launch_obs"]

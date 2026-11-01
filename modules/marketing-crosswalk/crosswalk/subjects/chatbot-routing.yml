@@ -1,0 +1,105 @@
+# Source-backed draft scripts for the chatbot-routing Nova profile (P-070).
+# Blog PR #49 merged 2026-09-26; local main verified at 03970722 on 2026-09-30.
+# OpenTechApp vendor routing, distinct from general AI governance and the proposed chatbot-ops module.
+# scaffolded means a source guide exists, NOT that narration is approved, the episode aired,
+# the page is deployed, or the described app feature shipped. The title evidence is deliberately
+# only a source-presence/drift check. Publication and app-capability review remain separate gates.
+# Discovery navigation and counts have one canonical home: ../modules.yml.
+schema_version: 1
+
+module: chatbot-routing
+product: opentechnology
+source_docs:
+  module: "OpenTechnologyBlog docs/CHATBOT_ROUTING_MODULE.md"
+  coverage: "OpenTechnologyBlog marketing/chatbot-routing/scope-and-release.md"
+  status: "Per-guide title in merged content/blog/*.mdx; source presence only"
+
+asset_landing:
+  stream-script: {doc: chatbot_routing, anchor: surfaces}
+
+channels:
+  stream: "Scripted AI-VOICE delivery; no automatic playback"
+  seo: "OpenTechnologyBlog — source post"
+  x_twitter: "X — clips and thread from the recording"
+  reddit: "Reddit — reply threads only, 9:1 rule"
+
+plan_notes:
+  editorial: "reviewable source outline; no product pricing or release claim"
+
+# Audience assumptions inherited from the discovery record, not measured demand.
+icps:
+  technical-builder:
+    rank: 1
+    who: Builders deciding between hosted and local chatbot paths
+    why_they_switch: They need routing, threshold and fallback behavior they can inspect
+    where: YouTube, X, r/ChatGPTCoding, r/LocalLLaMA
+  it-operator:
+    rank: 2
+    who: IT admins and small teams operating AI assistants
+    why_they_switch: They need API-key, local-model and assistant-off boundaries
+    where: LinkedIn, r/sysadmin, r/ITManagers
+
+# YAML defaults keep every source on the same conservative draft-only policy.
+script_defaults: &script_defaults
+  upstream: none
+  visibility: private
+  status: scaffolded
+  plan: editorial
+  coverage:
+    source_guide: true
+    publication_verified: false
+    stream_episode: false
+  icps: [technical-builder, it-operator]
+  channels: [stream]
+  assets: [stream-script]
+
+subjects:
+  - <<: *script_defaults
+    id: chatbot-routing-for-beginners
+    name: "Your Chatbot Doesn't Have to Run on One AI"
+    what_it_is: "Introduce the guide's vendor-routing concept without assuming a particular deployment or a cost saving."
+    status_evidence:
+      file: content/blog/chatbot-routing-for-beginners.mdx
+      contains: "title: \"Your Chatbot Doesn't Have to Run on One AI\""
+  - <<: *script_defaults
+    id: chatbot-routing-setup
+    name: "Setting Up the Multi-Vendor Router, Step by Step"
+    what_it_is: "Prepare a walkthrough of the routing settings and test-model check, after verifying the current app version."
+    status_evidence:
+      file: content/blog/chatbot-routing-setup.mdx
+      contains: "title: \"Setting Up the Multi-Vendor Router, Step by Step\""
+  - <<: *script_defaults
+    id: chatbot-routing-complexity-thresholds
+    name: "Choosing Complexity Thresholds, With Math and Real Logs"
+    what_it_is: "Explain the guide's scoring and threshold examples against a reviewed source revision."
+    status_evidence:
+      file: content/blog/chatbot-routing-complexity-thresholds.mdx
+      contains: "title: \"Choosing Complexity Thresholds, With Math and Real Logs\""
+  - <<: *script_defaults
+    id: chatbot-routing-api-key-security
+    name: "Per-Vendor API Key Security: What's Returned to the Client"
+    what_it_is: "Review the documented settings-response boundary using redacted examples and current source evidence."
+    status_evidence:
+      file: content/blog/chatbot-routing-api-key-security.mdx
+      contains: "title: \"Per-Vendor API Key Security: What's Returned to the Client\""
+  - <<: *script_defaults
+    id: chatbot-routing-hf-streaming
+    name: "HF Streaming: SSE Mechanics and What to Watch For"
+    what_it_is: "Walk through the guide's streaming format and client-side failure cases without claiming live integration acceptance."
+    status_evidence:
+      file: content/blog/chatbot-routing-hf-streaming.mdx
+      contains: "title: \"HF Streaming: SSE Mechanics and What to Watch For\""
+  - <<: *script_defaults
+    id: chatbot-routing-ollama-local
+    name: "Wiring Ollama for Local-Only Mode: What's Actually Available"
+    what_it_is: "Separate local deployment constraints, source implementation and release evidence; recheck the app PR status before speech."
+    status_evidence:
+      file: content/blog/chatbot-routing-ollama-local.mdx
+      contains: "title: \"Wiring Ollama for Local-Only Mode: What's Actually Available\""
+  - <<: *script_defaults
+    id: chatbot-routing-kill-switch
+    name: "The Org Chatbot On/Off Switch: What It Actually Controls"
+    what_it_is: "Explain the guide's org-wide versus per-project distinction, verified against the app revision used for the episode."
+    status_evidence:
+      file: content/blog/chatbot-routing-kill-switch.mdx
+      contains: "title: \"The Org Chatbot On/Off Switch: What It Actually Controls\""

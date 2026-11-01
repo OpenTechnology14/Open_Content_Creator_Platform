@@ -1,0 +1,11 @@
+schema_version: 1
+on_air_session: minecraft-main
+queue_capacity: 2
+event_ttl_seconds: 15
+output_directory: output/stream-autopilot/speech
+retain_wav: false
+voices:
+  # Null uses the operating system's default installed voice.
+  nova-local: null
+  # Local-engine voices (provider: local) and render_cache_directory are P-068; the module README
+  # section "Local voices" has the example. None is configured here and no engine ships yet.

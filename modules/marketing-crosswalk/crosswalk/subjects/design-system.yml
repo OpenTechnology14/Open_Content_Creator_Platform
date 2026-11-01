@@ -1,0 +1,71 @@
+# Discovery record for design-system: the ecosystem design-system hub. Discovery-only.
+#
+# `subjects: []` is deliberate: nothing is generated and no status claim is made. `status` below is the review
+# state of the hub's content (drafted = authored, awaiting owner review), not the project-count rule used for
+# project rows (schema.md § Discovery-only modules).
+schema_version: 1
+
+module: design-system
+product: none  # no products.yml entry: the hub is documentation, not something marketed
+source_docs:
+  hub: "design-system/README.md"
+
+asset_landing: {}
+channels: {}
+plan_notes: {}
+
+# Required by the loader. A placeholder, not an audience.
+icps:
+  unspecified:
+    rank: 1
+    who: "None — the hub is not a content target"
+    why_they_switch: "n/a"
+    where: "n/a"
+
+# ── Discovery metadata (see ../schema.md § Discovery metadata) ────────────────────────
+# Read by humans and agents, ignored by the loader. Canonical index: ../modules.yml
+discovery:
+  status: drafted
+  last_verified: 2026-10-24
+  notes: >-
+    The hub for visual identity across the ecosystem, in this repository's design-system/
+    folder. It records every consumer's actual colors, type, spacing, radii, shadows and motion
+    next to a proposed default, with component rules, voice registers (never real names),
+    iconography, a WCAG AA baseline and a template for design proposals. Everything is drafted:
+    no consumer should change its implemented values because of it. Route a request here when it
+    is about tokens, a component pattern, a voice register, icons, contrast, or a consumer's
+    design-system pointer doc.
+  discovery_keywords:
+    ["design system", "design-system", "designsystem", "design tokens", "tokens.yaml", "semantic tokens", "color palette", "type scale", "spacing scale", "radii", "motion durations", "component spec", "iconography", "icon set", "WCAG", "accessibility baseline", "contrast ratio", "voice and tone", "voice registers", "design hub", "DESIGN-SYSTEM-POINTER", "pointer doc", "design proposals", "brand.primary"]
+  not_to_be_confused_with:
+    - "social-management — brand, profile and account records (catalog.yaml) and the logo files. The hub records visual tokens and rules; a logo's colors sit under brand_marks in tokens.yaml."
+    - "marketing-crosswalk / MARKETING.md — positioning, claims and content generation. The hub makes no marketing claims and generates nothing."
+    - "stream-extend / content-extend — the products whose pages consume the tokens, not the system itself."
+    - "broadcast-graphics — the NodeCG overlays that consume tokens (the `overlays` consumer), not the specification."
+    - "The `design` skill summarises design intent and the voice registers; design-system/voice-and-tone.md is canonical for the registers."
+  counts:
+    basis: "2026-10-21, counted from the working tree and re-computed by tests/design_system. doc_files: *.md under design-system/. color_tokens and type_tokens: entries under those keys of tokens.yaml. decisions: keys of its decisions map. known_contrast_failures: entries of contrast.known_failures. Navigation aid, not evidence."
+    subjects: 0
+    doc_files: 7
+    data_files: 1
+    color_tokens: 20
+    type_tokens: 4
+    decisions: 9
+    known_contrast_failures: 11
+  files:
+    target_repo: "OpenTechnology14/Open_Content_Creator_Platform"
+    hub_readme: "design-system/README.md"
+    tokens: "design-system/tokens.yaml"
+    components: "design-system/components.md"
+    voice_and_tone: "design-system/voice-and-tone.md"
+    iconography: "design-system/iconography.md"
+    accessibility: "design-system/accessibility.md"
+    consumers: "design-system/crosswalk/consumers.md"
+    proposals_template: "design-system/proposals/TEMPLATE.md"
+
+subjects: []
+
+# ── Promotion: how this stops being discovery-only ─────────────────────────────────────
+promotion:
+  blocked_on: "no content is planned for the hub; it is discovery-only by design"
+  steps: []

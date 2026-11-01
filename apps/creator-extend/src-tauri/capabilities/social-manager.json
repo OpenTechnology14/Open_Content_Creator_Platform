@@ -1,0 +1,6 @@
+{
+  "identifier": "social-manager",
+  "description": "Local main-window social profile, logo, OAuth launcher and redacted connection access",
+  "windows": ["main"],
+  "permissions": ["social-manager:default"]
+}

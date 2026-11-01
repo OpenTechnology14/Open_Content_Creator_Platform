@@ -1,0 +1,95 @@
+name: Stream Autopilot native smoke
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'modules/ai-agents/stream_host/**'
+      - 'modules/audio-production/tts/**'
+      - 'modules/automation-control/stream_director/**'
+      - 'modules/automation-control/show_planner/**'
+      - 'modules/content-creation/stream_shorts/**'
+      - 'modules/soundboard/sounds/manifest.yaml'
+      - 'configs/local/stream-*'
+      - 'scripts/setup/stream_autopilot.py'
+      - 'scripts/setup/modules.py'
+      - 'scripts/setup/module_readiness.py'
+      - 'scripts/setup/capture_devices.py'
+      - 'scripts/setup/windows.ps1'
+      - 'configs/local/module-install-catalog.json'
+      - 'configs/setup/**'
+      - 'apps/shared/setup-engine/**'
+      - 'apps/shared/setup-wizard/**'
+      - 'apps/shared/ui/**'
+      - 'apps/stream-extend/**'
+      - 'apps/creator-extend/**'
+      - 'tests/**'
+      - '.github/workflows/stream-autopilot.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'modules/ai-agents/stream_host/**'
+      - 'modules/audio-production/tts/**'
+      - 'modules/automation-control/stream_director/**'
+      - 'modules/automation-control/show_planner/**'
+      - 'modules/content-creation/stream_shorts/**'
+      - 'modules/soundboard/sounds/manifest.yaml'
+      - 'configs/local/stream-*'
+      - 'scripts/setup/stream_autopilot.py'
+      - 'scripts/setup/modules.py'
+      - 'scripts/setup/module_readiness.py'
+      - 'scripts/setup/capture_devices.py'
+      - 'scripts/setup/windows.ps1'
+      - 'configs/local/module-install-catalog.json'
+      - 'configs/setup/**'
+      - 'apps/shared/setup-engine/**'
+      - 'apps/shared/setup-wizard/**'
+      - 'apps/shared/ui/**'
+      - 'apps/stream-extend/**'
+      - 'apps/creator-extend/**'
+      - 'tests/**'
+      - '.github/workflows/stream-autopilot.yml'
+permissions:
+  contents: read
+jobs:
+  native-rehearsal:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    env:
+      PYTHONUTF8: '1'
+      PYTHONTZPATH: ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: apps/shared/setup-engine -> target
+      - name: Shared desktop readiness contract
+        run: cargo test --locked --manifest-path apps/shared/setup-engine/Cargo.toml
+      - run: python -m pip install -r configs/local/stream-test-requirements.txt
+      - name: Focused contracts
+        run: python -m pytest tests/ai_agents/test_stream_host.py tests/audio_production/test_host_speech.py tests/automation_control/test_stream_director.py tests/automation_control/test_gameplay_handoff.py tests/automation_control/test_show_planner.py tests/content_creation tests/setup
+      - run: python scripts/setup/modules.py plan --profile stream-test
+      - name: Windows bootstrap plan
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup/windows.ps1 -PlanOnly -SkipCaptureScan
+      - name: Capture-device diagnostic contract
+        run: python scripts/setup/capture_devices.py --json
+      - run: python scripts/setup/modules.py install --modules audio-production soundboard
+      - run: python scripts/setup/modules.py doctor --modules audio-production soundboard
+      - run: python scripts/setup/stream_autopilot.py doctor
+      - name: Native voice and real synthetic Shorts
+        run: python scripts/setup/stream_autopilot.py smoke --output output/stream-autopilot/ci-test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stream-autopilot-${{ matrix.os }}
+          path: output/stream-autopilot/ci-test
+          if-no-files-found: warn

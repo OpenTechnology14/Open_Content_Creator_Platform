@@ -1,0 +1,24 @@
+schema_version: 1
+on_air_session: minecraft-main
+backend_url: http://127.0.0.1:8000
+host_config: configs/local/stream-autopilot.yaml
+director_config: configs/local/stream-director.yaml
+speech_config: configs/local/stream-speech.yaml
+avatar_config: configs/local/stream-avatar.yaml
+twitch_config: configs/local/twitch-chat.yaml
+# Remains disabled until an owner-permitted private test world is named.
+gameplay_config: configs/local/minecraft-gameplay.json
+# Rehearsal uses scripted replies. Turn this off only after Ollama and OLLAMA_MODEL are ready.
+host_rehearsal: true
+# Private operator copies may bind an installed model without shell environment settings.
+ollama_host: null
+ollama_model: null
+# Applying director actions requires accepted OBS scene/input/hotkey bindings.
+director_apply: false
+# Enable after VTube Studio, the original avatar and Talk/Idle hotkeys are accepted.
+avatar_enabled: false
+# Enable after Twitch client/token authorization and numeric account IDs are configured.
+twitch_enabled: false
+# Stream start/stop also requires broadcast_start_authorized in stream-supervisor.yaml.
+control_broadcast: false
+shutdown_timeout_seconds: 2

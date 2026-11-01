@@ -1,0 +1,389 @@
+{
+  "title": "HCP — Source Health",
+  "uid": "hcp-source-health",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "10s",
+  "time": { "from": "now-30m", "to": "now" },
+  "tags": ["hcp", "sources", "health"],
+  "annotations": {
+    "list": [
+      {
+        "datasource": { "type": "prometheus", "uid": "prometheus" },
+        "enable": true,
+        "expr": "ALERTS{alertstate=\"firing\", component=~\"obs|audio|video|graphics|avatar|ai|backend\"}",
+        "name": "Source Alerts",
+        "tagKeys": "component,severity",
+        "titleFormat": "{{ alertname }}"
+      }
+    ]
+  },
+  "templating": {
+    "list": []
+  },
+  "panels": [
+    {
+      "type": "row",
+      "title": "Connection Status",
+      "id": 100,
+      "gridPos": { "x": 0, "y": 0, "w": 24, "h": 1 },
+      "collapsed": false
+    },
+    {
+      "type": "stat",
+      "title": "OBS",
+      "id": 1,
+      "gridPos": { "x": 0, "y": 1, "w": 3, "h": 4 },
+      "targets": [
+        { "expr": "hcp_source_up{source=\"obs\"}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "0": { "text": "DOWN", "color": "red" }, "1": { "text": "UP", "color": "green" } } }
+          ],
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "red" }, { "value": 1, "color": "green" }] }
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "VoiceMeeter",
+      "id": 2,
+      "gridPos": { "x": 3, "y": 1, "w": 3, "h": 4 },
+      "targets": [
+        { "expr": "hcp_source_up{source=\"voicemeeter\"}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "0": { "text": "DOWN", "color": "red" }, "1": { "text": "UP", "color": "green" } } }
+          ],
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "red" }, { "value": 1, "color": "green" }] }
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "NodeCG",
+      "id": 3,
+      "gridPos": { "x": 6, "y": 1, "w": 3, "h": 4 },
+      "targets": [
+        { "expr": "hcp_source_up{source=\"nodecg\"}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "0": { "text": "DOWN", "color": "red" }, "1": { "text": "UP", "color": "green" } } }
+          ],
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "red" }, { "value": 1, "color": "green" }] }
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "VTube Studio",
+      "id": 4,
+      "gridPos": { "x": 9, "y": 1, "w": 3, "h": 4 },
+      "targets": [
+        { "expr": "hcp_source_up{source=\"vtube_studio\"}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "0": { "text": "DOWN", "color": "red" }, "1": { "text": "UP", "color": "green" } } }
+          ],
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "red" }, { "value": 1, "color": "green" }] }
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "DeepFaceLive",
+      "id": 5,
+      "gridPos": { "x": 12, "y": 1, "w": 3, "h": 4 },
+      "targets": [
+        { "expr": "hcp_source_up{source=\"deepfacelive\"}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "0": { "text": "DOWN", "color": "red" }, "1": { "text": "UP", "color": "green" } } }
+          ],
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "red" }, { "value": 1, "color": "green" }] }
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Redis (Event Bus)",
+      "id": 6,
+      "gridPos": { "x": 15, "y": 1, "w": 3, "h": 4 },
+      "targets": [
+        { "expr": "hcp_source_up{source=\"redis_tts\"}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "0": { "text": "DOWN", "color": "red" }, "1": { "text": "UP", "color": "green" } } }
+          ],
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "red" }, { "value": 1, "color": "green" }] }
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Sources Healthy",
+      "id": 7,
+      "gridPos": { "x": 18, "y": 1, "w": 6, "h": 4 },
+      "targets": [
+        { "expr": "count(hcp_source_up == 1)", "legendFormat": "up", "refId": "A" },
+        { "expr": "count(hcp_source_up)", "legendFormat": "total", "refId": "B" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "red" }, { "value": 5, "color": "yellow" }, { "value": 7, "color": "green" }] }
+        }
+      },
+      "options": { "textMode": "value_and_name" }
+    },
+
+    {
+      "type": "row",
+      "title": "Virtual Cameras",
+      "id": 101,
+      "gridPos": { "x": 0, "y": 5, "w": 24, "h": 1 },
+      "collapsed": false
+    },
+    {
+      "type": "table",
+      "title": "Virtual Camera Status",
+      "id": 10,
+      "gridPos": { "x": 0, "y": 6, "w": 12, "h": 6 },
+      "targets": [
+        { "expr": "hcp_source_up{type=\"virtual_camera\"}", "legendFormat": "{{ source }}", "refId": "up", "format": "table", "instant": true },
+        { "expr": "hcp_virtual_camera_fps", "legendFormat": "{{ device }}", "refId": "fps", "format": "table", "instant": true },
+        { "expr": "hcp_virtual_camera_black_frames", "legendFormat": "{{ device }}", "refId": "black", "format": "table", "instant": true }
+      ],
+      "fieldConfig": {
+        "overrides": [
+          { "matcher": { "id": "byName", "options": "Value #up" }, "properties": [{ "id": "custom.displayMode", "value": "color-background" }, { "id": "mappings", "value": [{ "type": "value", "options": { "0": { "text": "DOWN", "color": "red" }, "1": { "text": "UP", "color": "green" }}}] }] },
+          { "matcher": { "id": "byName", "options": "Value #black" }, "properties": [{ "id": "mappings", "value": [{ "type": "value", "options": { "0": { "text": "OK", "color": "green" }, "1": { "text": "BLACK", "color": "red" }}}] }] }
+        ]
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Virtual Camera FPS",
+      "id": 11,
+      "gridPos": { "x": 12, "y": 6, "w": 12, "h": 6 },
+      "targets": [
+        { "expr": "hcp_virtual_camera_fps", "legendFormat": "{{ device }}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "fps",
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "red" }, { "value": 10, "color": "yellow" }, { "value": 24, "color": "green" }] },
+          "custom": { "thresholdsStyle": { "mode": "area" } }
+        }
+      }
+    },
+
+    {
+      "type": "row",
+      "title": "Audio Buses",
+      "id": 102,
+      "gridPos": { "x": 0, "y": 12, "w": 24, "h": 1 },
+      "collapsed": false
+    },
+    {
+      "type": "bargauge",
+      "title": "Audio Bus Levels (dB)",
+      "id": 20,
+      "gridPos": { "x": 0, "y": 13, "w": 12, "h": 6 },
+      "targets": [
+        { "expr": "hcp_audio_bus_level_db", "legendFormat": "{{ bus }}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "dB",
+          "min": -80,
+          "max": 0,
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "blue" }, { "value": -60, "color": "green" }, { "value": -6, "color": "yellow" }, { "value": -1, "color": "red" }] }
+        }
+      },
+      "options": { "orientation": "horizontal", "displayMode": "gradient" }
+    },
+    {
+      "type": "stat",
+      "title": "Bus Silence Flags",
+      "id": 21,
+      "gridPos": { "x": 12, "y": 13, "w": 12, "h": 6 },
+      "targets": [
+        { "expr": "hcp_audio_bus_silent", "legendFormat": "{{ bus }}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "0": { "text": "ACTIVE", "color": "green" }, "1": { "text": "SILENT", "color": "orange" } } }
+          ]
+        }
+      },
+      "options": { "textMode": "value_and_name" }
+    },
+
+    {
+      "type": "row",
+      "title": "OBS State",
+      "id": 103,
+      "gridPos": { "x": 0, "y": 19, "w": 24, "h": 1 },
+      "collapsed": false
+    },
+    {
+      "type": "stat",
+      "title": "Streaming",
+      "id": 30,
+      "gridPos": { "x": 0, "y": 20, "w": 4, "h": 4 },
+      "targets": [
+        { "expr": "hcp_obs_stream_active", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [{ "type": "value", "options": { "0": { "text": "OFF", "color": "gray" }, "1": { "text": "LIVE", "color": "red" } } }]
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Recording",
+      "id": 31,
+      "gridPos": { "x": 4, "y": 20, "w": 4, "h": 4 },
+      "targets": [
+        { "expr": "hcp_obs_recording_active", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [{ "type": "value", "options": { "0": { "text": "OFF", "color": "gray" }, "1": { "text": "REC", "color": "red" } } }]
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "OBS Dropped Frames %",
+      "id": 32,
+      "gridPos": { "x": 8, "y": 20, "w": 16, "h": 6 },
+      "targets": [
+        { "expr": "hcp_obs_dropped_frames_pct", "legendFormat": "dropped %", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "green" }, { "value": 2, "color": "yellow" }, { "value": 5, "color": "red" }] },
+          "custom": { "thresholdsStyle": { "mode": "line+area" } }
+        }
+      }
+    },
+    {
+      "type": "table",
+      "title": "OBS Sources (current scene)",
+      "id": 33,
+      "gridPos": { "x": 0, "y": 26, "w": 24, "h": 6 },
+      "targets": [
+        { "expr": "hcp_obs_source_active", "legendFormat": "{{ name }}", "refId": "active", "format": "table", "instant": true },
+        { "expr": "hcp_obs_source_width", "legendFormat": "{{ name }}", "refId": "width", "format": "table", "instant": true },
+        { "expr": "hcp_obs_source_height", "legendFormat": "{{ name }}", "refId": "height", "format": "table", "instant": true }
+      ],
+      "fieldConfig": {
+        "overrides": [
+          { "matcher": { "id": "byName", "options": "Value #active" }, "properties": [{ "id": "custom.displayMode", "value": "color-background" }, { "id": "mappings", "value": [{ "type": "value", "options": { "0": { "text": "OFF", "color": "gray" }, "1": { "text": "ACTIVE", "color": "green" }}}] }] }
+        ]
+      }
+    },
+
+    {
+      "type": "row",
+      "title": "AI Agent + TTS",
+      "id": 104,
+      "gridPos": { "x": 0, "y": 32, "w": 24, "h": 1 },
+      "collapsed": false
+    },
+    {
+      "type": "stat",
+      "title": "Last TTS Output",
+      "id": 40,
+      "gridPos": { "x": 0, "y": 33, "w": 6, "h": 4 },
+      "targets": [
+        { "expr": "hcp_tts_last_output_seconds_ago", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "green" }, { "value": 120, "color": "yellow" }, { "value": 300, "color": "red" }] }
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Last Agent Reply",
+      "id": 41,
+      "gridPos": { "x": 6, "y": 33, "w": 6, "h": 4 },
+      "targets": [
+        { "expr": "hcp_agent_last_reply_seconds_ago", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "green" }, { "value": 120, "color": "yellow" }, { "value": 300, "color": "red" }] }
+        }
+      }
+    },
+
+    {
+      "type": "row",
+      "title": "Connection Latency",
+      "id": 105,
+      "gridPos": { "x": 0, "y": 37, "w": 24, "h": 1 },
+      "collapsed": false
+    },
+    {
+      "type": "timeseries",
+      "title": "Source Latency (ms)",
+      "id": 50,
+      "gridPos": { "x": 0, "y": 38, "w": 24, "h": 8 },
+      "targets": [
+        { "expr": "hcp_source_latency_ms", "legendFormat": "{{ source }}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "thresholds": { "mode": "absolute", "steps": [{ "value": null, "color": "green" }, { "value": 500, "color": "yellow" }, { "value": 2000, "color": "red" }] },
+          "custom": { "thresholdsStyle": { "mode": "line" } }
+        }
+      }
+    },
+
+    {
+      "type": "row",
+      "title": "Active Alerts",
+      "id": 106,
+      "gridPos": { "x": 0, "y": 46, "w": 24, "h": 1 },
+      "collapsed": false
+    },
+    {
+      "type": "alertlist",
+      "title": "Firing Source Health Alerts",
+      "id": 60,
+      "gridPos": { "x": 0, "y": 47, "w": 24, "h": 6 },
+      "options": {
+        "showOptions": "current",
+        "maxItems": 20,
+        "sortOrder": 1,
+        "dashboardAlerts": false,
+        "alertName": "",
+        "stateFilter": { "firing": true, "pending": true, "noData": false, "normal": false, "error": false },
+        "folder": { "id": null, "title": "" },
+        "folderId": null
+      }
+    }
+  ]
+}

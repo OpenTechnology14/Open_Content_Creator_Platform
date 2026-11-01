@@ -1,0 +1,22 @@
+[package]
+name = "tauri-plugin-social-manager"
+links = "tauri-plugin-social-manager"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Shared local Social Management launcher and catalog bridge"
+
+[dependencies]
+tauri = { version = "2", default-features = false }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["process", "time", "net", "sync", "rt"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+fs2 = "0.4"
+local-settings = { path = "../local-settings" }
+
+[build-dependencies]
+base64 = "0.22"
+serde_json = "1"
+serde_yaml = "0.9"
+tauri-plugin = { version = "2", features = ["build"] }

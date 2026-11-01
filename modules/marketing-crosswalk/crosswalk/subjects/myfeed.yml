@@ -1,0 +1,79 @@
+# Discovery record for myfeed: MyFeed — a separate product in its own repository. Discovery-only.
+#
+# `subjects: []` is deliberate: nothing is generated and no status claim is made. `status` below
+# describes the underlying project (code and docs found), not marketing content, using the mechanical
+# rule in schema.md § Discovery-only modules.
+schema_version: 1
+
+module: myfeed
+product: none  # no products.yml entry until the owner approves marketing copy
+source_docs:
+  project: "the project directory or repository named in discovery.files; see discovery.counts.basis"
+
+asset_landing: {}
+channels: {}
+plan_notes: {}
+
+# Required by the loader. A placeholder, not an audience.
+icps:
+  unspecified:
+    rank: 1
+    who: "Not defined — a discovery-only module has no audience until it is promoted"
+    why_they_switch: "n/a"
+    where: "n/a"
+
+# ── Discovery metadata (see ../schema.md § Discovery metadata) ────────────────────────
+# Read by humans and agents, ignored by the loader. Canonical index: ../modules.yml
+discovery:
+  status: drafted
+  last_verified: 2026-10-20
+  notes: >-
+    A single-user, local-first media reader in its own repository. It collects RSS,
+    Mastodon-compatible, Bluesky, email (IMAP), Rocket.Chat, JSON-API and YouTube sources into one
+    mixed timeline, filters them with deterministic keyword lenses, raises opt-in local @handle
+    mention alerts and builds manual, confirmed AI digests. Semantic AI filtering (PROP-025),
+    external alert delivery (PROP-026) and a hosted multi-user edition (PROP-021 to PROP-024) are
+    CONDITIONAL proposals in its own queue, not features. Route a request here when it is about the
+    feed reader itself.
+  discovery_keywords:
+    ["MyFeed", "My Feed", "my-feed", "MyFeeds", "My Feeds", "feed reader", "feed curation",
+     "media reader", "RSS reader", "keyword lens", "feed lenses", "mention alerts",
+     "alert delivery", "external alert delivery", "semantic filtering", "semantic AI filtering",
+     "hosted edition", "multi-user edition", "PROP-021", "PROP-025", "PROP-026",
+     "Bluesky reader", "Mastodon reader"]
+  not_to_be_confused_with:
+    - "task-management — the OpenTechnologyApp project/queue app. MyFeed is a separate repository and a separate product."
+    - "social-management — this repository's profile, brand, account and publishing-gate module. MyFeed reads feeds and has its own connections and posting setup."
+    - "ai-control-layer / chatbot-routing / ai-learning — AI governance, vendor routing and a lesson series. MyFeed's AI is a manual, confirmed digest, and semantic filtering is only a proposal."
+    - "PROP-021 to PROP-026 are proposals in MyFeed's own queue (docs/readable/PROPOSAL_WORK_QUEUE.md there), not features and not this repository's P-NNN proposals."
+  counts:
+    basis: "find/grep on the MyFeed checkout (main @ 5484d70, 1 uncommitted file), 2026-10-20. code_files: ts/tsx under src, server and shared. doc_files: *.md under docs/ plus the root. test_files: files under tests/. proposals: '### PROP-' headings in docs/readable/PROPOSAL_WORK_QUEUE.md. provider_kinds: keys of PROVIDERS in shared/model.ts. features_listed: distinct FEAT-ids in docs/readable/FEATURE_LIST.md. Navigation aid, not evidence."
+    subjects: 0
+    code_files: 42
+    doc_files: 24
+    test_files: 19
+    e2e_specs: 2
+    proposals: 35
+    provider_kinds: 8
+    features_listed: 42
+    npm_scripts: 12
+  files:
+    target_repo: "OpenTechnology14/MyFeed"
+    claude_md: "CLAUDE.md"
+    product_doc: "docs/readable/PRODUCT.md"
+    proposal_queue: "docs/readable/PROPOSAL_WORK_QUEUE.md"
+    feature_list: "docs/readable/FEATURE_LIST.md"
+    integrations: "docs/readable/INTEGRATIONS.md"
+    alerts_module: "shared/alerts.ts"
+
+subjects: []
+
+# ── Promotion: how this stops being discovery-only ─────────────────────────────────────
+promotion:
+  blocked_on: "Owner decision to market MyFeed, with owner-approved copy and ICPs"
+  steps:
+    - "Decide whether MyFeed is marketed at all and to whom; define its ICPs in this file (the placeholder below is not an audience)"
+    - "Add a products.yml entry with owner-approved tagline, one-liner, pricing and competitors, then set `product:` here"
+    - "Declare the target's marketing docs and anchors in targets.yml; keep `optional` until a checkout is expected on every machine"
+    - "Add subjects, each with a `status` and a `status_evidence` line that exists in the MyFeed repo; never claim PROP-021 to PROP-026 as shipped"
+    - "Give it a Nova persona and show profile; tests/automation_control/test_personality_bindings.py then requires them"

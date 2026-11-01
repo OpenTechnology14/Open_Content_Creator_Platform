@@ -1,0 +1,42 @@
+<!-- VoiceMeeter Potato — reference configuration. See modules/audio-production/setup/manual.md.
+
+     To import: VoiceMeeter → Menu → Load Settings → select this file.
+     To export your own: Menu → Save Settings.
+
+     This is a TEMPLATE. Actual device names will differ per machine.
+     While configuring, update Hardware Input/Output device assignments
+     to match your audio interface and virtual cables.
+-->
+<VoiceMeeterPotato>
+  <Bus name="A1" label="Headphones"  device="YOUR_INTERFACE_OUTPUT" />
+  <Bus name="B1" label="To OBS"      device="VoiceMeeter Output (VB-Audio)" />
+  <Bus name="B2" label="To Discord"  device="VoiceMeeter AUX Output (VB-Audio)" />
+
+  <Strip name="HW1" label="Mic"         device="YOUR_INTERFACE_INPUT"
+         routeA1="true"  routeB1="true"  routeB2="true" />
+  <Strip name="VIN1" label="Desktop"     device="VoiceMeeter Input (VB-Audio)"
+         routeA1="true"  routeB1="true"  routeB2="false" />
+  <Strip name="VIN2" label="AI / TTS"    device="VoiceMeeter AUX Input (VB-Audio)"
+         routeA1="true"  routeB1="true"  routeB2="false" />
+  <Strip name="VIN3" label="Call Audio"  device="VoiceMeeter VAIO3 Input (VB-Audio)"
+         routeA1="true"  routeB1="true"  routeB2="false">
+    <!-- NOT routed to B2 — prevents echo back to call partners (mix-minus) -->
+  </Strip>
+
+  <!-- Mic processing chain (apply in this order) -->
+  <Processing strip="HW1">
+    <Gate openThreshold="-32" closeThreshold="-36" attack="50" release="200" />
+    <Compressor ratio="4.0" threshold="-18" knee="2" attack="10" release="100" />
+    <EQ note="Adjust to taste for your mic/voice" />
+    <Limiter ceiling="-1" />
+  </Processing>
+
+  <Notes>
+    Configure and verify:
+    1. Open Sound settings → set system playback to "VoiceMeeter Input" (VIN1 captures desktop audio)
+    2. Set Discord input to "VoiceMeeter AUX Output" (B2 — mix-minus)
+    3. Set Discord output to "VoiceMeeter VAIO3 Input" (VIN3 — call audio)
+    4. Set AI/TTS app output to "VoiceMeeter AUX Input" (VIN2)
+    5. Test: call a friend, play music, run TTS — verify no echo and correct routing
+  </Notes>
+</VoiceMeeterPotato>

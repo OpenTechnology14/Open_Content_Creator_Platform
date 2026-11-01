@@ -1,0 +1,29 @@
+name: deploy-do
+
+on:
+  workflow_dispatch:
+    inputs:
+      droplet:
+        description: "Droplet hostname (tailnet recommended, e.g. hcp-prod.tailnet-name.ts.net)"
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup tailscale
+        uses: tailscale/github-action@v2
+        with:
+          authkey: ${{ secrets.TS_AUTHKEY }}
+          tags: tag:ci
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ inputs.droplet }}" >> ~/.ssh/known_hosts || true
+      - name: Run deploy script
+        env:
+          DROPLET: ${{ inputs.droplet }}
+        run: ./scripts/deploy/deploy-do.sh

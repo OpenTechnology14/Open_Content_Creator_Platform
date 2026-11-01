@@ -1,0 +1,356 @@
+# Subjects for the `content-extend` module: the thirteen PRODUCT modules of this repository carrying
+# the `Content` label (CLAUDE.md §4: fourteen carry it, re-counted 2026-10-20).
+#
+# `marketing-crosswalk` is deliberately excluded despite carrying the label. The roadmap's
+# Marketing Crosswalk Layer states it "owns no runtime and ships in neither app" — it is the tool
+# generating this content, not a Creator Extend feature. Marketing copy about it would describe
+# something no customer can buy.
+#
+# status_evidence cites the CLAUDE.md §11 Module Status row for each; `validate` re-reads it every
+# run. coverage is the creatorextend.com half of product-spec.md's URL table.
+schema_version: 1
+
+module: content-extend
+product: content-extend
+source_docs:
+  subjects: "CLAUDE.md §4 — product modules labelled `Content`"
+  coverage: "docs/architecture/product-spec.md §Marketing: Guides as Content (creatorextend.com rows)"
+  status: "CLAUDE.md §11 Module Status"
+  channels: "shared machine from OpenTechApp MARKETING.md §3; audience is Creator Extend's own"
+  content_model: "docs/architecture/product-spec.md §Marketing: Guides as Content"
+  playbook: "MARKETING.md (this repository) §2 ICPs and §3 channels repeat this file for readers; checked by tests/marketing_crosswalk/test_playbook.py"
+
+# Where each asset lands in THIS module's target (this repo).
+# ── Discovery metadata (see ../schema.md § Discovery metadata) ────────────────────────
+# Read by humans and agents, ignored by the loader. Canonical index: ../modules.yml
+discovery:
+  status: outlined
+  last_verified: 2026-10-20
+  notes: >-
+    The content-creation half of this repository's two desktop products. Content is about the
+    product modules labelled `Content` — ComfyUI workflows, Blender, Krita, nature and cityscape
+    generation, sports analytics, and the shared foundations (storage, social profiles, the asset
+    and model registries). `marketing-crosswalk` carries the label but is excluded: it ships in
+    neither app. Naming is unsettled: "ContentExtend" is the product name in
+    REPOSITORY_ALIGNMENT.md while "Creator Extend" appears in README, roadmap, product-spec and
+    the live domain. Both names should find this module.
+  discovery_keywords:
+    [Content Extend, ContentExtend, Creator Extend, CreatorExtend, ComfyUI, Blender, Krita,
+     image editing, nature generation, cityscape generation, sports analytics, render pipeline,
+     social accounts, model provenance, asset pipeline, soundboard, P-062, P-017, P-018,
+     marketing playbook, go-to-market, MARKETING.md]
+  not_to_be_confused_with:
+    - "stream-extend — the sibling product module for the Stream-labelled modules"
+    - "marketing-crosswalk — the generator that produces this content. It carries the Content label but is deliberately not a subject here: it ships in neither app"
+  counts:
+    basis: "subjects counted in this file; Content-labelled modules counted from CLAUDE.md §4 on 2026-10-20 (14, less the excluded marketing-crosswalk); assets from ../assets.yml"
+    subjects: 13
+    content_labelled_modules: 14
+    marketing_assets_available: 13
+  files:
+    target_repo: OpenTechnology14/Open_Content_Creator_Platform
+    product_spec: docs/architecture/product-spec.md
+    marketing_doc: MARKETING.md
+    setup_guide: docs/guides/production-setup/CREATOR_EXTEND_PRODUCTION_SETUP.md
+    alignment_policy: docs/REPOSITORY_ALIGNMENT.md
+
+asset_landing:
+  walkthrough-brief: {doc: product_spec, anchor: marketing}
+  stream-script:  {doc: product_spec, anchor: marketing}
+  guide-page:      {doc: product_spec, anchor: marketing}
+  blog-brief:      {doc: readme,       anchor: features}
+  reddit-post:     {doc: readme,       anchor: why}
+  x-thread:        {doc: readme,       anchor: why}
+  linkedin-post:   {doc: readme,       anchor: why}
+  comment-ammo:    {doc: readme,       anchor: why}
+  comparison-page: {doc: readme,       anchor: why}
+  matrix-row:      {doc: product_spec, anchor: marketing}
+
+channels:
+  reddit: "Reddit — value-first, 9:1 rule"
+  x_twitter: "X — saved searches + build-in-public"
+  linkedin: "LinkedIn — business-value angle"
+  seo: "SEO pages"
+
+# product-spec.md §Pricing: only five features need cloud.
+plan_notes:
+  free: "works fully locally — no subscription"
+  connect: "needs Connect ($5/mo) for remote access"
+  pro: "needs Pro ($12/mo) for multi-device sync"
+
+# ICPs for Creator Extend. Not Stream Extend's streamers, and not MARKETING.md §2's agencies —
+# these are who buys a local content-production pipeline.
+icps:
+  content-creator:
+    rank: 1
+    who: YouTube / shorts creators with a render pipeline
+    why_they_switch: ComfyUI, Blender, and Krita each run in isolation; moving an asset between them is manual every single time
+    where: r/NewTubers, r/comfyui, r/StableDiffusion, r/blender
+
+  photographer:
+    rank: 2
+    who: Photographers with a library they want to look consistent
+    why_they_switch: A per-image edit does not scale, and cloud AI tools want the library uploaded before they will touch it
+    where: r/photography, r/postprocessing, r/AskPhotography
+
+  technical-creator:
+    rank: 3
+    who: Self-hosting creators who run their own stack
+    why_they_switch: They already run Docker and want the creative stack observable and automatable, not a black box
+    where: r/selfhosted, r/homelab, Hacker News
+
+  sports-coach:
+    rank: 4
+    who: Golf / sports coaches and small athletic programs
+    why_they_switch: Shot tracing and swing analysis are locked behind $2k+ hardware or per-athlete SaaS
+    where: r/golf, r/golfsimulator, coaching forums
+
+subjects:
+  - id: realtime-ai
+    name: ComfyUI Workflows
+    what_it_is: >-
+      Versioned ComfyUI workflows plus the bridges that move frames and outputs between the
+      webcam, the graph, and object storage.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| realtime-ai | `Content` `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: "creatorextend.com/guides/comfyui", second_page: "creatorextend.com/guides/realtime"}
+    icps: [content-creator, technical-creator]
+    channels: [reddit, seo, x_twitter]
+    assets: [guide-page, blog-brief, comparison-page, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["comfyui workflow management", "comfyui outputs to s3", "self hosted image generation pipeline"]
+    competitors: ["ComfyUI alone", "Automatic1111", "Midjourney", "cloud generation SaaS"]
+
+  - id: image-editing
+    name: Krita AI Editing
+    what_it_is: >-
+      Krita + AI Diffusion inpainting, outpaint, SAM auto-select, and batch upscale against your
+      own ComfyUI backend.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| image-editing | `Content` | scaffolded |"
+    plan: free
+    coverage: {guide_page: "creatorextend.com/guides/image-editing"}
+    icps: [photographer, content-creator]
+    channels: [reddit, seo, x_twitter]
+    assets: [guide-page, blog-brief, comparison-page, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["photoshop generative fill alternative", "krita ai diffusion setup", "local inpainting no subscription"]
+    competitors: ["Photoshop Generative Fill", Firefly, "cloud inpainting SaaS"]
+
+  - id: nature-generation
+    name: Landscape Generation
+    what_it_is: >-
+      Learns a look from your own landscape photographs and applies it — full generated scenes,
+      sky replacement, or a deterministic saturation nudge.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| nature-generation | `Content` | scaffolded |"
+    plan: free
+    coverage: {guide_page: "creatorextend.com/guides/landscapes", intake_guide: "creatorextend.com/guides/image-intake"}
+    icps: [photographer, content-creator]
+    channels: [reddit, seo, x_twitter]
+    assets: [guide-page, blog-brief, comparison-page, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["train lora on my own photos", "consistent look across photo library", "local landscape style transfer"]
+    competitors: ["Lightroom presets", "Topaz", "cloud LoRA training services"]
+
+  - id: cityscape-generation
+    name: Cityscape Generation
+    what_it_is: >-
+      The same ladder for urban photographs — facade repair and generation with lineart
+      conditioning, plus exact perspective correction that needs no AI at all.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| cityscape-generation | `Content` | scaffolded |"
+    plan: free
+    coverage: {guide_page: "creatorextend.com/guides/cityscapes", intake_guide: "creatorextend.com/guides/image-intake"}
+    icps: [photographer, content-creator]
+    channels: [reddit, seo, x_twitter]
+    assets: [guide-page, blog-brief, comparison-page, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["architectural photo perspective correction", "ai cityscape generation straight lines", "urban photo style transfer local"]
+    competitors: ["Lightroom transform", "Photoshop perspective warp", "cloud generation SaaS"]
+
+  - id: sports-analytics
+    name: Sports CV
+    what_it_is: >-
+      Golf shot tracing, pose estimation, and swing analysis from an ordinary camera — no launch
+      monitor.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| sports-analytics | `Content` | scaffolded |"
+    plan: free
+    coverage: {guide_page: "creatorextend.com/guides/sports-cv"}
+    icps: [sports-coach, content-creator]
+    channels: [reddit, seo, linkedin]
+    assets: [guide-page, blog-brief, comparison-page, reddit-post, linkedin-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["golf shot tracer software", "swing analysis without launch monitor", "yolo golf ball tracking"]
+    competitors: [Trackman, Rapsodo, "manual video editing"]
+
+  - id: content-creation
+    name: Render Pipelines
+    what_it_is: >-
+      Blender and DaVinci render pipelines that pull assets from and push output back to the same
+      store as everything else.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| content-creation | `Content` | scaffolded |"
+    plan: free
+    coverage: {guide_page: "creatorextend.com/guides/comfyui"}   # shares the ComfyUI page
+    icps: [content-creator]
+    channels: [reddit, seo]
+    assets: [guide-page, blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["blender render pipeline automation", "shorts pipeline automation", "davinci batch render"]
+    competitors: ["manual export/import", "Adobe subscription stack"]
+
+  # ---- Shared modules with no creatorextend.com page. Real coverage gaps. ----
+
+  - id: creator-experience
+    name: OBS Foundation
+    what_it_is: >-
+      Scene collections, encoder configuration, and the mic filter chain — the base both products
+      build on.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| creator-experience | `Content` `Stream` | scaffolded |"
+    plan: free
+    # Its page exists, but only on the Stream site. A Creator Extend reader sent to
+    # streamextend.com is a real friction point, so this counts as a gap here.
+    coverage: {guide_page: false, stream_site_page: "streamextend.com/guides/obs-setup"}
+    icps: [content-creator]
+    channels: [reddit, seo]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["obs for recording not streaming", "obs encoder settings for youtube", "obs scene collection template"]
+    competitors: [Streamlabs, "OBS alone", "screen recorders"]
+
+  - id: storage-data
+    name: Asset + State Store
+    what_it_is: >-
+      Postgres, Redis, and MinIO pre-wired for assets, render output, and the photo corpora — one
+      compose file, not three setups.
+    upstream: none
+    visibility: private
+    status: shipped
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| storage-data | `Content` `Stream` | implemented |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [technical-creator, photographer]
+    channels: [seo, reddit]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["minio for render outputs", "self hosted asset storage creators", "photo corpus storage local"]
+    competitors: ["raw local disk", "Dropbox/Drive", "manual S3 setup"]
+
+  - id: automation-control
+    name: Automation
+    what_it_is: >-
+      n8n workflows that move assets between stages without a manual export at every step.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| automation-control | `Content` `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [technical-creator, content-creator]
+    channels: [reddit, seo, x_twitter]
+    assets: [blog-brief, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["n8n render pipeline", "automate comfyui to blender", "creative workflow automation self hosted"]
+    competitors: ["manual file shuffling", Zapier, "custom scripts"]
+
+  - id: soundboard
+    name: Hotkey Soundboard
+    what_it_is: >-
+      A DJ-style sound bar for streaming and content recording — named audio clips triggered on
+      hotkeys, mixed straight into your recording or stream.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| soundboard | `Content` `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [content-creator]
+    channels: [reddit, seo]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["add sound effects to recordings", "obs soundboard for video recording", "hotkey sound effects for youtube"]
+    competitors: [Voicemod, "Elgato Stream Deck", "OBS media sources by hand"]
+
+  - id: social-management
+    name: Profiles + Account Control
+    what_it_is: >-
+      Shared profile, brand, social-account, and publication control — one versioned catalog for
+      profile, brand and platform dropdowns across the desktop apps.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| social-management | `Content` `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [content-creator]
+    channels: [reddit, seo]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["manage multiple creator accounts", "brand profile switcher for creators", "social account manager for video creators"]
+    competitors: [Buffer, Hootsuite, "manual account switching"]
+
+  - id: asset-pipeline
+    name: Storage Contract
+    what_it_is: >-
+      One storage contract for every script and service that reads or writes MinIO or S3 objects.
+    upstream: none
+    visibility: private
+    status: shipped
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| asset-pipeline | `Content` `Stream` | implemented |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [technical-creator]
+    channels: [reddit, seo]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["minio s3 python client wrapper", "self hosted creator asset storage", "shared s3 client for scripts"]
+    competitors: ["hand-rolled S3 clients", rclone, "raw boto3 calls"]
+
+  - id: model-registry
+    name: Model Provenance Registry
+    what_it_is: >-
+      One schema, one checksum tool, and one computed "is this actually distributable" answer for
+      every model weight and adapter in the repo.
+    upstream: none
+    visibility: private
+    status: shipped
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| model-registry | `Content` `Stream` | implemented |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [technical-creator, content-creator]
+    channels: [reddit, seo]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["model weights checksum license", "is this model redistributable", "lora provenance tracking"]
+    competitors: ["Hugging Face model cards", "a spreadsheet of weights"]

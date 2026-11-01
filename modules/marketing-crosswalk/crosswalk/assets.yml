@@ -1,0 +1,107 @@
+# Asset catalogue.
+#
+# "MARKETING.md §N" below is the shared numbering: OpenTechnologyApp's MARKETING.md and this
+# repository's MARKETING.md (a registered `marketing_playbook` doc) use the same section numbers.
+#
+# The five-format set is MARKETING.md §4's content engine, in its order:
+#   1 blog post → 2 Reddit post → 3 X thread → 4 LinkedIn post → 5 comment ammo
+# plus §3d (comparison page), §3f (lead email angle), and the coverage row that keeps
+# BLOG_MARKETING_CONNECTION.md §2's ledger current.
+#
+# Directory listing is deliberately absent: MARKETING.md §3e's paste-ready copy is
+# product-level (one listing for OpenTechnology), not per-template, and already written.
+#
+# Where an asset LANDS is declared per module (`asset_landing:` in each subjects file), not here —
+# each module targets a different repo with a different doc set.
+#
+# claim_level gates against the SUBJECT's status, which is itself verified against a
+# named line in the target repo:
+#   roadmap — safe at any status; describes or briefs, does not assert
+#   shipped — asserts the template works today; needs status: shipped
+schema_version: 1
+
+engine_order: [blog-brief, reddit-post, x-thread, linkedin-post, comment-ammo]
+
+assets:
+  walkthrough-brief:
+    template: walkthrough-brief.md.tmpl
+    claim_level: roadmap
+    summary: >-
+      Source-bounded demonstration plan with beginner steps, expected results, recovery,
+      capture evidence, accessible transcript and engineering companion; not a recorded demo.
+
+  blog-brief:
+    template: blog-brief.md.tmpl
+    claim_level: roadmap
+    engine_step: 1
+    summary: Outline + target keywords for the SEO post that feeds the other four formats.
+
+  reddit-post:
+    template: reddit-post.md.tmpl
+    claim_level: shipped
+    engine_step: 2
+    summary: "'Show & tell' post, value-first, subject to the 9:1 rule (§3a)."
+
+  x-thread:
+    template: x-thread.md.tmpl
+    claim_level: roadmap
+    engine_step: 3
+    summary: Key points + screenshot, or a build-in-public thread (§3b).
+
+  linkedin-post:
+    template: linkedin-post.md.tmpl
+    claim_level: shipped
+    engine_step: 4
+    summary: The business-value angle (§3c).
+
+  comment-ammo:
+    template: comment-ammo.md.tmpl
+    claim_level: roadmap
+    engine_step: 5
+    summary: F5Bot-alert reply that answers first and links second (§3a, §4 step 5).
+
+  comparison-page:
+    template: comparison-page.md.tmpl
+    claim_level: shipped
+    summary: "'X alternative' page with an honest comparison table (§3d)."
+
+  lead-email-angle:
+    template: lead-email-angle.md.tmpl
+    claim_level: shipped
+    summary: One-paragraph angle for a Brevo send (§3f).
+
+  matrix-row:
+    template: matrix-row.md.tmpl
+    claim_level: roadmap
+    summary: Coverage row keeping BLOG_MARKETING_CONNECTION.md §2's ledger current.
+
+  guide-page:
+    template: guide-page.md.tmpl
+    claim_level: roadmap
+    summary: >-
+      Website page brief derived from a module's setup docs, per product-spec.md
+      §"Marketing: Guides as Content" — manual steps become "what the app automates",
+      validation becomes "what you'll have when you're done".
+
+
+  lesson-brief:
+    template: lesson-brief.md.tmpl
+    claim_level: roadmap
+    engine_step: 1
+    summary: >-
+      Blog source post brief for a learning-series lesson — promise, flow, and proof — written
+      before the stream so the stream has something to be checked against.
+
+  stream-runofshow:
+    template: stream-runofshow.md.tmpl
+    claim_level: roadmap
+    summary: >-
+      Run of show for the live walkthrough of a lesson, broadcast with Stream Extend and recorded
+      or clipped with Creator Extend.
+
+  stream-script:
+    template: stream-script.md.tmpl
+    claim_level: roadmap
+    summary: >-
+      Reviewable, source-bounded spoken-script outline for a module's Nova show profile.
+      Requires human completion and approval; does not start narration or enable live Q&A.

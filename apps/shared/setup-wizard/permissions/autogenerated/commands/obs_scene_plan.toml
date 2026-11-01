@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-obs-scene-plan"
+description = "Enables the obs_scene_plan command without any pre-configured scope."
+commands.allow = ["obs_scene_plan"]
+
+[[permission]]
+identifier = "deny-obs-scene-plan"
+description = "Denies the obs_scene_plan command without any pre-configured scope."
+commands.deny = ["obs_scene_plan"]

@@ -1,0 +1,50 @@
+[package]
+name = "stream-extend"
+version = "0.1.0"
+description = "Stream Extend — OBS control, AI effects, overlays, agents, audio monitoring. Desktop + mobile."
+edition = "2021"
+license = "MIT"
+
+[lib]
+name = "stream_extend_lib"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+fs2 = "0.4"
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-shell = "2"
+tauri-plugin-store = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-http = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
+obws = "0.15"
+time = "0.3"  # obws reports StreamStatus timecode/duration as time::Duration; named directly, no conversion shim
+url = "2"
+
+# Workspace crates
+relay-client = { path = "../../shared/relay-client" }
+command-error = { path = "../../shared/command-error" }
+setup-wizard = { package = "tauri-plugin-module-setup", path = "../../shared/setup-wizard" }
+local-settings = { path = "../../shared/local-settings" }
+setup-engine = { path = "../../shared/setup-engine" }
+social-manager = { package = "tauri-plugin-social-manager", path = "../../shared/social-manager" }
+recording-library = { path = "../../shared/recording-library" }
+
+[dev-dependencies]
+# Server-side (accept_async) for the fake OBS WebSocket test harness — this
+# app's plaintext ws://, no native-tls feature needed. Pinned to match
+# relay-client's version so the workspace doesn't carry two tokio-tungstenite
+# builds.
+tokio-tungstenite = "0.24"
+futures-util = "0.3"  # SinkExt/StreamExt for the fake server's WebSocketStream
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]

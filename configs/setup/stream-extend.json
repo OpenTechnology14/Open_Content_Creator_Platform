@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "manifest_version": "2026.09.1",
+  "product": "stream-extend",
+  "checks": [
+    { "id": "stream.obs.websocket", "label": "OBS WebSocket" },
+    { "id": "stream.obs.scenes", "label": "OBS scene collection" }
+  ],
+  "capabilities": [
+    {
+      "id": "obs-control",
+      "label": "OBS scene control",
+      "requires": ["stream.obs.websocket", "stream.obs.scenes"]
+    }
+  ]
+}

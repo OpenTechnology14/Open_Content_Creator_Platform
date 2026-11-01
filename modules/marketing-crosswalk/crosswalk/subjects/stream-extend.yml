@@ -1,0 +1,394 @@
+# Subjects for the `stream-extend` module: the fifteen modules of this repository carrying the
+# `Stream` label (CLAUDE.md §4, re-counted 2026-10-20). These are what generated content is about.
+#
+# status_evidence cites the CLAUDE.md §11 Module Status row for each. `validate` re-reads it every
+# run, so a module promoted past `scaffolded` unblocks its shipped-claim assets automatically —
+# and a row edited without updating this file fails loudly instead of silently over-claiming.
+#
+# coverage is the URL table in product-spec.md §"Marketing: Guides as Content". A module with no
+# planned page is a `false` cell — a real gap, not an omission.
+schema_version: 1
+
+module: stream-extend
+product: stream-extend
+source_docs:
+  subjects: "CLAUDE.md §4 — modules labelled `Stream`"
+  coverage: "docs/architecture/product-spec.md §Marketing: Guides as Content (URL table)"
+  status: "CLAUDE.md §11 Module Status"
+  channels: "shared machine from OpenTechApp MARKETING.md §3; audience is Stream Extend's own"
+  content_model: "docs/architecture/product-spec.md §Marketing: Guides as Content"
+  playbook: "MARKETING.md (this repository) §2 ICPs and §3 channels repeat this file for readers; checked by tests/marketing_crosswalk/test_playbook.py"
+
+# Where each asset lands in THIS module's target (this repo). README.md carries the product
+# marketing; product-spec.md owns the pricing model and the guides-as-content plan.
+# ── Discovery metadata (see ../schema.md § Discovery metadata) ────────────────────────
+# Read by humans and agents, ignored by the loader. Canonical index: ../modules.yml
+discovery:
+  status: outlined
+  last_verified: 2026-10-20
+  notes: >-
+    The streaming half of this repository's two desktop products. Content is about the modules
+    labelled `Stream` — OBS orchestration, realtime AI effects, broadcast graphics, audio
+    routing, AI agents, avatars, soundboard, observability, backend API, and the shared
+    foundations (storage, social profiles and publishing gates, the asset and model registries).
+    If a request is about going live, OBS, encoders, overlays or stream automation, it is this
+    module.
+  discovery_keywords:
+    [Stream Extend, StreamExtend, streaming, OBS, broadcast graphics, overlays,
+     stream automation, AI effects, avatar, soundboard, go live, encoder, social accounts,
+     stream profiles, model provenance, asset pipeline, P-062, P-017, P-018, marketing playbook,
+     go-to-market, MARKETING.md]
+  not_to_be_confused_with:
+    - "content-extend — the sibling product module for the Content-labelled modules"
+    - "ai-learning — a lesson series that is *streamed with* Stream Extend, not about it"
+  counts:
+    basis: "subjects counted in this file; Stream-labelled modules counted from CLAUDE.md §4 on 2026-10-20; assets from ../assets.yml"
+    subjects: 15
+    stream_labelled_modules: 15
+    marketing_assets_available: 13
+  files:
+    target_repo: OpenTechnology14/Open_Content_Creator_Platform
+    product_spec: docs/architecture/product-spec.md
+    marketing_doc: MARKETING.md
+    setup_guide: docs/guides/production-setup/STREAM_EXTEND_PRODUCTION_SETUP.md
+    module_index: modules/README.md
+
+asset_landing:
+  walkthrough-brief: {doc: product_spec, anchor: marketing}
+  stream-script:  {doc: product_spec, anchor: marketing}
+  guide-page:      {doc: product_spec, anchor: marketing}
+  blog-brief:      {doc: readme,       anchor: features}
+  reddit-post:     {doc: readme,       anchor: why}
+  x-thread:        {doc: readme,       anchor: why}
+  linkedin-post:   {doc: readme,       anchor: why}
+  comment-ammo:    {doc: readme,       anchor: why}
+  comparison-page: {doc: readme,       anchor: why}
+  matrix-row:      {doc: product_spec, anchor: marketing}
+
+# Channels. Stream Extend shares OpenTechnology's channel *machine* (MARKETING.md §3) but not its
+# audience, so the labels name the channel rather than a section of a doc in another repo.
+channels:
+  reddit: "Reddit — value-first, 9:1 rule"
+  x_twitter: "X — saved searches + build-in-public"
+  linkedin: "LinkedIn — business-value angle"
+  seo: "SEO pages"
+
+# What each `plan` value means for this product. product-spec.md §Pricing: only five features
+# need cloud; everything else is free and local.
+plan_notes:
+  free: "works fully locally — no subscription"
+  connect: "needs Connect ($5/mo) for remote access"
+  pro: "needs Pro ($12/mo) for metric persistence across devices"
+
+# ICPs for Stream Extend. Deliberately NOT MARKETING.md §2's list — that describes who buys
+# OpenTechnology (agencies, MSPs, dev teams). These are who buys a streaming dashboard.
+# Derived from README.md §"Why Stream Extend" and the module set itself.
+icps:
+  live-streamer:
+    rank: 1
+    who: Twitch / YouTube streamers running OBS solo
+    why_they_switch: A different plugin per effect, each with its own install and GPU quirks, and no shared control surface
+    where: r/Twitch, r/streaming, r/obs, X streaming community
+
+  esports-broadcast:
+    rank: 2
+    who: Small esports / league broadcast operators
+    why_they_switch: Scoreboards and lower-thirds are hand-built per event; nothing is reusable and nothing is driven from live data
+    where: r/esports, r/nodecg, Discord broadcast servers
+
+  vtuber:
+    rank: 3
+    who: VTubers and PNGTubers
+    why_they_switch: Avatar tooling is Windows-only and disconnected from the scene switcher and agent that should drive it
+    where: r/VirtualYoutubers, r/PNGTubers, X VTuber community
+
+  technical-creator:
+    rank: 4
+    who: Self-hosting / homelab creators who run their own stack
+    why_they_switch: They already run Docker and want the creator stack observable and automatable, not a black box
+    where: r/selfhosted, r/homelab, r/devops, Hacker News
+
+subjects:
+  - id: creator-experience
+    name: OBS Foundation
+    what_it_is: >-
+      Scene collections, encoder configuration, and the mic filter chain — imported, not hand-built.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| creator-experience | `Content` `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: "streamextend.com/guides/obs-setup"}
+    icps: [live-streamer, esports-broadcast]
+    channels: [reddit, seo, x_twitter]
+    assets: [guide-page, blog-brief, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["obs scene collection template", "obs encoder settings 1080p60", "obs setup guide"]
+    competitors: [Streamlabs, StreamElements, "OBS alone"]
+
+  - id: realtime-ai
+    name: AI Effects
+    what_it_is: >-
+      Face filters, background removal, and ComfyUI stylization on the local GPU, wired into OBS
+      as one control surface.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| realtime-ai | `Content` `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: "streamextend.com/guides/ai-effects"}
+    icps: [live-streamer, vtuber]
+    channels: [reddit, seo, x_twitter]
+    assets: [guide-page, blog-brief, comparison-page, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["obs ai background removal", "deepfacelive obs", "ai webcam filters obs"]
+    competitors: ["NVIDIA Broadcast", "per-plugin DIY", "Snap Camera (discontinued)"]
+
+  - id: audio-production
+    name: Audio Routing
+    what_it_is: >-
+      VoiceMeeter / BlackHole / PipeWire routing and mic processing committed as configuration
+      instead of rebuilt from a tutorial each time.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| audio-production | `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: "streamextend.com/guides/audio"}
+    icps: [live-streamer, vtuber]
+    channels: [reddit, seo]
+    assets: [guide-page, blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["voicemeeter setup streaming", "obs mix minus discord", "stream audio routing"]
+    competitors: ["VoiceMeeter alone", "hardware mixers", "tutorial-by-tutorial setup"]
+
+  - id: broadcast-graphics
+    name: Broadcast Overlays
+    what_it_is: >-
+      NodeCG lower-thirds, scoreboards, and sponsor rotators driven from live data, reusable
+      across events.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| broadcast-graphics | `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: "streamextend.com/guides/overlays"}
+    icps: [esports-broadcast, live-streamer]
+    channels: [reddit, seo, linkedin]
+    assets: [guide-page, blog-brief, comparison-page, reddit-post, linkedin-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["nodecg scoreboard", "esports lower thirds", "obs overlay from live data"]
+    competitors: ["Singular.live", "hand-built HTML overlays", "vMix titles", CasparCG]
+
+  - id: ai-agents
+    name: AI Agents
+    what_it_is: >-
+      A local LLM persona with memory that reads chat, moderates, and drives the avatar — with no
+      per-message API bill.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| ai-agents | `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: "streamextend.com/guides/ai-agents"}
+    icps: [vtuber, live-streamer]
+    channels: [reddit, seo, x_twitter]
+    assets: [guide-page, blog-brief, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["ai vtuber local llm", "twitch chat ai co-host", "aituberkit setup"]
+    competitors: [Nightbot, "cloud LLM bots", "AITuberKit alone"]
+
+  - id: observability
+    name: Operations — Monitoring
+    what_it_is: >-
+      Prometheus, Grafana, and Loki showing whether every source, bus, and AI service is alive
+      before you go live.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| observability | `Stream` | scaffolded |"
+    plan: pro   # metric persistence across devices is a cloud feature
+    coverage: {guide_page: "streamextend.com/guides/operations"}
+    icps: [technical-creator, esports-broadcast]
+    channels: [reddit, seo, linkedin]
+    assets: [guide-page, blog-brief, comparison-page, reddit-post, linkedin-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["obs monitoring dashboard", "stream health grafana", "is my stream source alive"]
+    competitors: ["watching OBS by eye", "nothing"]
+
+  - id: infrastructure
+    name: Operations — Hybrid Networking
+    what_it_is: >-
+      Docker Compose plus Tailscale so the workstation and a cloud droplet are one private
+      network, with no public ports.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| infrastructure | `Stream` | scaffolded |"
+    plan: connect
+    coverage: {guide_page: "streamextend.com/guides/operations"}
+    icps: [technical-creator]
+    channels: [reddit, seo]
+    assets: [guide-page, blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["tailscale obs remote", "hybrid local cloud streaming", "remote obs control no port forwarding"]
+    competitors: ["port forwarding", "VPN by hand", "cloud-only stacks"]
+
+  # ---- No planned website page in product-spec.md's URL table. Real coverage gaps. ----
+
+  - id: automation-control
+    name: Automation
+    what_it_is: >-
+      OBS WebSocket plus n8n workflows that react to stream events without a macro per action.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| automation-control | `Content` `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [live-streamer, technical-creator]
+    channels: [reddit, seo, x_twitter]
+    assets: [blog-brief, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["obs websocket automation", "advanced scene switcher alternative", "n8n obs"]
+    competitors: ["Advanced Scene Switcher", "StreamDeck macros", "custom scripts"]
+
+  - id: backend-api
+    name: Overlay + Event API
+    what_it_is: >-
+      FastAPI and WebSocket services that overlays, mobile, and automation all read from — one
+      contract instead of four integrations.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| backend-api | `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [technical-creator, esports-broadcast]
+    channels: [seo, reddit]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["obs overlay api", "stream event websocket", "self hosted stream backend"]
+    competitors: ["hand-rolled Node servers", "Streamlabs API"]
+
+  - id: storage-data
+    name: Asset + State Store
+    what_it_is: >-
+      Postgres, Redis, and MinIO pre-wired for assets, session state, and render output — one
+      compose file, not three setups.
+    upstream: none
+    visibility: private
+    status: shipped
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| storage-data | `Content` `Stream` | implemented |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [technical-creator]
+    channels: [seo, reddit]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["self hosted creator storage", "minio stream recordings", "docker compose creator stack"]
+    competitors: ["raw local disk", "Dropbox/Drive", "manual S3 setup"]
+
+  - id: character-avatar
+    name: Avatars
+    what_it_is: >-
+      PNGTuber and VTube Studio avatars driven by the same agent and scene switcher as the rest
+      of the stream.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| character-avatar | `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [vtuber, live-streamer]
+    channels: [reddit, x_twitter]
+    assets: [blog-brief, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["pngtuber setup obs", "vtube studio obs", "agent driven avatar"]
+    competitors: ["VTube Studio alone", Veadotube, Animaze]
+
+  - id: soundboard
+    name: Hotkey Soundboard
+    what_it_is: >-
+      A DJ-style sound bar for streaming and content recording — named audio clips triggered on
+      hotkeys, mixed straight into your recording or stream.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| soundboard | `Content` `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [live-streamer, vtuber]
+    channels: [reddit, seo]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["obs soundboard plugin", "obs hotkey sound effects", "stream soundboard hotkeys"]
+    competitors: [Voicemod, "Elgato Stream Deck", "OBS media sources by hand"]
+
+  - id: social-management
+    name: Profiles + Account Control
+    what_it_is: >-
+      Shared profile, brand, social-account, and publication control — one versioned catalog for
+      profile, brand and platform dropdowns across the desktop apps.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| social-management | `Content` `Stream` | scaffolded |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [live-streamer, vtuber]
+    channels: [reddit, seo]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["manage multiple streaming accounts", "creator brand profile switcher", "social account manager for streamers"]
+    competitors: [Buffer, Hootsuite, "manual account switching"]
+
+  - id: asset-pipeline
+    name: Storage Contract
+    what_it_is: >-
+      One storage contract for every script and service that reads or writes MinIO or S3 objects.
+    upstream: none
+    visibility: private
+    status: shipped
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| asset-pipeline | `Content` `Stream` | implemented |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [technical-creator]
+    channels: [reddit, seo]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["minio s3 python client wrapper", "self hosted creator asset storage", "shared s3 client for scripts"]
+    competitors: ["hand-rolled S3 clients", rclone, "raw boto3 calls"]
+
+  - id: model-registry
+    name: Model Provenance Registry
+    what_it_is: >-
+      One schema, one checksum tool, and one computed "is this actually distributable" answer for
+      every model weight and adapter in the repo.
+    upstream: none
+    visibility: private
+    status: shipped
+    status_evidence:
+      file: CLAUDE.md
+      contains: "| model-registry | `Content` `Stream` | implemented |"
+    plan: free
+    coverage: {guide_page: false}
+    icps: [technical-creator]
+    channels: [reddit, seo]
+    assets: [blog-brief, reddit-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords: ["model weights checksum license", "is this model redistributable", "lora provenance tracking"]
+    competitors: ["Hugging Face model cards", "a spreadsheet of weights"]

@@ -1,0 +1,9 @@
+schema_version: 1
+session_id: minecraft-main
+# Replace these two numeric IDs after authorizing a Twitch application/user token.
+broadcaster_user_id: "000000000"
+user_id: "000000000"
+websocket_url: wss://eventsub.wss.twitch.tv/ws?keepalive_timeout_seconds=30
+helix_url: https://api.twitch.tv/helix
+reconnect_min_seconds: 1
+reconnect_max_seconds: 30

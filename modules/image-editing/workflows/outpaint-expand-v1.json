@@ -1,0 +1,102 @@
+{
+  "_meta": {
+    "title": "Outpaint Expand v1",
+    "description": "Extend the canvas on one or more sides and fill the new area with AI-generated content that continues the source image. Uses ComfyUI's built-in 'Pad Image for Outpainting' node to build the padded canvas and mask, then the same inpaint backbone as inpaint-fill-v1.json.",
+    "module": "image-editing",
+    "status": "GPU-run verified 2026-09-02 on Apple M1 Pro/Metal (P-043) — loaded into a real ComfyUI and run to a saved image; checkpoint loading fixed from a nonexistent single-file name to UNETLoader+DualCLIPLoader+VAELoader, see workflows/README.md",
+    "required_models": ["SDXL Inpainting or Flux Fill"],
+    "required_nodes": []
+  },
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "sdxl-inpainting-0.1-unet.fp16.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "1b": {
+    "class_type": "DualCLIPLoader",
+    "inputs": {
+      "clip_name1": "sdxl-inpainting-0.1-clip_g.fp16.safetensors",
+      "clip_name2": "sdxl-inpainting-0.1-clip_l.fp16.safetensors",
+      "type": "sdxl"
+    }
+  },
+  "1c": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "sdxl-inpainting-0.1-vae.fp16.safetensors"
+    }
+  },
+  "2": {
+    "class_type": "LoadImage",
+    "_note": "Injected at runtime by the caller.",
+    "inputs": {
+      "image": "PLACEHOLDER_IMAGE"
+    }
+  },
+  "3": {
+    "class_type": "ImagePadForOutpaint",
+    "_note": "Built-in ComfyUI core node. Pads the canvas and produces the outpaint mask in one step — direction sizes are caller-supplied, 256px each is a placeholder default.",
+    "inputs": {
+      "image": ["2", 0],
+      "left": 0,
+      "top": 0,
+      "right": 256,
+      "bottom": 0,
+      "feathering": 40
+    }
+  },
+  "4": {
+    "class_type": "VAEEncodeForInpaint",
+    "inputs": {
+      "pixels": ["3", 0],
+      "vae": ["1c", 0],
+      "mask": ["3", 1],
+      "grow_mask_by": 6
+    }
+  },
+  "5": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "PLACEHOLDER_PROMPT",
+      "clip": ["1b", 0]
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "seam, hard edge, discontinuity, lowres, bad quality, blurry, watermark",
+      "clip": ["1b", 0]
+    }
+  },
+  "7": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": ["1", 0],
+      "positive": ["5", 0],
+      "negative": ["6", 0],
+      "latent_image": ["4", 0],
+      "seed": 0,
+      "steps": 30,
+      "cfg": 7.0,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 1.0
+    }
+  },
+  "8": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": ["7", 0],
+      "vae": ["1c", 0]
+    }
+  },
+  "9": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": ["8", 0],
+      "filename_prefix": "outpaint"
+    }
+  }
+}

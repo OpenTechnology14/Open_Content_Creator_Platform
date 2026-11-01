@@ -1,0 +1,11 @@
+schema_version: 1
+host_config: configs/local/stream-autopilot.yaml
+speech_config: configs/local/stream-speech.yaml
+max_phrase_words: 18
+max_phrase_seconds: 12
+max_candidates: 8
+render_timeout_seconds: 60
+model_timeout_seconds: 60
+# Environment overrides remain OLLAMA_HOST and OLLAMA_MODEL.
+ollama_url: http://127.0.0.1:11434
+ollama_model: ""

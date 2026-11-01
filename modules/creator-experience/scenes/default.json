@@ -1,0 +1,15 @@
+{
+  "_comment": "Placeholder — export your actual OBS scene collection here. File → Scene Collections → Export. This file is committed to version-control so the scene layout is reproducible.",
+  "name": "HCP Default",
+  "scenes": [
+    { "name": "Starting Soon", "sources": [] },
+    { "name": "Main Camera", "sources": [] },
+    { "name": "Gameplay / Activity", "sources": [] },
+    { "name": "Intermission", "sources": [] },
+    { "name": "BRB", "sources": [] },
+    { "name": "Ending", "sources": [] },
+    { "name": "Vertical Output", "sources": [] },
+    { "name": "Recording Sandbox", "sources": [] }
+  ],
+  "instructions": "Replace this placeholder with your real OBS scene collection export — see modules/creator-experience/setup/manual.md."
+}

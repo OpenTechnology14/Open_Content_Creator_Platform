@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-save-capture-selection"
+description = "Enables the save_capture_selection command without any pre-configured scope."
+commands.allow = ["save_capture_selection"]
+
+[[permission]]
+identifier = "deny-save-capture-selection"
+description = "Denies the save_capture_selection command without any pre-configured scope."
+commands.deny = ["save_capture_selection"]

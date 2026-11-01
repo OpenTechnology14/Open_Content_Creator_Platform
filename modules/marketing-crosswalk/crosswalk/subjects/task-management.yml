@@ -1,0 +1,237 @@
+# Subjects for the `task-management` module: OpenTechnology's six built-in project
+# templates (PRODUCT.md "Project Templates"). These are what generated content is about.
+#
+# Two fields make the output honest and are checked on every run:
+#
+#   status_evidence — a file in the target repo plus the exact text that establishes the
+#     status. `validate` re-reads it. If a template's README stops saying "Target
+#     architecture", that is a status change the generator must not paper over.
+#
+#   coverage — transcribed from BLOG_MARKETING_CONNECTION.md §2. `no` cells are the gaps
+#     this module exists to fill, and `coverage` reports them.
+schema_version: 1
+
+module: task-management
+product: opentechnology
+source_docs:
+  subjects: "docs/readable/PRODUCT.md § Project Templates"
+  coverage: "docs/readable/BLOG_MARKETING_CONNECTION.md §2"
+  channels: "MARKETING.md §3 channel playbook"
+  engineering: "docs/readable/TEMPLATE_REPO_CROSSWALK.md"
+
+
+# Where each asset lands in THIS module's target. Per-module because each target repo has its
+# own doc set — see crosswalk/schema.md.
+# ── Discovery metadata (see ../schema.md § Discovery metadata) ────────────────────────
+# Read by humans and agents, ignored by the loader. Canonical index: ../modules.yml
+discovery:
+  status: partially-shipped
+  last_verified: 2026-09-23
+  notes: >-
+    The flagship product module. Content is about the six project templates the OpenTechApp
+    ships — not about AI, and not about streaming. If a request mentions a project template,
+    a client portal, queues, or a Jira/Monday/Salesforce comparison, this is the module.
+  discovery_keywords:
+    [task management, OpenTechnology, OpenTechnologyApp, OpenTechApp, project templates,
+     pm requests, device audit, job hunter, access compliance, site monitoring,
+     client portal, Jira alternative, Monday alternative, Salesforce alternative]
+  not_to_be_confused_with:
+    - "extend_platform is a TEMPLATE inside this module, not the stream-extend/content-extend product modules"
+  counts:
+    basis: "subjects counted in this file; assets from ../assets.yml; ICPs from this file's icps block"
+    subjects: 6
+    icps: 5
+    marketing_assets_available: 13
+  files:
+    target_repo: OpenTechnology14/OpenTechnologyApp
+    marketing_doc: MARKETING.md
+    product_doc: docs/readable/PRODUCT.md
+    coverage_ledger: docs/readable/BLOG_MARKETING_CONNECTION.md
+    upstream_crosswalk: docs/readable/TEMPLATE_REPO_CROSSWALK.md
+
+asset_landing:
+  walkthrough-brief: {doc: marketing_playbook, anchor: content_engine}
+  stream-script:  {doc: marketing_playbook, anchor: content_engine}
+  blog-brief:       {doc: marketing_playbook, anchor: seo}
+  reddit-post:      {doc: marketing_playbook, anchor: reddit}
+  x-thread:         {doc: marketing_playbook, anchor: x_twitter}
+  linkedin-post:    {doc: marketing_playbook, anchor: linkedin}
+  comment-ammo:     {doc: marketing_playbook, anchor: reddit}
+  comparison-page:  {doc: marketing_playbook, anchor: seo}
+  lead-email-angle: {doc: marketing_playbook, anchor: email}
+  matrix-row:       {doc: blog_marketing_connection, anchor: per_template}
+
+# Channels, from MARKETING.md §3's playbook. Shared machine, module-scoped labels.
+channels:
+  reddit: "§3a Reddit"
+  x_twitter: "§3b X / Twitter"
+  linkedin: "§3c LinkedIn"
+  seo: "§3d SEO comparison pages"
+  directories: "§3e Directories & launches"
+  email: "§3f Brevo / direct email"
+
+# What each `plan` value means for this product. PRODUCT.md: only Site Monitoring and IT Device
+# Audit fit inside the Free plan's 3-queue-per-project cap.
+plan_notes:
+  free: "fits the Free plan's 3-queue-per-project cap"
+  starter: "needs Starter or Pro — it exceeds the Free plan's 3-queue cap"
+
+# ICPs, transcribed from MARKETING.md §2 "Who to target (ICPs, in priority order)".
+# Module-scoped: these are who buys OpenTechnology, and they do not transfer to any
+# other module. MARKETING.md §8 warns against spreading thin across all five — one ICP
+# per month — so each subject names its ICPs in priority order and copy speaks to the first.
+icps:
+  agencies:
+    rank: 1
+    who: Agencies / freelancers / consultants
+    why_they_switch: Need a client portal + intake forms clients can actually use
+    where: r/agency, r/freelance, LinkedIn
+  dev-teams:
+    rank: 2
+    who: Small dev teams & startups
+    why_they_switch: Jira/Monday too expensive/complex for 3–15 people
+    where: r/projectmanagement, r/startups, X dev community
+  msp-it:
+    rank: 3
+    who: MSPs / internal IT
+    why_they_switch: Ready templates for device management + access & identity; automations
+    where: r/msp, r/sysadmin
+  ops-sales:
+    rank: 4
+    who: Ops / small sales teams on Salesforce
+    why_they_switch: Want CRM-style queues + dashboards without the Salesforce price
+    where: r/sales, r/smallbusiness, LinkedIn
+  nocode:
+    rank: 5
+    who: No-code / indie hackers
+    why_they_switch: Cheap, flexible, API + webhooks
+    where: r/nocode, r/SaaS, IndieHackers, X
+
+subjects:
+  - id: pm_requests
+    name: Project Management
+    what_it_is: >-
+      Request intake, an Epic → Work Item hierarchy, sprints, and weekly status reports.
+    upstream: none                      # native to the app
+    visibility: private
+    status: shipped
+    status_evidence:
+      file: docs/readable/TEMPLATE_REPO_CROSSWALK.md
+      contains: "none; native to this app"
+    plan: starter                       # PRODUCT.md: only Site Monitoring + Device Audit fit Free
+    coverage: {blog_post: false, course_lab: "Module 3", lead_email: true}
+    icps: [dev-teams, agencies]
+    channels: [seo, reddit, x_twitter, linkedin]
+    assets: [blog-brief, comparison-page, reddit-post, x-thread, linkedin-post, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords:
+      - "jira alternative for small teams"
+      - "clickup alternative for small teams"
+      - "project management templates"
+    competitors: [Jira, "Monday.com", ClickUp, Asana]
+
+  - id: device_audit
+    name: IT Device Audit
+    what_it_is: >-
+      Device inventory, audit findings, and resolution playbooks across two dashboards.
+    upstream: none                      # models an Apps Script project, not a GitHub repo
+    visibility: private
+    status: target-architecture
+    status_evidence:
+      file: templates/device-audit/README.md
+      contains: "**Status:** Target architecture."
+    plan: free                          # PRODUCT.md: fits the Free 3-queue cap
+    coverage: {blog_post: true, course_lab: "Module 4", lead_email: true}
+    icps: [msp-it]
+    channels: [reddit, seo, linkedin, email]
+    assets: [blog-brief, reddit-post, linkedin-post, comment-ammo, lead-email-angle, matrix-row, stream-script, walkthrough-brief]
+    keywords:
+      - "device inventory audit template"
+      - "jumpcloud sentinelone reconciliation"
+      - "it asset audit spreadsheet alternative"
+    competitors: ["spreadsheets", "Snipe-IT", "per-vendor consoles"]
+
+  - id: job_hunter
+    name: Job Hunter — Search & Auto-Apply Pipeline
+    what_it_is: >-
+      Job-search tracking backed by an outbound desktop runner.
+    upstream: OpenTechnology14/Job-Hunter
+    visibility: public                  # the org's ONLY public repo — safe to link
+    status: shipped
+    status_evidence:
+      file: docs/readable/TEMPLATE_REPO_CROSSWALK.md
+      contains: "V1 BUILT AND WORKING"
+    plan: starter
+    coverage: {blog_post: true, course_lab: false, lead_email: false}
+    icps: [nocode, dev-teams]
+    channels: [reddit, seo, x_twitter]
+    assets: [blog-brief, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords:
+      - "job application tracker self hosted"
+      - "auto apply jobs pipeline"
+      - "job search kanban board"
+    competitors: [Teal, Huntr, "spreadsheets"]
+
+  - id: extend_platform
+    name: Extend Platform — Stream + Content Ops
+    what_it_is: >-
+      Tracking for streaming/content-ops tooling — OBS, ComfyUI, Blender, and more.
+    upstream: OpenTechnology14/Open_Content_Creator_Platform
+    visibility: private                 # linking it publicly 404s for readers
+    status: unverified
+    status_evidence:
+      file: docs/readable/TEMPLATE_REPO_CROSSWALK.md
+      contains: "Hybrid_Creator_Platform doc in any public-facing material"
+    plan: starter
+    coverage: {blog_post: true, course_lab: false, lead_email: false}
+    icps: [nocode, dev-teams]
+    channels: [reddit, seo, x_twitter]
+    assets: [blog-brief, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords:
+      - "obs production task tracker"
+      - "content ops pipeline board"
+      - "streaming workflow management"
+    competitors: ["Notion", "Trello", "spreadsheets"]
+
+  - id: access_compliance
+    name: Access Automation — Google Lifecycle
+    what_it_is: >-
+      Joiner/mover/leaver identity work for a Google Workspace org.
+    upstream: none
+    visibility: private
+    status: target-architecture
+    status_evidence:
+      file: templates/access-automation/README.md
+      contains: "**Status:** Target architecture."
+    plan: starter
+    coverage: {blog_post: false, course_lab: "Module 5 (flagship)", lead_email: true}
+    icps: [msp-it, ops-sales]
+    channels: [reddit, seo, linkedin, email]
+    assets: [blog-brief, reddit-post, linkedin-post, comment-ammo, lead-email-angle, matrix-row, stream-script, walkthrough-brief]
+    keywords:
+      - "google workspace offboarding checklist"
+      - "joiner mover leaver automation"
+      - "access review template"
+    competitors: ["manual checklists", Okta, BetterCloud]
+
+  - id: site_monitoring
+    name: Site Monitoring
+    what_it_is: >-
+      Outages, traffic snapshots, and inbound contact-form submissions for a public site.
+    upstream: OpenTechnology14/OpenTechnologyBlog
+    visibility: private
+    status: shipped
+    status_evidence:
+      file: docs/readable/TEMPLATE_REPO_CROSSWALK.md
+      contains: "the site being monitored, not an upstream the template models"
+    plan: free
+    # Absent from BLOG_MARKETING_CONNECTION.md §2's table, which lists only five templates.
+    # Recorded as a gap in the ledger itself, not silently filled in.
+    coverage: {blog_post: false, course_lab: false, lead_email: false, in_ledger: false}
+    icps: [agencies, nocode]
+    channels: [seo, reddit, x_twitter]
+    assets: [blog-brief, comparison-page, reddit-post, x-thread, comment-ammo, matrix-row, stream-script, walkthrough-brief]
+    keywords:
+      - "website uptime monitoring dashboard"
+      - "contact form to task automation"
+      - "site monitoring free tier"
+    competitors: ["UptimeRobot", "Better Stack", "Pingdom"]

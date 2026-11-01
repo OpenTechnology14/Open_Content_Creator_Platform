@@ -1,0 +1,66 @@
+{
+  "id": "hcpOnStreamStart",
+  "name": "On stream start — announce + warm overlays",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "stream-started",
+        "responseMode": "lastNode"
+      },
+      "name": "Webhook (stream started)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 320]
+    },
+    {
+      "parameters": {
+        "url": "={{$env.API_URL}}/overlays/lowerThird",
+        "method": "PUT",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "x-api-key", "value": "={{$env.HCP_API_KEY}}" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "name", "value": "lowerThird" },
+            { "name": "payload", "value": "={\"visible\":true,\"title\":\"We're live\",\"subtitle\":\"Stick around\"}" }
+          ]
+        }
+      },
+      "name": "Show lower third",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [560, 220]
+    },
+    {
+      "parameters": {
+        "url": "https://discord.com/api/webhooks/REPLACE_ME",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "content", "value": "Stream is live — link in bio." }
+          ]
+        }
+      },
+      "name": "Discord announce",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [560, 420]
+    }
+  ],
+  "connections": {
+    "Webhook (stream started)": {
+      "main": [[
+        { "node": "Show lower third", "type": "main", "index": 0 },
+        { "node": "Discord announce",  "type": "main", "index": 0 }
+      ]]
+    }
+  }
+}

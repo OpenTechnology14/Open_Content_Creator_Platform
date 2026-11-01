@@ -1,0 +1,39 @@
+{
+  "name": "hcp-starter",
+  "version": "0.1.0",
+  "description": "Open Content Creator Platform starter NodeCG bundle: scoreboard, lower third, sponsor rotator.",
+  "homepage": "https://localhost",
+  "author": "HCP",
+  "license": "MIT",
+  "nodecg": {
+    "compatibleRange": "^2.0.0",
+    "dashboardPanels": [
+      {
+        "name": "scoreboard",
+        "title": "Scoreboard",
+        "width": 4,
+        "file": "scoreboard.html"
+      },
+      {
+        "name": "lower-third",
+        "title": "Lower Third",
+        "width": 4,
+        "file": "lower-third.html"
+      },
+      {
+        "name": "sponsors",
+        "title": "Sponsors",
+        "width": 4,
+        "file": "sponsors.html"
+      }
+    ],
+    "graphics": [
+      { "file": "scoreboard.html", "width": 1920, "height": 1080 },
+      { "file": "lower-third.html", "width": 1920, "height": 1080 },
+      { "file": "sponsor.html", "width": 1920, "height": 1080 }
+    ]
+  },
+  "dependencies": {
+    "redis": "^4.7.0"
+  }
+}

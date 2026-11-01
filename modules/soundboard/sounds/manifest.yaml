@@ -1,0 +1,172 @@
+# Starter-pack registry for modules/soundboard.
+#
+# Two statuses:
+#   bundled     — a real audio file ships in this repo, under sounds/<file>.
+#   placeholder — the slot exists (name, category, obs-soundboard is ready to
+#                 have a file dropped in) but no audio ships here. Either the
+#                 obvious clip is copyrighted (most iconic meme sounds — see
+#                 each entry's `note`) or no suitable CC0 clip was found.
+#
+# Every `bundled` entry's `source`/`source_url`/`license` names exactly where
+# the file came from — required before anything gets bundled into this repo,
+# same rule this platform already applies to model weights (model-registry)
+# and image corpora (IMAGE_INTAKE.md).
+
+sounds:
+  # ── Bundled — Kenney.nl, CC0 1.0, verified 2026-09-01 ─────────────────
+  - name: Record Scratch
+    slot: record-scratch
+    category: stinger
+    status: bundled
+    file: stingers/record-scratch.ogg
+    source: "Kenney.nl — Interface Sounds"
+    source_url: https://kenney.nl/assets/interface-sounds
+    license: CC0 1.0
+
+  - name: Wrong Answer / Buzzer
+    slot: wrong-answer
+    category: stinger
+    status: bundled
+    file: stingers/wrong-answer.ogg
+    source: "Kenney.nl — Interface Sounds"
+    source_url: https://kenney.nl/assets/interface-sounds
+    license: CC0 1.0
+
+  - name: Glitch Transition
+    slot: glitch-transition
+    category: stinger
+    status: bundled
+    file: stingers/glitch-transition.ogg
+    source: "Kenney.nl — Interface Sounds"
+    source_url: https://kenney.nl/assets/interface-sounds
+    license: CC0 1.0
+
+  - name: Bell Hit
+    slot: bell-hit
+    category: stinger
+    status: bundled
+    file: stingers/bell-hit.ogg
+    source: "Kenney.nl — Impact Sounds"
+    source_url: https://kenney.nl/assets/impact-sounds
+    license: CC0 1.0
+
+  - name: Dramatic Impact
+    slot: dramatic-impact
+    category: stinger
+    status: bundled
+    file: stingers/dramatic-impact.ogg
+    source: "Kenney.nl — Impact Sounds"
+    source_url: https://kenney.nl/assets/impact-sounds
+    license: CC0 1.0
+
+  - name: Victory Fanfare
+    slot: victory-fanfare
+    category: stinger
+    status: bundled
+    file: stingers/victory-fanfare.ogg
+    source: "Kenney.nl — Music Jingles (Hit jingles)"
+    source_url: https://kenney.nl/assets/music-jingles
+    license: CC0 1.0
+
+  - name: Notification Ding
+    slot: ding
+    category: ui
+    status: bundled
+    file: ui/ding.ogg
+    source: "Kenney.nl — Interface Sounds"
+    source_url: https://kenney.nl/assets/interface-sounds
+    license: CC0 1.0
+
+  - name: Click
+    slot: click
+    category: ui
+    status: bundled
+    file: ui/click.ogg
+    source: "Kenney.nl — Interface Sounds"
+    source_url: https://kenney.nl/assets/interface-sounds
+    license: CC0 1.0
+
+  # ── Placeholder — genuinely iconic, but not freely licensed ───────────
+  # Each of these is extracted from a specific copyrighted movie, game, TV
+  # show, or piece of branded software. No meme-soundboard site's copy of
+  # them is actually CC0/public-domain, whatever the site implies. Named
+  # here so the board has the right shape and hotkeys from day one; bring
+  # your own copy (from media you own) or a properly licensed SFX library.
+  - name: Vine Boom
+    slot: vine-boom
+    category: meme
+    status: placeholder
+    note: "Originates from a copyrighted Vine video; not freely licensed."
+
+  - name: Bruh Sound Effect
+    slot: bruh
+    category: meme
+    status: placeholder
+    note: "Sourced from a copyrighted NBA 2K clip; not freely licensed."
+
+  - name: Windows Error
+    slot: windows-error
+    category: meme
+    status: placeholder
+    note: "Microsoft's own UI sound; copyrighted."
+
+  - name: MLG Air Horn
+    slot: mlg-airhorn
+    category: meme
+    status: placeholder
+    note: "Sampled from a copyrighted song; not freely licensed."
+
+  - name: Anime Wow
+    slot: anime-wow
+    category: meme
+    status: placeholder
+    note: "Sourced from a copyrighted anime episode; not freely licensed."
+
+  - name: Emotional Damage
+    slot: emotional-damage
+    category: meme
+    status: placeholder
+    note: "Sourced from a copyrighted stream clip; not freely licensed."
+
+  - name: Metal Pipe Falling
+    slot: metal-pipe
+    category: meme
+    status: placeholder
+    note: "Valve's Half-Life/Source engine sound asset; copyrighted."
+
+  # ── Placeholder — no suitable CC0 clip found in the sourced packs ─────
+  - name: Applause
+    slot: applause
+    category: reaction
+    status: placeholder
+    note: "No crowd-applause clip in the CC0 packs checked this pass (Kenney Interface/Impact/Music Jingles/Casino Audio)."
+
+  - name: Air Horn (generic)
+    slot: airhorn-generic
+    category: stinger
+    status: placeholder
+    note: "No air-horn/siren clip in the CC0 packs checked this pass."
+
+  - name: Drumroll
+    slot: drumroll
+    category: stinger
+    status: placeholder
+    note: "No drumroll clip in the CC0 packs checked this pass."
+
+  - name: Cash Register
+    slot: cash-register
+    category: reaction
+    status: placeholder
+    note: "No cash-register/coin-drop clip in the CC0 packs checked this pass."
+
+  - name: Camera Shutter
+    slot: camera-shutter
+    category: reaction
+    status: placeholder
+    note: "No camera-shutter clip in the CC0 packs checked this pass."
+
+  - name: Sad Trombone
+    slot: sad-trombone
+    category: stinger
+    status: placeholder
+    note: "No descending-trombone clip in the CC0 packs checked this pass."

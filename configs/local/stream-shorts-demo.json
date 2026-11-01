@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "recording_id": "nova-demo",
+  "session_id": "minecraft-main",
+  "game_id": "minecraft",
+  "show_id": "minecraft-town",
+  "duration_seconds": 90,
+  "clip_seconds": 10,
+  "pre_roll_seconds": 3,
+  "max_clips": 3,
+  "edit": {
+    "enabled": true,
+    "style": {
+      "background_color": "#101827",
+      "accent_color": "#B7F7DA",
+      "brand_title": "NOVA BUILDS",
+      "watermark": "@nova",
+      "captions_enabled": true,
+      "normalize_audio": true,
+      "target_lufs": -16
+    },
+    "captions": [
+      {"start_seconds": 3.5, "end_seconds": 6.5, "text": "Today we build the impossible."},
+      {"start_seconds": 29, "end_seconds": 33, "text": "Chat found the breakthrough!"},
+      {"start_seconds": 69, "end_seconds": 73, "text": "Put that on the highlight reel."}
+    ],
+    "punch_ins": [
+      {"start_seconds": 30, "end_seconds": 32, "scale": 1.2, "focus_x": 0.5, "focus_y": 0.5, "event_id": "chat-2"},
+      {"start_seconds": 70, "end_seconds": 72, "scale": 1.15, "focus_x": 0.65, "focus_y": 0.45, "event_id": "chat-4"}
+    ]
+  },
+  "manual_sections": [{"start_seconds": 3, "end_seconds": 10, "label": "My selected opening"}],
+  "interactions": [
+    {"event_id": "chat-1", "session_id": "minecraft-main", "offset_seconds": 30, "user_key": "viewer-a"},
+    {"event_id": "chat-2", "session_id": "minecraft-main", "offset_seconds": 31, "user_key": "viewer-b"},
+    {"event_id": "chat-3", "session_id": "minecraft-main", "offset_seconds": 32, "user_key": "viewer-c", "kind": "reaction"},
+    {"event_id": "chat-4", "session_id": "minecraft-main", "offset_seconds": 70, "user_key": "viewer-a"},
+    {"event_id": "chat-5", "session_id": "minecraft-main", "offset_seconds": 71, "user_key": "viewer-d", "kind": "poll_vote"},
+    {"event_id": "other-stream", "session_id": "other-session", "offset_seconds": 32, "user_key": "viewer-e"}
+  ]
+}

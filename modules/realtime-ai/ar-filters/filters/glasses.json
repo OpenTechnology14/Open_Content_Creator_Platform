@@ -1,0 +1,8 @@
+{
+  "name": "glasses",
+  "sprite": "../assets/glasses.png",
+  "anchor_landmarks": { "left": 33, "right": 263, "center": 168 },
+  "scale_multiplier": 1.6,
+  "vertical_offset_frac": 0.0,
+  "description": "Glasses anchored to eye-corner landmarks, centered on the nose bridge. Requires assets/glasses.png (not shipped)."
+}

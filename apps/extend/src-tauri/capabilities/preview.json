@@ -1,0 +1,15 @@
+{
+  "identifier": "preview",
+  "description": "Local preview window: shared setup, profile selection and recording file selection. No OAuth, remote or publishing grants.",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:default",
+    "dialog:allow-open",
+    "module-setup:default",
+    "social-manager:allow-snapshot",
+    "social-manager:allow-selection",
+    "social-manager:allow-activate-profile"
+  ]
+}

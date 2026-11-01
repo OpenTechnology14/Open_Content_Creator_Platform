@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCP Setup Timeline</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+  line-height: 1.6;
+  padding: 2rem 1rem;
+}
+.container { max-width: 1400px; margin: 0 auto; }
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #f0f6fc;
+}
+.subtitle {
+  text-align: center;
+  color: #8b949e;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+.progress-bar {
+  background: #21262d;
+  border-radius: 8px;
+  height: 8px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #238636, #3fb950);
+  border-radius: 8px;
+  transition: width 0.4s ease;
+}
+.progress-label {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #8b949e;
+  margin-bottom: 2rem;
+}
+.paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+@media (max-width: 900px) {
+  .paths { grid-template-columns: 1fr; }
+}
+.path {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.path-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #30363d;
+}
+.path-icon { font-size: 1.5rem; }
+.path-title { font-size: 1.2rem; font-weight: 600; color: #f0f6fc; }
+.path-desc { font-size: 0.8rem; color: #8b949e; }
+.shared-section {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.guide {
+  margin-bottom: 1.25rem;
+  border-left: 3px solid #30363d;
+  padding-left: 1rem;
+  transition: border-color 0.3s;
+}
+.guide.complete { border-left-color: #3fb950; }
+.guide.in-progress { border-left-color: #d29922; }
+.guide-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+.guide-header:hover { color: #f0f6fc; }
+.guide-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: #30363d;
+  color: #8b949e;
+  padding: 2px 6px;
+  border-radius: 4px;
+  min-width: 1.8rem;
+  text-align: center;
+}
+.guide.complete .guide-num { background: #238636; color: #fff; }
+.guide.in-progress .guide-num { background: #9e6a03; color: #fff; }
+.guide-title { font-weight: 600; font-size: 0.95rem; }
+.guide-items {
+  margin-top: 0.75rem;
+  padding-left: 0.25rem;
+}
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+}
+.item input[type="checkbox"] {
+  margin-top: 3px;
+  accent-color: #3fb950;
+  cursor: pointer;
+}
+.item label { cursor: pointer; }
+.item.checked label { color: #8b949e; text-decoration: line-through; }
+details {
+  margin: 0.5rem 0;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  overflow: hidden;
+}
+details summary {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  color: #58a6ff;
+  cursor: pointer;
+  user-select: none;
+}
+details summary:hover { color: #79c0ff; }
+details pre {
+  padding: 0.75rem;
+  font-size: 0.75rem;
+  overflow-x: auto;
+  background: #0d1117;
+  color: #c9d1d9;
+  border-top: 1px solid #30363d;
+}
+code { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+.cta-banner {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #1a1f35 0%, #1c2333 100%);
+  border: 1px solid #58a6ff33;
+  border-radius: 10px;
+  text-align: center;
+}
+.cta-banner h3 {
+  color: #58a6ff;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+.cta-banner p {
+  font-size: 0.8rem;
+  color: #8b949e;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+.cta-banner .cta-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-banner a.cta-btn {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.cta-banner a.cta-btn:hover { opacity: 0.85; }
+.cta-btn-primary {
+  background: #238636;
+  color: #fff;
+}
+.cta-btn-secondary {
+  background: transparent;
+  color: #58a6ff;
+  border: 1px solid #58a6ff44;
+}
+.cta-banner .cta-price {
+  font-size: 0.7rem;
+  color: #8b949e;
+  margin-top: 0.5rem;
+}
+.timeline-connector {
+  width: 2px;
+  height: 1rem;
+  background: #30363d;
+  margin: 0 0 0 1.4rem;
+}
+.dep-tag {
+  font-size: 0.65rem;
+  background: #1f2937;
+  color: #7dd3fc;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Open Content Creator Platform — Setup Timeline</h1>
+  <p class="subtitle">Two parallel paths from a shared OBS foundation. Check items off as you go.</p>
+
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <p class="progress-label" id="progressLabel">0 / 0 steps complete</p>
+
+  <!-- SHARED FOUNDATION -->
+  <div class="shared-section">
+    <div class="path-header">
+      <span class="path-icon">🎯</span>
+      <div>
+        <div class="path-title">Shared Foundation</div>
+        <div class="path-desc">Required by both paths</div>
+      </div>
+    </div>
+
+    <div class="guide" id="guide-1">
+      <div class="guide-header" onclick="toggleGuide('guide-1')">
+        <span class="guide-num">1</span>
+        <span class="guide-title">OBS Foundation Setup</span>
+      </div>
+      <div class="guide-items">
+        <div class="item"><input type="checkbox" id="g1-1"><label for="g1-1">Install OBS Studio 30+ and enable WebSocket (port 4455)</label></div>
+        <div class="item"><input type="checkbox" id="g1-2"><label for="g1-2">Install plugins: Advanced Scene Switcher, Move Transition, Source Clone</label></div>
+        <div class="item"><input type="checkbox" id="g1-3"><label for="g1-3">Configure Video/Output/Audio settings</label></div>
+        <details>
+          <summary>OBS Video + Output Config</summary>
+          <pre><code># Video
+Base (canvas): 1920x1080
+Output (scaled): 1920x1080
+Downscale: Lanczos
+FPS: 60
+
+# Output — Streaming (Advanced mode)
+Encoder: NVENC HEVC (NVIDIA) / AV1 (RTX 40+)
+Rate control: CBR
+Bitrate: 6000 kbps
+Keyframe interval: 2
+Preset: P5 — Quality
+Profile: high
+
+# Output — Recording
+Format: MKV (crash-safe, auto-remux MP4)
+Quality: Indistinguishable Quality
+
+# Audio
+Sample rate: 48 kHz
+Channels: Stereo</code></pre>
+        </details>
+        <div class="item"><input type="checkbox" id="g1-4"><label for="g1-4">Create 8 foundational scenes</label></div>
+        <details>
+          <summary>Scene List</summary>
+          <pre><code>1. Starting Soon     — pre-stream waiting room
+2. Main Camera       — primary on-camera
+3. Gameplay/Activity — primary content
+4. Intermission      — break / sponsor
+5. BRB              — be right back
+6. Ending           — outro
+7. Vertical Output  — 1080x1920 (shorts/reels)
+8. Recording Sandbox — experiments only</code></pre>
+        </details>
+        <div class="item"><input type="checkbox" id="g1-5"><label for="g1-5">Enable WebSocket auth, save password to .env</label></div>
+        <details>
+          <summary>WebSocket Setup</summary>
+          <pre><code># Tools → WebSocket Server Settings
+# Enable: ON | Port: 4455 | Auth: ON
+
+# .env
+OBS_WEBSOCKET_PASSWORD=your-strong-password
+
+# Test:
+python scripts/setup/test_obs_websocket.py</code></pre>
+        </details>
+        <div class="item"><input type="checkbox" id="g1-6"><label for="g1-6">Mic filter chain: Noise Suppress → Gate → Compressor → Limiter</label></div>
+        <div class="item"><input type="checkbox" id="g1-7"><label for="g1-7">Test: 5-min stream + 5-min recording with no dropped frames</label></div>
+        <div class="item"><input type="checkbox" id="g1-8"><label for="g1-8">Export scene collection to modules/creator-experience/scenes/default.json</label></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO PATHS -->
+  <div class="paths">
+
+    <!-- STREAMING PATH -->
+    <div class="path">
+      <div class="path-header">
+        <span class="path-icon">📡</span>
+        <div>
+          <div class="path-title">Streaming Path</div>
+          <div class="path-desc">Audio → Graphics → AI Agents → Ops</div>
+        </div>
+      </div>
+
+      <!-- Guide 2 -->
+      <div class="guide" id="guide-2">
+        <div class="guide-header" onclick="toggleGuide('guide-2')">
+          <span class="guide-num">2</span>
+          <span class="guide-title">Face Filters + Background</span>
+          <span class="dep-tag">optional</span>
+        </div>
+        <div class="guide-items">
+          <div class="item"><input type="checkbox" id="g2-1"><label for="g2-1">Choose face-swap tool: DeepFaceLive / Deep-Live-Cam / LivePortrait</label></div>
+          <div class="item"><input type="checkbox" id="g2-2"><label for="g2-2">Install virtual camera (OBS VCam / v4l2loopback / BlackHole)</label></div>
+          <details>
+            <summary>Virtual Camera (Linux)</summary>
+            <pre><code>sudo apt install v4l2loopback-dkms
+sudo modprobe v4l2loopback devices=1 \
+  video_nr=10 card_label="AI Camera"
+# Configure tool output → /dev/video10</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g2-3"><label for="g2-3">Install OBS Background Removal plugin (SINet or MediaPipe)</label></div>
+          <div class="item"><input type="checkbox" id="g2-4"><label for="g2-4">Add virtual camera as source in OBS, apply background removal filter</label></div>
+          <div class="item"><input type="checkbox" id="g2-5"><label for="g2-5">Verify: face effect visible in OBS preview, latency &lt; 150 ms</label></div>
+        </div>
+      </div>
+
+      <div class="timeline-connector"></div>
+
+      <!-- Guide 6 -->
+      <div class="guide" id="guide-6">
+        <div class="guide-header" onclick="toggleGuide('guide-6')">
+          <span class="guide-num">6</span>
+          <span class="guide-title">Audio Production + Routing</span>
+        </div>
+        <div class="guide-items">
+          <div class="item"><input type="checkbox" id="g6-1"><label for="g6-1">Install VoiceMeeter Potato (Win) / BlackHole+Loopback (Mac) / PipeWire (Linux)</label></div>
+          <div class="item"><input type="checkbox" id="g6-2"><label for="g6-2">Set up 6-bus architecture</label></div>
+          <details>
+            <summary>Bus Architecture</summary>
+            <pre><code>| Bus      | Sources               | Destination          |
+|----------|-----------------------|----------------------|
+| MIC      | Microphone            | Stream, Call         |
+| GAME     | Desktop audio         | Stream, Headphones   |
+| MUSIC    | Background music      | Stream, Headphones   |
+| AI-VOICE | TTS / AI agents       | Stream, Headphones   |
+| CALL-IN  | Discord / Zoom        | Headphones, Stream   |
+| MONITOR  | What YOU hear         | Headphones only      |</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g6-3"><label for="g6-3">Configure VoiceMeeter routing (mix-minus for calls)</label></div>
+          <details>
+            <summary>VoiceMeeter Potato Layout</summary>
+            <pre><code># Hardware Inputs
+HW1: Mic (interface input)
+
+# Virtual Inputs
+VIN1: Desktop → Windows default playback = "VoiceMeeter Input"
+VIN2: AI/TTS → AI app output = "VoiceMeeter AUX Input"
+VIN3: Call   → Discord output = "VoiceMeeter VAIO3 Input"
+
+# Hardware Outputs
+A1: Headphones (interface output)
+
+# Virtual Outputs
+B1: → OBS (capture "VoiceMeeter Output" as desktop audio)
+B2: → Discord mic-in (mix-minus: no echo)
+
+# Routing per channel:
+Mic:     A1 ✓  B1 ✓  B2 ✓
+Desktop: A1 ✓  B1 ✓  B2 ✗
+AI:      A1 ✓  B1 ✓  B2 ✗
+Call:    A1 ✓  B1 ✓  B2 ✗ (no echo)</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g6-4"><label for="g6-4">Apply mic processing chain: HPF 80Hz → Gate → Compressor → Limiter</label></div>
+          <details>
+            <summary>Mic Processing Chain</summary>
+            <pre><code>1. High-pass filter: 80 Hz
+2. Gate: open -32 dB, close -36 dB, 50ms attack, 200ms release
+3. De-esser (optional): 6-8 kHz
+4. Compressor: 4:1 ratio, threshold -18 dB, 10ms atk, 100ms rel
+5. EQ: broadband corrective
+6. Limiter: -1 dB ceiling</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g6-5"><label for="g6-5">Set up TTS routing: AI output → VIN2 → B1 + A1, not back to AI input</label></div>
+          <div class="item"><input type="checkbox" id="g6-6"><label for="g6-6">Verify: desktop not echoed to call, call not echoed back, AI not in feedback loop</label></div>
+        </div>
+      </div>
+
+      <div class="timeline-connector"></div>
+
+      <!-- Guide 7 -->
+      <div class="guide" id="guide-7">
+        <div class="guide-header" onclick="toggleGuide('guide-7')">
+          <span class="guide-num">7</span>
+          <span class="guide-title">Broadcast Graphics + NodeCG</span>
+        </div>
+        <div class="guide-items">
+          <div class="item"><input type="checkbox" id="g7-1"><label for="g7-1">Start Redis</label></div>
+          <details>
+            <summary>Redis (docker-compose)</summary>
+            <pre><code>docker compose up -d redis
+
+# Verify:
+docker exec hcp-redis redis-cli ping
+# → PONG</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g7-2"><label for="g7-2">Start FastAPI backend</label></div>
+          <details>
+            <summary>FastAPI (docker-compose)</summary>
+            <pre><code>docker compose up -d fastapi
+
+# Or dev mode:
+cd modules/backend-api/fastapi
+uvicorn app.main:app --reload --port 8000
+
+# Verify:
+curl http://localhost:8000/health
+# → 200 OK
+
+# Routes:
+# /health    — liveness
+# /streams   — start/stop metadata
+# /overlays  — overlay state (NodeCG consumes)
+# /ws        — WebSocket, Redis-backed fanout
+# /events    — generic event ingestion
+# /docs      — OpenAPI</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g7-3"><label for="g7-3">Install NodeCG (npm or docker, port 9091)</label></div>
+          <details>
+            <summary>NodeCG Install</summary>
+            <pre><code># Option A: npm
+npm install --global nodecg-cli
+cd modules/broadcast-graphics/nodecg
+nodecg setup
+
+# Option B: docker (recommended)
+docker compose up -d nodecg
+
+# Dashboard: http://localhost:9091</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g7-4"><label for="g7-4">Create starter bundle: scoreboard + lower-third + sponsor rotator</label></div>
+          <details>
+            <summary>Bundle Structure</summary>
+            <pre><code>bundles/hcp-starter/
+├── package.json
+├── extension/        # Node-side (replicants, API calls)
+│   └── index.js
+├── dashboard/        # Operator UI
+│   └── panels/
+└── graphics/         # What OBS shows (Browser Source)
+    └── overlay.html</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g7-5"><label for="g7-5">Add Browser Source in OBS pointing to NodeCG graphic URL</label></div>
+          <div class="item"><input type="checkbox" id="g7-6"><label for="g7-6">Verify: change value in dashboard → graphic updates in OBS instantly</label></div>
+        </div>
+      </div>
+
+      <div class="timeline-connector"></div>
+
+      <!-- Guide 8 -->
+      <div class="guide" id="guide-8">
+        <div class="guide-header" onclick="toggleGuide('guide-8')">
+          <span class="guide-num">8</span>
+          <span class="guide-title">AI Agents + Avatars</span>
+          <span class="dep-tag">needs 6+7</span>
+        </div>
+        <div class="guide-items">
+          <div class="item"><input type="checkbox" id="g8-1"><label for="g8-1">Start Postgres with pgvector</label></div>
+          <details>
+            <summary>Postgres + pgvector</summary>
+            <pre><code>docker compose up -d postgres
+
+# Image: pgvector/pgvector:pg16
+# Env:
+#   POSTGRES_DB=hcp
+#   POSTGRES_USER=hcp
+#   POSTGRES_PASSWORD=(from .env)
+# Port: 127.0.0.1:5432
+
+# Run migrations:
+./scripts/setup/postgres_migrate.sh
+
+# Enable vector search:
+psql -U hcp -d hcp -c "CREATE EXTENSION IF NOT EXISTS vector;"
+
+# Memory table:
+# agent_memories (id, agent_id, content, embedding vector(768),
+#                 created_at, importance, tags[])</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g8-2"><label for="g8-2">Install Ollama + pull model (Llama 3.1 8B or Qwen 2.5 7B)</label></div>
+          <details>
+            <summary>Ollama Setup</summary>
+            <pre><code># Install:
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Pull a model:
+ollama pull llama3.1:8b-instruct-q4_K_M
+
+# Test:
+curl http://localhost:11434/api/generate \
+  -d '{"model":"llama3.1:8b","prompt":"hello"}'</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g8-3"><label for="g8-3">Choose avatar: VTube Studio (Live2D) / VSeeFace (VRM) / PNGTuber</label></div>
+          <div class="item"><input type="checkbox" id="g8-4"><label for="g8-4">Install TTS: XTTS v2 (GPU, voice clone) or Piper (CPU, fast)</label></div>
+          <div class="item"><input type="checkbox" id="g8-5"><label for="g8-5">Route TTS output to AI-VOICE bus (VIN2 from Guide 6)</label></div>
+          <div class="item"><input type="checkbox" id="g8-6"><label for="g8-6">Wire agent: chat events → Redis → LLM → TTS → avatar lip sync</label></div>
+          <div class="item"><input type="checkbox" id="g8-7"><label for="g8-7">Verify: send test message, agent responds with voice + avatar motion</label></div>
+        </div>
+      </div>
+
+      <div class="timeline-connector"></div>
+
+      <!-- Guide 9 -->
+      <div class="guide" id="guide-9">
+        <div class="guide-header" onclick="toggleGuide('guide-9')">
+          <span class="guide-num">9</span>
+          <span class="guide-title">Advanced Infra + Ops</span>
+          <span class="dep-tag">needs 7+8</span>
+        </div>
+        <div class="guide-items">
+          <div class="item"><input type="checkbox" id="g9-1"><label for="g9-1">Start Prometheus + Grafana + Loki</label></div>
+          <details>
+            <summary>Observability Stack</summary>
+            <pre><code>docker compose up -d prometheus loki promtail grafana
+
+# Prometheus: http://localhost:9090
+# Grafana:    http://localhost:3000 (admin/admin)
+# Loki:       http://localhost:3100 (internal)
+
+# Source health exporter:
+docker compose up -d source-health-exporter
+# → http://localhost:9101/metrics</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g9-2"><label for="g9-2">Deploy source-health-exporter (OBS, VoiceMeeter, cameras, NodeCG)</label></div>
+          <details>
+            <summary>Source Health Exporter Config</summary>
+            <pre><code># modules/observability/source-health-exporter/config.yml
+port: 9101
+interval: 15
+
+obs:
+  host: host.docker.internal
+  port: 4455
+voicemeeter:
+  enabled: true
+virtual_cameras:
+  - name: comfyui-vcam
+    device_index: 1
+  - name: deepfacelive-vcam
+    device_index: 2
+nodecg:
+  host: localhost
+  port: 9091
+vtube_studio:
+  host: host.docker.internal
+  port: 8001
+tts_agent:
+  redis_channel: tts:output
+deepfacelive:
+  process_name: DeepFaceLive</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g9-3"><label for="g9-3">Import Grafana dashboards (platform-overview, streaming, ai-pipelines)</label></div>
+          <div class="item"><input type="checkbox" id="g9-4"><label for="g9-4">Set up alerting rules (source down, dropped frames, agent silent)</label></div>
+          <details>
+            <summary>Docker Compose Topology</summary>
+            <pre><code>hcp-net (bridge)
+├── postgres        :5432  (Guide 8)
+├── redis           :6379  (Guide 7)
+├── minio           :9000  (Guide 4)
+├── fastapi         :8000  (Guide 7)
+├── prometheus      :9090
+├── source-health   :9101
+├── loki            :3100
+├── promtail
+├── grafana         :3000
+├── nodecg          :9091  (Guide 7)
+└── n8n             :5678</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g9-5"><label for="g9-5">Install Tailscale for hybrid networking (optional)</label></div>
+          <div class="item"><input type="checkbox" id="g9-6"><label for="g9-6">Set up n8n automation workflows</label></div>
+          <div class="item"><input type="checkbox" id="g9-7"><label for="g9-7">Configure CI/CD (GitHub Actions: lint, build images, deploy)</label></div>
+          <div class="item"><input type="checkbox" id="g9-8"><label for="g9-8">Verify: all services green in Grafana, alerts fire on test failure</label></div>
+        </div>
+      </div>
+
+      <div class="cta-banner">
+        <h3>🚀 Stream Extend</h3>
+        <p>Everything you just set up — OBS, AI effects, overlays, agents, audio, monitoring — managed from one dashboard on desktop + mobile. Skip the manual setup with the free OBS Plugin.</p>
+        <div class="cta-buttons">
+          <a href="https://streamextend.com" class="cta-btn cta-btn-primary">Get Stream Extend →</a>
+          <a href="https://streamextend.com/obs-plugin" class="cta-btn cta-btn-secondary">Free OBS Plugin</a>
+        </div>
+        <p class="cta-price">$20 one-time · Mac, Windows, iOS, Android · No subscription required for local features</p>
+      </div>
+    </div>
+
+    <!-- CONTENT CREATION PATH -->
+    <div class="path">
+      <div class="path-header">
+        <span class="path-icon">🎬</span>
+        <div>
+          <div class="path-title">Content Creation Path</div>
+          <div class="path-desc">Golf Tracer → ComfyUI → Image Editing → Realtime AI</div>
+        </div>
+      </div>
+
+      <!-- Guide 3 -->
+      <div class="guide" id="guide-3">
+        <div class="guide-header" onclick="toggleGuide('guide-3')">
+          <span class="guide-num">3</span>
+          <span class="guide-title">Golf Tracer + Sports CV</span>
+        </div>
+        <div class="guide-items">
+          <div class="item"><input type="checkbox" id="g3-1"><label for="g3-1">Install OpenCV, Ultralytics YOLO, MediaPipe, FilterPy</label></div>
+          <details>
+            <summary>Requirements</summary>
+            <pre><code>pip install -r modules/sports-analytics/requirements.txt
+
+# Core:
+# opencv-python 4.9+
+# ultralytics (YOLOv8 / YOLO11)
+# mediapipe 0.10+
+# numpy
+# filterpy (Kalman filter)</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g3-2"><label for="g3-2">Get golf ball YOLO model (community or fine-tune on Roboflow dataset)</label></div>
+          <div class="item"><input type="checkbox" id="g3-3"><label for="g3-3">Set up camera: fixed position, perpendicular to flight plane</label></div>
+          <div class="item"><input type="checkbox" id="g3-4"><label for="g3-4">Calibrate pixel-to-meter conversion</label></div>
+          <details>
+            <summary>Pipeline</summary>
+            <pre><code>Camera
+  → OpenCV (capture + preprocess)
+  → YOLO (ball + club detection per frame)
+  → Kalman filter (trajectory smoothing)
+  → Trajectory renderer (drawn onto frame)
+  → Virtual camera / NDI → OBS</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g3-5"><label for="g3-5">Implement Kalman filter over (x, y, vx, vy) + polynomial trajectory fit</label></div>
+          <div class="item"><input type="checkbox" id="g3-6"><label for="g3-6">Output to virtual camera or NDI, add as OBS source</label></div>
+          <div class="item"><input type="checkbox" id="g3-7"><label for="g3-7">Verify: ball tracked through full flight, overlay visible in OBS</label></div>
+        </div>
+      </div>
+
+      <div class="timeline-connector"></div>
+
+      <!-- Guide 4 -->
+      <div class="guide" id="guide-4">
+        <div class="guide-header" onclick="toggleGuide('guide-4')">
+          <span class="guide-num">4</span>
+          <span class="guide-title">ComfyUI Content Creation</span>
+        </div>
+        <div class="guide-items">
+          <div class="item"><input type="checkbox" id="g4-1"><label for="g4-1">Install Blender — create title card, lower-third, logo intro</label></div>
+          <div class="item"><input type="checkbox" id="g4-2"><label for="g4-2">Install ComfyUI + ComfyUI Manager</label></div>
+          <details>
+            <summary>ComfyUI Install (Linux/WSL)</summary>
+            <pre><code>git clone https://github.com/comfyanonymous/ComfyUI.git \
+  modules/realtime-ai/comfyui/app
+cd modules/realtime-ai/comfyui/app
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+pip install torch torchvision \
+  --index-url https://download.pytorch.org/whl/cu121
+
+# Manager:
+cd custom_nodes
+git clone https://github.com/ltdrdata/ComfyUI-Manager.git</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g4-3"><label for="g4-3">Download models: SDXL Base + SD 1.5 + ControlNet (Canny, Depth)</label></div>
+          <div class="item"><input type="checkbox" id="g4-4"><label for="g4-4">Start MinIO object store</label></div>
+          <details>
+            <summary>MinIO (docker-compose)</summary>
+            <pre><code>docker compose up -d minio
+
+# S3 API:  http://localhost:9000
+# Console: http://localhost:9001
+# Env:
+#   MINIO_ROOT_USER=(from .env)
+#   MINIO_ROOT_PASSWORD=(from .env)
+
+# Create buckets:
+mc alias set hcp http://localhost:9000 user pass
+mc mb hcp/models hcp/outputs hcp/thumbnails</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g4-5"><label for="g4-5">Create starter workflows: thumbnail, title-card, lower-third, sports overlay</label></div>
+          <div class="item"><input type="checkbox" id="g4-6"><label for="g4-6">Verify: ComfyUI generates image, output lands in MinIO bucket</label></div>
+        </div>
+      </div>
+
+      <div class="timeline-connector"></div>
+
+      <!-- Guide 4B -->
+      <div class="guide" id="guide-4b">
+        <div class="guide-header" onclick="toggleGuide('guide-4b')">
+          <span class="guide-num">4B</span>
+          <span class="guide-title">AI Image + Video Editing</span>
+          <span class="dep-tag">needs 4</span>
+        </div>
+        <div class="guide-items">
+          <div class="item"><input type="checkbox" id="g4b-1"><label for="g4b-1">Install Krita 5.2+ (desktop image editor)</label></div>
+          <div class="item"><input type="checkbox" id="g4b-2"><label for="g4b-2">Install Krita AI Diffusion plugin</label></div>
+          <details>
+            <summary>Plugin Install</summary>
+            <pre><code># Download from:
+# https://github.com/Acly/krita-ai-diffusion/releases
+
+# Extract into Krita's pykrita/ folder:
+# Settings → Manage Resources → Open Resource Folder
+
+# Enable:
+# Settings → Configure Krita → Python Plugin Manager
+# → enable "AI Image Diffusion"
+
+# Connect to ComfyUI:
+# Settings → AI Diffusion → Server URL:
+# http://127.0.0.1:8188</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g4b-3"><label for="g4b-3">Connect AI Diffusion to ComfyUI (localhost:8188)</label></div>
+          <div class="item"><input type="checkbox" id="g4b-4"><label for="g4b-4">Download inpainting models (SDXL Inpainting + SAM)</label></div>
+          <details>
+            <summary>Inpainting Models</summary>
+            <pre><code># SDXL Inpainting → models/checkpoints/
+wget https://huggingface.co/diffusers/stable-diffusion-xl-1.0-inpainting-0.1/resolve/main/sd_xl_base_1.0_inpainting_0.1.safetensors
+
+# SAM (auto-select) → models/sam/
+wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
+
+# RMBG-1.4 (background removal)
+# Auto-installed via ComfyUI Manager on first use</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g4b-5"><label for="g4b-5">Test: generative fill — select area, type prompt, result on new layer</label></div>
+          <div class="item"><input type="checkbox" id="g4b-6"><label for="g4b-6">Test: object removal — mask object, generate, object removed</label></div>
+          <div class="item"><input type="checkbox" id="g4b-7"><label for="g4b-7">Test: outpaint — extend canvas, AI fills new area</label></div>
+          <details>
+            <summary>Mobile Editing (Creator Extend app)</summary>
+            <pre><code># Mobile editing uses the same ComfyUI backend
+# via FastAPI endpoints:
+#
+# POST /api/v1/edit/inpaint   — generative fill
+# POST /api/v1/edit/remove    — object removal
+# POST /api/v1/edit/outpaint  — canvas expansion
+# POST /api/v1/edit/upscale   — 2x/4x super-resolution
+# POST /api/v1/edit/auto-select — SAM point-to-mask
+# POST /api/v1/edit/video/frame — edit single video frame
+# POST /api/v1/edit/video/range — edit frame range
+#
+# Spec: modules/image-editing/mobile/README.md</code></pre>
+          </details>
+        </div>
+      </div>
+
+      <div class="timeline-connector"></div>
+
+      <!-- Guide 5 -->
+      <div class="guide" id="guide-5">
+        <div class="guide-header" onclick="toggleGuide('guide-5')">
+          <span class="guide-num">5</span>
+          <span class="guide-title">ComfyUI + OBS Realtime</span>
+          <span class="dep-tag">needs 4</span>
+        </div>
+        <div class="guide-items">
+          <div class="item"><input type="checkbox" id="g5-1"><label for="g5-1">Install webcam frame loader node (ComfyUI-LiveCam or custom bridge)</label></div>
+          <div class="item"><input type="checkbox" id="g5-2"><label for="g5-2">Set up LCM stylization workflow (SD 1.5 + LCM-LoRA, 2-4 steps)</label></div>
+          <details>
+            <summary>Realtime LCM Workflow</summary>
+            <pre><code># modules/realtime-ai/comfyui/workflows/realtime-lcm-stylize-v1.json
+# Components:
+1. Webcam input (frame loader)
+2. VAE encode
+3. SD 1.5 + LCM-LoRA
+4. KSampler: 2-4 steps, LCM sampler, CFG 1.0-2.0
+5. VAE decode
+6. Output → virtual cam / NDI
+
+# Expected FPS:
+# RTX 3060: 8-15 fps | RTX 4070: 15-25 fps | RTX 4090: 30+ fps</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g5-3"><label for="g5-3">Output to virtual camera (pyvirtualcam or v4l2loopback)</label></div>
+          <div class="item"><input type="checkbox" id="g5-4"><label for="g5-4">Add virtual camera as OBS source</label></div>
+          <details>
+            <summary>Latency Budget</summary>
+            <pre><code># Target: &lt; 200 ms end-to-end
+Webcam capture:    5-15 ms
+Frame encode:      5-10 ms
+Diffusion pass:    60-120 ms (LCM 2-step)
+Decode + render:   5-10 ms
+Virtual cam write: 5-10 ms
+OBS capture:       16 ms (1 frame @ 60fps)
+─────────────────────────
+Total:             ~100-180 ms</code></pre>
+          </details>
+          <div class="item"><input type="checkbox" id="g5-5"><label for="g5-5">Alternative: segmentation-only workflow (RMBG/SAM, 30-60 fps)</label></div>
+          <div class="item"><input type="checkbox" id="g5-6"><label for="g5-6">Verify: stylized webcam feed in OBS with &lt; 200 ms latency</label></div>
+        </div>
+      </div>
+
+      <div style="height: 1rem"></div>
+      <div style="padding: 0.75rem; background: #1c2128; border-radius: 8px; border: 1px dashed #30363d;">
+        <p style="font-size: 0.8rem; color: #8b949e; text-align: center;">
+          Content path complete (Guides 3 → 4 → 4B → 5). For monitoring + ops, continue with Guide 9 from the Streaming path.
+        </p>
+      </div>
+
+      <div class="cta-banner">
+        <h3>🎬 Creator Extend</h3>
+        <p>ComfyUI workflows, Blender integration, Krita AI editing, sports replay, and mobile tap-to-edit — all from one app. Install the free Blender Addon for one-click template gallery and MinIO upload.</p>
+        <div class="cta-buttons">
+          <a href="https://creatorextend.com" class="cta-btn cta-btn-primary">Get Creator Extend →</a>
+          <a href="https://creatorextend.com/blender-addon" class="cta-btn cta-btn-secondary">Free Blender Addon</a>
+        </div>
+        <p class="cta-price">$20 one-time · Mac, Windows, iOS, Android · No subscription required for local features</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'hcp-timeline-progress';
+
+function loadState() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  } catch { return {}; }
+}
+
+function saveState(state) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function updateProgress() {
+  const all = document.querySelectorAll('.item input[type="checkbox"]');
+  const checked = document.querySelectorAll('.item input[type="checkbox"]:checked');
+  const pct = all.length ? (checked.length / all.length * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent =
+    `${checked.length} / ${all.length} steps complete (${Math.round(pct)}%)`;
+
+  // Update guide states
+  document.querySelectorAll('.guide').forEach(g => {
+    const items = g.querySelectorAll('.item input[type="checkbox"]');
+    const done = g.querySelectorAll('.item input[type="checkbox"]:checked');
+    g.classList.remove('complete', 'in-progress');
+    if (items.length && done.length === items.length) g.classList.add('complete');
+    else if (done.length > 0) g.classList.add('in-progress');
+  });
+
+  // Update item styles
+  document.querySelectorAll('.item').forEach(item => {
+    const cb = item.querySelector('input[type="checkbox"]');
+    item.classList.toggle('checked', cb && cb.checked);
+  });
+}
+
+function init() {
+  const state = loadState();
+  document.querySelectorAll('.item input[type="checkbox"]').forEach(cb => {
+    if (state[cb.id]) cb.checked = true;
+    cb.addEventListener('change', () => {
+      const s = loadState();
+      s[cb.id] = cb.checked;
+      saveState(s);
+      updateProgress();
+    });
+  });
+  updateProgress();
+}
+
+function toggleGuide(id) {
+  const guide = document.getElementById(id);
+  const items = guide.querySelector('.guide-items');
+  if (items) {
+    items.style.display = items.style.display === 'none' ? 'block' : '';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

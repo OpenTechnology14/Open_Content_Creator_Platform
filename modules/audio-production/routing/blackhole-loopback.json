@@ -1,0 +1,34 @@
+{
+  "_comment": "macOS audio routing reference using BlackHole + Loopback (or SoundSource). See modules/audio-production/setup/manual.md.",
+  "virtual_devices": [
+    {
+      "name": "BlackHole 2ch",
+      "purpose": "AI/TTS voice output → captured by OBS as a source",
+      "install": "brew install --cask blackhole-2ch"
+    },
+    {
+      "name": "BlackHole 16ch (optional)",
+      "purpose": "Multi-channel routing if using Loopback or Audio Hijack",
+      "install": "brew install --cask blackhole-16ch"
+    }
+  ],
+  "routing": {
+    "system_output": "BlackHole 2ch (so OBS can capture desktop audio)",
+    "obs_mic_source": "Your physical mic (USB or interface)",
+    "obs_desktop_source": "BlackHole 2ch",
+    "discord_input": "Your physical mic (USB or interface); optionally a dedicated mix-minus input excluding CALL-IN",
+    "discord_output": "BlackHole 16ch (captured separately for podcast isolation)",
+    "ai_tts_output": "BlackHole 2ch (same as desktop, or use Loopback for dedicated bus)"
+  },
+  "loopback_alternative": {
+    "_comment": "Rogue Amoeba Loopback ($99) provides a GUI for virtual devices and routing. Replaces the BlackHole + manual config approach. Recommended for non-technical users.",
+    "url": "https://rogueamoeba.com/loopback/"
+  },
+  "notes": [
+    "macOS audio routing is more limited than Windows VoiceMeeter.",
+    "For full bus isolation (6 buses like the Windows setup), use Loopback or Audio Hijack.",
+    "BlackHole alone gives you 1-2 virtual devices — enough for basic OBS capture.",
+    "Multi-Output Device in Audio MIDI Setup can split headphone monitoring from capture.",
+    "Discord Input Device captures your physical microphone by default; Built-in Output is a playback device. If sharing other sources through a virtual input, exclude the Discord return audio from that input."
+  ]
+}

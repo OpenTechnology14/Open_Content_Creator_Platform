@@ -1,0 +1,13 @@
+[package]
+name = "recording-library"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Shared local recording inbox for Stream Extend and Creator Extend"
+
+[dependencies]
+fs2 = "0.4"
+local-settings = { path = "../local-settings" }
+serde = { version = "1", features = ["derive"] }
+uuid = { version = "1", features = ["v4"] }
+

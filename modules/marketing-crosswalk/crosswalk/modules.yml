@@ -1,0 +1,687 @@
+# Content Platform module registry — THE CANONICAL DISCOVERY INDEX.
+#
+# If you are an agent or a person in ANY of the three repositories (hybrid-creator-platform,
+# OpenTechnologyApp, OpenTechnologyBlog) trying to answer "what marketing
+# modules exist?", this file is the answer. Read it first, before grepping either other repo.
+#
+# The Content Platform (this repository) generates content FOR each module listed here.
+# A module is a content *consumer*; each has a subjects file naming what the content is about.
+#
+# ── How to find a module ────────────────────────────────────────────────────────────────
+#   rg -i "<term>" modules/marketing-crosswalk/crosswalk/modules.yml
+# Match against `discovery_keywords` (search terms) and `notes` (plain-language description).
+# `not_to_be_confused_with` exists because several modules share the word "AI" and have been
+# misrouted in practice — check it before acting on a name match.
+#
+# ── Field reference ─────────────────────────────────────────────────────────────────────
+# See crosswalk/schema.md. Required by the loader: module, kind, target, subjects.
+# Everything else is discovery metadata: the loader ignores unknown keys, so enriching a row
+# can never break `validate`.
+#
+# ── Counts are transcribed, not computed ────────────────────────────────────────────────
+# `counts` is a hand-maintained snapshot with a `basis` line saying what was counted and from
+# where. Nothing recomputes it, so it is true as of `last_verified` and not a live figure.
+# When it disagrees with the repo, the repo wins — fix the count, do not trust it.
+#
+# ── Playbooks ───────────────────────────────────────────────────────────────────────────
+# Each target's go-to-market playbook is a registered doc (targets.yml `marketing_playbook`):
+# OpenTechnologyApp's MARKETING.md for `task-management`, and this repository's MARKETING.md for
+# `stream-extend` and `content-extend` (their `files.marketing_doc`).
+#
+# The sibling modules under `modules/` are NOT listed as rows (most appear instead as subjects of
+# `stream-extend` / `content-extend`). `validate` does not require a row per modules/ directory;
+# onboarding one is an explicit act, not a coverage obligation.
+schema_version: 1
+
+modules:
+  - module: task-management
+    kind: external-app
+    target: task-management          # key in targets.yml — where content is delivered
+    subjects: subjects/task-management.yml
+    description: >-
+      OpenTechnology — the task/queue management app. Content generated for it is about
+      its six built-in project templates, aimed at the five ICPs in MARKETING.md §2 and
+      shaped by the five-format content engine in §4.
+    onboarded: 2026-08-30
+    status: partially-shipped
+    last_verified: 2026-09-23
+    notes: >-
+      The flagship product module. Content is about six project templates the app ships
+      (pm_requests, device_audit, job_hunter, extend_platform, access_compliance,
+      site_monitoring) — not about AI, and not about streaming. If a request mentions a
+      project template, a client portal, queues, or a Jira/Monday/Salesforce comparison,
+      this is the module.
+    discovery_keywords:
+      - task management
+      - OpenTechnology
+      - OpenTechnologyApp
+      - project templates
+      - pm requests
+      - device audit
+      - job hunter
+      - access compliance
+      - site monitoring
+      - client portal
+      - Jira alternative
+      - Monday alternative
+      - Salesforce alternative
+    not_to_be_confused_with:
+      - "extend-platform is a TEMPLATE inside this module, not the stream-extend/content-extend product modules"
+    counts:
+      basis: "subjects counted from subjects/task-management.yml; assets from assets.yml; ICPs from this module's icps block"
+      subjects: 6
+      marketing_assets_available: 13
+      icps: 5
+    files:
+      subjects_config: modules/marketing-crosswalk/crosswalk/subjects/task-management.yml
+      target_repo: OpenTechnology14/OpenTechnologyApp
+      marketing_doc: MARKETING.md
+      crosswalk_doc: docs/readable/TEMPLATE_REPO_CROSSWALK.md
+      connection_doc: docs/readable/BLOG_MARKETING_CONNECTION.md
+
+  - module: stream-extend
+    kind: product
+    target: hybrid-creator-platform  # this repo — see targets.yml for why
+    subjects: subjects/stream-extend.yml
+    description: >-
+      The Stream Extend product. Content generated for it is about the fifteen modules carrying
+      the `Stream` label, aimed at streaming ICPs, and shaped by product-spec.md
+      §"Marketing: Guides as Content".
+    onboarded: 2026-08-30
+    status: outlined
+    last_verified: 2026-10-20
+    notes: >-
+      The streaming half of this repository's two desktop products. Content is about the
+      modules labelled `Stream` — OBS orchestration, realtime AI effects, broadcast graphics,
+      audio routing, AI agents, avatars, soundboard, observability, backend API, and the shared
+      foundations (storage, social profiles and publishing gates, the asset and model
+      registries). If a request is about going live, OBS, encoders, overlays or stream
+      automation, it is this module. The go-to-market playbook for both products is MARKETING.md
+      at the repository root.
+    discovery_keywords:
+      - Stream Extend
+      - StreamExtend
+      - streaming
+      - OBS
+      - broadcast graphics
+      - overlays
+      - stream automation
+      - AI effects
+      - avatar
+      - soundboard
+      - go live
+      - social accounts
+      - stream profiles
+      - model provenance
+      - asset pipeline
+      - P-062
+      - P-017
+      - P-018
+      - marketing playbook
+      - go-to-market
+      - MARKETING.md
+    not_to_be_confused_with:
+      - "content-extend — the sibling product module for the Content-labelled modules"
+      - "ai-learning — a lesson series that is *streamed with* Stream Extend, not about it"
+    counts:
+      basis: "subjects counted from subjects/stream-extend.yml; Stream-labelled modules counted from CLAUDE.md §4 on 2026-10-20; assets from assets.yml"
+      subjects: 15
+      stream_labelled_modules: 15
+      marketing_assets_available: 13
+    files:
+      subjects_config: modules/marketing-crosswalk/crosswalk/subjects/stream-extend.yml
+      target_repo: OpenTechnology14/Open_Content_Creator_Platform
+      product_spec: docs/architecture/product-spec.md
+      marketing_doc: MARKETING.md
+      setup_guide: docs/guides/production-setup/STREAM_EXTEND_PRODUCTION_SETUP.md
+
+  - module: content-extend
+    kind: product
+    target: hybrid-creator-platform  # this repo — same reason as stream-extend
+    subjects: subjects/content-extend.yml
+    description: >-
+      The Creator Extend / ContentExtend product. Content generated for it is about the thirteen
+      product modules carrying the `Content` label (fourteen carry it; `marketing-crosswalk` is
+      excluded because it ships in neither app), aimed at content-creation ICPs, and shaped by
+      product-spec.md §"Marketing: Guides as Content".
+    onboarded: 2026-08-30
+    status: outlined
+    last_verified: 2026-10-20
+    notes: >-
+      The content-creation half of this repository's two desktop products. Content is about the
+      product modules labelled `Content` — ComfyUI workflows, Blender, Krita, nature and cityscape
+      generation, sports analytics, and the shared foundations (storage, social profiles, the
+      asset and model registries). `marketing-crosswalk` carries the label but is excluded: it
+      ships in neither app. Naming is unsettled:
+      "ContentExtend" is the repository/product name in REPOSITORY_ALIGNMENT.md, while
+      "Creator Extend" appears in README, roadmap, product-spec and the live domain.
+      Both names find this module. The go-to-market playbook for both products is MARKETING.md
+      at the repository root.
+    discovery_keywords:
+      - Content Extend
+      - ContentExtend
+      - Creator Extend
+      - CreatorExtend
+      - ComfyUI
+      - Blender
+      - Krita
+      - image editing
+      - nature generation
+      - cityscape generation
+      - sports analytics
+      - render pipeline
+      - social accounts
+      - model provenance
+      - asset pipeline
+      - soundboard
+      - P-062
+      - P-017
+      - P-018
+      - marketing playbook
+      - go-to-market
+      - MARKETING.md
+    not_to_be_confused_with:
+      - "stream-extend — the sibling product module for the Stream-labelled modules"
+      - "marketing-crosswalk — the generator that produces this content. It carries the Content label but is deliberately not a subject here: it ships in neither app (see subjects/content-extend.yml)"
+    counts:
+      basis: "subjects counted from subjects/content-extend.yml; Content-labelled modules counted from CLAUDE.md §4 on 2026-10-20 (14, less the excluded marketing-crosswalk); assets from assets.yml"
+      subjects: 13
+      content_labelled_modules: 14
+      marketing_assets_available: 13
+    files:
+      subjects_config: modules/marketing-crosswalk/crosswalk/subjects/content-extend.yml
+      target_repo: OpenTechnology14/Open_Content_Creator_Platform
+      product_spec: docs/architecture/product-spec.md
+      marketing_doc: MARKETING.md
+      setup_guide: docs/guides/production-setup/CREATOR_EXTEND_PRODUCTION_SETUP.md
+      alignment_policy: docs/REPOSITORY_ALIGNMENT.md
+
+  - module: ai-learning
+    kind: series
+    target: opentechnology-blog     # drafts are delivered here; lesson status is read from
+                                     # hybrid-creator-platform via status_evidence.target
+    subjects: subjects/ai-learning.yml
+    description: >-
+      The AI Learning Series — four lessons (model usage, prompting with project and context,
+      app building with documentation/rules/skills, cutting cost with an AI workflow), each
+      streamed live with Stream Extend and Creator Extend, then delivered to OpenTechnologyBlog
+      and linked from OpenTechApp. Content generated for it is about the lessons, not a product.
+    onboarded: 2026-09-20
+    status: drafted
+    last_verified: 2026-10-08
+    notes: >-
+      A four-lesson teaching series about HOW TO USE AI — pick a model, prompt with project
+      context, build apps with docs/rules/skills, then cut cost. It is a curriculum, not a
+      product and not a governance framework. Authored in hybrid-creator-platform under
+      docs/learning/, delivered to the blog. Nothing has aired; all four lessons are
+      `scaffolded`; four written previews are publicly available, verified 2026-10-08.
+    discovery_keywords:
+      - AI Learning
+      - AI Learning Series
+      - learning series
+      - AI usage
+      - AI lessons
+      - lesson series
+      - model usage
+      - prompting
+      - prompting with context
+      - app building
+      - cost workflow
+      - cutting AI cost
+      - P-064
+    not_to_be_confused_with:
+      - "ai-control-layer — a GOVERNANCE/practice library on the blog, not a lesson series. These two have been misrouted for each other; check discovery_keywords before choosing."
+      - "chatbot-routing — about OpenTechnologyApp's vendor routing features, not about learning AI"
+    counts:
+      basis: "four public lesson-preview URLs returned HTTP 200 with matching article headings, 2026-10-08; lesson-airing status remains in docs/learning/"
+      subjects: 4
+      source_docs: 5
+      blog_posts_published: 4
+      blog_posts_drafted: 0
+      lessons_aired: 0
+      marketing_assets_available: 5
+      icps: 3
+    files:
+      subjects_config: modules/marketing-crosswalk/crosswalk/subjects/ai-learning.yml
+      proposal: docs/proposals/PROPOSAL_AI_LEARNING_SERIES.md
+      series_index: docs/learning/README.md
+      lesson_docs:
+        - docs/learning/lesson-01-model-usage.md
+        - docs/learning/lesson-02-prompting-context.md
+        - docs/learning/lesson-03-app-building.md
+        - docs/learning/lesson-04-cost-workflow.md
+      blog_posts:
+        - content/blog/ai-learning-01-model-usage.mdx
+        - content/blog/ai-learning-02-prompting-project-context.mdx
+        - content/blog/ai-learning-03-app-building-docs-rules-skills.mdx
+        - content/blog/ai-learning-04-cutting-cost-ai-workflow.mdx
+      target_inventory: docs/AI_CONTENT_INVENTORY.md
+
+  # Initially discovery-only. PRs #38/#49 merged on 2026-09-26; source-backed
+  # script subjects onboarded 2026-09-30 (P-070). This enables draft generation,
+  # not publication claims, live narration or approval of the source's app claims.
+  - module: ai-control-layer
+    kind: series
+    target: opentechnology-blog
+    subjects: subjects/ai-control-layer.yml
+    description: >-
+      The AI Control Layer learning library on OpenTechnologyBlog — a continuing content module
+      about AI best practice, AI-assisted building, OpenTechnologyApp's AI setup/security/control,
+      and open-source evaluation. Ten guides, a hub, a workbook and two exercise downloads.
+    onboarded: 2026-09-23
+    status: drafted
+    last_verified: 2026-10-20
+    merged_pr: https://github.com/OpenTechnology14/OpenTechnologyBlog/pull/38
+    source_revision: "03970722f37555198faea7cfbe28cbd57c5ff563"
+    notes: >-
+      A GOVERNANCE and PRACTICE library, not a course. It connects intent, documentation,
+      permissions and evidence — "AI work you can explain and verify". Six tracks and three
+      reading paths at /learn/ai-control-layer, plus a product guide at
+      /open-technology-app/docs/ai-control. Its own module doc states it is a content module in
+      the blog repository, not a new app Admin tab and not an autonomous publisher.
+      PR #38 merged 2026-09-26. Ten source guides now generate draft script outlines;
+      publication, app capability claims and live narration have not been verified here.
+    discovery_keywords:
+      - AI Control Layer
+      - control layer
+      - ACL
+      - AI governance
+      - AI best practice
+      - AI permissions
+      - AI evidence
+      - AI setup
+      - AI security
+      - open source selection
+      - open source benefits
+      - reading AI news
+      - AI evaluation set
+      - AI usage practice
+      - PR 38
+    not_to_be_confused_with:
+      - "ai-learning — the four-lesson AI Learning Series. THESE TWO HAVE BEEN MISROUTED FOR EACH OTHER TWICE. ai-learning teaches how to use AI in four lessons; ai-control-layer is an ongoing governance/practice library."
+      - "chatbot-routing — a separate, narrower module about vendor routing in OpenTechnologyApp's chatbot. Its module doc has an explicit '§ Relationship to the AI Control Layer module' section precisely because the two are confusable."
+    counts:
+      basis: "OpenTechnologyBlog main 03970722 (remote tree and local checkout agree). All 21 blog paths listed under files re-checked against that tree on 2026-10-20, none missing; per-guide MDX titles and module catalog as checked 2026-09-30. marketing_package_files counts main only: open PR #58 adds two more (editorial-backlog.md, source-and-claim-ledger.md), 6 if it merges. No deployment check."
+      subjects: 10
+      guides: 10
+      guides_foundation: 4
+      guides_practical: 5
+      guides_app_control: 1
+      blog_posts_in_source: 10
+      publication_verified: false
+      marketing_assets_available: 1
+      downloads: 3
+      marketing_package_files: 4
+      hubs: 2
+      remaining_scoped_followups: 14
+    files:
+      subjects_config: modules/marketing-crosswalk/crosswalk/subjects/ai-control-layer.yml
+      module_doc: docs/AI_CONTROL_LAYER_MODULE.md
+      marketing_package:
+        - marketing/ai-control-layer/README.md
+        - marketing/ai-control-layer/brief.md
+        - marketing/ai-control-layer/practice-batch.md
+        - marketing/ai-control-layer/scope-and-release.md
+      marketing_package_unmerged:   # exist only on open PR #58; move into marketing_package when it merges
+        - marketing/ai-control-layer/editorial-backlog.md
+        - marketing/ai-control-layer/source-and-claim-ledger.md
+      marketing_package_pr: https://github.com/OpenTechnology14/OpenTechnologyBlog/pull/58
+      downloads:
+        - public/downloads/ai-control-layer-workbook.md
+        - public/downloads/ai-control-evaluation-cases.json
+        - public/downloads/ai-control-date-exercise.mjs
+      blog_posts:
+        - content/blog/ai-use-best-practices.mdx
+        - content/blog/building-with-ai-control-layer.mdx
+        - content/blog/open-source-benefits-and-selection.mdx
+        - content/blog/reading-ai-company-news.mdx
+        - content/blog/build-small-ai-evaluation-set.mdx
+        - content/blog/minimize-data-for-ai-writing.mdx
+        - content/blog/review-ai-summaries-with-missing-data.mdx
+        - content/blog/tests-that-catch-ai-code-mistakes.mdx
+        - content/blog/verified-findings-to-ai-proposals.mdx
+        - content/blog/app-control-and-setup-explained.mdx
+      content_catalog: src/data/aiControlLayer.ts
+      public_hub: src/app/learn/ai-control-layer/page.tsx
+      product_guide: src/app/open-technology-app/docs/ai-control/page.tsx
+      editorial_backlog: "docs/CONTENT_BACKLOG.md § Theme 5 — AI Control Layer"
+
+  - module: chatbot-routing
+    kind: series
+    target: opentechnology-blog
+    subjects: subjects/chatbot-routing.yml
+    description: >-
+      The Chatbot Routing content module on OpenTechnologyBlog — explains OpenTechnologyApp's
+      actual multi-vendor chatbot routing: which vendor a chat request goes to, how complexity
+      is scored, and how to turn the assistant off. One beginner on-ramp, six unlisted guides
+      (CR-01..CR-06), a workbook and a practice download; its public hub page was archived in
+      OpenTechnologyBlog #56.
+    onboarded: 2026-09-23
+    status: drafted
+    last_verified: 2026-10-20
+    merged_pr: https://github.com/OpenTechnology14/OpenTechnologyBlog/pull/49
+    source_revision: "03970722f37555198faea7cfbe28cbd57c5ff563"
+    notes: >-
+      Narrow and concrete: it documents real product behaviour — vendor selection, complexity
+      thresholds, API-key security, Hugging Face streaming, local Ollama operation, and the
+      kill switch. Its own module doc states plainly that it is a different concept from the
+      AI Control Layer module and carries a section explaining the relationship. The only
+      module here with translations: the beginner post ships in de, es, fr and pt.
+      PR #49 merged 2026-09-26. Seven source guides now generate draft script outlines;
+      publication, app capability claims and live narration have not been verified here.
+      Its public hub page was archived in PR #56 (2026-09-28) and is no longer served.
+    discovery_keywords:
+      - chatbot routing
+      - chatbot
+      - vendor routing
+      - multi-vendor
+      - model routing
+      - complexity thresholds
+      - kill switch
+      - API key security
+      - Hugging Face streaming
+      - Ollama
+      - local model
+      - assistant off
+      - CR-01
+      - PR 49
+    not_to_be_confused_with:
+      - "ai-control-layer — the broader AI governance/practice library. The chatbot-routing module doc has an explicit '§ Relationship to the AI Control Layer module' section because these two are confusable."
+      - "ai-learning — a teaching series about using AI, not about product routing behaviour"
+      - "the chatbot-ops module — Ingest API and health-check guides were moved OUT of this module into proposals/2026-09-23-chatbot-ops-module.md"
+    counts:
+      basis: "OpenTechnologyBlog main 03970722 (remote tree and local checkout agree). All 22 blog paths listed under files re-checked against that tree on 2026-10-20; the one that moved is the hub, archived in #56. Per-guide MDX titles and module catalog as checked 2026-09-30. No deployment check."
+      subjects: 7
+      guides: 6
+      beginner_onramp: 1
+      blog_posts_in_source: 7
+      publication_verified: false
+      marketing_assets_available: 1
+      translations: 4
+      downloads: 2
+      marketing_package_files: 5
+      hubs: 0
+      hubs_archived: 1
+    files:
+      subjects_config: modules/marketing-crosswalk/crosswalk/subjects/chatbot-routing.yml
+      module_doc: docs/CHATBOT_ROUTING_MODULE.md
+      proposal: proposals/2026-09-23-chatbot-ops-module.md
+      marketing_package:
+        - marketing/chatbot-routing/README.md
+        - marketing/chatbot-routing/brief.md
+        - marketing/chatbot-routing/editorial-backlog.md
+        - marketing/chatbot-routing/scope-and-release.md
+        - marketing/chatbot-routing/source-and-claim-ledger.md
+      downloads:
+        - public/downloads/chatbot-routing-workbook.md
+        - public/downloads/chatbot-routing-decision-cases.json
+      blog_posts:
+        - content/blog/chatbot-routing-for-beginners.mdx
+        - content/blog/chatbot-routing-setup.mdx
+        - content/blog/chatbot-routing-complexity-thresholds.mdx
+        - content/blog/chatbot-routing-api-key-security.mdx
+        - content/blog/chatbot-routing-hf-streaming.mdx
+        - content/blog/chatbot-routing-ollama-local.mdx
+        - content/blog/chatbot-routing-kill-switch.mdx
+      translations:
+        - content/i18n/de/chatbot-routing-for-beginners.mdx
+        - content/i18n/es/chatbot-routing-for-beginners.mdx
+        - content/i18n/fr/chatbot-routing-for-beginners.mdx
+        - content/i18n/pt/chatbot-routing-for-beginners.mdx
+      content_catalog: src/data/chatbotRouting.ts
+      public_hub_archived: archive/learn/chatbot-routing/page.tsx   # moved out of src/app/ by OpenTechnologyBlog #56 (2026-09-28); not served
+
+  # ── Discovery-only modules (added 2026-10-20) ───────────────────────────────────────────
+  # Registered so a session can FIND them. None can generate (`subjects: []`) and none has a persona
+  # until promoted. `status` describes the underlying project, not marketing content, and is
+  # mechanical: drafted = source code AND at least 10 maintained docs; outlined = some code or some
+  # docs, short of that bar; planned = neither (schema.md § Discovery-only modules).
+
+  - module: myfeed
+    kind: product
+    target: myfeed
+    subjects: subjects/myfeed.yml
+    description: >-
+      MyFeed — a separate single-user local media reader (feeds, connections, keyword lenses, local
+      mention alerts, manual AI digests). It lives in its own repository; this repository only
+      references it. Discovery-only: nothing is generated for it.
+    onboarded: 2026-10-20
+    status: drafted
+    last_verified: 2026-10-20
+    notes: >-
+      A single-user, local-first media reader in its own repository. It collects RSS,
+      Mastodon-compatible, Bluesky, email (IMAP), Rocket.Chat, JSON-API and YouTube sources into one
+      mixed timeline, filters them with deterministic keyword lenses, raises opt-in local @handle
+      mention alerts and builds manual, confirmed AI digests. Semantic AI filtering (PROP-025),
+      external alert delivery (PROP-026) and a hosted multi-user edition (PROP-021 to PROP-024) are
+      CONDITIONAL proposals in its own queue, not features. Route a request here when it is about
+      the feed reader itself.
+    discovery_keywords:
+      ["MyFeed", "My Feed", "my-feed", "MyFeeds", "My Feeds", "feed reader", "feed curation",
+       "media reader", "RSS reader", "keyword lens", "feed lenses", "mention alerts",
+       "alert delivery", "external alert delivery", "semantic filtering",
+       "semantic AI filtering", "hosted edition", "multi-user edition", "PROP-021", "PROP-025",
+       "PROP-026", "Bluesky reader", "Mastodon reader"]
+    not_to_be_confused_with:
+      - "task-management — the OpenTechnologyApp project/queue app. MyFeed is a separate repository and a separate product."
+      - "social-management — this repository's profile, brand, account and publishing-gate module. MyFeed reads feeds and has its own connections and posting setup."
+      - "ai-control-layer / chatbot-routing / ai-learning — AI governance, vendor routing and a lesson series. MyFeed's AI is a manual, confirmed digest, and semantic filtering is only a proposal."
+      - "PROP-021 to PROP-026 are proposals in MyFeed's own queue (docs/readable/PROPOSAL_WORK_QUEUE.md there), not features and not this repository's P-NNN proposals."
+    counts:
+      basis: "find/grep on the MyFeed checkout (main @ 5484d70, 1 uncommitted file), 2026-10-20. code_files: ts/tsx under src, server and shared. doc_files: *.md under docs/ plus the root. test_files: files under tests/. proposals: '### PROP-' headings in docs/readable/PROPOSAL_WORK_QUEUE.md. provider_kinds: keys of PROVIDERS in shared/model.ts. features_listed: distinct FEAT-ids in docs/readable/FEATURE_LIST.md. Navigation aid, not evidence."
+      subjects: 0
+      code_files: 42
+      doc_files: 24
+      test_files: 19
+      e2e_specs: 2
+      proposals: 35
+      provider_kinds: 8
+      features_listed: 42
+      npm_scripts: 12
+    files:
+      target_repo: "OpenTechnology14/MyFeed"
+      claude_md: "CLAUDE.md"
+      product_doc: "docs/readable/PRODUCT.md"
+      proposal_queue: "docs/readable/PROPOSAL_WORK_QUEUE.md"
+      feature_list: "docs/readable/FEATURE_LIST.md"
+      integrations: "docs/readable/INTEGRATIONS.md"
+      alerts_module: "shared/alerts.ts"
+
+  - module: ironfall
+    kind: product
+    target: ironfall
+    subjects: subjects/ironfall.yml
+    description: >-
+      Ironfall — a third-person, free-aim medieval PvPvE extraction game in Unreal Engine 5.8: a
+      source-of-truth specification repository plus the C++ gameplay project. Discovery-only.
+    onboarded: 2026-10-20
+    status: drafted
+    last_verified: 2026-10-20
+    notes: >-
+      A beginner-built, third-person, free-aim medieval PvPvE extraction game in Unreal Engine 5.8.
+      The repository is the source-of-truth specification (build guides, machine-readable design
+      data, an acceptance checklist and verifier scripts) plus the C++ gameplay project. This
+      repository's own P-NNN proposal queue and agent-doc conventions were modelled on Ironfall's;
+      those are process documents, not the game.
+    discovery_keywords:
+      ["Ironfall", "Iron Fall", "iron-fall", "ironfall game", "ironfall-unreal-blueprint-spec",
+       "Unreal Blueprint spec", "UE 5.8", "UE5.8", "Unreal Engine 5.8", "extraction game",
+       "PvPvE", "medieval extraction", "free-aim", "castle-town map"]
+    not_to_be_confused_with:
+      - "animalhouse — a separate UE 5.8 game. AnimalHouse's own agent context calls IronFall 'a reference project, not this project's design specification'."
+      - "This repository's proposal queue and agent-doc conventions (the P-NNN queue, VERIFICATION-MATRIX, DOC-UPDATE-MATRIX) were modelled on Ironfall's. They are process documents, not the game."
+    counts:
+      basis: "find on a local clone of OpenTechnology14/Ironfall (branch hf-t15b-boundary-ut @ 1dc7239, clean), 2026-10-20. code_files: .h/.cpp under Ironfall/Source. doc_files: *.md under Docs/ and Agent/ plus the root. build_scripts: *.py under Scripts/. automation_test_files: Source files containing IMPLEMENT_SIMPLE_AUTOMATION_TEST. content_assets: .uasset/.umap under Ironfall/Content. engine: the uproject's EngineAssociation. Navigation aid, not evidence."
+      subjects: 0
+      code_files: 56
+      doc_files: 46
+      build_scripts: 13
+      automation_test_files: 13
+      content_assets: 262
+      engine: "5.8"
+    files:
+      target_repo: "OpenTechnology14/Ironfall"
+      readme: "README.md"
+      claude_md: "CLAUDE.md"
+      roadmap: "ROADMAP.md"
+      proposals: "Docs/PROPOSALS.md"
+      game_design: "Data/game-design.yaml"
+      acceptance: "Tests/ACCEPTANCE-CHECKLIST.md"
+      project: "Ironfall/Ironfall.uproject"
+
+  - module: animalhouse
+    kind: product
+    target: animalhouse
+    subjects: subjects/animalhouse.yml
+    description: >-
+      AnimalHouse — a third-person, noncombat animal-collection game with a UE 5.8 Mac arm64
+      prototype. A local project with no repository yet; engine selection is a pending owner
+      decision. Discovery-only.
+    onboarded: 2026-10-20
+    status: drafted
+    last_verified: 2026-10-20
+    notes: >-
+      A third-person, noncombat animal-collection game: catches accumulate in an expedition bag and
+      are extracted home. A UE 5.8 Mac arm64 prototype exists, but engine selection is still a
+      pending owner decision (Unreal is only the recommendation) and Windows/PC packaging is paused
+      by the owner (D-030). It is a local project with no repository or remote yet. Its own agent
+      context calls Ironfall a reference project, not its design specification.
+    discovery_keywords:
+      ["AnimalHouse", "Animal House", "animal-house", "AnimalHouseGame",
+       "animal collection game", "animal capture game", "noncombat capture", "expedition bag",
+       "Mac arm64 prototype", "UE 5.8", "UE5.8", "Unreal Engine 5.8"]
+    not_to_be_confused_with:
+      - "ironfall — a separate UE 5.8 game. AnimalHouse's own agent context says IronFall is a reference project, not its design specification."
+      - "Engine selection is a pending decision: do not describe AnimalHouse as an Unreal game without that caveat, even though a UE 5.8 prototype exists."
+    counts:
+      basis: "find on the local project directory (not a git repository), 2026-10-20. code_files: .h/.cpp under AnimalHouseGame/Source. doc_files: *.md under Docs/ and Agent/ plus the root. content_assets: .uasset/.umap under AnimalHouseGame/Content. art_files: files under Art/. config_files: files under AnimalHouseGame/Config. engine: the uproject's EngineAssociation. Navigation aid, not evidence."
+      subjects: 0
+      code_files: 54
+      doc_files: 70
+      content_assets: 171
+      art_files: 14
+      config_files: 4
+      engine: "5.8"
+    files:
+      location: "local project directory; no repository or remote yet"
+      agent_context: "AGENTS.md"
+      decisions: "Docs/DECISIONS.md"
+      core_design: "Docs/design/CORE-DESIGN.md"
+      animal_data_contract: "Docs/architecture/ANIMAL-DATA.md"
+      catalog: "Data/animal-catalog.json"
+      project: "AnimalHouseGame/AnimalHouseGame.uproject"
+
+  - module: gist
+    kind: product
+    target: gist
+    subjects: subjects/gist.yml
+    description: >-
+      Gist — a separate mobile-first grocery list and food health-scoring web app with a product
+      directory (barcode scan, Nutri-Score, NOVA, additive risk, a 0-100 Gist Score). It lives in
+      its own repository; this repository only references it. Discovery-only: nothing is generated
+      for it.
+    onboarded: 2026-10-24
+    status: drafted
+    last_verified: 2026-10-24
+    notes: >-
+      A mobile-first grocery list and food health-scoring web app (React 18 and Vite 5, with Vercel
+      API routes and Supabase or Turso schemas) in its own repository. It scores products from Open
+      Food Facts (Nutri-Score, NOVA group, additive risk, a 0-100 Gist Score), scans barcodes and
+      keeps a product directory. API intake is built; scraping, AI-assisted scraping, manual scan or
+      label-OCR intake, a cosmetic product type and the directory speed work are PROPOSED in its own
+      queue (PROP-001, PROP-002), not features. Route a request here when it is about Gist, its
+      directory or its intake pipeline.
+    discovery_keywords:
+      ["Gist", "Gist app", "gist-app", "Gist Score", "product directory", "directory build",
+       "product intake", "intake pipeline", "grocery", "grocery list", "grocery app", "food health",
+       "cosmetics", "cosmetic products", "barcode scan", "barcode scanner", "label OCR", "OCR",
+       "Nutri-Score", "NOVA group", "additive risk", "Open Food Facts", "PROP-001", "PROP-002"]
+    not_to_be_confused_with:
+      - "GitHub Gist (gist.github.com) — an unrelated code-snippet service. This Gist is a grocery and product-directory app in its own repository."
+      - "task-management — the OpenTechnologyApp project/queue app. Gist is a separate repository and a separate product."
+      - "myfeed — another separate product, a feed reader. Gist's 'intake pipeline' is product-data intake for its directory, not feed or source intake."
+      - "This repository's image intake (docs/IMAGE_INTAKE.md) and the nature-generation and cityscape-generation modules take photographs for a generation corpus. Gist's intake is barcode, scrape and label-OCR intake of products."
+      - "PROP-001 and PROP-002, with their INTAKE-D, SCHEMA-D and SPEED-D gates, are proposals in Gist's own queue (docs/proposals/PROPOSAL_WORK_QUEUE.md there), not features and not this repository's P-NNN proposals."
+    counts:
+      basis: "find/grep on the Gist checkout (main @ 34e4e83, clean), 2026-10-24. code_files: js, jsx and mjs files tracked (api, scripts, src and vite.config.js). doc_files: *.md under docs/ plus the root; the four skills and the pull-request template are not counted, and 10 is exactly the bar for `drafted`. test_files: none tracked. proposals: '### PROP-' headings in docs/proposals/PROPOSAL_WORK_QUEUE.md. inline_style_objects: occurrences of `style={{` in src/GroceryAppV3_Web.jsx. Numbers only; navigation aid, not evidence."
+      subjects: 0
+      code_files: 7
+      doc_files: 10
+      test_files: 0
+      proposals: 2
+      sql_schemas: 2
+      api_functions: 2
+      npm_scripts: 3
+      inline_style_objects: 266
+    files:
+      target_repo: "OpenTechnology14/Gist"
+      claude_md: "CLAUDE.md"
+      readme: "README.md"
+      product_intake: "docs/design/PRODUCT_INTAKE_PROCEDURE.md"
+      speed_review: "docs/design/DIRECTORY_BUILD_SPEED_REVIEW.md"
+      proposal_queue: "docs/proposals/PROPOSAL_WORK_QUEUE.md"
+      design_pointer: "docs/design/DESIGN-SYSTEM-POINTER.md"
+      app: "src/GroceryAppV3_Web.jsx"
+      schema: "supabase_schema.sql"
+      turso_schema: "turso_schema.sql"
+
+  # ── Design-system hub (added 2026-10-21) ────────────────────────────────────────────────────
+  # A folder of THIS repository that other repositories mirror through pointer docs. Discovery-only: it is
+  # findable, not claimable, and nothing is generated for it. Its `status` is the review state of its content
+  # (drafted = authored, awaiting owner review), not the project-count rule used for project rows.
+
+  - module: design-system
+    kind: design-system-hub
+    target: hybrid-creator-platform
+    subjects: subjects/design-system.yml
+    description: >-
+      The ecosystem design-system hub: tokens, component specs, voice registers, iconography and an accessibility
+      baseline, plus the downstream repositories that mirror it through pointer docs. Everything is drafted,
+      awaiting owner review. Discovery-only: nothing is generated for it.
+    onboarded: 2026-10-21
+    status: drafted
+    last_verified: 2026-10-24
+    notes: >-
+      The hub for visual identity across the ecosystem, in this repository's design-system/ folder. It records every
+      consumer's actual colors, type, spacing, radii, shadows and motion next to a proposed default, with component
+      rules, voice registers (never real names), iconography, a WCAG AA baseline and a template for design proposals.
+      Everything is drafted: no consumer should change its implemented values because of it. Route a request here when
+      it is about tokens, a component pattern, a voice register, icons, contrast, or a consumer's design-system pointer doc.
+    discovery_keywords:
+      ["design system", "design-system", "designsystem", "design tokens", "tokens.yaml", "semantic tokens",
+       "color palette", "type scale", "spacing scale", "radii", "motion durations", "component spec",
+       "iconography", "icon set", "WCAG", "accessibility baseline", "contrast ratio", "voice and tone",
+       "voice registers", "design hub", "DESIGN-SYSTEM-POINTER", "pointer doc", "design proposals", "brand.primary"]
+    not_to_be_confused_with:
+      - "social-management — brand, profile and account records (catalog.yaml) and the logo files. The hub records visual tokens and rules; a logo's colors sit under brand_marks in tokens.yaml."
+      - "marketing-crosswalk / MARKETING.md — positioning, claims and content generation. The hub makes no marketing claims and generates nothing."
+      - "stream-extend / content-extend — the products whose pages consume the tokens, not the system itself."
+      - "broadcast-graphics — the NodeCG overlays that consume tokens (the `overlays` consumer), not the specification."
+      - "The `design` skill summarises design intent and the voice registers; design-system/voice-and-tone.md is canonical for the registers."
+    counts:
+      basis: "2026-10-21, counted from the working tree and re-computed by tests/design_system. doc_files: *.md under design-system/. color_tokens and type_tokens: entries under those keys of tokens.yaml. decisions: keys of its decisions map. known_contrast_failures: entries of contrast.known_failures. Navigation aid, not evidence."
+      subjects: 0
+      doc_files: 7
+      data_files: 1
+      color_tokens: 20
+      type_tokens: 4
+      decisions: 9
+      known_contrast_failures: 11
+    consumers:
+      - {name: OpenTechnologyApp, repo: OpenTechnology14/OpenTechnologyApp, pointer_doc: docs/design/DESIGN-SYSTEM-POINTER.md, pointer_state: absent}
+      - {name: OpenTechnologyBlog, repo: OpenTechnology14/OpenTechnologyBlog, pointer_doc: docs/design/DESIGN-SYSTEM-POINTER.md, pointer_state: present}
+      - {name: MyFeed, repo: OpenTechnology14/MyFeed, pointer_doc: docs/design/DESIGN-SYSTEM-POINTER.md, pointer_state: present}
+      - {name: Job-Hunter, repo: OpenTechnology14/Job-Hunter, pointer_doc: docs/design/DESIGN-SYSTEM-POINTER.md, pointer_state: present}
+      - {name: Ironfall, repo: OpenTechnology14/Ironfall, pointer_doc: Docs/design/DESIGN-SYSTEM-POINTER.md, pointer_state: present}
+      - {name: AnimalHouse, repo: none (local project, no remote), pointer_doc: Docs/design/DESIGN-SYSTEM-POINTER.md, pointer_state: present}
+      - {name: Gist, repo: OpenTechnology14/Gist, pointer_doc: docs/design/DESIGN-SYSTEM-POINTER.md, pointer_state: present}
+    files:
+      target_repo: OpenTechnology14/Open_Content_Creator_Platform
+      hub_readme: design-system/README.md
+      tokens: design-system/tokens.yaml
+      components: design-system/components.md
+      voice_and_tone: design-system/voice-and-tone.md
+      iconography: design-system/iconography.md
+      accessibility: design-system/accessibility.md
+      consumers: design-system/crosswalk/consumers.md
+      proposals_template: design-system/proposals/TEMPLATE.md

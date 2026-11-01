@@ -1,0 +1,112 @@
+{
+  "_meta": {
+    "title": "Background Replace v1",
+    "description": "Auto-mask the subject with RMBG (no hand-drawn mask needed), invert to get the background region, then inpaint a new background from a prompt. Node name and params verified against 1038lab/ComfyUI-RMBG (2026-09-01 web search).",
+    "module": "image-editing",
+    "status": "GPU-run verified 2026-09-02 on Apple M1 Pro/Metal (P-043) — loaded into a real ComfyUI and run to a saved image; checkpoint loading fixed from a nonexistent single-file name to UNETLoader+DualCLIPLoader+VAELoader, see workflows/README.md",
+    "required_models": ["RMBG-2.0", "SDXL Inpainting or Flux Fill"],
+    "required_nodes": ["ComfyUI-RMBG (1038lab/ComfyUI-RMBG)"]
+  },
+  "1": {
+    "class_type": "LoadImage",
+    "_note": "Injected at runtime by the caller.",
+    "inputs": {
+      "image": "PLACEHOLDER_IMAGE"
+    }
+  },
+  "2": {
+    "class_type": "RMBG",
+    "_note": "Outputs (IMAGE, MASK) where the mask covers the detected subject.",
+    "inputs": {
+      "image": ["1", 0],
+      "model": "RMBG-2.0",
+      "sensitivity": 0.5,
+      "process_res": 1024,
+      "mask_blur": 0,
+      "mask_offset": 0,
+      "invert_output": false,
+      "refine_foreground": false,
+      "background": "Alpha"
+    }
+  },
+  "3": {
+    "class_type": "InvertMask",
+    "_note": "Built-in ComfyUI core node. RMBG's mask covers the subject; inpainting must target the background instead.",
+    "inputs": {
+      "mask": ["2", 1]
+    }
+  },
+  "4": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "sdxl-inpainting-0.1-unet.fp16.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "4b": {
+    "class_type": "DualCLIPLoader",
+    "inputs": {
+      "clip_name1": "sdxl-inpainting-0.1-clip_g.fp16.safetensors",
+      "clip_name2": "sdxl-inpainting-0.1-clip_l.fp16.safetensors",
+      "type": "sdxl"
+    }
+  },
+  "4c": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "sdxl-inpainting-0.1-vae.fp16.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "VAEEncodeForInpaint",
+    "inputs": {
+      "pixels": ["1", 0],
+      "vae": ["4c", 0],
+      "mask": ["3", 0],
+      "grow_mask_by": 8
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "PLACEHOLDER_BACKGROUND_PROMPT",
+      "clip": ["4b", 0]
+    }
+  },
+  "7": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "subject cut off, warped edges, lowres, bad quality, blurry, watermark",
+      "clip": ["4b", 0]
+    }
+  },
+  "8": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": ["4", 0],
+      "positive": ["6", 0],
+      "negative": ["7", 0],
+      "latent_image": ["5", 0],
+      "seed": 0,
+      "steps": 30,
+      "cfg": 7.0,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 1.0
+    }
+  },
+  "9": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": ["8", 0],
+      "vae": ["4c", 0]
+    }
+  },
+  "10": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": ["9", 0],
+      "filename_prefix": "background_replace"
+    }
+  }
+}

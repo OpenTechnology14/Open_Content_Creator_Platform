@@ -1,0 +1,1291 @@
+{
+  "schema_version": 1,
+  "source_sha256": {
+    "CLAUDE.md": "e40708ba32a64e97288c2162c0a9fa4c1d97714775a835127b6f5cfe5ec4903f",
+    "docs/PROPOSALS.md": "75491fa2581aa9337c4a250ebd68bfd9a6d3401ab6f2ba2332256b84ec79177f",
+    "docs/todo/README.md": "ac167873d40a02706a4afee143d0171080f0e510f4a6ff67adf8d704898baf4c",
+    "docs/agent/DOC-UPDATE-MATRIX.md": "e2ebc81d5611a593b475b8260b84ccf6a56993457a23c33d6309f5690a48678d",
+    "modules/creator-experience/README.md": "4c556a776f79e79320cca3c364f240305d3d1bb6298ce93672d0cec1f5d5e1de",
+    "modules/creator-experience/setup/manual.md": "c1bc6ade97f864ed0db17409f35265eb31385dbe291d112bd68cc07391f02758",
+    "modules/creator-experience/setup/automated.md": "46dbcde9935d6a7333c9d1d68521b9d5dfe78fb82f98ff5a953eb399c8252485",
+    "modules/soundboard/README.md": "523f8d6701a614797a9fecc755899c08e75c8953fe5cfa34566d4865d49b9494",
+    "modules/soundboard/setup/manual.md": "6e38595c3013d7e2e694a71010cd34d4141e65c32ea97ef97f4cf18aaae92d9a",
+    "modules/soundboard/setup/automated.md": "ea002e04dd126918f714ffcabc1e69674300999ddc32c1e093ee15c73c521eac",
+    "modules/realtime-ai/README.md": "a28096f4c3e1d7795c4dc420e751405d0707338aa38b3b902e3a49ec4b8edbcf",
+    "modules/realtime-ai/setup/manual.md": "05394feb7afdcde0d216faac5a854f2e0ca83cc88e96640ab92cfb81fca9c59f",
+    "modules/realtime-ai/setup/automated.md": "7e98266ba797fb3af7fdf7fd97207d8081ad5b8ab323cc2a03d35ac1e6529d8c",
+    "modules/automation-control/README.md": "e5cb906020b9c8757fe16ce36887442e11781215ff9a95ddaf41048f6aa3d8db",
+    "modules/automation-control/setup/manual.md": "df5ab7b8256f6c30c58499c7dabdf8fd6b905eb32cd74734e1094a995c6a9610",
+    "modules/automation-control/setup/automated.md": "ceafab28a2252049e4b8de837ccad124b6f93c25ba8a0495fe881dd3941020b8",
+    "modules/storage-data/README.md": "1f1050206b26a34229d6ced85e31ffcd5ebf2b3450840cd8660328103c40ea9e",
+    "modules/storage-data/setup/manual.md": "0351091e825bdfecbdf80850caae7a3c19148274dc8ed95441feeb49507d291d",
+    "modules/storage-data/setup/automated.md": "8179800341bd013cc9c492d8e0fdc41c34b1266434ac6b26ec98f6b6a58ddadd",
+    "modules/sports-analytics/README.md": "8887ce90d4cc6536a3e4387200d46922f2d53c70b191c0e21881e48be4918cb6",
+    "modules/sports-analytics/setup/manual.md": "610a627d43055ab2aa7f3e51b482f16beaa319b2f6826960635cf8f8ce03ce30",
+    "modules/sports-analytics/setup/automated.md": "17890d29c5badfcb932ef447df9f7de2738f84263c9707594c247251dda4e09b",
+    "modules/content-creation/README.md": "3404585dea500d3f7cb49918e4d2e2a91ac00c3053c5631e0c12be23220adf7f",
+    "modules/content-creation/setup/manual.md": "4d7eca5870f5f55fdc6e1dfb5f49680bfc23efe36095580f63acdfa0d108ab52",
+    "modules/content-creation/setup/automated.md": "117268cb7d43dcbc0d96967baa8f6486f3b8de372c5e6b6c9c6b4c7db91187da",
+    "modules/image-editing/README.md": "8be5ce607e33b9dacc63a1ed3f15ed89a3960bd616353bbc9b6502de4324e3e4",
+    "modules/image-editing/setup/manual.md": "7bb66001005127ae25e3bedf45eb31fbc90a5c48e675049de71dd46c31738f26",
+    "modules/image-editing/setup/automated.md": "dc109889737afd5e22a8b3d2eb2198914c36066b1042a2fe307aca856507534a",
+    "modules/nature-generation/README.md": "0bbde1cb24213b9602fd2f47fbb296914151184560c3c15ab017c42d8753d49b",
+    "modules/nature-generation/setup/manual.md": "9513c6f74692cd9d6a72eec3a26bab790ec6670339a5bad48aaab2eb2efd1efb",
+    "modules/nature-generation/setup/automated.md": "2395596bb5866616c1a0c75565776372572efd840fba19e78dbecdc3f1b391a9",
+    "modules/cityscape-generation/README.md": "3c9f10c38c1afc60e884edb18bd2e0760919e13aa61f06fd6881d79e1f4a6eeb",
+    "modules/cityscape-generation/setup/manual.md": "52eed21cc67ea75a2d2c4ab6983a2d8a4c8d356166b0547ffd8cd35006f7aa39",
+    "modules/cityscape-generation/setup/automated.md": "f8f894af1d19a72c6e04024bbd6224c0ff405d4d4fe6e9eb5d28224ee8cc3042",
+    "modules/marketing-crosswalk/README.md": "e1157af47cc3ecb560577cd56a05dadbc361b46dff9f96e99ce6af463e0be659",
+    "modules/marketing-crosswalk/setup/manual.md": "31b202f0c242330d7c1df0236603dae19b1ad7c33decfba9bbc23dd396ca644c",
+    "modules/marketing-crosswalk/setup/automated.md": "be18f51d7bf896c7eb077af38b08d4a7589ff42458b60422dc7471a1d56a9e50",
+    "modules/social-management/README.md": "5f5e9958fd64ee9bf071d1fcf0cbe190ecd2c0af607373893d71cb20012bac9c",
+    "modules/social-management/setup/manual.md": "5837c748c19c570940dc3fe84fc5e4d14d725acdc8acf3baa00ac9b1d8916c75",
+    "modules/social-management/setup/automated.md": "243ec98ca934b9d6dc41ed49032e3e3c2ecfb96e4ce331f84e17f35416c3230b",
+    "modules/backend-api/README.md": "c72abf5014bb3888040422f3c8fdea7b85bbab74c1ba75d06495e2ce4b6947b2",
+    "modules/backend-api/setup/manual.md": "6946922f2d875f06107756e9a70908416371cb31f4344b55f5778497d6a7d30a",
+    "modules/backend-api/setup/automated.md": "b79678ea32d5fbf3c514dedab9f42a72a128c9df068a404ae0816ff1b1c7cfe3",
+    "modules/broadcast-graphics/README.md": "35605a99ada84f347c1514b82e23b72bfd51beffe7f1341fc0b1378ce7a8c544",
+    "modules/broadcast-graphics/setup/manual.md": "d68c96949b3493c0667ce91972c25d5b97603b23b488091f46ec3e64a0a7d92d",
+    "modules/broadcast-graphics/setup/automated.md": "90649628bebbb15ed7b3d9c953c2292c7d43d5e2212674c2ead7c687dce7baee",
+    "modules/observability/README.md": "937af848bcb8d9e5cbc19df39f3c9a1981fa33a5715936ad9d6ccc7da6466886",
+    "modules/observability/setup/manual.md": "8b35c207bac1122ac343c0613d124bc161d479984b4ee9f8804bcd11508d6127",
+    "modules/observability/setup/automated.md": "6d1f93916eb10e7efda3e76029acec9ff3fa1578a82453402bc5f981489e9d7d",
+    "modules/infrastructure/README.md": "00354e8cefb1becfd4bd9af4fc50db076d95ed545236220be3f96bd1fb60176e",
+    "modules/infrastructure/setup/manual.md": "f278651aa5a874cc1f968eaf9edbbb29b1b1520d2cc5cbd0d5566eb1fb24b752",
+    "modules/infrastructure/setup/automated.md": "46a04c43f03d27116d735cf769c0d1b2f9cde961752994ba4353c32d3c99beeb",
+    "modules/audio-production/README.md": "ac7f073e58e3e0af826b788210adab0852a55b65067258594a2e08d6d4473e42",
+    "modules/audio-production/setup/manual.md": "bd17cceb43f344e947d70eb2c9a9b4997b7cac7d3e1a3a413704183835cbb910",
+    "modules/audio-production/setup/automated.md": "1e7587412068afb222c3c0be5d544a8ff9b9d4addccf7457be252d7860c993e9",
+    "modules/character-avatar/README.md": "f0b01bbc03827251a6096d8c6c502bf9ca3b5b314161f3692184e57a839ea3ac",
+    "modules/character-avatar/setup/manual.md": "9ef971e8120c44ac2b8926005bcd8289fb9a1f7826fcd74b18708d9f9b56fe0a",
+    "modules/character-avatar/setup/automated.md": "221ff099a0ed88613673cbdb5364cf76bc71f9016276489c2f523aaad1ee646e",
+    "modules/ai-agents/README.md": "366146c84abee218a0d88856ce50249ac6a4ba458f346e67ebfe733579a24d1f",
+    "modules/ai-agents/setup/manual.md": "65735b857410a55fd026b21cb01bac9a3e8da4099e58f674c381328279bd07d2",
+    "modules/ai-agents/setup/automated.md": "d1ef09811e9d3e9915fe64c44cf5ac21192f671ae266d3135f083b28ee443e59",
+    "modules/asset-pipeline/README.md": "cb3d0db9d65568ad93bec08cffa6248d01547a079c6a9c74bae7890e6369349a",
+    "modules/asset-pipeline/setup/manual.md": "48a8ad27b2c29b80f23fd612f4001ccf26529320ea5f207e77b3721d99a85de6",
+    "modules/asset-pipeline/setup/automated.md": "371020ab1bcd957764571a5aaab990edd949630f5c157a238c83260e732a1f24",
+    "modules/model-registry/README.md": "790f1aeef8fee44ed14d9c7fb318dd138a0b6997cdbf06209342a986782f027f",
+    "modules/model-registry/setup/manual.md": "d3f9a3b098ac87261e6447e793fa86c71b5e8ae28670d3985e4ca3ced4772d2a",
+    "modules/model-registry/setup/automated.md": "bd79cd779597326f356baf4b66ed9247aff5e77458af3af55677abaeeba8f031",
+    "docs/PROJECT_CROSSWALK.md": "3642afb1dbca8a6bccc46508dba379ff756ac9160cfd75346b290d7edf1db469"
+  },
+  "proposals": {
+    "schema_version": 1,
+    "total": 75,
+    "unfinished": 30,
+    "counts": {
+      "deferred": 5,
+      "done": 43,
+      "in_progress": 18,
+      "pending": 7,
+      "standing": 2
+    },
+    "unfinished_by_model": {
+      "gpt-6.1-sol": [
+        "P-074",
+        "P-075",
+        "P-003",
+        "P-055",
+        "P-057",
+        "P-058",
+        "P-062",
+        "P-072",
+        "P-005",
+        "P-027",
+        "P-028",
+        "P-061",
+        "P-063",
+        "P-064",
+        "P-068",
+        "P-059",
+        "P-060",
+        "P-002",
+        "P-004",
+        "P-019",
+        "P-020",
+        "P-021",
+        "P-022",
+        "P-023"
+      ],
+      "gpt-6-astra": [
+        "P-065",
+        "P-066",
+        "P-056",
+        "P-001",
+        "P-067"
+      ],
+      "gpt-5.6-terra": [
+        "P-032"
+      ]
+    },
+    "work_counts": {
+      "deferred": 5,
+      "done": 43,
+      "in_progress": 2,
+      "pending": 7,
+      "standing": 2,
+      "testing": 16
+    },
+    "testing_counts": {
+      "mainly_acceptance": 7,
+      "remaining_work": 9
+    },
+    "lane_missing": [],
+    "lane_extra": [],
+    "proposals": [
+      {
+        "id": "P-074",
+        "title": "[Redesign from the OpenTechnologyApp pattern — design-parity audit of content and document structure](proposals/PROPOSAL_REDESIGN_FROM_OPENTECHAPP_PATTERN.md)",
+        "status": "**In progress** — on 2026-10-24 the owner directed that the items needing no owner input ship; seven of the eight additions are built, in whole or part, and HYB-REDESIGN D01, D07 and D09 are answered. D02, D03, D06, D10 and the rest of D04, D05 and D08 await the owner (PL-D15)",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "work_focus": "in_progress",
+        "testing_group": null
+      },
+      {
+        "id": "P-075",
+        "title": "[Open-source release plan](proposals/PROPOSAL_OPEN_SOURCE_RELEASE_PLAN.md)",
+        "status": "**In progress** — the steps that need no decision merged on 2026-10-23 (#84); sixteen gates (OSS-D01 to D16, PL-D16) await the owner. 2026-11-01 owner authorized a private/public repository split and product rename; clean-history source publication is in progress, production acceptance remains open",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "in_progress",
+        "testing_group": null
+      },
+      {
+        "id": "P-003",
+        "title": "[Setup readiness contract](proposals/PROPOSAL_SETUP_READINESS.md)",
+        "status": "**In progress** — implementation checkpoint retained: **Code complete — external acceptance open**",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "work_focus": "testing",
+        "testing_group": "mainly_acceptance"
+      },
+      {
+        "id": "P-055",
+        "title": "`P-001` WP-5 — alpha service paths, OBS half (PR3 of 3 for WP-5/6)",
+        "status": "**In progress** — implementation checkpoint retained: **Code done** (2026-09-02); real-hardware acceptance evidence still open",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "testing",
+        "testing_group": "mainly_acceptance"
+      },
+      {
+        "id": "P-057",
+        "title": "[Creator workflow inputs](proposals/PROPOSAL_CREATOR_WORKFLOW_INPUTS.md)",
+        "status": "**In progress** — implementation checkpoint retained: **Code complete — native Windows acceptance open**",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "testing",
+        "testing_group": "mainly_acceptance"
+      },
+      {
+        "id": "P-058",
+        "title": "Desktop remote control",
+        "status": "**In progress** — implementation checkpoint retained: **Code complete — external acceptance open**",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "work_focus": "testing",
+        "testing_group": "mainly_acceptance"
+      },
+      {
+        "id": "P-062",
+        "title": "[Social profile and account management](proposals/PROPOSAL_SOCIAL_MANAGEMENT.md)",
+        "status": "**In progress** — implementation checkpoint retained: **Code complete — external acceptance open**",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "work_focus": "testing",
+        "testing_group": "mainly_acceptance"
+      },
+      {
+        "id": "P-065",
+        "title": "[Stream recording handoff and profile workspaces](proposals/PROPOSAL_RECORDING_HANDOFF_AND_PROFILE_WORKSPACES.md)",
+        "status": "**In progress** — implementation checkpoint retained: **Code complete — external acceptance open**",
+        "state": "in_progress",
+        "model": "gpt-6-astra",
+        "effort": "xhigh",
+        "work_focus": "testing",
+        "testing_group": "mainly_acceptance"
+      },
+      {
+        "id": "P-066",
+        "title": "[Astra-authored gaming reaction audio and scripted personality routing](proposals/PROPOSAL_ASTRA_REACTION_AUDIO.md)",
+        "status": "**In progress**",
+        "state": "in_progress",
+        "model": "gpt-6-astra",
+        "effort": "xhigh",
+        "work_focus": "testing",
+        "testing_group": "mainly_acceptance"
+      },
+      {
+        "id": "P-056",
+        "title": "[Stream Autopilot — embodied AI host and game sessions](proposals/PROPOSAL_STREAM_AUTOPILOT.md)",
+        "status": "**In progress** — Testing; native production owner, first bounded game adapter and rig cue plumbing built; real acceptance open",
+        "state": "in_progress",
+        "model": "gpt-6-astra",
+        "effort": "xhigh",
+        "work_focus": "testing",
+        "testing_group": "remaining_work"
+      },
+      {
+        "id": "P-072",
+        "title": "[One desktop app and optional cloud companion scope](proposals/PROPOSAL_UNIFIED_DESKTOP_AND_CLOUD_SCOPE.md)",
+        "status": "**In progress** — private shared-shell preview built; native/parity/migration acceptance open",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "testing",
+        "testing_group": "remaining_work"
+      },
+      {
+        "id": "P-001",
+        "title": "[Release gap closure](proposals/PROPOSAL_RELEASE_GAP_CLOSURE.md)",
+        "status": "**In progress** — critical release engineering ready; native/production/release acceptance open",
+        "state": "in_progress",
+        "model": "gpt-6-astra",
+        "effort": "xhigh",
+        "work_focus": "testing",
+        "testing_group": "remaining_work"
+      },
+      {
+        "id": "P-005",
+        "title": "[Standalone workflow and OpenTech template testing](proposals/PROPOSAL_STANDALONE_WORKFLOW_AND_TEMPLATE_TESTING.md)",
+        "status": "**In progress** — fixed executable scenario runner built; live/connected/mobile acceptance open",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "work_focus": "testing",
+        "testing_group": "remaining_work"
+      },
+      {
+        "id": "P-027",
+        "title": "Finish `creator-experience` — real scene collection and profile export",
+        "status": "**In progress** — implementation checkpoint retained: **Partially done** (agent scope closed 2026-09-01; the export itself stays open)",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "testing",
+        "testing_group": "remaining_work"
+      },
+      {
+        "id": "P-028",
+        "title": "Finish `realtime-ai` — the 6 missing workflows",
+        "status": "**In progress** — implementation checkpoint retained: **Partially done** (scaffold scope closed 2026-09-01; GPU-run verification stays open)",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "testing",
+        "testing_group": "remaining_work"
+      },
+      {
+        "id": "P-061",
+        "title": "[Blender production-job lifecycle](proposals/PROPOSAL_BLENDER_PRODUCTION_JOBS.md)",
+        "status": "**In progress** — bounded local still-job lifecycle; physical/native acceptance remains open",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "work_focus": "testing",
+        "testing_group": "remaining_work"
+      },
+      {
+        "id": "P-063",
+        "title": "[Open apps first and extend in-app setup](proposals/PROPOSAL_IN_APP_SETUP.md)",
+        "status": "**In progress** — installers, capture, Python, OBS, selected Docker services, local data/workflow initialization and ComfyUI workflow preflight built; clean-host and real-device acceptance plus additional recipes open",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "work_focus": "testing",
+        "testing_group": "remaining_work"
+      },
+      {
+        "id": "P-064",
+        "title": "[AI Learning Series marketing module](proposals/PROPOSAL_AI_LEARNING_SERIES.md)",
+        "status": "**In progress** — four written previews published; no live lesson aired",
+        "state": "in_progress",
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "work_focus": "testing",
+        "testing_group": "remaining_work"
+      },
+      {
+        "id": "P-068",
+        "title": "[Local TTS stack for Nova](proposals/PROPOSAL_LOCAL_TTS_STACK.md)",
+        "status": "`Pending` — slices 1–4 (provider seam and render cache; blind audition rig; recording checker; pre-render and timing) built at the owner's request 2026-10-05; D1–D3 and all engine, model and recording work still await acceptance",
+        "state": "pending",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "pending",
+        "testing_group": null
+      },
+      {
+        "id": "P-067",
+        "title": "[Nova profile registry, walkthrough engine and mascot system](proposals/PROPOSAL_AI_WALKTHROUGH_MASCOT_SYSTEM.md)",
+        "status": "`Pending` — awaiting owner decision",
+        "state": "pending",
+        "model": "gpt-6-astra",
+        "effort": "xhigh",
+        "work_focus": "pending",
+        "testing_group": null
+      },
+      {
+        "id": "P-059",
+        "title": "[Nature Generation learned tiers](proposals/PROPOSAL_NATURE_GENERATION_TIERS.md)",
+        "status": "`Pending`",
+        "state": "pending",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "pending",
+        "testing_group": null
+      },
+      {
+        "id": "P-060",
+        "title": "[Cityscape Generation learned tiers](proposals/PROPOSAL_CITYSCAPE_GENERATION_TIERS.md)",
+        "status": "`Pending`",
+        "state": "pending",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "pending",
+        "testing_group": null
+      },
+      {
+        "id": "P-002",
+        "title": "[Open-source readiness and OpenTech companion](proposals/PROPOSAL_OPEN_SOURCE_READINESS_AND_OPENTECH_COMPANION.md)",
+        "status": "`Pending`",
+        "state": "pending",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "work_focus": "pending",
+        "testing_group": null
+      },
+      {
+        "id": "P-004",
+        "title": "[Content asset generation (text-to-image)](proposals/PROPOSAL_CONTENT_ASSET_GENERATION.md)",
+        "status": "`Pending`",
+        "state": "pending",
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "work_focus": "pending",
+        "testing_group": null
+      },
+      {
+        "id": "P-032",
+        "title": "Reorganise `docs/setup-timeline.html` from guides to modules",
+        "status": "`Pending`",
+        "state": "pending",
+        "model": "gpt-5.6-terra",
+        "effort": "medium",
+        "work_focus": "pending",
+        "testing_group": null
+      },
+      {
+        "id": "P-071",
+        "title": "[Document gaps — from advisory documents to a documentation system that fires](proposals/PROPOSAL_DOCUMENT_GAPS.md)",
+        "status": "**Done — approved documentation-system phases 1–5** (2026-10-09); phase-6 future triggers remain deferred",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-070",
+        "title": "[Marketing scripts for bound Nova profiles](../modules/marketing-crosswalk/README.md#scripted-marketing-shows)",
+        "status": "**Done — source-side draft workflow** (2026-09-30)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-006",
+        "title": "Module-owned setup docs: retire the numbered guide series; every module carries `setup/manual.md` + `setup/automated.md`",
+        "status": "**Done** (2026-08-30)",
+        "state": "done",
+        "model": "gpt-6-luna",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-007",
+        "title": "Product labels on every module (`Content` / `Stream` / both)",
+        "status": "**Done** (2026-08-30)",
+        "state": "done",
+        "model": "gpt-6-luna",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-073",
+        "title": "[Explicit agent model selection for every proposal](#p-073--proposal-model-selection)",
+        "status": "**Done** (2026-10-04)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-069",
+        "title": "[Project crosswalk](PROJECT_CROSSWALK.md) and [essential document workflow](DOCUMENTATION_WORKFLOW.md)",
+        "status": "**Done** (2026-09-30)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-010",
+        "title": "Marketing crosswalk module — generate marketing content for registered consumer modules",
+        "status": "**Done** (2026-08-30)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-011",
+        "title": "Nature and cityscape generation as **two** modules, with shared image intake",
+        "status": "**Done** (2026-08-30)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-012",
+        "title": "Future-state compass separate from the parking lot",
+        "status": "**Done** (2026-08-30)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-013",
+        "title": "Proposal queue, agent matrices, and setup technique notes",
+        "status": "**Done** (2026-08-31)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-014",
+        "title": "Retire `architecture/guide-review.md`",
+        "status": "**Done** (2026-08-31)",
+        "state": "done",
+        "model": "gpt-6-luna",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-015",
+        "title": "Retire `SUGGESTED_EXISTING_DOC_UPDATES.md`",
+        "status": "**Done** (2026-08-31)",
+        "state": "done",
+        "model": "gpt-6-luna",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-030",
+        "title": "Use-case walkthroughs — two flagship workflows covering all 17 modules",
+        "status": "**Done** (2026-08-31)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-029",
+        "title": "Documentation drift sweep — retire the guide model everywhere it survived",
+        "status": "**Done** (2026-08-31)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-031",
+        "title": "Documentation drift sweep, part 2 — non-markdown files the first sweep missed",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6-luna",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-016",
+        "title": "[`acceptance-harness` — one executable creator journey](proposals/PROPOSAL_ACCEPTANCE_HARNESS.md)",
+        "status": "**Done** (all 4 phases, 2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-017",
+        "title": "`asset-pipeline` module — one storage contract",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-018",
+        "title": "`model-registry` module — weights and adapters with provenance",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-024",
+        "title": "Finish `storage-data` — script portability, migration ordering, missing buckets, first tests",
+        "status": "**Done** (2026-08-31)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-025",
+        "title": "Finish `observability` — Alertmanager destinations, the two missing rule files, first tests",
+        "status": "**Done** (2026-08-31)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-026",
+        "title": "Finish `backend-api` — tests and auth hardening",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-033",
+        "title": "Finish `automation-control` — n8n workflow env-var wiring, first tests",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-034",
+        "title": "Finish `broadcast-graphics` — Redis bridge wiring, first tests",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-035",
+        "title": "Finish `infrastructure` — env-var contract, deploy-script wiring, first tests",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-036",
+        "title": "Finish `content-creation` — correct the \"Blender addon is unwritten\" claim, first tests",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-037",
+        "title": "Finish `image-editing` — correct the `presets/` doc-drift, first tests",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6-luna",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-038",
+        "title": "Finish `audio-production` — pipewire.conf's missing bus, first tests",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-039",
+        "title": "Finish `ai-agents` — wire moderation into the agent loop, first tests",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-040",
+        "title": "Finish `sports-analytics` — correct `calibration.json`'s doc-drift, first tests",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-041",
+        "title": "`nature-generation`/`cityscape-generation` — build Tier 0, owner-directed scope",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-042",
+        "title": "Finish `character-avatar` — wire the missing agent→avatar control bridge, first tests",
+        "status": "**Done** (2026-09-01)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-043",
+        "title": "GPU-run verification of `image-editing`'s 6 untested ComfyUI workflows",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-044",
+        "title": "`soundboard` module — DJ-style sound bar for streaming/recording",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-045",
+        "title": "Post-P-044 queue audit — doc-accuracy sweep against `docs/AUDIT.md`",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-046",
+        "title": "Full documentation cleanup — re-verify P-001's own ledgers plus a broader drift sweep",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-047",
+        "title": "Doc-agent-theme sweep — re-verify all four `docs/agent/` matrices",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-048",
+        "title": "Exhaustive `docs/` sweep — every remaining markdown file, one by one",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-049",
+        "title": "`P-001` WP-1 — enforce the lint gate",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-050",
+        "title": "`P-001` WP-2 — relay hardening",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-051",
+        "title": "Codebase-wide `TODO`/`FIXME` sweep, beyond what `HCP-005`/`HCP-006` name",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-052",
+        "title": "`P-001` WP-3 — desktop build scaffolding",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-053",
+        "title": "`P-001` WP-6 — trust-boundary enforcement (PR1 of 3 for WP-5/6)",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-054",
+        "title": "`P-001` WP-5 — alpha service paths, ComfyUI half (PR2 of 3 for WP-5/6)",
+        "status": "**Done** (2026-09-02)",
+        "state": "done",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "done",
+        "testing_group": null
+      },
+      {
+        "id": "P-019",
+        "title": "`captions` module — Whisper transcription",
+        "status": "`Deferred`",
+        "state": "deferred",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "deferred",
+        "testing_group": null
+      },
+      {
+        "id": "P-020",
+        "title": "Kubernetes (DOKS)",
+        "status": "`Deferred`",
+        "state": "deferred",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "deferred",
+        "testing_group": null
+      },
+      {
+        "id": "P-021",
+        "title": "`licensing` / activation module",
+        "status": "`Deferred`",
+        "state": "deferred",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "deferred",
+        "testing_group": null
+      },
+      {
+        "id": "P-022",
+        "title": "`video-generation`",
+        "status": "`Deferred`",
+        "state": "deferred",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "deferred",
+        "testing_group": null
+      },
+      {
+        "id": "P-023",
+        "title": "ContentExtend rename",
+        "status": "`Deferred`",
+        "state": "deferred",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "deferred",
+        "testing_group": null
+      },
+      {
+        "id": "P-008",
+        "title": "Claim gating: no marketing asset may assert a capability ships while `CLAUDE.md` §11 says `scaffolded`",
+        "status": "**Accepted (in use)** (2026-08-30)",
+        "state": "standing",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "work_focus": "standing",
+        "testing_group": null
+      },
+      {
+        "id": "P-009",
+        "title": "Docs-current-as-you-learn: a walked setup doc reads as what is true, corrected in the same session",
+        "status": "**Accepted (in use)** (2026-08-31)",
+        "state": "standing",
+        "model": "gpt-6-luna",
+        "effort": "high",
+        "work_focus": "standing",
+        "testing_group": null
+      }
+    ],
+    "authorization_note": "Canonical status text and owner instructions control scope; model labels do not grant authority."
+  },
+  "module_statuses": [
+    {
+      "module": "creator-experience",
+      "labels": "`Content` `Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "soundboard",
+      "labels": "`Content` `Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "realtime-ai",
+      "labels": "`Content` `Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "automation-control",
+      "labels": "`Content` `Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "storage-data",
+      "labels": "`Content` `Stream`",
+      "status": "implemented"
+    },
+    {
+      "module": "sports-analytics",
+      "labels": "`Content`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "content-creation",
+      "labels": "`Content`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "image-editing",
+      "labels": "`Content`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "nature-generation",
+      "labels": "`Content`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "cityscape-generation",
+      "labels": "`Content`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "marketing-crosswalk",
+      "labels": "`Content`",
+      "status": "implemented"
+    },
+    {
+      "module": "social-management",
+      "labels": "`Content` `Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "backend-api",
+      "labels": "`Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "broadcast-graphics",
+      "labels": "`Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "observability",
+      "labels": "`Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "infrastructure",
+      "labels": "`Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "audio-production",
+      "labels": "`Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "character-avatar",
+      "labels": "`Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "ai-agents",
+      "labels": "`Stream`",
+      "status": "scaffolded"
+    },
+    {
+      "module": "asset-pipeline",
+      "labels": "`Content` `Stream`",
+      "status": "implemented"
+    },
+    {
+      "module": "model-registry",
+      "labels": "`Content` `Stream`",
+      "status": "implemented"
+    }
+  ],
+  "module_proposal_references": [
+    {
+      "module": "creator-experience",
+      "proposals": []
+    },
+    {
+      "module": "soundboard",
+      "proposals": [
+        "P-044",
+        "P-056",
+        "P-066"
+      ]
+    },
+    {
+      "module": "realtime-ai",
+      "proposals": [
+        "P-043"
+      ]
+    },
+    {
+      "module": "automation-control",
+      "proposals": [
+        "P-056",
+        "P-058",
+        "P-066"
+      ]
+    },
+    {
+      "module": "storage-data",
+      "proposals": []
+    },
+    {
+      "module": "sports-analytics",
+      "proposals": []
+    },
+    {
+      "module": "content-creation",
+      "proposals": [
+        "P-036",
+        "P-056",
+        "P-061"
+      ]
+    },
+    {
+      "module": "image-editing",
+      "proposals": [
+        "P-028"
+      ]
+    },
+    {
+      "module": "nature-generation",
+      "proposals": [
+        "P-017",
+        "P-041",
+        "P-059"
+      ]
+    },
+    {
+      "module": "cityscape-generation",
+      "proposals": [
+        "P-017",
+        "P-041",
+        "P-060"
+      ]
+    },
+    {
+      "module": "marketing-crosswalk",
+      "proposals": [
+        "P-067",
+        "P-070"
+      ]
+    },
+    {
+      "module": "social-management",
+      "proposals": [
+        "P-062",
+        "P-065"
+      ]
+    },
+    {
+      "module": "backend-api",
+      "proposals": []
+    },
+    {
+      "module": "broadcast-graphics",
+      "proposals": []
+    },
+    {
+      "module": "observability",
+      "proposals": []
+    },
+    {
+      "module": "infrastructure",
+      "proposals": []
+    },
+    {
+      "module": "audio-production",
+      "proposals": [
+        "P-056"
+      ]
+    },
+    {
+      "module": "character-avatar",
+      "proposals": [
+        "P-042",
+        "P-056"
+      ]
+    },
+    {
+      "module": "ai-agents",
+      "proposals": [
+        "P-056"
+      ]
+    },
+    {
+      "module": "asset-pipeline",
+      "proposals": [
+        "P-017"
+      ]
+    },
+    {
+      "module": "model-registry",
+      "proposals": [
+        "P-018"
+      ]
+    }
+  ],
+  "documentation_update_rules": [
+    {
+      "id": "`DM-MODULE`",
+      "trigger": "a **new directory** under `modules/`",
+      "references": "`modules/README.md`<br>`CLAUDE.md` §3, §4, §11<br>`docs/architecture/roadmap.md`<br>`README.md` (feature table + Project Structure)<br>`docs/agent/MODULE-MATRIX.md`<br>`docs/agent/MODULE-ITEM-MATRIX.md`<br>`docs/agent/SUBFEATURE-CHECKLIST.md`<br>`docs/architecture/deviations.md`",
+      "rationale": "A new module is a new roadmap layer and a new label. The module indexes and status tables all go stale at once",
+      "paths": [
+        "+modules/*/README.md"
+      ]
+    },
+    {
+      "id": "`DM-MODULE-ITEM`",
+      "trigger": "a **new service, port, script, bucket, or committed config file** inside an existing module",
+      "references": "`docs/agent/MODULE-ITEM-MATRIX.md`<br>that module's `setup/automated.md` if it changes what is scripted",
+      "rationale": "The item matrix is read instead of re-deriving \"what does this module own\". An addition missing from it is invisible to the next session",
+      "paths": [
+        "+modules/**/*.sh",
+        "+modules/**/*.yml",
+        "+modules/**/*.yaml",
+        "!modules/marketing-crosswalk/crosswalk/**"
+      ]
+    },
+    {
+      "id": "`DM-MODULE-DRIFT`",
+      "trigger": "a module's **manual setup steps are actually walked** and something does not match — a renamed setting, a tool that no longer ships that option, a step that turns out unnecessary",
+      "references": "that module's `setup/manual.md` (dated correction)<br>`docs/SETUP-TECHNIQUE-NOTES.md` if it is general friction, not module-specific<br>`docs/agent/MODULE-MATRIX.md` if the real cost diverged from its row",
+      "rationale": "A setup doc is a spec until someone walks it; after that it should read as what is true",
+      "paths": [
+        "modules/*/setup/manual.md"
+      ]
+    },
+    {
+      "id": "`DM-STATUS`",
+      "trigger": "a module's row in `CLAUDE.md` §11 changes status",
+      "references": "`modules/marketing-crosswalk/crosswalk/subjects/*.yml` (`status` + `status_evidence`)",
+      "rationale": "Subjects cite the §11 row **verbatim**. `validate` fails loudly on drift — this is the one rule with real enforcement, and it fails rather than warns",
+      "paths": []
+    },
+    {
+      "id": "`DM-COMPOSE`",
+      "trigger": "a **new service** in `docker-compose.yml`, or a port/profile change",
+      "references": "`docs/agent/MODULE-ITEM-MATRIX.md`<br>`Makefile` (target for a new profile)<br>the owning module's `setup/automated.md`<br>`.env.example` if it adds a variable",
+      "rationale": "The item matrix is the port map. `AUDIT.md` **used to** record six Compose-referenced values missing from `.env.example` (fixed `P-016`/`P-035`, 2026-09-01/02) — this is the rule that stops a seventh from recurring",
+      "paths": [
+        "docker-compose.yml",
+        "docker-compose.digitalocean.yml",
+        "cloud/docker-compose.relay.yml"
+      ]
+    },
+    {
+      "id": "`DM-WORKFLOW`",
+      "trigger": "a **new or removed** `.json` under any `workflows/` directory",
+      "references": "that directory's `README.md` index table",
+      "rationale": "Both workflow indexes **used to have** listed files that did not exist. The verified on-disk tables were the fix, and `tests/realtime_ai/test_workflows.py` now checks the index against disk automatically — this rule is what to update when the check would otherwise fail",
+      "paths": [
+        "+modules/**/workflows/*.json",
+        "-modules/**/workflows/*.json"
+      ]
+    },
+    {
+      "id": "`DM-MODEL`",
+      "trigger": "a new model or weight requirement in any module",
+      "references": "`modules/realtime-ai/comfyui/models.md`<br>the consuming module's `setup/manual.md` prerequisites",
+      "rationale": "`models.md` is the single inventory across four consuming modules. A weight documented only in one module's prose is invisible to the others",
+      "paths": []
+    },
+    {
+      "id": "`DM-MARKETING-ANCHOR`",
+      "trigger": "a **heading changes** in `README.md`, `docs/architecture/product-spec.md` or `MARKETING.md`",
+      "references": "`modules/marketing-crosswalk/crosswalk/targets.yml` (anchors)",
+      "rationale": "Anchors match exact heading text. `validate` fails on drift — proven 2026-08-30 when a README rename broke it",
+      "paths": [
+        "README.md",
+        "MARKETING.md",
+        "docs/architecture/product-spec.md"
+      ]
+    },
+    {
+      "id": "`DM-PLAYBOOK`",
+      "trigger": "a subject's `icps` or `status` changes in `subjects/stream-extend.yml` or `subjects/content-extend.yml`, a marketing profile, persona or show changes in `configs/local/stream-programming.yaml`, or `engine_order` changes in `assets.yml`",
+      "references": "`MARKETING.md` §1 (shipped list), §2 (ICP tables), §3g (persona chain), §4 (engine order)",
+      "rationale": "The playbook repeats these on purpose so a human can read the plan. `tests/marketing_crosswalk/test_playbook.py` fails when a copy drifts, so a stale playbook cannot ship quietly",
+      "paths": [
+        "modules/marketing-crosswalk/crosswalk/subjects/stream-extend.yml",
+        "modules/marketing-crosswalk/crosswalk/subjects/content-extend.yml",
+        "modules/marketing-crosswalk/crosswalk/assets.yml",
+        "configs/local/stream-programming.yaml"
+      ]
+    },
+    {
+      "id": "`DM-ACCEPTANCE`",
+      "trigger": "a module gains or loses a capability, or a **manual** check becomes automatable",
+      "references": "`tests/ACCEPTANCE-CHECKLIST.md` (the line and its marker)<br>that module's `setup/manual.md` § Verification<br>`docs/agent/SUBFEATURE-CHECKLIST.md`",
+      "rationale": "The acceptance checklist defines \"done\"; the subfeature roll-up exposes implementation and evidence separately. A capability with no line can never be verified, and a manual line that is now automated is a step people keep doing by hand for no reason",
+      "paths": []
+    },
+    {
+      "id": "`DM-VERIFY`",
+      "trigger": "a **new kind of change** with no row in `VERIFICATION-MATRIX.md` — a new language, service, file type, or tool",
+      "references": "`docs/agent/VERIFICATION-MATRIX.md`",
+      "rationale": "The matrix is what \"verified locally\" means. A change type with no row is one nobody knows how to prove, so it gets claimed rather than checked",
+      "paths": []
+    },
+    {
+      "id": "`DM-PROPOSAL-OPEN`",
+      "trigger": "a proposal is **added**, or an existing one gains an **owner decision** or a **run only a person or hardware can do**",
+      "references": "`docs/todo/README.md` and the matching lane doc",
+      "rationale": "Owner decisions and live runs were found scattered across twelve proposals on 2026-10-04 with no single list. The lanes are a derived index, and an index nobody updates is the failure this matrix already names for itself",
+      "paths": [
+        "+docs/proposals/PROPOSAL_*.md"
+      ]
+    },
+    {
+      "id": "`DM-PROPOSAL-DONE`",
+      "trigger": "a `PROPOSALS.md` row moves to `Done`",
+      "references": "the doc named in that row<br>that proposal's rows in `docs/todo/` — they must already be resolved",
+      "rationale": "The queue tracks state; the linked doc holds the content. A `Done` row pointing at a doc that never received the decision loses the decision",
+      "paths": [
+        "docs/PROPOSALS.md"
+      ]
+    },
+    {
+      "id": "`DM-PROPOSAL-MODEL`",
+      "trigger": "a proposal is added, its scope changes, or its agent model changes",
+      "references": "`docs/PROPOSALS.md` model/effort/rationale<br>the detailed proposal's model header<br>`docs/PROPOSAL_CREATION_SOP.md` and proposal template if selection rules change<br>`AGENTS.md` and `CLAUDE.md` if agent instructions change",
+      "rationale": "P-073 found no proposal had an explicit development-agent model. Offline checks now require complete assignments and matching detailed headers; scope and capability judgment remain the author's responsibility",
+      "paths": [
+        "docs/PROPOSALS.md",
+        "docs/proposals/PROPOSAL_*.md"
+      ]
+    },
+    {
+      "id": "`DM-DOCS-INDEX`",
+      "trigger": "a **new file** under `docs/`",
+      "references": "`docs/README.md`",
+      "rationale": "A doc that is not in the index is a doc nobody opens. This rule exists because the index was found 7 files stale on 2026-08-31",
+      "paths": [
+        "+docs/**/*.md",
+        "!docs/proposals/**"
+      ]
+    },
+    {
+      "id": "`DM-CONTEXT`",
+      "trigger": "change to `CLAUDE.md`",
+      "references": "regenerate `AGENTS.md` with `scripts/testing/generate_docs.py --write`, then run `--check`",
+      "rationale": "The two carry the same policy with agent-specific self-identification; full-file drift is now checked",
+      "paths": [
+        "CLAUDE.md"
+      ]
+    },
+    {
+      "id": "`DM-DESIGN-SYSTEM`",
+      "trigger": "a **token, component rule, voice register or consumer** changes in `design-system/`, or a consumer's pointer doc is added or moves",
+      "references": "`design-system/crosswalk/consumers.md`<br>the `design-system` row in `modules/marketing-crosswalk/crosswalk/modules.yml` (`counts`, `consumers`, `files`)<br>`docs/design/BUILD-PROMPTING-DIGEST.md` and the `design` skill (voice registers)",
+      "rationale": "Pointer docs are the only way a consumer learns of a hub change, and two copies drift. `tests/design_system/` fails when the registry row, the consumers list, the token counts or the register phrases disagree",
+      "paths": [
+        "design-system/**"
+      ]
+    },
+    {
+      "id": "`DM-DEVIATION`",
+      "trigger": "a change that contradicts `roadmap.md`'s layering or ordering",
+      "references": "`docs/architecture/deviations.md`",
+      "rationale": "`CLAUDE.md` §9 requires the entry. Three exist; each was written because the deviation was real, not to justify it afterwards",
+      "paths": []
+    }
+  ]
+}

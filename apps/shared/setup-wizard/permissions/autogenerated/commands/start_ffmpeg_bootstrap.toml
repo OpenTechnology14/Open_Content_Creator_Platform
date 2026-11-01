@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-start-ffmpeg-bootstrap"
+description = "Enables the start_ffmpeg_bootstrap command without any pre-configured scope."
+commands.allow = ["start_ffmpeg_bootstrap"]
+
+[[permission]]
+identifier = "deny-start-ffmpeg-bootstrap"
+description = "Denies the start_ffmpeg_bootstrap command without any pre-configured scope."
+commands.deny = ["start_ffmpeg_bootstrap"]

@@ -1,0 +1,162 @@
+groups:
+  - name: source_connections
+    interval: 15s
+    rules:
+
+      # --- Connection alerts ---
+
+      - alert: OBSConnectionDown
+        expr: hcp_source_up{source="obs"} == 0
+        for: 30s
+        labels:
+          severity: critical
+          component: obs
+        annotations:
+          summary: "OBS WebSocket is unreachable"
+          description: "Cannot connect to OBS on {{ $labels.instance }}. Streaming and scene control are offline."
+          debug_url: "http://localhost:9101/debug"
+
+      - alert: VoiceMeeterDown
+        expr: hcp_source_up{source="voicemeeter"} == 0
+        for: 30s
+        labels:
+          severity: critical
+          component: audio
+        annotations:
+          summary: "VoiceMeeter is unreachable"
+          description: "VoiceMeeter Remote API is not responding. All audio routing is down."
+          debug_url: "http://localhost:9101/debug"
+
+      - alert: NodeCGDown
+        expr: hcp_source_up{source="nodecg"} == 0
+        for: 1m
+        labels:
+          severity: warning
+          component: graphics
+        annotations:
+          summary: "NodeCG is unreachable"
+          description: "Cannot reach NodeCG at {{ $labels.instance }}. Broadcast overlays will not update."
+
+      - alert: VTubeStudioDown
+        expr: hcp_source_up{source="vtube_studio"} == 0
+        for: 1m
+        labels:
+          severity: warning
+          component: avatar
+        annotations:
+          summary: "VTube Studio is unreachable"
+          description: "VTube Studio WebSocket API is not responding. Avatar expressions will not update."
+
+      - alert: VirtualCameraDown
+        expr: hcp_source_up{type="virtual_camera"} == 0
+        for: 30s
+        labels:
+          severity: critical
+          component: video
+        annotations:
+          summary: "Virtual camera {{ $labels.source }} is down"
+          description: "Cannot read frames from {{ $labels.source }}. The pipeline feeding this camera may have crashed."
+
+      - alert: DeepFaceLiveDown
+        expr: hcp_source_up{source="deepfacelive"} == 0
+        for: 1m
+        labels:
+          severity: warning
+          component: ai
+        annotations:
+          summary: "DeepFaceLive is not running"
+          description: "DeepFaceLive process not found. Face filters are inactive."
+
+      - alert: RedisDown
+        expr: hcp_source_up{source="redis_tts"} == 0
+        for: 30s
+        labels:
+          severity: critical
+          component: backend
+        annotations:
+          summary: "Redis is unreachable"
+          description: "Cannot connect to Redis. AI agents, TTS, and broadcast graphics event bus are all offline."
+
+      # --- Quality / degradation alerts ---
+
+      - alert: VirtualCameraBlackFrames
+        expr: hcp_virtual_camera_black_frames == 1
+        for: 30s
+        labels:
+          severity: warning
+          component: video
+        annotations:
+          summary: "{{ $labels.device }} is outputting black frames"
+          description: "Virtual camera {{ $labels.device }} is connected but sending blank/black frames. The source pipeline may be frozen or misconfigured."
+
+      - alert: VirtualCameraLowFPS
+        expr: hcp_virtual_camera_fps > 0 and hcp_virtual_camera_fps < 10
+        for: 1m
+        labels:
+          severity: warning
+          component: video
+        annotations:
+          summary: "{{ $labels.device }} FPS is below 10"
+          description: "Virtual camera {{ $labels.device }} is at {{ $value }} fps. Expected 15+ for usable output."
+
+      - alert: AudioBusSilent
+        expr: hcp_audio_bus_silent{bus="AI_VOICE"} == 1
+        for: 5m
+        labels:
+          severity: info
+          component: audio
+        annotations:
+          summary: "AI voice bus has been silent for 5+ minutes"
+          description: "No TTS output detected on the AI_VOICE bus. If an agent is supposed to be active, check Ollama and the agent service."
+
+      - alert: MicSilent
+        expr: hcp_audio_bus_silent{bus="MIC"} == 1
+        for: 2m
+        labels:
+          severity: warning
+          component: audio
+        annotations:
+          summary: "Microphone bus is silent"
+          description: "MIC bus has been below -60dB for 2+ minutes. Mic may be muted, unplugged, or wrong input selected in VoiceMeeter."
+
+      - alert: OBSHighDroppedFrames
+        expr: hcp_obs_dropped_frames_pct > 5
+        for: 1m
+        labels:
+          severity: warning
+          component: obs
+        annotations:
+          summary: "OBS dropped frames at {{ $value }}%"
+          description: "OBS is dropping more than 5% of frames. Check encoder settings, CPU/GPU load, or network bandwidth."
+
+      - alert: AgentNotReplying
+        expr: hcp_agent_last_reply_seconds_ago > 300
+        for: 1m
+        labels:
+          severity: warning
+          component: ai
+        annotations:
+          summary: "AI agent has not replied in 5+ minutes"
+          description: "No agent.reply event on Redis for over 5 minutes. Agent service may have crashed or Ollama may be unresponsive."
+
+      - alert: SourceHighLatency
+        expr: hcp_source_latency_ms > 2000
+        for: 1m
+        labels:
+          severity: warning
+          component: general
+        annotations:
+          summary: "{{ $labels.source }} latency is {{ $value }}ms"
+          description: "Connection to {{ $labels.source }} is responding but taking over 2 seconds. Performance will be degraded."
+
+      # --- Multi-source down (compound) ---
+
+      - alert: MultipleSourcesDown
+        expr: count(hcp_source_up == 0) >= 3
+        for: 1m
+        labels:
+          severity: critical
+          component: platform
+        annotations:
+          summary: "{{ $value }} sources are down simultaneously"
+          description: "Multiple source connections have failed. Check if Docker services are running, or if the host is overloaded."

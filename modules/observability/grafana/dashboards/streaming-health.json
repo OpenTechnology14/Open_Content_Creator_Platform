@@ -1,0 +1,48 @@
+{
+  "title": "HCP — Streaming Health",
+  "uid": "hcp-streaming",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "10s",
+  "time": { "from": "now-30m", "to": "now" },
+  "tags": ["hcp", "streaming"],
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Live Streams",
+      "id": 1,
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 },
+      "targets": [
+        { "expr": "hcp_streams_live", "refId": "A" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Events / sec by source",
+      "id": 2,
+      "gridPos": { "x": 6, "y": 0, "w": 18, "h": 8 },
+      "targets": [
+        { "expr": "sum by (source) (rate(hcp_events_ingested_total[1m]))", "legendFormat": "{{source}}", "refId": "A" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Realtime AI frame latency (ms)",
+      "id": 3,
+      "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 },
+      "targets": [
+        { "expr": "hcp_realtime_ai_frame_latency_ms", "legendFormat": "{{pipeline}}", "refId": "A" }
+      ]
+    },
+    {
+      "type": "logs",
+      "title": "OBS / Streaming logs",
+      "id": 4,
+      "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 },
+      "datasource": { "type": "loki", "uid": "loki" },
+      "targets": [
+        { "expr": "{service=\"obs\"} | json", "refId": "A" }
+      ]
+    }
+  ]
+}

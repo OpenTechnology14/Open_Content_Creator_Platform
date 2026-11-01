@@ -1,0 +1,380 @@
+# Open Content Creator Platform — local docker-compose
+#
+# Brings up the backend, storage, and observability stack.
+# Desktop apps (OBS, ComfyUI, DeepFaceLive) are NOT in compose —
+# they run as native applications on the workstation.
+#
+# Usage:
+#   docker compose up -d                    # everything
+#   docker compose up -d minio postgres     # just storage
+#   docker compose up -d fastapi            # backend only (assumes deps up)
+#
+# DigitalOcean overlay:
+#   docker compose -f docker-compose.yml -f docker-compose.digitalocean.yml up -d
+
+name: hybrid-creator-platform
+
+networks:
+  hcp-net:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  redis-data:
+  minio-data:
+  prometheus-data:
+  grafana-data:
+  loki-data:
+  n8n-data:
+  ollama-data:
+  nodecg-data:
+
+services:
+  # ────────────────────────────────────────────────
+  # Storage / Data Layer
+  # ────────────────────────────────────────────────
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: hcp-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-hcp}
+      POSTGRES_USER: ${POSTGRES_USER:-hcp}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in .env}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./modules/storage-data/postgres/migrations:/docker-entrypoint-initdb.d:ro
+    networks:
+      - hcp-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-hcp}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: hcp-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - hcp-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  minio:
+    image: hcp-minio:7aac2a2c
+    pull_policy: build
+    build:
+      context: ./modules/storage-data/minio
+      dockerfile: Dockerfile
+      target: server
+    container_name: hcp-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:?set in .env}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?set in .env}
+    ports:
+      - "127.0.0.1:9000:9000"   # S3 API
+      - "127.0.0.1:9001:9001"   # Console
+    volumes:
+      - minio-data:/data
+    networks:
+      - hcp-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Installer-owned, one-shot storage initialization. These helpers are behind
+  # a profile so normal `docker compose up` never runs them implicitly.
+  postgres-bootstrap:
+    image: pgvector/pgvector:pg16
+    environment:
+      PGHOST: postgres
+      PGDATABASE: ${POSTGRES_DB:-hcp}
+      PGUSER: ${POSTGRES_USER:-hcp}
+      PGPASSWORD: ${POSTGRES_PASSWORD:?set in .env}
+    volumes:
+      - ./modules/storage-data/postgres/migrations:/bootstrap/storage:ro
+      - ./modules/ai-agents/local-llm/migrations:/bootstrap/agents:ro
+      - ./scripts/setup/postgres_container_migrate.sh:/bootstrap/run.sh:ro
+    entrypoint: ["/bin/bash", "/bootstrap/run.sh"]
+    networks:
+      - hcp-net
+    profiles:
+      - setup
+
+  minio-bootstrap:
+    image: hcp-minio-client:77f82e18
+    pull_policy: build
+    build:
+      context: ./modules/storage-data/minio
+      dockerfile: Dockerfile
+      target: client
+    environment:
+      MC_HOST_hcp: http://${MINIO_ROOT_USER:?set in .env}:${MINIO_ROOT_PASSWORD:?set in .env}@minio:9000
+    entrypoint: ["/bin/sh", "-eu", "-c"]
+    command:
+      - |
+        for bucket in comfyui-outputs recordings models project-assets backups nature-corpus cityscape-corpus; do
+          mc mb --ignore-existing "hcp/$$bucket"
+        done
+        printf '%s\n' '{ "Rules": [ { "ID": "expire-30d", "Status": "Enabled", "Expiration": { "Days": 30 } } ] }' >/tmp/recordings-lifecycle.json
+        mc ilm rule import hcp/recordings </tmp/recordings-lifecycle.json
+        for bucket in comfyui-outputs recordings models project-assets backups nature-corpus cityscape-corpus; do
+          mc stat "hcp/$$bucket" >/dev/null
+        done
+    networks:
+      - hcp-net
+    profiles:
+      - setup
+
+  # ────────────────────────────────────────────────
+  # Backend / API Layer
+  # ────────────────────────────────────────────────
+  fastapi:
+    build:
+      context: ./modules/backend-api/fastapi
+      dockerfile: Dockerfile
+    container_name: hcp-fastapi
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-hcp}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-hcp}
+      REDIS_URL: redis://redis:6379/0
+      MINIO_ENDPOINT: minio:9000
+      MINIO_ACCESS_KEY: ${MINIO_ROOT_USER}
+      MINIO_SECRET_KEY: ${MINIO_ROOT_PASSWORD}
+      MINIO_SECURE: "false"
+      API_KEY: ${HCP_API_KEY:?set in .env}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    networks:
+      - hcp-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # ────────────────────────────────────────────────
+  # Observability Layer
+  # ────────────────────────────────────────────────
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: hcp-prometheus
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --web.console.libraries=/etc/prometheus/console_libraries
+      - --web.console.templates=/etc/prometheus/consoles
+      - --storage.tsdb.retention.time=30d
+    ports:
+      - "127.0.0.1:9090:9090"
+    volumes:
+      - ./modules/observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./modules/observability/prometheus/rules:/etc/prometheus/rules:ro
+      - prometheus-data:/prometheus
+    networks:
+      - hcp-net
+
+  source-health-exporter:
+    build: ./modules/observability/source-health-exporter
+    container_name: hcp-source-health
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:9101:9101"
+    volumes:
+      - ./modules/observability/source-health-exporter/config.yml:/app/config.yml:ro
+    environment:
+      - OBS_WEBSOCKET_PASSWORD=${OBS_WEBSOCKET_PASSWORD:-}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - hcp-net
+
+  loki:
+    image: grafana/loki:latest
+    container_name: hcp-loki
+    restart: unless-stopped
+    command: -config.file=/etc/loki/loki-config.yml
+    ports:
+      - "127.0.0.1:3100:3100"
+    volumes:
+      - ./modules/observability/loki/loki-config.yml:/etc/loki/loki-config.yml:ro
+      - loki-data:/loki
+    networks:
+      - hcp-net
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: hcp-promtail
+    restart: unless-stopped
+    command: -config.file=/etc/promtail/promtail-config.yml
+    volumes:
+      - ./modules/observability/loki/promtail-config.yml:/etc/promtail/promtail-config.yml:ro
+      - /var/log:/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    networks:
+      - hcp-net
+    depends_on:
+      - loki
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: hcp-grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set in .env}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_INSTALL_PLUGINS: ""
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./modules/observability/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./modules/observability/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    networks:
+      - hcp-net
+    depends_on:
+      - prometheus
+      - loki
+
+  # ────────────────────────────────────────────────
+  # Broadcast Graphics — broadcast-graphics module
+  # ────────────────────────────────────────────────
+  nodecg:
+    image: ghcr.io/nodecg/nodecg:latest
+    container_name: hcp-nodecg
+    restart: unless-stopped
+    environment:
+      # hcp-starter/extension/redis-bridge.js reads REDIS_URL and silently
+      # no-ops (just a warn log) if it's unset — this container had no
+      # environment block at all, so the live-update bridge this module
+      # exists for was dead on every `docker compose --profile graphics up`
+      # (P-034). Same value fastapi's own service already uses.
+      REDIS_URL: redis://redis:6379/0
+    ports:
+      - "127.0.0.1:9091:9090"
+    volumes:
+      - nodecg-data:/opt/nodecg/db
+      - ./modules/broadcast-graphics/nodecg/bundles:/opt/nodecg/bundles
+      - ./modules/broadcast-graphics/nodecg/cfg:/opt/nodecg/cfg
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - hcp-net
+    profiles:
+      - graphics
+
+  # ────────────────────────────────────────────────
+  # Automation — automation-control module
+  # ────────────────────────────────────────────────
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: hcp-n8n
+    restart: unless-stopped
+    environment:
+      N8N_BASIC_AUTH_ACTIVE: "true"
+      N8N_BASIC_AUTH_USER: ${N8N_USER:-admin}
+      N8N_BASIC_AUTH_PASSWORD: ${N8N_PASSWORD:?set in .env}
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_DATABASE: ${POSTGRES_DB:-hcp}
+      DB_POSTGRESDB_USER: ${POSTGRES_USER:-hcp}
+      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_POSTGRESDB_SCHEMA: n8n
+      # Required by modules/automation-control/n8n/workflows/on-stream-start.json's
+      # "Show lower third" node ({{$env.API_URL}}/{{$env.HCP_API_KEY}}) — the
+      # workflow referenced these two vars but nothing ever set them here, so
+      # every import would fire against an empty URL with no API key (P-033).
+      API_URL: http://fastapi:8000
+      HCP_API_KEY: ${HCP_API_KEY:?set in .env}
+      # n8n 1.x blocks $env access in node expressions by default; the
+      # committed workflow depends on it, so this must stay explicit.
+      N8N_BLOCK_ENV_ACCESS_IN_NODE: "false"
+    ports:
+      - "127.0.0.1:5678:5678"
+    volumes:
+      - n8n-data:/home/node/.n8n
+      - ./modules/automation-control/n8n/workflows:/workflows:ro
+    networks:
+      - hcp-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+    profiles:
+      - automation
+
+  n8n-bootstrap:
+    image: n8nio/n8n:latest
+    environment:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_DATABASE: ${POSTGRES_DB:-hcp}
+      DB_POSTGRESDB_USER: ${POSTGRES_USER:-hcp}
+      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_POSTGRESDB_SCHEMA: n8n
+    volumes:
+      - n8n-data:/home/node/.n8n
+      - ./modules/automation-control/n8n/workflows:/workflows:ro
+    entrypoint: ["/bin/sh", "-eu", "-c"]
+    command:
+      - |
+        for workflow in /workflows/*.json; do
+          echo "Importing $$(basename "$$workflow")"
+          n8n import:workflow --input="$$workflow"
+        done
+    networks:
+      - hcp-net
+    profiles:
+      - setup
+
+  # ────────────────────────────────────────────────
+  # AI Agents — ai-agents module — uncomment when ready
+  # GPU passthrough requires nvidia-container-toolkit
+  # ────────────────────────────────────────────────
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   container_name: hcp-ollama
+  #   restart: unless-stopped
+  #   ports:
+  #     - "127.0.0.1:11434:11434"
+  #   volumes:
+  #     - ollama-data:/root/.ollama
+  #   environment:
+  #     OLLAMA_KEEP_ALIVE: "24h"
+  #   networks:
+  #     - hcp-net
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: all
+  #             capabilities: [gpu]
+  #   profiles:
+  #     - ai-agents

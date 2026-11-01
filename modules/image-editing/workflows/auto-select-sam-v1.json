@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "title": "Auto-Select SAM v1",
+    "description": "Turn a click point into a segmentation mask, so a caller doesn't have to hand-draw a mask before running inpaint-fill/inpaint-remove. Node names below are from storyicon/comfyui_segment_anything, verified against that project's own NODE_CLASS_MAPPINGS (2026-09-01 web search) — confirm they match whatever 'ComfyUI-SAM' variant is actually installed before use, since several similarly-named SAM node packs exist.",
+    "module": "image-editing",
+    "status": "BLOCKED, confirmed 2026-09-02 (P-043) — node/model names are correct, but storyicon/comfyui_segment_anything's vendored GroundingDINO/BERT code is broken against current transformers in two places (BertModel.get_head_mask removed; a get_extended_attention_mask argument-type mismatch that survives pinning transformers==4.57.6). See workflows/README.md Status. The point-click UI is not modeled here: this workflow takes a text prompt naming the region (e.g. 'the mug'), the more common pattern in this node pack — a true point-to-mask UI needs a caller-side click handler not built yet.",
+    "required_models": ["SAM ViT-H", "GroundingDINO SwinT"],
+    "required_nodes": ["ComfyUI-SAM (storyicon/comfyui_segment_anything)"]
+  },
+  "1": {
+    "class_type": "LoadImage",
+    "_note": "Injected at runtime by the caller.",
+    "inputs": {
+      "image": "PLACEHOLDER_IMAGE"
+    }
+  },
+  "2": {
+    "class_type": "SAMModelLoader (segment anything)",
+    "inputs": {
+      "model_name": "sam_vit_h (2.56GB)"
+    }
+  },
+  "3": {
+    "class_type": "GroundingDinoModelLoader (segment anything)",
+    "inputs": {
+      "model_name": "GroundingDINO_SwinT_OGC (694MB)"
+    }
+  },
+  "4": {
+    "class_type": "GroundingDinoSAMSegment (segment anything)",
+    "_note": "Caller supplies `prompt` as the region description (e.g. 'the mug'), standing in for a click point until a coordinate-based UI exists.",
+    "inputs": {
+      "sam_model": ["2", 0],
+      "grounding_dino_model": ["3", 0],
+      "image": ["1", 0],
+      "prompt": "PLACEHOLDER_REGION_DESCRIPTION",
+      "threshold": 0.3
+    }
+  },
+  "5": {
+    "class_type": "MaskToImage",
+    "_note": "GroundingDinoSAMSegment's second output is a MASK, not an IMAGE — convert it so SaveImage can render it for preview. Callers consuming the mask programmatically read node 4's output[1] directly instead of this branch.",
+    "inputs": {
+      "mask": ["4", 1]
+    }
+  },
+  "6": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": ["5", 0],
+      "filename_prefix": "auto_select_mask"
+    }
+  }
+}

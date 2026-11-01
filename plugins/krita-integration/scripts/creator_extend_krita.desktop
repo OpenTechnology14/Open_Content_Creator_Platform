@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=Krita/PythonPlugin
+X-KDE-Library=creator_extend_krita
+X-Python-2-Compatible=false
+Name=Creator Extend
+Comment=AI editing, batch processing, and MinIO export for the Creator Extend platform

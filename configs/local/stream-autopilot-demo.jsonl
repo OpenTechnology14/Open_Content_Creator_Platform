@@ -1,0 +1,7 @@
+{"event_id":"demo-1","session_id":"minecraft-main","kind":"chat","text":"What are we building today?"}
+{"event_id":"demo-2","session_id":"dota-lobby","kind":"chat","text":"Ready for the next match?"}
+{"event_id":"demo-3","session_id":"minecraft-main","kind":"game","reaction":"victory"}
+{"event_id":"demo-4","session_id":"minecraft-main","kind":"game","reaction":"victory"}
+{"event_id":"demo-5","session_id":"minecraft-main","kind":"pause"}
+{"event_id":"demo-6","session_id":"minecraft-main","kind":"chat","text":"This should not be answered while paused."}
+{"event_id":"demo-7","session_id":"minecraft-main","kind":"resume"}

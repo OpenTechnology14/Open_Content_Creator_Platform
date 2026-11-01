@@ -1,0 +1,55 @@
+# Source Health Exporter config.
+# Each section can be disabled by setting enabled: false.
+
+port: 9101
+interval_seconds: 15
+
+# When running in Docker, OBS / VoiceMeeter / VTube Studio run on the host.
+# Use host.docker.internal to reach them from inside the container.
+# When running natively (python exporter.py), use localhost.
+
+obs:
+  enabled: true
+  host: host.docker.internal
+  port: 4455
+  # password loaded from OBS_WEBSOCKET_PASSWORD env var if not set here
+  password: ""
+
+voicemeeter:
+  enabled: true
+  # Override the default bus→strip mapping if your VoiceMeeter layout differs.
+  # buses:
+  #   MIC: { strip: 0 }
+  #   GAME: { strip: 1 }
+  #   MUSIC: { strip: 2 }
+  #   AI_VOICE: { strip: 3 }
+  #   CALL_IN: { strip: 4 }
+
+virtual_cameras:
+  # List each virtual camera device you want to monitor.
+  # device_id: integer (OS device index) or string (device path on Linux).
+  - name: comfyui-vcam
+    device_id: 1
+  - name: deepfacelive-vcam
+    device_id: 2
+  # - name: golf-tracer-vcam
+  #   device_id: 3
+
+nodecg:
+  enabled: true
+  host: localhost
+  port: 9091
+
+vtube_studio:
+  enabled: true
+  host: host.docker.internal
+  port: 8001
+
+tts_agent:
+  enabled: true
+  redis_host: localhost
+  redis_port: 6379
+
+deepfacelive:
+  enabled: true
+  process_name: DeepFaceLive

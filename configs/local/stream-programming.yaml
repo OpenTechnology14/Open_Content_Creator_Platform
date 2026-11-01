@@ -1,0 +1,1046 @@
+schema_version: 2
+timezone: America/New_York
+cycle_anchor: '2026-09-07'
+primary_start: '19:00'
+secondary_start: '13:00'
+flagships:
+  tuesday:
+  - minecraft-town
+  - minecraft-redstone
+  - minecraft-repair
+  saturday:
+  - minecraft-one-chest
+  - minecraft-biome
+rotation:
+- flight-zero-to-touchdown
+- beamng-route-lab
+- opentech-build-brief
+- video-try-not-to-laugh
+- stream-extend-showcase
+- content-extend-workflow
+- ai-learning-lesson
+- ai-control-layer-brief
+- chatbot-routing-lab
+- dota-lab
+- league-objective
+- wow-tavern
+- cs-clutch
+- gta-shift
+- valorant-utility
+- tarkov-bag
+- fortnite-loadout
+- overwatch-payload
+- roblox-agent-obby
+- among-evidence
+- roblox-tutorial
+- roblox-workshop
+- fortnite-tutorial
+- fortnite-workshop
+- gta-v-tutorial
+- gta-v-workshop
+- dota-draft
+- league-replay
+- wow-dungeon
+- cs-budget
+- gta-route
+- valorant-clutch
+- tarkov-explain
+- fortnite-circle
+- overwatch-homework
+- roblox-obby
+- among-alibi
+- roblox-build
+- among-suspect
+- flight-weather-window
+- beamng-crash-court
+- roblox-worldhop
+- roblox-agent-quest
+- opentech-workflow-clinic
+- video-edit-review
+profiles:
+- id: flight-simulator-agent
+  display_name: Flight Simulator Agent Lab
+  kind: game
+  subject_id: microsoft-flight-simulator-2024
+  persona_id: nova-pilot
+  agent_control: experimental
+  audio_policy: gaming-reactive
+  source:
+    kind: game-runtime
+    allowed_refs:
+    - microsoft-flight-simulator-2024
+- id: beamng-agent
+  display_name: BeamNG Agent Lab
+  kind: game
+  subject_id: beamng-drive
+  persona_id: nova-driver
+  agent_control: experimental
+  audio_policy: gaming-reactive
+  source:
+    kind: game-runtime
+    allowed_refs:
+    - beamng-drive
+- id: roblox-agent
+  display_name: Roblox Agent Lab
+  kind: game
+  subject_id: roblox
+  persona_id: nova-worldhop
+  agent_control: experimental
+  audio_policy: gaming-reactive
+  source:
+    kind: game-runtime
+    allowed_refs:
+    - roblox-private-experience
+- id: opentech-marketing
+  display_name: OpenTechApp Marketing
+  kind: marketing
+  subject_id: task-management
+  persona_id: nova-opentech
+  agent_control: commentary-only
+  audio_policy: opentech-scripted
+  source:
+    kind: marketing-crosswalk
+    allowed_refs:
+    - task-management
+    artifact_root: modules/marketing-crosswalk/out
+    artifact_prefixes:
+      task-management:
+      - task-management--
+  marketing_module_id: task-management
+  marketing_target: task-management
+  youtube:
+    workflow_id: opentech-youtube-review
+    channel_env: HCP_OPENTECH_YOUTUBE_CHANNEL_ID
+    visibility: private
+    approval_required: true
+    upload_enabled: false
+- id: marketing-stream-extend
+  display_name: Stream Extend Marketing
+  kind: marketing
+  subject_id: stream-extend
+  persona_id: nova-stream-extend
+  agent_control: commentary-only
+  audio_policy: opentech-scripted
+  source:
+    kind: marketing-crosswalk
+    allowed_refs:
+    - stream-extend
+    artifact_root: modules/marketing-crosswalk/out
+    artifact_prefixes:
+      stream-extend:
+      - stream-extend--
+  marketing_module_id: stream-extend
+  marketing_target: hybrid-creator-platform
+  youtube:
+    workflow_id: stream-extend-youtube-review
+    channel_env: HCP_OPENTECH_YOUTUBE_CHANNEL_ID
+    visibility: private
+    approval_required: true
+    upload_enabled: false
+- id: marketing-content-extend
+  display_name: Creator Extend Marketing
+  kind: marketing
+  subject_id: content-extend
+  persona_id: nova-content-extend
+  agent_control: commentary-only
+  audio_policy: opentech-scripted
+  source:
+    kind: marketing-crosswalk
+    allowed_refs:
+    - content-extend
+    artifact_root: modules/marketing-crosswalk/out
+    artifact_prefixes:
+      content-extend:
+      - content-extend--
+  marketing_module_id: content-extend
+  marketing_target: hybrid-creator-platform
+  youtube:
+    workflow_id: content-extend-youtube-review
+    channel_env: HCP_OPENTECH_YOUTUBE_CHANNEL_ID
+    visibility: private
+    approval_required: true
+    upload_enabled: false
+- id: marketing-ai-learning
+  display_name: OpenTechnologyBlog AI Learning
+  kind: marketing
+  subject_id: ai-learning
+  persona_id: nova-ai-learning
+  agent_control: commentary-only
+  audio_policy: technical-scripted
+  source:
+    kind: marketing-crosswalk
+    allowed_refs:
+    - ai-learning
+    artifact_root: modules/marketing-crosswalk/out
+    artifact_prefixes:
+      ai-learning:
+      - ai-learning--
+  marketing_module_id: ai-learning
+  marketing_target: opentechnology-blog
+  youtube:
+    workflow_id: ai-learning-youtube-review
+    channel_env: HCP_OPENTECH_YOUTUBE_CHANNEL_ID
+    visibility: private
+    approval_required: true
+    upload_enabled: false
+- id: marketing-ai-control-layer
+  display_name: OpenTechnologyBlog AI Control Layer
+  kind: marketing
+  subject_id: ai-control-layer
+  persona_id: nova-ai-control
+  agent_control: commentary-only
+  audio_policy: technical-scripted
+  source:
+    kind: marketing-crosswalk
+    allowed_refs:
+    - ai-control-layer
+    artifact_root: modules/marketing-crosswalk/out
+    artifact_prefixes:
+      ai-control-layer:
+      - ai-control-layer--
+  marketing_module_id: ai-control-layer
+  marketing_target: opentechnology-blog
+  youtube:
+    workflow_id: ai-control-layer-youtube-review
+    channel_env: HCP_OPENTECH_YOUTUBE_CHANNEL_ID
+    visibility: private
+    approval_required: true
+    upload_enabled: false
+- id: marketing-chatbot-routing
+  display_name: OpenTechnologyBlog Chatbot Routing
+  kind: marketing
+  subject_id: chatbot-routing
+  persona_id: nova-chatbot-routing
+  agent_control: commentary-only
+  audio_policy: opentech-scripted
+  source:
+    kind: marketing-crosswalk
+    allowed_refs:
+    - chatbot-routing
+    artifact_root: modules/marketing-crosswalk/out
+    artifact_prefixes:
+      chatbot-routing:
+      - chatbot-routing--
+  marketing_module_id: chatbot-routing
+  marketing_target: opentechnology-blog
+  youtube:
+    workflow_id: chatbot-routing-youtube-review
+    channel_env: HCP_OPENTECH_YOUTUBE_CHANNEL_ID
+    visibility: private
+    approval_required: true
+    upload_enabled: false
+- id: video-review
+  display_name: VideoReview
+  kind: video-review
+  subject_id: video-review
+  persona_id: nova-reviewer
+  agent_control: commentary-only
+  audio_policy: review-scripted
+  source:
+    kind: operator-media
+    allowed_refs:
+    - try-not-to-laugh
+    - operator-video-review
+    rights_confirmation_required: true
+  youtube:
+    workflow_id: video-review-youtube-review
+    channel_env: HCP_VIDEO_REVIEW_YOUTUBE_CHANNEL_ID
+    visibility: private
+    approval_required: true
+    upload_enabled: false
+shows:
+- id: minecraft-town
+  game_id: minecraft
+  persona_id: nova-builder
+  title: The Town That Chat Built
+  hook: Build a persistent town from viewer proposals, one district per episode.
+  interaction_prompt: Vote between the curated build options.
+  clip_prompts:
+  - Before-and-after reveal
+  - A vote changes the plan
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: minecraft-one-chest
+  game_id: minecraft
+  persona_id: nova-builder
+  title: One Chest Empire
+  hook: Start with one constrained inventory and grow a working settlement.
+  interaction_prompt: Choose the next resource priority.
+  clip_prompts:
+  - Resource breakthrough
+  - A plan collapses
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: minecraft-repair
+  game_id: minecraft
+  persona_id: nova-builder
+  title: Fix My Disaster
+  hook: Repair a deliberately flawed build and explain the changes.
+  interaction_prompt: Choose which flaw to repair first.
+  clip_prompts:
+  - Disaster reveal
+  - The fix finally works
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: minecraft-redstone
+  game_id: minecraft
+  persona_id: nova-builder
+  title: Redstone Court
+  hook: Test whether a contraption solves the case presented to the show.
+  interaction_prompt: Predict whether the contraption works.
+  clip_prompts:
+  - First activation
+  - Unexpected chain reaction
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: minecraft-biome
+  game_id: minecraft
+  persona_id: nova-builder
+  title: Biome on a Budget
+  hook: Create a recognizable scene using a strict block palette.
+  interaction_prompt: Pick the next palette or biome.
+  clip_prompts:
+  - Palette challenge
+  - Final reveal
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: dota-lab
+  game_id: dota2
+  persona_id: rook-tactician
+  title: Ancient Experiments
+  hook: Test a clearly stated strategy in a suitable lobby and review the result.
+  interaction_prompt: Predict which objective changes the match.
+  clip_prompts:
+  - Hypothesis versus result
+  - Unexpected comeback
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: dota-draft
+  game_id: dota2
+  persona_id: rook-tactician
+  title: Draft Court
+  hook: Explain a draft idea and revisit it after the match.
+  interaction_prompt: Pick the question for the post-match review.
+  clip_prompts:
+  - Draft prediction payoff
+  - One decisive team fight
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: league-objective
+  game_id: league-of-legends
+  persona_id: lux-commentator
+  title: One Objective at a Time
+  hook: Tell each match through its objective decisions.
+  interaction_prompt: Choose the decision to revisit after the game.
+  clip_prompts:
+  - Objective trade
+  - Comeback turning point
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: league-replay
+  game_id: league-of-legends
+  persona_id: lux-commentator
+  title: Rift Replay Lab
+  hook: Review a handful of pivotal moments without blaming teammates.
+  interaction_prompt: Which moment deserves a closer look?
+  clip_prompts:
+  - Prediction correction
+  - A small decision with a big result
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: wow-tavern
+  game_id: world-of-warcraft
+  persona_id: ember-storyteller
+  title: Tavern Tales
+  hook: Turn one quest chain or exploration goal into an adventure episode.
+  interaction_prompt: Choose the next region or story theme.
+  clip_prompts:
+  - Quest payoff
+  - Party comedy
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: wow-dungeon
+  game_id: world-of-warcraft
+  persona_id: ember-storyteller
+  title: Dungeon Debrief
+  hook: Follow a group objective and close with a constructive recap.
+  interaction_prompt: Choose one mechanic to explain afterward.
+  clip_prompts:
+  - Team recovery
+  - Boss finish
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: cs-clutch
+  game_id: counter-strike-2
+  persona_id: nova-clutch
+  title: Clutch or Case Closed
+  hook: Frame tense rounds as short tactical mysteries.
+  interaction_prompt: Predict the round outcome without coaching hidden information.
+  clip_prompts:
+  - Clutch resolution
+  - A perfectly timed assist
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: cs-budget
+  game_id: counter-strike-2
+  persona_id: nova-clutch
+  title: Budget Loadout Lab
+  hook: Follow a loadout constraint and evaluate the tradeoffs.
+  interaction_prompt: Choose the next permitted loadout theme.
+  clip_prompts:
+  - Cheap loadout payoff
+  - Economy decision
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: gta-shift
+  game_id: gta-v
+  persona_id: nova-city
+  title: Los Santos Shift
+  hook: Complete a fictional job or driving challenge as one self-contained episode.
+  interaction_prompt: Choose the next fictional assignment.
+  clip_prompts:
+  - Job goes sideways
+  - Unexpected finish
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: gta-route
+  game_id: gta-v
+  persona_id: nova-city
+  title: The Scenic Route
+  hook: Explore a route with a time or vehicle constraint.
+  interaction_prompt: Vote for the next destination.
+  clip_prompts:
+  - Near-finish twist
+  - Discovery on the route
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: valorant-utility
+  game_id: valorant
+  persona_id: nova-utility
+  title: Utility Before Ego
+  hook: Follow one teamwork habit through a match.
+  interaction_prompt: Pick a utility question for the recap.
+  clip_prompts:
+  - Teamwork payoff
+  - Utility changes a round
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: valorant-clutch
+  game_id: valorant
+  persona_id: nova-utility
+  title: Clutch Court
+  hook: Review what was known at the decisive moment.
+  interaction_prompt: Make a prediction before the reveal.
+  clip_prompts:
+  - Tension and release
+  - Prediction reversed
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: tarkov-bag
+  game_id: escape-from-tarkov
+  persona_id: nova-explorer
+  title: One Bag, One Story
+  hook: Follow one expedition from preparation through its outcome.
+  interaction_prompt: Choose a preparation theme before the raid.
+  clip_prompts:
+  - Narrow escape
+  - A costly decision
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: tarkov-explain
+  game_id: escape-from-tarkov
+  persona_id: nova-explorer
+  title: Extract or Explain
+  hook: Every expedition ends with an extraction or a concise lessons-learned recap.
+  interaction_prompt: Choose a post-raid question.
+  clip_prompts:
+  - Extraction payoff
+  - Lesson from a setback
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: fortnite-loadout
+  game_id: fortnite
+  persona_id: nova-finale
+  title: Loadout Lottery
+  hook: Play an operator-approved loadout challenge with a clear win condition.
+  interaction_prompt: Vote among the proposed challenge rules.
+  clip_prompts:
+  - Unlikely loadout success
+  - Last-circle reversal
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: fortnite-circle
+  game_id: fortnite
+  persona_id: nova-finale
+  title: Last Circle Club
+  hook: Build an episode around surviving to the finale.
+  interaction_prompt: Predict the next match's turning point.
+  clip_prompts:
+  - Final-circle tension
+  - Unexpected survival
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: overwatch-payload
+  game_id: overwatch
+  persona_id: nova-team
+  title: Payload Partners
+  hook: Follow how coordinated decisions move the objective.
+  interaction_prompt: Choose the next team habit to focus on.
+  clip_prompts:
+  - Overtime finish
+  - Team rescue
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: overwatch-homework
+  game_id: overwatch
+  persona_id: nova-team
+  title: Hero Homework
+  hook: Explore one hero lesson per episode.
+  interaction_prompt: Choose the post-match lesson to revisit.
+  clip_prompts:
+  - Lesson pays off
+  - Funny learning moment
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: roblox-worldhop
+  game_id: roblox
+  persona_id: nova-worldhop
+  title: World Hop with Nova
+  hook: Explore a curated set of suitable Roblox experiences.
+  interaction_prompt: Vote from the preselected experience shortlist.
+  clip_prompts:
+  - First discovery
+  - Unexpected mechanic
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: roblox-obby
+  game_id: roblox
+  persona_id: nova-worldhop
+  title: Obby Office Hours
+  hook: Make progress through a selected obstacle course with a recurring checkpoint
+    story.
+  interaction_prompt: Predict the number of attempts for the next section.
+  clip_prompts:
+  - Checkpoint victory
+  - Comic failure
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: roblox-build
+  game_id: roblox
+  persona_id: nova-worldhop
+  title: Build Vote
+  hook: Create and reveal a design in an experience that supports it.
+  interaction_prompt: Pick between curated design options.
+  clip_prompts:
+  - Design vote payoff
+  - Final build reveal
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: among-evidence
+  game_id: among-us
+  persona_id: nova-detective
+  title: The Evidence Room
+  hook: Follow a round from the player's information, then reveal the deduction afterward.
+  interaction_prompt: Predict from the same visible evidence; reveal after the round.
+  clip_prompts:
+  - Post-round reveal
+  - Confident theory overturned
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: among-alibi
+  game_id: among-us
+  persona_id: nova-detective
+  title: Alibi Academy
+  hook: Review the most interesting alibi after each completed round.
+  interaction_prompt: Choose the alibi to discuss after the reveal.
+  clip_prompts:
+  - Alibi falls apart
+  - Surprisingly correct deduction
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: among-suspect
+  game_id: among-us
+  persona_id: nova-detective
+  title: Suspect of the Night
+  hook: Track a fictional running mystery across a community session.
+  interaction_prompt: Vote on the funniest post-round theory.
+  clip_prompts:
+  - Running joke payoff
+  - Final round reveal
+  segments:
+  - 'Cold open: the goal and stakes'
+  - Challenge with progress checkpoints
+  - Result, best moment and next episode tease
+  duration_minutes: 90
+- id: roblox-tutorial
+  game_id: roblox
+  persona_id: nova-worldhop
+  title: Roblox Build Class
+  hook: Explain how to build and test one checkpoint component in Roblox Studio.
+  interaction_prompt: Choose the concept to explain next.
+  clip_prompts:
+  - One useful lesson in under a minute
+  - Before-and-after demonstration
+  segments:
+  - Show the finished target and learning objective
+  - Explain and demonstrate one step at a time
+  - Test the result and recap the lesson
+  duration_minutes: 90
+  format: tutorial
+  project_id: roblox-checkpoint-kit
+- id: roblox-workshop
+  game_id: roblox
+  persona_id: nova-worldhop
+  title: Roblox Workshop Log
+  hook: Continue the same checkpoint kit through testing, packaging and buyer documentation.
+  interaction_prompt: Suggest a playtest case or choose between two design options.
+  clip_prompts:
+  - Milestone reveal
+  - Bug, fix and result
+  segments:
+  - Recap the saved project and select one milestone
+  - Focused building with periodic progress explanations
+  - Test, save a version and record the next step
+  duration_minutes: 90
+  format: workshop
+  project_id: roblox-checkpoint-kit
+- id: fortnite-tutorial
+  game_id: fortnite
+  persona_id: nova-finale
+  title: Island Design Class
+  hook: Teach one island-design or gameplay-device lesson with a visible playtest.
+  interaction_prompt: Choose the concept to explain next.
+  clip_prompts:
+  - One useful lesson in under a minute
+  - Before-and-after demonstration
+  segments:
+  - Show the finished target and learning objective
+  - Explain and demonstrate one step at a time
+  - Test the result and recap the lesson
+  duration_minutes: 90
+  format: tutorial
+  project_id: fortnite-challenge-island
+- id: fortnite-workshop
+  game_id: fortnite
+  persona_id: nova-finale
+  title: Island Workshop Log
+  hook: Continue the same island through content production, playtesting, performance
+    checks and release preparation.
+  interaction_prompt: Suggest a playtest case or choose between two design options.
+  clip_prompts:
+  - Milestone reveal
+  - Bug, fix and result
+  segments:
+  - Recap the saved project and select one milestone
+  - Focused building with periodic progress explanations
+  - Test, save a version and record the next step
+  duration_minutes: 90
+  format: workshop
+  project_id: fortnite-challenge-island
+- id: gta-v-tutorial
+  game_id: gta-v
+  persona_id: nova-city
+  title: City Asset Class
+  hook: Teach one original prop, interior or FiveM resource-development step and explain
+    the validation.
+  interaction_prompt: Choose the concept to explain next.
+  clip_prompts:
+  - One useful lesson in under a minute
+  - Before-and-after demonstration
+  segments:
+  - Show the finished target and learning objective
+  - Explain and demonstrate one step at a time
+  - Test the result and recap the lesson
+  duration_minutes: 90
+  format: tutorial
+  project_id: fivem-workshop-interior
+- id: gta-v-workshop
+  game_id: gta-v
+  persona_id: nova-city
+  title: City Workshop Log
+  hook: Continue the same FiveM asset project through integration, optimization, documentation
+    and release preparation.
+  interaction_prompt: Suggest a playtest case or choose between two design options.
+  clip_prompts:
+  - Milestone reveal
+  - Bug, fix and result
+  segments:
+  - Recap the saved project and select one milestone
+  - Focused building with periodic progress explanations
+  - Test, save a version and record the next step
+  duration_minutes: 90
+  format: workshop
+  project_id: fivem-workshop-interior
+- id: flight-zero-to-touchdown
+  game_id: microsoft-flight-simulator-2024
+  persona_id: nova-pilot
+  profile_id: flight-simulator-agent
+  title: Zero to Touchdown
+  hook: Plan a short route, fly it from a known state and score the landing against visible telemetry.
+  interaction_prompt: Choose between two approved airports or weather presets.
+  clip_prompts:
+  - Final approach decision
+  - Landing score reveal
+  segments:
+  - Brief the route and automation boundary
+  - Fly checkpoints with telemetry callouts
+  - Review the landing and record the next tuning change
+  duration_minutes: 75
+- id: flight-weather-window
+  game_id: microsoft-flight-simulator-2024
+  persona_id: nova-pilot
+  profile_id: flight-simulator-agent
+  title: Weather Window
+  hook: Compare the same short route under two curated simulator weather presets.
+  interaction_prompt: Predict which preset produces the smoother approach.
+  clip_prompts:
+  - Weather changes the plan
+  - Side-by-side approach recap
+  segments:
+  - Establish the route and first preset
+  - Repeat from a saved setup with the second preset
+  - Compare telemetry and choose the next test
+  duration_minutes: 75
+- id: beamng-route-lab
+  game_id: beamng-drive
+  persona_id: nova-driver
+  profile_id: beamng-agent
+  title: Route Learning Lab
+  hook: Test a bounded route and improve completion using simulator telemetry and checkpoints.
+  interaction_prompt: Choose the next approved vehicle or route condition.
+  clip_prompts:
+  - Clean checkpoint sequence
+  - Recovery after a missed turn
+  segments:
+  - Load the fixed scenario and safety bounds
+  - Run the route with telemetry callouts
+  - Compare attempts and save one tuning change
+  duration_minutes: 75
+- id: beamng-crash-court
+  game_id: beamng-drive
+  persona_id: nova-driver
+  profile_id: beamng-agent
+  title: Crash Test Court
+  hook: Run fictional simulator crash tests and explain which setup protected the vehicle best.
+  interaction_prompt: Predict the result from two curated simulator setups.
+  clip_prompts:
+  - Slow-motion impact comparison
+  - Unexpected durability result
+  segments:
+  - Present the virtual test and prediction
+  - Run two repeatable simulator scenarios
+  - Review damage telemetry and verdict
+  duration_minutes: 75
+- id: roblox-agent-obby
+  game_id: roblox
+  persona_id: nova-worldhop
+  profile_id: roblox-agent
+  title: Agent Obby Lab
+  hook: Evaluate a bounded controller on a private obstacle course built for repeatable testing.
+  interaction_prompt: Choose the next approved obstacle or checkpoint order.
+  clip_prompts:
+  - First clean completion
+  - Stuck recovery succeeds
+  segments:
+  - Load the private test experience and control bounds
+  - Run checkpoint attempts with visible state
+  - Review failures and save one controller change
+  duration_minutes: 60
+- id: roblox-agent-quest
+  game_id: roblox
+  persona_id: nova-worldhop
+  profile_id: roblox-agent
+  title: Private Quest Builder
+  hook: Build and test one deterministic quest step in a private Roblox Studio experience.
+  interaction_prompt: Choose between two prepared quest branches.
+  clip_prompts:
+  - Quest branch reveal
+  - NPC path finally works
+  segments:
+  - Show the quest goal and private test boundary
+  - Build one branch and run a local playtest
+  - Save the result and document the next step
+  duration_minutes: 75
+- id: opentech-build-brief
+  subject_id: task-management
+  persona_id: nova-opentech
+  profile_id: opentech-marketing
+  title: OpenTech Build Brief
+  hook: Turn an approved OpenTechBlog brief into a clear product story and recorded demonstration.
+  interaction_prompt: Choose which approved product question to explain next.
+  clip_prompts:
+  - Problem and solution in under a minute
+  - Product demonstration payoff
+  segments:
+  - Review the approved brief and source links
+  - Record the bounded product explanation
+  - Prepare private YouTube review and Shorts candidates
+  duration_minutes: 45
+  format: marketing
+- id: opentech-workflow-clinic
+  subject_id: task-management
+  persona_id: nova-opentech
+  profile_id: opentech-marketing
+  title: OpenTechApp Workflow Clinic
+  hook: Demonstrate one approved OpenTechApp workflow using prepared test data.
+  interaction_prompt: Pick the next approved workflow question.
+  clip_prompts:
+  - Before-and-after workflow
+  - One practical setup tip
+  segments:
+  - State the workflow and approved claims
+  - Demonstrate with prepared non-sensitive data
+  - Recap and prepare a private YouTube review draft
+  duration_minutes: 45
+  format: marketing
+- id: stream-extend-showcase
+  subject_id: stream-extend
+  persona_id: nova-stream-extend
+  profile_id: marketing-stream-extend
+  title: Stream Extend Broadcast Lab
+  hook: Explain one approved Stream Extend workflow from capture through a local broadcast result.
+  interaction_prompt: Choose which approved broadcast-system question to explain next.
+  clip_prompts:
+  - One local-first production path
+  - A bounded OBS workflow explanation
+  segments:
+  - Review the approved module brief and evidence boundary
+  - Walk through one bounded broadcast workflow
+  - Recap what is shipped, scaffolded or still manual
+  duration_minutes: 45
+  format: marketing
+- id: content-extend-workflow
+  subject_id: content-extend
+  persona_id: nova-content-extend
+  profile_id: marketing-content-extend
+  title: Creator Extend Workflow Clinic
+  hook: Demonstrate one approved local content-production workflow with prepared assets.
+  interaction_prompt: Pick the next approved pipeline question.
+  clip_prompts:
+  - Asset handoff before and after
+  - One practical local-GPU setup tip
+  segments:
+  - State the approved workflow and its evidence boundary
+  - Demonstrate the bounded local pipeline
+  - Recap the next manual or automated step
+  duration_minutes: 45
+  format: marketing
+- id: ai-learning-lesson
+  subject_id: ai-learning
+  persona_id: nova-ai-learning
+  profile_id: marketing-ai-learning
+  title: AI Learning Live Lesson
+  hook: Teach one approved AI Learning lesson by working through a real, bounded example.
+  interaction_prompt: Choose the next approved lesson question.
+  clip_prompts:
+  - The decision rule in under a minute
+  - A prompt or workflow test that changes the result
+  segments:
+  - Read the approved lesson brief and sources
+  - Work through the lesson example on screen
+  - Recap the written reference and next lesson
+  duration_minutes: 60
+  format: marketing
+- id: ai-control-layer-brief
+  subject_id: ai-control-layer
+  persona_id: nova-ai-control
+  profile_id: marketing-ai-control-layer
+  title: AI Control Layer Practice Brief
+  hook: Explain one approved AI control-layer practice using evidence and a bounded example.
+  interaction_prompt: Choose the next approved governance question.
+  clip_prompts:
+  - Intent to evidence in one pass
+  - A permission or review boundary made visible
+  segments:
+  - Confirm the module status and approved source brief
+  - Work through one practice example without private data
+  - Recap what is drafted, published or still pending
+  duration_minutes: 45
+  format: marketing
+- id: chatbot-routing-lab
+  subject_id: chatbot-routing
+  persona_id: nova-chatbot-routing
+  profile_id: marketing-chatbot-routing
+  title: Chatbot Routing Lab
+  hook: Explain one approved OpenTechApp routing behavior with prepared, non-sensitive test cases.
+  interaction_prompt: Pick the next approved routing question.
+  clip_prompts:
+  - A complexity threshold explained clearly
+  - The kill switch and fallback boundary
+  segments:
+  - State the approved product behavior and source boundary
+  - Walk through prepared routing cases
+  - Recap API-key, local-model and assistant-off safeguards
+  duration_minutes: 45
+  format: marketing
+- id: video-try-not-to-laugh
+  subject_id: video-review
+  persona_id: nova-reviewer
+  profile_id: video-review
+  title: Try Not to Laugh Review
+  hook: React to an operator-selected, licensed compilation and explain what made each edit land.
+  interaction_prompt: Vote on the funniest permitted clip after it plays.
+  clip_prompts:
+  - Nova breaks composure
+  - Editing technique breakdown
+  segments:
+  - Confirm the media list and rights record
+  - Review the selected clips with concise reactions
+  - Rank the moments and prepare a private review draft
+  duration_minutes: 45
+  format: video-review
+- id: video-edit-review
+  subject_id: video-review
+  persona_id: nova-reviewer
+  profile_id: video-review
+  title: Nova Reviews the Edit
+  hook: Review an operator-supplied video for pacing, clarity and the strongest reusable moments.
+  interaction_prompt: Choose which editing choice to examine next.
+  clip_prompts:
+  - Best before-and-after edit
+  - One clear pacing lesson
+  segments:
+  - Confirm rights and the review goal
+  - Analyze selected time ranges
+  - Record recommendations and prepare a private review draft
+  duration_minutes: 45
+  format: video-review
+projects:
+- id: roblox-checkpoint-kit
+  game_id: roblox
+  title: Checkpoint Workshop Kit
+  deliverable: An original reusable checkpoint model kit with a small demo course.
+  stage: idea
+  next_step: Prototype one checkpoint and verify respawn behavior before packaging.
+  monetization_route: Eligible Roblox Creator Store model sales; seller onboarding
+    and asset requirements apply.
+  readiness_notes:
+  - Roblox Studio is available on Mac; sign-in and a local Studio recording test are
+    pending.
+  - Seller eligibility, asset provenance, documentation and support plan must be verified
+    before listing.
+- id: fortnite-challenge-island
+  game_id: fortnite
+  title: Challenge Island
+  deliverable: An original replayable challenge island with a clear goal and tested
+    player flow.
+  stage: idea
+  next_step: Sketch the island loop and prototype its first challenge in the supported
+    editor.
+  monetization_route: Eligible island engagement payouts and permitted in-island transactions;
+    no assumed item-shop skin sales.
+  readiness_notes:
+  - UEFN requires Windows; Fortnite Creative has a different in-game workflow.
+  - Editor access, creator-program eligibility and publishing/transaction rules remain
+    to be checked for this account.
+- id: fivem-workshop-interior
+  game_id: gta-v
+  title: FiveM Workshop Interior
+  deliverable: An original modular workshop interior and demo resource for a FiveM
+    development server.
+  stage: idea
+  next_step: Design a small original prop kit and verify its import path before building
+    the full interior.
+  monetization_route: Potential eligible FiveM resource sales via approved channels,
+    including Cfx Marketplace subject to creator access.
+  readiness_notes:
+  - Blender asset preparation can happen on Mac; GTA V/FiveM runtime testing requires
+    a compatible Windows setup.
+  - Commercial channel access, original asset rights and current Cfx/Rockstar rules
+    must be verified before sale.
+- id: gta-vi-creator-research
+  game_id: gta-vi
+  title: Future City Creator Project
+  deliverable: A future original asset or experience, conditional on verified GTA
+    VI creator tools and distribution rules.
+  stage: deferred
+  next_step: Verify official creator tools, supported platforms and commercial-use
+    terms before defining the product or scheduling episodes.
+  monetization_route: Unverified; do not forecast revenue or assume GTA V/FiveM compatibility.
+  readiness_notes:
+  - 'Backlog only: reserve a future City VI Build Class and City VI Workshop Log.'
+  - No GTA VI build shows, persona, editor integration or automated schedule are enabled.

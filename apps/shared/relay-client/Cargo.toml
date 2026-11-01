@@ -1,0 +1,20 @@
+[package]
+name = "relay-client"
+version = "0.1.0"
+edition = "2021"
+description = "Shared relay client for Stream Extend + Creator Extend"
+license = "MIT"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["full"] }
+tokio-tungstenite = { version = "0.24", features = ["native-tls"] }
+futures-util = "0.3"
+tracing = "0.1"
+reqwest = { version = "0.12", features = ["json", "native-tls"] }
+uuid = { version = "1", features = ["v4"] }
+hostname = "0.4"
+local-settings = { path = "../local-settings" }
+url = "2"

@@ -1,0 +1,16 @@
+# Maps an ai-agents persona name (the `name:` field in
+# ../../ai-agents/local-llm/personas/*.yaml) to the VTube Studio hotkey IDs
+# avatar_control.py triggers when that persona speaks.
+#
+# Set up the hotkeys in VTube Studio first (Settings -> Hotkeys), then
+# reference the same names here. A persona with no entry under `personas:`
+# falls back to `default`.
+
+default:
+  talk_hotkey: Talking
+  idle_hotkey: Idle
+
+personas:
+  caddy:
+    talk_hotkey: Talking
+    idle_hotkey: Idle

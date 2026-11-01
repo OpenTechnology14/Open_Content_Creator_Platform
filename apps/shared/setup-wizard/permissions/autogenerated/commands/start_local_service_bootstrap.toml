@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-start-local-service-bootstrap"
+description = "Enables the start_local_service_bootstrap command without any pre-configured scope."
+commands.allow = ["start_local_service_bootstrap"]
+
+[[permission]]
+identifier = "deny-start-local-service-bootstrap"
+description = "Denies the start_local_service_bootstrap command without any pre-configured scope."
+commands.deny = ["start_local_service_bootstrap"]

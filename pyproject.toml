@@ -1,0 +1,26 @@
+# Root tooling config. CLAUDE.md §6 specifies ruff for Python linting with its
+# config here; this file is that config, plus pytest's.
+
+[tool.pytest.ini_options]
+# Collect ONLY from tests/. Without this, pytest also matches
+# scripts/setup/test_obs_websocket.py — a manual connectivity utility, not a
+# test — imports it, and crashes on its import-time sys.exit().
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-q --strict-markers -m 'not live'"
+# `-m "not live"` is the offline/live split PROPOSAL_ACCEPTANCE_HARNESS.md §5
+# requires: default `pytest` / `make test` never starts a container. Run the
+# acceptance suite explicitly with `make test-acceptance` or `pytest -m live`.
+markers = [
+    "live: needs a running service (Postgres, MinIO, OBS). Excluded from the offline suite.",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# Rule selection is deliberately left at ruff's default here. Widening it is
+# P-001's CI-enforcement work, not a side effect of adding a config file —
+# ruff currently reports 4 unused-import errors that `|| true` in ci.yml is
+# still suppressing.

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  body { margin: 0; background: transparent; font-family: 'Inter', system-ui, sans-serif; color: #fff; }
+  .card {
+    position: fixed; bottom: 80px; right: 60px;
+    width: 360px; padding: 16px 20px;
+    background: rgba(12,14,22,0.9); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; display: flex; align-items: center; gap: 14px;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 400ms ease, transform 400ms ease;
+  }
+  .card.show { opacity: 1; transform: translateY(0); }
+  .logo { width: 56px; height: 56px; border-radius: 8px; background: #222; flex: none; }
+  .name { font-weight: 700; font-size: 18px; }
+  .tag  { opacity: 0.7; font-size: 14px; margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="card" id="card">
+    <img class="logo" id="logo" />
+    <div>
+      <div class="name" id="name"></div>
+      <div class="tag"  id="tag"></div>
+    </div>
+  </div>
+  <script>
+    const rep = nodecg.Replicant('sponsor');
+    const el = document.getElementById('card');
+    rep.on('change', (v) => {
+      if (!v || !v.active) { el.classList.remove('show'); return; }
+      document.getElementById('logo').src = v.active.logo ?? '';
+      document.getElementById('name').textContent = v.active.name ?? '';
+      document.getElementById('tag').textContent  = v.active.tag  ?? '';
+      el.classList.add('show');
+    });
+  </script>
+</body>
+</html>

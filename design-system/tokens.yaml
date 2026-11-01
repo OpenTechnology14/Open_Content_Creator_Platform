@@ -1,0 +1,459 @@
+# Design tokens — the machine-readable layer of the design-system hub.
+#
+# EVERYTHING HERE IS `drafted`: authored by an agent from evidence, awaiting owner review.
+# Nothing is owner-approved. Read README.md first; it explains the labels and the open decisions.
+#
+# Two kinds of value appear, and they are never mixed:
+#   observed  VERIFIED   a value found verbatim in a named source (`raw` is the exact text; `source` names the file)
+#   proposed  PROPOSED   the hub's draft default. `null` means no default can be chosen without an owner decision
+#
+# Rule used to pick the proposed defaults: the OpenTechnologyBlog value wherever the Blog defines the role (and
+# the Tailwind defaults it inherits for type sizes, weights, spacing and transition timing), because the Blog is
+# the only consumer with a complete, documented semantic set (both themes, brand accent, shadows, radius,
+# motion) and its pointer doc already names it the interim reference. Where the Blog has no value the default
+# is `null` and names the decision that blocks it. The one exception is the two product accents, which are
+# verified identical in the platform logo and the desktop apps. That is a selection, not an invention: change
+# `proposed` only by editing this file after decision D-1, never by guessing.
+schema_version: 1
+status: drafted
+updated: 2026-10-21
+review: awaiting owner review
+default_token_status: drafted      # per-token `status:` appears only when it differs (approved | deprecated)
+adoption: >-
+  A consumer implements a token only once its status is `approved`. `drafted` tokens document what exists and
+  what the hub proposes; they are not instructions. No consumer should change its implemented values because
+  of this file, and no agent should treat a drafted value as a requirement.
+
+decisions:
+  D-1:
+    question: Which palette is the ecosystem's brand?
+    ask: "Use the Blog's palette as the ecosystem brand, as the hub proposes?"
+    evidence: >-
+      Seven consumer palettes disagree (see color.brand.primary.observed). The web consumers use three
+      different blues (Blog, App, MyFeed); the platform's canonical logo and both desktop apps use orange and
+      purple on near-black; the Extend shell preview uses green; Job Hunter's admin uses its own blue.
+    options: [adopt the Blog set, adopt the App set, adopt the platform logo palette, sanction two families]
+    blocks: [color.brand, color.surface, color.text, color.border, color.focus, color.status]
+  D-2:
+    question: Do the desktop apps converge on hub tokens, or keep per-product accents?
+    ask: "Move the desktop apps onto the hub's tokens, or let each keep its own accent?"
+    evidence: Stream Extend, Creator Extend and the Extend shell define no custom properties; they hard-code hex values.
+    blocks: [pointer docs for the three desktop apps]
+  D-3:
+    question: One typeface for the ecosystem, or one per surface?
+    ask: "Use one typeface across the whole ecosystem rather than one per surface?"
+    evidence: Space Grotesk (Blog), DM Sans (MyFeed), the system stack (App, desktop apps, Job Hunter), Inter (overlays).
+    blocks: [type.family]
+  D-4:
+    question: Which success, warning and info colors does the ecosystem use?
+    ask: "Define one set of success, warning and info colors in the hub for every product to use?"
+    evidence: >-
+      No web consumer defines them. The desktop apps use at least three different greens for success and one amber
+      for warning, Job Hunter has its own, and the Ironfall pointer already expects semantic success/warning/error
+      hues from the hub.
+    blocks: [color.status.success, color.status.warning]
+  D-5:
+    question: The proposed set fails WCAG AA in several pairings (contrast.known_failures). Adjust values or accept exceptions?
+    ask: "Adjust the failing colors to pass WCAG AA, or accept them as documented exceptions?"
+    evidence: Ratios are computed from the values; see the contrast section and accessibility.md.
+    blocks: [approval of every color token that appears in a known failure]
+  D-6:
+    question: Is the accessibility baseline WCAG 2.2 AA or 2.1 AA?
+    ask: "Set the accessibility baseline at WCAG 2.2 AA rather than 2.1 AA?"
+    evidence: The App's conventions say "WCAG AA" without naming a version; this hub cites 2.2 success criteria.
+    blocks: [accessibility.md approval]
+  D-7:
+    question: Do the desktop apps adopt an icon set, and what is the icon size scale?
+    ask: "Should the desktop apps adopt a shared icon set and size scale?"
+    evidence: The web consumers all use lucide-react with no shared size scale; the desktop apps use text glyphs and emoji.
+    blocks: [iconography.md approval]
+  D-8:
+    question: Which tokens apply to engine UI (Ironfall, AnimalHouse)?
+    ask: "Apply the hub's typography and color tokens to the game engines' UI, leaving their world art alone?"
+    evidence: Ironfall's pointer draft applies typography and color; its world art direction is locked and excluded.
+    blocks: [pointer docs for the two games]
+  D-9:
+    question: What are the hub's and the fonts' licenses?
+    ask: "Will the hub follow the repository's MIT license, and will you record each font's license?"
+    evidence: >-
+      The repository's root LICENSE is MIT (prepared by P-075; the owner confirms it at OSS-D01) and covers the
+      repository's own code. No repo records a font license.
+    blocks: [iconography.md licensing, any public release of the hub]
+
+themes:
+  names: [light, dark]
+  mechanism: >-
+    A `dark` class on the root element switches to the dark values. Verified in OpenTechnologyApp
+    (src/context/ThemeContext.tsx), OpenTechnologyBlog (globals.css `.dark`) and MyFeed (styles.css `.dark`).
+    The desktop apps have one fixed theme each: Stream Extend and Creator Extend dark, the Extend shell light.
+
+# Where observations come from. `repo: hybrid-creator-platform` sources are re-read by tests on every run;
+# the others are re-read when the sibling checkout is supplied (see tests/design_system/test_observed_sources.py).
+sources:
+  blog-css:           {repo: OpenTechnologyBlog,  path: src/app/globals.css,  revision: "main@2e39f49"}
+  blog-layout:        {repo: OpenTechnologyBlog,  path: src/app/layout.tsx,   revision: "main@2e39f49"}
+  app-css:            {repo: OpenTechnologyApp,   path: src/index.css,        revision: "main@c53d84c"}
+  app-tailwind:       {repo: OpenTechnologyApp,   path: tailwind.config.js,   revision: "main@c53d84c"}
+  myfeed-css:         {repo: MyFeed,              path: src/styles.css,       revision: "main@5484d70"}
+  jobhunter-admin:    {repo: Job-Hunter,          path: admin/static/index.html, revision: "main@8f9b4f2"}
+  stream-extend-ui:   {repo: hybrid-creator-platform, path: apps/stream-extend/src/routes/+page.svelte}
+  creator-extend-ui:  {repo: hybrid-creator-platform, path: apps/creator-extend/src/routes/+page.svelte}
+  creator-inputs-ui:  {repo: hybrid-creator-platform, path: apps/creator-extend/src/lib/WorkflowInputs.svelte}
+  extend-shell-ui:    {repo: hybrid-creator-platform, path: apps/extend/src/routes/+page.svelte}
+  shared-setup-ui:    {repo: hybrid-creator-platform, path: apps/shared/ui/ModuleSetup.svelte}
+  shared-recordings-ui: {repo: hybrid-creator-platform, path: apps/shared/ui/RecordingLibrary.svelte}
+  overlay-lower-third: {repo: hybrid-creator-platform, path: modules/broadcast-graphics/nodecg/bundles/hcp-starter/graphics/lower-third.html}
+
+# Ids used as keys under every `observed` map. (The registry row's `consumers` is a different list: the
+# downstream repositories that keep a pointer doc.)
+consumers:
+  blog:          {label: OpenTechnologyBlog}
+  app:           {label: OpenTechnologyApp}
+  myfeed:        {label: MyFeed}
+  job-hunter:    {label: Job Hunter}
+  stream-extend: {label: Stream Extend (desktop)}
+  creator-extend: {label: Creator Extend (desktop)}
+  extend-shell:  {label: Extend shell preview (desktop, P-072)}
+  shared-ui:     {label: Shared Svelte components used by both desktop apps}
+  overlays:      {label: Broadcast overlays (NodeCG hcp-starter)}
+
+# ───────────────────────────── color ─────────────────────────────
+# Names are roles, never values. `maps_to` is the shadcn/ui variable the two shadcn-based consumers (App, Blog) use
+# for the same role, so those consumers can map mechanically. NOTE the role clash on `--accent`: in the Blog it is a
+# brand teal; in the App and MyFeed it is a subtle highlight tint. The hub separates them
+# (brand.accent vs surface.highlight).
+color:
+  brand.primary:
+    description: The main interactive brand color (primary buttons, links, active state).
+    maps_to: "--primary"
+    proposed: {light: "hsl(215 90% 52%)", dark: "hsl(215 90% 58%)"}
+    observed:
+      blog:          {source: blog-css, light: {value: "hsl(215 90% 52%)", raw: "--primary: 215 90% 52%"}, dark: {value: "hsl(215 90% 58%)", raw: "--primary: 215 90% 58%"}}
+      app:           {source: app-css, light: {value: "hsl(211 100% 50%)", raw: "--primary: 211 100% 50%"}, dark: {value: "hsl(211 100% 60%)", raw: "--primary: 211 100% 60%"}}
+      myfeed:        {source: myfeed-css, light: {value: "#1479f5", raw: "--primary: #1479f5"}, dark: {value: "#65a5ff", raw: "--primary: #65a5ff"}}
+      job-hunter:    {source: jobhunter-admin, dark: {value: "#4f8ff7", raw: "--accent: #4f8ff7"}, note: "its only accent; plays the primary role"}
+      stream-extend: {source: stream-extend-ui, dark: {value: "#ff6b35", raw: "h1 { color: #ff6b35;"}, note: "also button border/text and hover fill"}
+      creator-extend: {source: creator-extend-ui, dark: {value: "#7c4dff", raw: "h1 { color: #7c4dff;"}, note: "also active tab fill and button border/text"}
+      extend-shell:  {source: extend-shell-ui, light: {value: "#2b5d44", raw: ".primary, button[aria-pressed='true'] { background: #2b5d44;"}}
+  brand.primary-contrast:
+    description: Text or icon color placed on brand.primary.
+    maps_to: "--primary-foreground"
+    proposed: {light: "hsl(0 0% 100%)", dark: "hsl(0 0% 100%)"}
+    observed:
+      blog: {source: blog-css, light: {value: "hsl(0 0% 100%)", raw: "--primary-foreground: 0 0% 100%"}, dark: {value: "hsl(0 0% 100%)", raw: "--primary-foreground: 0 0% 100%"}}
+      app:  {source: app-css, light: {value: "hsl(0 0% 100%)", raw: "--primary-foreground: 0 0% 100%"}, dark: {value: "hsl(0 0% 100%)", raw: "--primary-foreground: 0 0% 100%"}}
+  brand.accent:
+    description: A second brand hue, distinct from brand.primary (not a hover tint).
+    maps_to: "--accent (Blog only)"
+    proposed: {light: "hsl(165 70% 42%)", dark: "hsl(165 70% 48%)"}
+    note: "The platform logo's second color is #7c4dff (see brand_marks); the App and MyFeed define no second brand hue."
+    observed:
+      blog:  {source: blog-css, light: {value: "hsl(165 70% 42%)", raw: "--accent: 165 70% 42%"}, dark: {value: "hsl(165 70% 48%)", raw: "--accent: 165 70% 48%"}}
+  brand.accent-contrast:
+    description: Text or icon color placed on brand.accent.
+    maps_to: "--accent-foreground (Blog)"
+    proposed: {light: "hsl(0 0% 100%)", dark: "hsl(0 0% 100%)"}
+    observed:
+      blog: {source: blog-css, light: {value: "hsl(0 0% 100%)", raw: "--accent-foreground: 0 0% 100%"}, dark: {value: "hsl(0 0% 100%)", raw: "--accent-foreground: 0 0% 100%"}}
+  surface.base:
+    description: The page background.
+    maps_to: "--background"
+    proposed: {light: "hsl(220 20% 97%)", dark: "hsl(222 30% 8%)"}
+    observed:
+      blog:          {source: blog-css, light: {value: "hsl(220 20% 97%)", raw: "--background: 220 20% 97%"}, dark: {value: "hsl(222 30% 8%)", raw: "--background: 222 30% 8%"}}
+      app:           {source: app-css, light: {value: "hsl(240 5% 96%)", raw: "--background: 240 5% 96%"}, dark: {value: "hsl(240 10% 10%)", raw: "--background: 240 10% 10%"}}
+      myfeed:        {source: myfeed-css, light: {value: "#f7f8fa", raw: "--bg: #f7f8fa"}, dark: {value: "#171a20", raw: "--bg: #171a20"}}
+      job-hunter:    {source: jobhunter-admin, dark: {value: "#0f1117", raw: "--bg: #0f1117"}}
+      stream-extend: {source: stream-extend-ui, dark: {value: "#0f0f0f", raw: "background: #0f0f0f;"}}
+      creator-extend: {source: creator-extend-ui, dark: {value: "#0f0f0f", raw: "background: #0f0f0f;"}}
+      extend-shell:  {source: extend-shell-ui, light: {value: "#f6f5f1", raw: "background: #f6f5f1;"}}
+  surface.raised:
+    description: Cards, panels and popovers sitting on surface.base.
+    maps_to: "--card, --popover"
+    proposed: {light: "hsl(0 0% 100%)", dark: "hsl(222 25% 12%)"}
+    observed:
+      blog:          {source: blog-css, light: {value: "hsl(0 0% 100%)", raw: "--card: 0 0% 100%"}, dark: {value: "hsl(222 25% 12%)", raw: "--card: 222 25% 12%"}}
+      app:           {source: app-css, light: {value: "hsl(0 0% 100%)", raw: "--card: 0 0% 100%"}, dark: {value: "hsl(240 10% 14%)", raw: "--card: 240 10% 14%"}}
+      myfeed:        {source: myfeed-css, light: {value: "#fff", raw: "--card: #fff"}, dark: {value: "#20242c", raw: "--card: #20242c"}}
+      job-hunter:    {source: jobhunter-admin, dark: {value: "#1a1d27", raw: "--surface: #1a1d27"}}
+      stream-extend: {source: stream-extend-ui, dark: {value: "#1a1a1a", raw: "background: #1a1a1a;"}, note: ".panel"}
+      creator-extend: {source: creator-extend-ui, dark: {value: "#1a1a1a", raw: "background: #1a1a1a;"}, note: ".panel"}
+      extend-shell:  {source: extend-shell-ui, light: {value: "#fffefa", raw: ".intro, .task { background: #fffefa;"}}
+  surface.secondary:
+    description: A second fill for secondary buttons, tabs and chips.
+    maps_to: "--secondary"
+    proposed: {light: "hsl(220 15% 92%)", dark: "hsl(222 20% 18%)"}
+    observed:
+      blog:          {source: blog-css, light: {value: "hsl(220 15% 92%)", raw: "--secondary: 220 15% 92%"}, dark: {value: "hsl(222 20% 18%)", raw: "--secondary: 222 20% 18%"}}
+      app:           {source: app-css, light: {value: "hsl(240 5% 93%)", raw: "--secondary: 240 5% 93%"}, dark: {value: "hsl(240 10% 20%)", raw: "--secondary: 240 10% 20%"}}
+      myfeed:        {source: myfeed-css, light: {value: "#f3f5f8", raw: "--secondary: #f3f5f8"}, dark: {value: "#282d36", raw: "--secondary: #282d36"}}
+      job-hunter:    {source: jobhunter-admin, dark: {value: "#232733", raw: "--surface2: #232733"}}
+      creator-extend: {source: creator-extend-ui, dark: {value: "#2a2a2a", raw: "background: #2a2a2a;"}, note: ".tab"}
+  surface.subtle:
+    description: A very quiet fill for muted areas (skeletons, disabled backgrounds).
+    maps_to: "--muted"
+    proposed: {light: "hsl(220 15% 94%)", dark: "hsl(222 20% 16%)"}
+    observed:
+      blog: {source: blog-css, light: {value: "hsl(220 15% 94%)", raw: "--muted: 220 15% 94%"}, dark: {value: "hsl(222 20% 16%)", raw: "--muted: 222 20% 16%"}}
+      app:  {source: app-css, light: {value: "hsl(240 5% 93%)", raw: "--muted: 240 5% 93%"}, dark: {value: "hsl(240 8% 18%)", raw: "--muted: 240 8% 18%"}}
+  surface.highlight:
+    description: A subtle tint for hover, selection and the current item (shadcn's meaning of `accent`).
+    maps_to: "--accent (App, MyFeed)"
+    proposed: null
+    blocked_by: D-1
+    observed:
+      app:    {source: app-css, light: {value: "hsl(211 100% 95%)", raw: "--accent: 211 100% 95%"}, dark: {value: "hsl(211 60% 20%)", raw: "--accent: 211 60% 20%"}}
+      myfeed: {source: myfeed-css, light: {value: "#edf5ff", raw: "--accent: #edf5ff"}, dark: {value: "#243954", raw: "--accent: #243954"}}
+  text.primary:
+    description: Body and heading text.
+    maps_to: "--foreground"
+    proposed: {light: "hsl(220 25% 10%)", dark: "hsl(210 20% 92%)"}
+    observed:
+      blog:          {source: blog-css, light: {value: "hsl(220 25% 10%)", raw: "--foreground: 220 25% 10%"}, dark: {value: "hsl(210 20% 92%)", raw: "--foreground: 210 20% 92%"}}
+      app:           {source: app-css, light: {value: "hsl(240 10% 8%)", raw: "--foreground: 240 10% 8%"}, dark: {value: "hsl(0 0% 93%)", raw: "--foreground: 0 0% 93%"}}
+      myfeed:        {source: myfeed-css, light: {value: "#252a35", raw: "--fg: #252a35"}, dark: {value: "#e9ecf2", raw: "--fg: #e9ecf2"}}
+      job-hunter:    {source: jobhunter-admin, dark: {value: "#e4e7f0", raw: "--text: #e4e7f0"}}
+      stream-extend: {source: stream-extend-ui, dark: {value: "#e0e0e0", raw: "color: #e0e0e0;"}}
+      creator-extend: {source: creator-extend-ui, dark: {value: "#e0e0e0", raw: "color: #e0e0e0;"}}
+      extend-shell:  {source: extend-shell-ui, light: {value: "#252b29", raw: "color: #252b29;"}}
+      overlays:      {source: overlay-lower-third, dark: {value: "#fff", raw: "color: #fff;"}, note: "text over video; transparent background"}
+  text.muted:
+    description: Secondary and helper text.
+    maps_to: "--muted-foreground"
+    proposed: {light: "hsl(220 10% 46%)", dark: "hsl(215 15% 55%)"}
+    observed:
+      blog:          {source: blog-css, light: {value: "hsl(220 10% 46%)", raw: "--muted-foreground: 220 10% 46%"}, dark: {value: "hsl(215 15% 55%)", raw: "--muted-foreground: 215 15% 55%"}}
+      app:           {source: app-css, light: {value: "hsl(240 4% 43%)", raw: "--muted-foreground: 240 4% 43%"}, dark: {value: "hsl(240 5% 58%)", raw: "--muted-foreground: 240 5% 58%"}}
+      myfeed:        {source: myfeed-css, light: {value: "#858b97", raw: "--muted: #858b97"}, dark: {value: "#949ba9", raw: "--muted: #949ba9"}}
+      job-hunter:    {source: jobhunter-admin, dark: {value: "#8b90a0", raw: "--text-dim: #8b90a0"}}
+      stream-extend: {source: stream-extend-ui, dark: {value: "#888", raw: "color: #888;"}, note: ".hint and .indicator"}
+      creator-extend: {source: creator-extend-ui, dark: {value: "#888", raw: ".hint { color: #888;"}}
+      extend-shell:  {source: extend-shell-ui, light: {value: "#687c6c", raw: ".eyebrow { color: #687c6c; }"}}
+  border.default:
+    description: Dividers and card borders (decorative; see border.input for control boundaries).
+    maps_to: "--border"
+    proposed: {light: "hsl(220 15% 88%)", dark: "hsl(222 20% 18%)"}
+    observed:
+      blog:          {source: blog-css, light: {value: "hsl(220 15% 88%)", raw: "--border: 220 15% 88%"}, dark: {value: "hsl(222 20% 18%)", raw: "--border: 222 20% 18%"}}
+      app:           {source: app-css, light: {value: "hsl(240 6% 84%)", raw: "--border: 240 6% 84%"}, dark: {value: "hsl(240 8% 24%)", raw: "--border: 240 8% 24%"}}
+      myfeed:        {source: myfeed-css, light: {value: "#e8ebf0", raw: "--border: #e8ebf0"}, dark: {value: "#303540", raw: "--border: #303540"}}
+      job-hunter:    {source: jobhunter-admin, dark: {value: "#2e3345", raw: "--border: #2e3345"}}
+      stream-extend: {source: stream-extend-ui, dark: {value: "#333", raw: "border: 1px solid #333;"}}
+      creator-extend: {source: creator-extend-ui, dark: {value: "#333", raw: "border: 1px solid #333;"}}
+      extend-shell:  {source: extend-shell-ui, light: {value: "#dedfd7", raw: "border: 1px solid #dedfd7;"}}
+  border.input:
+    description: The boundary of an input, select or other control a user must be able to find.
+    maps_to: "--input"
+    proposed: {light: "hsl(220 15% 88%)", dark: "hsl(222 20% 18%)"}
+    observed:
+      blog:         {source: blog-css, light: {value: "hsl(220 15% 88%)", raw: "--input: 220 15% 88%"}, dark: {value: "hsl(222 20% 18%)", raw: "--input: 222 20% 18%"}}
+      app:          {source: app-css, light: {value: "hsl(240 6% 88%)", raw: "--input: 240 6% 88%"}, dark: {value: "hsl(240 8% 22%)", raw: "--input: 240 8% 22%"}}
+      extend-shell: {source: extend-shell-ui, light: {value: "#cbd2c7", raw: "border: 1px solid #cbd2c7;"}}
+  focus.ring:
+    description: The visible keyboard-focus indicator.
+    maps_to: "--ring"
+    proposed: {light: "hsl(215 90% 52%)", dark: "hsl(215 90% 58%)"}
+    observed:
+      blog:          {source: blog-css, light: {value: "hsl(215 90% 52%)", raw: "--ring: 215 90% 52%"}, dark: {value: "hsl(215 90% 58%)", raw: "--ring: 215 90% 58%"}}
+      app:           {source: app-css, light: {value: "hsl(211 100% 50%)", raw: "--ring: 211 100% 50%"}, dark: {value: "hsl(211 100% 60%)", raw: "--ring: 211 100% 60%"}}
+      myfeed:        {source: myfeed-css, note: "2px solid var(--primary) on buttons and links", light: {value: "#1479f5", raw: "outline: 2px solid var(--primary);"}}
+      creator-extend: {source: creator-inputs-ui, dark: {value: "#c6adff", raw: "outline: 2px solid #c6adff;"}}
+      shared-ui:     {source: shared-setup-ui, dark: {value: "#c6b2f2", raw: "outline: 2px solid #c6b2f2;"}}
+      extend-shell:  {source: extend-shell-ui, light: {value: "#c69045", raw: "outline: 3px solid #c69045;"}, note: "3px with 3px offset"}
+  status.danger:
+    description: Errors and destructive actions.
+    maps_to: "--destructive"
+    proposed: {light: "hsl(0 84% 60%)", dark: "hsl(0 62.8% 30.6%)"}
+    observed:
+      blog:          {source: blog-css, light: {value: "hsl(0 84% 60%)", raw: "--destructive: 0 84% 60%"}, dark: {value: "hsl(0 62.8% 30.6%)", raw: "--destructive: 0 62.8% 30.6%"}}
+      app:           {source: app-css, light: {value: "hsl(4 90% 57%)", raw: "--destructive: 4 90% 57%"}, dark: {value: "hsl(4 80% 58%)", raw: "--destructive: 4 80% 58%"}}
+      job-hunter:    {source: jobhunter-admin, dark: {value: "#f87171", raw: "--red: #f87171"}}
+      stream-extend: {source: stream-extend-ui, dark: {value: "#f44336", raw: "color: #f44336;"}, note: ".obs-error"}
+      creator-extend: {source: creator-extend-ui, dark: {value: "#f44336", raw: ".wf-run-error { color: #f44336; }"}}
+      shared-ui:     {source: shared-recordings-ui, dark: {value: "#ff8d8d", raw: ".error, .warning { color: #ff8d8d; }"}, note: "a different red from the app pages"}
+      extend-shell:  {source: extend-shell-ui, light: {value: "#9d3434", raw: ".error { color: #9d3434; }"}}
+  status.danger-contrast:
+    description: Text or icon color placed on status.danger.
+    maps_to: "--destructive-foreground"
+    proposed: {light: "hsl(0 0% 100%)", dark: "hsl(210 40% 98%)"}
+    observed:
+      blog: {source: blog-css, light: {value: "hsl(0 0% 100%)", raw: "--destructive-foreground: 0 0% 100%"}, dark: {value: "hsl(210 40% 98%)", raw: "--destructive-foreground: 210 40% 98%"}}
+      app:  {source: app-css, light: {value: "hsl(0 0% 100%)", raw: "--destructive-foreground: 0 0% 100%"}, dark: {value: "hsl(0 0% 100%)", raw: "--destructive-foreground: 0 0% 100%"}}
+  status.success:
+    description: Success and "connected" states.
+    proposed: null
+    blocked_by: D-4
+    observed:
+      job-hunter:    {source: jobhunter-admin, dark: {value: "#34d399", raw: "--green: #34d399"}}
+      stream-extend: {source: stream-extend-ui, dark: {value: "#4caf50", raw: "color: #4caf50;"}, note: ".indicator.connected text; the message color is #a4d9b1"}
+      shared-ui:     {source: shared-recordings-ui, dark: {value: "#71d28d", raw: "color: #71d28d;"}, note: "status chips; messages use #a4d9b1"}
+      extend-shell:  {source: extend-shell-ui, light: {value: "#2b5d44", raw: ".notice { color: #2b5d44; }"}}
+  status.warning:
+    description: Warnings and caution states.
+    proposed: null
+    blocked_by: D-4
+    observed:
+      creator-extend: {source: creator-extend-ui, dark: {value: "#e39b43", raw: "color: #e39b43;"}, note: ".render-tools"}
+      job-hunter:     {source: jobhunter-admin, dark: {value: "#fbbf24", raw: "--yellow: #fbbf24"}, note: "its orange is #fb923c"}
+  product.stream-extend:
+    description: Stream Extend's identity color (heading, outline buttons, app icon family).
+    proposed: {dark: "#ff6b35"}
+    observed:
+      stream-extend: {source: stream-extend-ui, dark: {value: "#ff6b35", raw: "h2 { color: #ff6b35;"}}
+  product.creator-extend:
+    description: Creator Extend's identity color (heading, active tab, outline buttons).
+    proposed: {dark: "#7c4dff"}
+    observed:
+      creator-extend: {source: creator-extend-ui, dark: {value: "#7c4dff", raw: "h2 { color: #7c4dff;"}}
+
+# ───────────────────────────── type ─────────────────────────────
+type:
+  family.sans:
+    description: The UI and body family.
+    proposed: "'Space Grotesk', system-ui, sans-serif"
+    blocked_by: D-3
+    observed:
+      blog:          {source: blog-css, value: "var(--font-space-grotesk), system-ui, sans-serif", raw: "--font-sans: var(--font-space-grotesk), system-ui, sans-serif"}
+      blog-loading:  {source: blog-layout, value: "Space Grotesk via next/font/google, weights 400 500 600 700, latin", raw: 'weight: ["400", "500", "600", "700"],'}
+      app:           {source: app-css, value: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',", raw: "font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',"}
+      myfeed:        {source: myfeed-css, value: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif", raw: "'DM Sans',"}
+      stream-extend: {source: stream-extend-ui, value: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", raw: "font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;"}
+      extend-shell:  {source: extend-shell-ui, value: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", raw: "font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;"}
+      overlays:      {source: overlay-lower-third, value: "'Inter', system-ui, sans-serif", raw: "font-family: 'Inter', system-ui, sans-serif;"}
+  family.mono:
+    description: Code and tabular text.
+    proposed: "'JetBrains Mono', monospace"
+    blocked_by: D-3
+    observed:
+      blog: {source: blog-css, value: "var(--font-jetbrains-mono), monospace", raw: "--font-mono: var(--font-jetbrains-mono), monospace", note: "JetBrains Mono, weights 400-700"}
+  weight:
+    proposed: {normal: 400, medium: 500, semibold: 600, bold: 700}
+    basis: "Tailwind 4.2.1 defaults as installed in the Blog (read 2026-10-21, not a tracked file); the Blog loads exactly these four weights."
+  size:
+    description: Type scale in rem. Sizes are the Tailwind defaults the Blog inherits (it overrides none).
+    proposed: {xs: 0.75rem, sm: 0.875rem, base: 1rem, lg: 1.125rem, xl: 1.25rem, 2xl: 1.5rem, 3xl: 1.875rem, 4xl: 2.25rem, 5xl: 3rem}
+    basis: "tailwindcss 4.2.1 theme.css --text-xs..--text-5xl, read from the Blog's installed package on 2026-10-21. Line heights differ between Tailwind 3 and 4 and are not proposed here."
+    observed:
+      blog-prose:    {source: blog-css, value: {h2: "1.6rem / 1.3", h3: "1.25rem / 1.35", h4: "1.075rem / 1.4"}, raw: "font-size: 1.6rem;", note: "article headings override the scale"}
+      app:           {source: app-css, value: "body 15px", raw: "font-size: 15px;"}
+      extend-shell:  {source: extend-shell-ui, value: {h1: 34px, h2: 22px}, raw: "h1 { margin: 7px 0 30px; font-size: 34px;"}
+      overlays:      {source: overlay-lower-third, value: {title: 28px, subtitle: 18px}, raw: ".title { font-weight: 700; font-size: 28px; }"}
+      desktop-apps:  {source: stream-extend-ui, value: "ad hoc rem sizes from 0.72rem to 2rem; no scale", raw: "font-size: 0.9rem;"}
+
+# ───────────────────────────── space ─────────────────────────────
+space:
+  unit:
+    proposed: 0.25rem
+    basis: "Tailwind 4.2.1 --spacing: 0.25rem (Blog, read 2026-10-21). All three shadcn/Tailwind consumers sit on this 4px grid."
+  scale:
+    description: Steps as multiples of the unit (step 4 = 1rem).
+    proposed: [1, 2, 3, 4, 6, 8, 12, 16]
+    basis: "A compact subset of Tailwind's steps. The desktop apps' dominant gaps (0.5rem, 1rem, 1.5rem) are steps 2, 4 and 6."
+  observed_off_grid:
+    description: Desktop-app gaps that are not multiples of the unit.
+    values: {".7rem": 7, ".6rem": 7, ".4rem": 5, ".45rem": 4, "0.35rem": 3}
+    source: apps/**/*.svelte
+    raw: "gap: .7rem"
+
+# ───────────────────────────── radius ─────────────────────────────
+radius:
+  base:
+    proposed: 0.625rem
+    basis: Blog --radius.
+    observed:
+      blog: {source: blog-css, value: 0.625rem, raw: "--radius: 0.625rem"}
+      app:  {source: app-css, value: 0.75rem, raw: "--radius: 0.75rem"}
+  derived:
+    description: Both shadcn consumers derive the scale from the base.
+    proposed: {lg: "base", md: "base - 2px", sm: "base - 4px"}
+    observed:
+      blog: {source: blog-css, raw: "--radius-md: calc(var(--radius) - 2px);"}
+      app:  {source: app-tailwind, raw: 'md: "calc(var(--radius) - 2px)",'}
+  observed_desktop:
+    description: Border radii in the desktop apps, by declaration count.
+    values: {8px: 18, 6px: 14, 12px: 11, 7px: 9, 10px: 6}
+    source: apps/**/*.svelte
+    raw: "border-radius: 8px"
+
+# ───────────────────────────── shadow ─────────────────────────────
+shadow:
+  card:
+    proposed: {light: "0 1px 3px 0 hsl(220 25% 10% / 0.06), 0 1px 2px -1px hsl(220 25% 10% / 0.06)", dark: "0 1px 3px 0 hsl(0 0% 0% / 0.2)"}
+    observed:
+      blog: {source: blog-css, light: {raw: "--shadow-card: 0 1px 3px 0 hsl(220 25% 10% / 0.06), 0 1px 2px -1px hsl(220 25% 10% / 0.06);"}, dark: {raw: "--shadow-card: 0 1px 3px 0 hsl(0 0% 0% / 0.2);"}}
+  card-hover:
+    proposed: {light: "0 10px 30px -8px hsl(215 90% 52% / 0.15)", dark: "0 10px 30px -8px hsl(215 90% 58% / 0.25)"}
+    observed:
+      blog: {source: blog-css, light: {raw: "--shadow-card-hover: 0 10px 30px -8px hsl(215 90% 52% / 0.15);"}, dark: {raw: "--shadow-card-hover: 0 10px 30px -8px hsl(215 90% 58% / 0.25);"}}
+  observed_other:
+    app:    {source: app-tailwind, value: "apple, apple-md, apple-lg (rgba black, 3 elevations)", raw: 'apple: "0 2px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05)",'}
+    myfeed: {source: myfeed-css, value: "0 4px 16px #29374b05", raw: "--shadow: 0 4px 16px #29374b05"}
+    desktop-apps: "none: the Stream Extend, Creator Extend and Extend shell pages declare no box-shadow; they separate surfaces with borders"
+
+# ───────────────────────────── motion ─────────────────────────────
+motion:
+  duration:
+    description: Transition and animation durations.
+    proposed: {fast: 150ms, base: 200ms, slow: 400ms}
+    basis: >-
+      150ms is Tailwind's default transition duration (Blog, read 2026-10-21) and MyFeed's `transform 0.15s`;
+      200ms is the Blog's accordion and the desktop apps' `0.2s` transitions; 400ms is the Blog's fade-in.
+    observed:
+      blog:          {source: blog-css, value: {accordion: 0.2s, fade-in: 0.4s}, raw: "--animate-fade-in: fade-in 0.4s ease-out forwards;"}
+      stream-extend: {source: stream-extend-ui, value: "all 0.2s", raw: "0.2s"}
+      myfeed:        {source: myfeed-css, value: "transform 0.15s", raw: "transition: transform 0.15s;"}
+  easing:
+    proposed: ease-out
+    basis: The Blog's three animations all use ease-out.
+  reduced_motion:
+    rule: Honor prefers-reduced-motion everywhere.
+    observed: "Verified in MyFeed only (a global animation/transition: none under the media query); absent in the Blog, the App and the three desktop pages."
+
+# ───────────────────────────── brand marks ─────────────────────────────
+# Verified from files in this repository. These are marks, not interface tokens.
+brand_marks:
+  hybrid-platform:
+    file: docs/assets/logo.svg
+    colors: {ground: "#1a1a2e", stroke: "#ff6b35", accent: "#7c4dff", line: "#e0e0e0"}
+    raw: ['fill="#1a1a2e"', 'stroke="#ff6b35"', 'stroke="#7c4dff"', 'stroke="#e0e0e0"']
+    note: Declared canonical in modules/social-management/catalog.yaml.
+  opentechapp:
+    file: modules/social-management/assets/brands/opentechapp.svg
+    colors: {ground: "#0052cc", glyph: white}
+    raw: ['fill="#0052cc"']
+    note: A favicon copied from the owner workspace on 2026-09-10, per catalog.yaml.
+
+# ───────────────────────────── contrast ─────────────────────────────
+# Computed, never estimated: WCAG 2.x relative-luminance ratio. tests/design_system re-computes every number here.
+# `min` is 4.5 for normal text, 3.0 for large text and for UI components and graphical objects.
+contrast:
+  pairs:
+    - {id: text-on-base,        fg: text.primary,           bg: surface.base,    min: 4.5, use: body text}
+    - {id: muted-on-base,       fg: text.muted,             bg: surface.base,    min: 4.5, use: helper text}
+    - {id: muted-on-raised,     fg: text.muted,             bg: surface.raised,  min: 4.5, use: helper text on cards}
+    - {id: muted-on-subtle,     fg: text.muted,             bg: surface.subtle,  min: 4.5, use: helper text on muted areas}
+    - {id: primary-contrast,    fg: brand.primary-contrast, bg: brand.primary,   min: 4.5, use: primary button label}
+    - {id: primary-as-text,     fg: brand.primary,          bg: surface.base,    min: 4.5, use: link text}
+    - {id: accent-contrast,     fg: brand.accent-contrast,  bg: brand.accent,    min: 4.5, use: accent badge label}
+    - {id: accent-as-graphic,   fg: brand.accent,           bg: surface.base,    min: 3.0, use: accent icon or border}
+    - {id: danger-contrast,     fg: status.danger-contrast, bg: status.danger,   min: 4.5, use: destructive button label}
+    - {id: focus-ring,          fg: focus.ring,             bg: surface.base,    min: 3.0, use: focus indicator}
+    - {id: input-boundary,      fg: border.input,           bg: surface.base,    min: 3.0, use: control boundary}
+  known_failures:
+    - {pair: muted-on-subtle,  theme: light, ratio: 4.24, decision: D-5}
+    - {pair: muted-on-subtle,  theme: dark,  ratio: 4.30, decision: D-5}
+    - {pair: primary-contrast, theme: light, ratio: 4.43, decision: D-5}
+    - {pair: primary-contrast, theme: dark,  ratio: 3.66, decision: D-5}
+    - {pair: primary-as-text,  theme: light, ratio: 4.12, decision: D-5}
+    - {pair: accent-contrast,  theme: light, ratio: 2.57, decision: D-5}
+    - {pair: accent-contrast,  theme: dark,  ratio: 1.97, decision: D-5}
+    - {pair: accent-as-graphic, theme: light, ratio: 2.40, decision: D-5}
+    - {pair: danger-contrast,  theme: light, ratio: 3.78, decision: D-5}
+    - {pair: input-boundary,   theme: light, ratio: 1.25, decision: D-5}
+    - {pair: input-boundary,   theme: dark,  ratio: 1.31, decision: D-5}
+  observed_pairs:
+    - {id: app-primary-contrast-light, fg: "hsl(0 0% 100%)", bg: "hsl(211 100% 50%)", min: 4.5, ratio: 3.97, where: OpenTechnologyApp primary button, light}
+    - {id: app-primary-contrast-dark,  fg: "hsl(0 0% 100%)", bg: "hsl(211 100% 60%)", min: 4.5, ratio: 3.03, where: OpenTechnologyApp primary button, dark}
+    - {id: stream-hover-fill,          fg: "#ffffff", bg: "#ff6b35", min: 4.5, ratio: 2.84, where: Stream Extend outline button on hover}
+    - {id: creator-accent-text,        fg: "#7c4dff", bg: "#1a1a1a", min: 4.5, ratio: 3.62, where: Creator Extend heading and button text on a panel}
+    - {id: shell-focus,                fg: "#c69045", bg: "#f6f5f1", min: 3.0, ratio: 2.57, where: Extend shell focus outline}

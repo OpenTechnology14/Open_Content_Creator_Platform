@@ -1,0 +1,14 @@
+# The model/adapter provenance ledger. See README.md for the schema.
+#
+# Deliberately empty — no entry here has a fabricated checksum. Every
+# weight currently referenced by modules/realtime-ai/comfyui/models.md,
+# modules/sports-analytics/models/README.md, and the generation modules'
+# adapter configs needs a real `model_registry.cli checksum` run against
+# the actual downloaded file before it can get a real entry. Populating
+# this with guessed or placeholder hashes would be worse than leaving it
+# empty — it would look verified without being verified.
+#
+# Add an entry with:
+#   python3 -m model_registry.cli checksum /path/to/weight.safetensors
+# then fill in the fields this file's README documents.
+entries: []

@@ -1,0 +1,108 @@
+name: Desktop installers
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, build/desktop-installers]
+    paths:
+      - 'apps/**'
+      - 'configs/**'
+      - 'modules/**/setup/**'
+      - 'scripts/setup/**'
+      - '.github/workflows/desktop-installers.yml'
+      - 'scripts/testing/windows_installer.ps1'
+
+# Private CI artifacts only. Public releases and signing remain P-001 work.
+permissions:
+  contents: read
+
+concurrency:
+  group: desktop-installers-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows:
+    name: Windows x64 / ${{ matrix.app }}
+    runs-on: windows-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [stream-extend, creator-extend]
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: apps/${{ matrix.app }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/${{ matrix.app }}/package-lock.json
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: apps/${{ matrix.app }}/src-tauri -> target
+          key: windows-installer-${{ matrix.app }}
+          cache-on-failure: true
+      - name: Install frontend build dependencies
+        run: npm ci
+      - name: Check frontend
+        run: npm run check
+      - name: Build release NSIS installer
+        run: npm run tauri build -- --bundles nsis -- --locked
+      - name: Test native application
+        run: cargo test --release --locked --manifest-path src-tauri/Cargo.toml
+      - name: Install and open native app
+        working-directory: .
+        run: ./scripts/testing/windows_installer.ps1 -App '${{ matrix.app }}'
+      - name: Package installer and provenance
+        env:
+          INSTALLER_APP: ${{ matrix.app }}
+          SOURCE_REVISION: ${{ github.sha }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $installers = @(Get-ChildItem src-tauri/target/release/bundle/nsis/*-setup.exe)
+          if ($installers.Count -ne 1) { throw 'Expected exactly one fresh NSIS installer' }
+          $destination = Join-Path $env:GITHUB_WORKSPACE "output/installers/$env:INSTALLER_APP-windows-x64"
+          New-Item -ItemType Directory -Force $destination | Out-Null
+          Copy-Item $installers[0].FullName $destination
+          $hash = (Get-FileHash $installers[0].FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$hash  $($installers[0].Name)" | Set-Content (Join-Path $destination 'SHA256SUMS.txt')
+          @{
+            app = $env:INSTALLER_APP
+            version = (Get-Content src-tauri/tauri.conf.json | ConvertFrom-Json).version
+            source_commit = $env:SOURCE_REVISION
+            target = 'x86_64-pc-windows-msvc'
+            profile = 'release'
+            signing = 'unsigned-private-prerelease'
+            installer = $installers[0].Name
+            sha256 = $hash
+            run_url = "$env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID"
+            acceptance = 'CI install and native window smoke; clean physical Windows acceptance remains open'
+          } | ConvertTo-Json | Set-Content (Join-Path $destination 'build-info.json')
+          @'
+          Private pre-release build; unsigned. Run the setup EXE, then launch from the finish
+          page or Start menu > Open Content Creator Platform. OBS, Docker, Python and an account
+          are not required to open Module setup. WebView2 is installed automatically if missing;
+          that Microsoft runtime download requires internet. Configure only the modules you need.
+          Native CI installation/window evidence is included; this is not physical capture or
+          clean-workstation acceptance. Verify the installer against SHA256SUMS.txt.
+          '@ | Set-Content (Join-Path $destination 'INSTALL.txt')
+      - name: Upload installable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.app }}-windows-x64
+          path: output/installers/${{ matrix.app }}-windows-x64/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      - name: Upload installation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.app }}-windows-smoke
+          path: output/installer-smoke/${{ matrix.app }}/
+          if-no-files-found: warn
+          retention-days: 30

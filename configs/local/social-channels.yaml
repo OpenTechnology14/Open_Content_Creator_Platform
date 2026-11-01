@@ -1,0 +1,21 @@
+schema_version: 1
+# Logical destinations only. Connect real accounts privately through Social Management.
+channels:
+  - id: opentechnology
+    name: OpenTechnology
+    purpose: walkthroughs
+    profile_id: opentech-marketing
+    source_kinds: [marketing-subject]
+    description: Project walkthroughs and demonstrations, with a playlist for each project.
+  - id: ai-content
+    name: AI Content Studio
+    purpose: original-content
+    profile_id: content-main
+    source_kinds: [blog-post]
+    description: Original explainers, experiments and stories inspired by reviewed Blog concepts.
+  - id: gaming
+    name: Gaming
+    purpose: gaming
+    profile_id: stream-main
+    source_kinds: [owned-recording, game-brief]
+    description: Gaming shows and highlights. Add separate channels when their audiences warrant it.

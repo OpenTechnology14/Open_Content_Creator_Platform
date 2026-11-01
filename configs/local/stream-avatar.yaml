@@ -1,0 +1,12 @@
+schema_version: 1
+on_air_session: minecraft-main
+event_ttl_seconds: 15
+# Bind the owned VTS model ID and all eight body-only cue IDs before enabling.
+full_body_enabled: false
+speech_cues: []
+vts_url: ws://127.0.0.1:8001
+avatars:
+  nova-vrm:
+    # Replace these with the exact IDs configured in VTube Studio.
+    talk_hotkey: Talking
+    idle_hotkey: Idle

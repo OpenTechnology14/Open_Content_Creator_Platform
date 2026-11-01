@@ -1,0 +1,126 @@
+# Source-backed draft scripts for the ai-control-layer Nova profile (P-070).
+# Blog PR #38 merged 2026-09-26; local main verified at 03970722 on 2026-09-30.
+# AI governance and practice, distinct from the four-lesson AI Learning Series.
+# scaffolded means a source guide exists, NOT that narration is approved, the episode aired,
+# the page is deployed, or the described app feature shipped. The title evidence is deliberately
+# only a source-presence/drift check. Publication and app-capability review remain separate gates.
+# Discovery navigation and counts have one canonical home: ../modules.yml.
+schema_version: 1
+
+module: ai-control-layer
+product: opentechnology
+source_docs:
+  module: "OpenTechnologyBlog docs/AI_CONTROL_LAYER_MODULE.md"
+  coverage: "OpenTechnologyBlog marketing/ai-control-layer/scope-and-release.md"
+  status: "Per-guide title in merged content/blog/*.mdx; source presence only"
+
+asset_landing:
+  stream-script: {doc: ai_control_layer, anchor: surfaces}
+
+channels:
+  stream: "Scripted AI-VOICE delivery; no automatic playback"
+  seo: "OpenTechnologyBlog — source post"
+  x_twitter: "X — clips and thread from the recording"
+  reddit: "Reddit — reply threads only, 9:1 rule"
+
+plan_notes:
+  editorial: "reviewable source outline; no product pricing or release claim"
+
+# Audience assumptions inherited from the discovery record, not measured demand.
+icps:
+  technical-builder:
+    rank: 1
+    who: Builders who need explainable AI practice and evidence
+    why_they_switch: They need repeatable controls around AI work rather than undocumented model output
+    where: YouTube, X, r/ClaudeAI, r/ChatGPTCoding
+  it-operator:
+    rank: 2
+    who: IT admins and small-team operators evaluating AI safely
+    why_they_switch: They need permission, review and evidence boundaries before adoption
+    where: LinkedIn, r/sysadmin, r/ITManagers
+
+# YAML defaults keep every source on the same conservative draft-only policy.
+script_defaults: &script_defaults
+  upstream: none
+  visibility: private
+  status: scaffolded
+  plan: editorial
+  coverage:
+    source_guide: true
+    publication_verified: false
+    stream_episode: false
+  icps: [technical-builder, it-operator]
+  channels: [stream]
+  assets: [stream-script]
+
+subjects:
+  - <<: *script_defaults
+    id: ai-use-best-practices
+    name: "A Practical Routine for Using AI Well"
+    what_it_is: "Define the task, limit the data, verify the output and keep a record of what worked."
+    status_evidence:
+      file: content/blog/ai-use-best-practices.mdx
+      contains: "title: \"A Practical Routine for Using AI Well\""
+  - <<: *script_defaults
+    id: building-with-ai-control-layer
+    name: "Build with AI: Keep the Instructions Connected"
+    what_it_is: "Connect README guidance, agent instructions, proposals, tests and release evidence so AI-assisted changes stay reviewable."
+    status_evidence:
+      file: content/blog/building-with-ai-control-layer.mdx
+      contains: "title: \"Build with AI: Keep the Instructions Connected\""
+  - <<: *script_defaults
+    id: open-source-benefits-and-selection
+    name: "Open Source: Benefits You Can Evaluate"
+    what_it_is: "Evaluate openness, practical fit, maintenance effort and the ability to leave before choosing a tool."
+    status_evidence:
+      file: content/blog/open-source-benefits-and-selection.mdx
+      contains: "title: \"Open Source: Benefits You Can Evaluate\""
+  - <<: *script_defaults
+    id: reading-ai-company-news
+    name: "Read AI News as an Operator"
+    what_it_is: "Separate announcements from availability, verify the sources and decide what deserves a controlled test."
+    status_evidence:
+      file: content/blog/reading-ai-company-news.mdx
+      contains: "title: \"Read AI News as an Operator\""
+  - <<: *script_defaults
+    id: build-small-ai-evaluation-set
+    name: "Build a Small AI Evaluation Set You Can Reuse"
+    what_it_is: "Keep normal, missing-data, conflicting and restricted cases with independent expectations and an honest run record."
+    status_evidence:
+      file: content/blog/build-small-ai-evaluation-set.mdx
+      contains: "title: \"Build a Small AI Evaluation Set You Can Reuse\""
+  - <<: *script_defaults
+    id: minimize-data-for-ai-writing
+    name: "Share Less Data for AI-Assisted Writing"
+    what_it_is: "Keep the facts a writing task needs while removing secrets, identities and unrelated context."
+    status_evidence:
+      file: content/blog/minimize-data-for-ai-writing.mdx
+      contains: "title: \"Share Less Data for AI-Assisted Writing\""
+  - <<: *script_defaults
+    id: review-ai-summaries-with-missing-data
+    name: "Review an AI Summary When the Data Is Incomplete"
+    what_it_is: "A worked example for checking counts, missing dates, unsupported explanations and the limits of a summary."
+    status_evidence:
+      file: content/blog/review-ai-summaries-with-missing-data.mdx
+      contains: "title: \"Review an AI Summary When the Data Is Incomplete\""
+  - <<: *script_defaults
+    id: tests-that-catch-ai-code-mistakes
+    name: "Write Tests That Catch Mistakes in AI-Assisted Code"
+    what_it_is: "Use an independent contract and a boundary case to prove a test can reject a plausible implementation error."
+    status_evidence:
+      file: content/blog/tests-that-catch-ai-code-mistakes.mdx
+      contains: "title: \"Write Tests That Catch Mistakes in AI-Assisted Code\""
+  - <<: *script_defaults
+    id: verified-findings-to-ai-proposals
+    name: "Turn Verified AI Findings into Reviewable Proposals"
+    what_it_is: "Move from an announcement or observed failure to one scoped work item with evidence, authorization and release checks."
+    status_evidence:
+      file: content/blog/verified-findings-to-ai-proposals.mdx
+      contains: "title: \"Turn Verified AI Findings into Reviewable Proposals\""
+  - <<: *script_defaults
+    id: app-control-and-setup-explained
+    name: "Controlling App Integrations: What's Implemented, What's Planned"
+    what_it_is: "Review the guide's distinction between source capabilities and planned app integrations; recheck the app claim ledger before narration."
+    status_evidence:
+      file: content/blog/app-control-and-setup-explained.mdx
+      contains: "title: \"Controlling App Integrations: What's Implemented, What's Planned\""

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  body { margin: 0; background: transparent; font-family: 'Inter', system-ui, sans-serif; color: #fff; }
+  .board {
+    position: fixed; top: 24px; left: 24px;
+    display: grid; grid-template-columns: auto 1fr auto; gap: 16px;
+    align-items: center;
+    background: rgba(12, 14, 22, 0.85);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 14px 22px;
+    backdrop-filter: blur(8px);
+    font-variant-numeric: tabular-nums;
+  }
+  .team { font-weight: 700; font-size: 22px; letter-spacing: 0.02em; }
+  .score { font-weight: 800; font-size: 38px; }
+  .clock { font-weight: 500; font-size: 16px; opacity: 0.7; margin-left: 12px; }
+</style>
+</head>
+<body>
+  <div class="board">
+    <div class="team">HOME <span class="score" id="home">0</span></div>
+    <div class="clock" id="clock">00:00</div>
+    <div class="team"><span class="score" id="away">0</span> AWAY</div>
+  </div>
+  <script>
+    const rep = nodecg.Replicant('scoreboard');
+    rep.on('change', (v) => {
+      if (!v) return;
+      document.getElementById('home').textContent  = v.home  ?? 0;
+      document.getElementById('away').textContent  = v.away  ?? 0;
+      document.getElementById('clock').textContent = v.clock ?? '00:00';
+    });
+  </script>
+</body>
+</html>

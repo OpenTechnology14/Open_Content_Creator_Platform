@@ -1,0 +1,49 @@
+{
+  "_comment": "Example PNGTuber scene for OBS. Import via File → Import Scene Collection.",
+  "name": "PNGTuber Example",
+  "sources": [
+    {
+      "name": "PNGTuber — Idle",
+      "type": "image_source",
+      "settings": {
+        "file": "idle.png",
+        "unload": false
+      },
+      "filters": [
+        {
+          "name": "Scale to Fit",
+          "type": "scale_filter",
+          "settings": { "resolution": "512x512" }
+        }
+      ]
+    },
+    {
+      "name": "PNGTuber — Talking",
+      "type": "image_source",
+      "settings": {
+        "file": "talking.png",
+        "unload": false
+      },
+      "filters": [
+        {
+          "name": "Scale to Fit",
+          "type": "scale_filter",
+          "settings": { "resolution": "512x512" }
+        }
+      ]
+    }
+  ],
+  "audio_trigger": {
+    "_comment": "Use Advanced Scene Switcher or Move plugin to swap idle/talking based on mic volume.",
+    "threshold_db": -30,
+    "source_name": "Mic/Aux",
+    "idle_source": "PNGTuber — Idle",
+    "talking_source": "PNGTuber — Talking"
+  },
+  "instructions": [
+    "1. Place idle.png and talking.png (512x512 transparent PNGs) in this folder.",
+    "2. Import this scene collection in OBS.",
+    "3. Use Advanced Scene Switcher to toggle between Idle and Talking based on mic level.",
+    "4. For agent-driven avatars (see modules/ai-agents/local-llm/README.md): the TTS audio bus triggers the talking state instead of the mic."
+  ]
+}

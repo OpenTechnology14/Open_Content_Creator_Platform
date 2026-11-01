@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-docker-plan"
+description = "Enables the docker_plan command without any pre-configured scope."
+commands.allow = ["docker_plan"]
+
+[[permission]]
+identifier = "deny-docker-plan"
+description = "Denies the docker_plan command without any pre-configured scope."
+commands.deny = ["docker_plan"]

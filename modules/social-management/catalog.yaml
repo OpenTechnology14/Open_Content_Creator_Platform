@@ -1,0 +1,338 @@
+schema_version: 1
+
+brands:
+  - id: hybrid-platform
+    display_name: Open Content Creator Platform
+    logo_path: assets/brands/hybrid-platform.svg
+    website: https://github.com/OpenTechnology14/hybrid-creator-platform
+    source: Canonical platform logo from docs/assets/logo.svg.
+  - id: stream-extend
+    display_name: Stream Extend
+    logo_path: assets/brands/stream-extend.png
+    website: https://github.com/OpenTechnology14/hybrid-creator-platform
+    source: Canonical Stream Extend application icon.
+  - id: creator-extend
+    display_name: Creator Extend
+    logo_path: assets/brands/creator-extend.png
+    website: https://github.com/OpenTechnology14/hybrid-creator-platform
+    source: Canonical Creator Extend application icon.
+  - id: opentechapp
+    display_name: OpenTechApp
+    logo_path: assets/brands/opentechapp.svg
+    website: https://github.com/OpenTechnology14/Task-Management
+    source: OpenTechApp public favicon copied from the owner workspace on 2026-09-10.
+
+providers:
+  - id: youtube
+    display_name: YouTube
+    adapter: youtube
+    connection_status: available
+    oauth:
+      authorize_url: https://accounts.google.com/o/oauth2/v2/auth
+      token_url: https://oauth2.googleapis.com/token
+      client_id_env: SOCIAL_YOUTUBE_CLIENT_ID
+      client_secret_env: SOCIAL_YOUTUBE_CLIENT_SECRET
+      use_pkce: true
+      extra_authorize_params:
+        access_type: offline
+        prompt: consent
+    capability_scopes:
+      account-read: [https://www.googleapis.com/auth/youtube.readonly]
+      post-video: [https://www.googleapis.com/auth/youtube.upload]
+      live-stream: [https://www.googleapis.com/auth/youtube]
+    setup_url: https://console.cloud.google.com/apis/credentials
+    notes:
+      - Enable YouTube Data API v3 and YouTube Live Streaming API.
+      - The selected channel must be eligible for live streaming.
+  - id: twitch
+    display_name: Twitch
+    adapter: twitch
+    connection_status: available
+    oauth:
+      authorize_url: https://id.twitch.tv/oauth2/authorize
+      token_url: https://id.twitch.tv/oauth2/token
+      client_id_env: SOCIAL_TWITCH_CLIENT_ID
+      client_secret_env: SOCIAL_TWITCH_CLIENT_SECRET
+      use_pkce: false
+    capability_scopes:
+      account-read: [user:read:email]
+      live-stream: [channel:read:stream_key]
+    setup_url: https://dev.twitch.tv/console/apps
+    notes:
+      - The stream key is returned only to the live handoff and is never persisted.
+  - id: x
+    display_name: X
+    adapter: x
+    connection_status: available
+    oauth:
+      authorize_url: https://twitter.com/i/oauth2/authorize
+      token_url: https://api.x.com/2/oauth2/token
+      client_id_env: SOCIAL_X_CLIENT_ID
+      use_pkce: true
+    capability_scopes:
+      account-read: [users.read]
+      post-text: [tweet.read, tweet.write, users.read, offline.access]
+    setup_url: https://developer.x.com/en/portal/dashboard
+    notes:
+      - Media upload is not included in this first adapter.
+  - id: discord
+    display_name: Discord
+    adapter: discord
+    connection_status: available
+    oauth:
+      authorize_url: https://discord.com/oauth2/authorize
+      token_url: https://discord.com/api/oauth2/token
+      client_id_env: SOCIAL_DISCORD_CLIENT_ID
+      client_secret_env: SOCIAL_DISCORD_CLIENT_SECRET
+      use_pkce: false
+    capability_scopes:
+      account-read: [identify]
+      post-text: [webhook.incoming]
+    setup_url: https://discord.com/developers/applications
+    notes:
+      - Connection selects a server channel and creates an incoming webhook.
+      - Discord Go Live remains a manual Discord client screen-share workflow; it is not an OBS ingest destination.
+  - id: tiktok
+    display_name: TikTok
+    adapter: catalog-only
+    connection_status: registration-required
+    capability_scopes:
+      account-read: [user.info.basic]
+      post-video: [video.publish]
+    setup_url: https://developers.tiktok.com/apps
+    notes:
+      - Direct Post requires app review; unaudited clients are private-only.
+  - id: instagram
+    display_name: Instagram
+    adapter: catalog-only
+    connection_status: registration-required
+    capability_scopes:
+      account-read: [instagram_basic]
+      post-image: [instagram_content_publish]
+      post-video: [instagram_content_publish]
+    setup_url: https://developers.facebook.com/apps
+  - id: facebook
+    display_name: Facebook
+    adapter: catalog-only
+    connection_status: registration-required
+    capability_scopes:
+      account-read: [pages_show_list]
+      post-text: [pages_manage_posts]
+      post-image: [pages_manage_posts]
+      post-video: [pages_manage_posts]
+      live-stream: [publish_video]
+    setup_url: https://developers.facebook.com/apps
+  - id: linkedin
+    display_name: LinkedIn
+    adapter: catalog-only
+    connection_status: registration-required
+    capability_scopes:
+      account-read: [openid, profile]
+      post-text: [w_member_social]
+      post-image: [w_member_social]
+      post-video: [w_member_social]
+    setup_url: https://www.linkedin.com/developers/apps
+    notes:
+      - Organization posting needs Community Management API approval.
+  - id: bluesky
+    display_name: Bluesky
+    adapter: catalog-only
+    connection_status: planned
+    capability_scopes:
+      account-read: [atproto]
+      post-text: [atproto]
+      post-image: [atproto]
+    setup_url: https://docs.bsky.app
+  - id: mastodon
+    display_name: Mastodon
+    adapter: catalog-only
+    connection_status: planned
+    capability_scopes:
+      account-read: [read:accounts]
+      post-text: [write:statuses]
+      post-image: [write:media, write:statuses]
+    setup_url: https://docs.joinmastodon.org/client/authorized
+  - id: kick
+    display_name: Kick
+    adapter: catalog-only
+    connection_status: planned
+    capability_scopes:
+      account-read: [catalog]
+      live-stream: [manual-ingest]
+    setup_url: https://docs.kick.com
+    notes:
+      - Account and ingest adapter acceptance is not implemented yet.
+  - id: rumble
+    display_name: Rumble
+    adapter: catalog-only
+    connection_status: planned
+    capability_scopes:
+      account-read: [catalog]
+      live-stream: [manual-ingest]
+    setup_url: https://studio.rumble.com
+    notes:
+      - Account and ingest adapter acceptance is not implemented yet.
+  - id: trovo
+    display_name: Trovo
+    adapter: catalog-only
+    connection_status: planned
+    capability_scopes:
+      account-read: [catalog]
+      live-stream: [manual-ingest]
+    setup_url: https://developer.trovo.live
+    notes:
+      - Account and ingest adapter acceptance is not implemented yet.
+  - id: dlive
+    display_name: DLive
+    adapter: catalog-only
+    connection_status: planned
+    capability_scopes:
+      account-read: [catalog]
+      live-stream: [manual-ingest]
+    setup_url: https://help.dlive.tv
+    notes:
+      - Account and ingest adapter acceptance is not implemented yet.
+  - id: restream
+    display_name: Restream
+    adapter: catalog-only
+    connection_status: planned
+    capability_scopes:
+      account-read: [catalog]
+      live-stream: [manual-ingest]
+    setup_url: https://developers.restream.io
+    notes:
+      - Multistream account and ingest adapter acceptance is not implemented yet.
+
+profiles:
+  - id: stream-main
+    display_name: Main Stream
+    kind: stream
+    brand_ids: [stream-extend, hybrid-platform]
+    default_brand_id: stream-extend
+    destinations:
+      - provider_id: youtube
+        capabilities: [account-read, live-stream, post-video]
+        account_label: Main YouTube channel
+      - provider_id: twitch
+        capabilities: [account-read, live-stream]
+        account_label: Main Twitch channel
+      - provider_id: x
+        capabilities: [account-read, post-text]
+        account_label: Main X account
+      - provider_id: discord
+        capabilities: [account-read, post-text]
+        account_label: Main Discord announcement channel
+      - provider_id: kick
+        capabilities: [account-read, live-stream]
+        account_label: Main Kick channel
+      - provider_id: rumble
+        capabilities: [account-read, live-stream]
+        account_label: Main Rumble channel
+      - provider_id: trovo
+        capabilities: [account-read, live-stream]
+        account_label: Main Trovo channel
+      - provider_id: dlive
+        capabilities: [account-read, live-stream]
+        account_label: Main DLive channel
+      - provider_id: restream
+        capabilities: [account-read, live-stream]
+        account_label: Main Restream account
+  - id: content-main
+    display_name: Main Content
+    kind: content
+    brand_ids: [creator-extend, hybrid-platform]
+    default_brand_id: creator-extend
+    destinations:
+      - provider_id: youtube
+        capabilities: [account-read, post-video]
+        account_label: Main YouTube channel
+      - provider_id: x
+        capabilities: [account-read, post-text]
+        account_label: Main X account
+      - provider_id: tiktok
+        capabilities: [account-read, post-video]
+        default_visibility: private
+        account_label: TikTok creator account
+      - provider_id: instagram
+        capabilities: [account-read, post-image, post-video]
+        account_label: Instagram professional account
+      - provider_id: linkedin
+        capabilities: [account-read, post-text, post-image, post-video]
+        account_label: LinkedIn identity
+      - provider_id: discord
+        capabilities: [account-read, post-text]
+        account_label: Content Discord announcement channel
+  - id: opentech-marketing
+    display_name: OpenTechMarketing
+    kind: hybrid
+    brand_ids: [opentechapp, hybrid-platform, stream-extend, creator-extend]
+    default_brand_id: opentechapp
+    # One OpenTech account profile can host several scripted show profiles. Each show profile is
+    # bound to exactly one Marketing Crosswalk module in stream-programming.yaml; this account
+    # profile owns the shared destinations and brand selection, not the module source policy.
+    show_profile_ids:
+      - opentech-marketing
+      - marketing-stream-extend
+      - marketing-content-extend
+      - marketing-ai-learning
+      - marketing-ai-control-layer
+      - marketing-chatbot-routing
+    destinations:
+      - provider_id: youtube
+        capabilities: [account-read, live-stream, post-video]
+        account_label: OpenTech YouTube channel
+      - provider_id: x
+        capabilities: [account-read, post-text]
+        account_label: OpenTech X account
+      - provider_id: linkedin
+        capabilities: [account-read, post-text, post-image, post-video]
+        account_label: OpenTech LinkedIn identity
+      - provider_id: instagram
+        capabilities: [account-read, post-image, post-video]
+        account_label: OpenTech Instagram professional account
+      - provider_id: facebook
+        capabilities: [account-read, post-text, post-image, post-video, live-stream]
+        account_label: OpenTech Facebook Page
+      - provider_id: discord
+        capabilities: [account-read, post-text]
+        account_label: OpenTech Discord announcement channel
+  - id: video-review
+    display_name: Video Review
+    kind: content
+    brand_ids: [hybrid-platform, creator-extend]
+    default_brand_id: hybrid-platform
+    show_profile_ids: [video-review]
+    destinations:
+      - provider_id: youtube
+        capabilities: [account-read, post-video]
+        default_visibility: private
+        account_label: Review YouTube channel
+      - provider_id: tiktok
+        capabilities: [account-read, post-video]
+        default_visibility: private
+        account_label: Review TikTok account
+      - provider_id: x
+        capabilities: [account-read, post-text]
+        account_label: Review X account
+      - provider_id: discord
+        capabilities: [account-read, post-text]
+        account_label: Review Discord announcement channel
+  - id: agent-labs
+    display_name: Agent Game Labs
+    kind: stream
+    brand_ids: [stream-extend, hybrid-platform]
+    default_brand_id: stream-extend
+    show_profile_ids: [flight-simulator-agent, beamng-agent, roblox-agent]
+    destinations:
+      - provider_id: youtube
+        capabilities: [account-read, live-stream, post-video]
+        account_label: Agent Labs YouTube channel
+      - provider_id: twitch
+        capabilities: [account-read, live-stream]
+        account_label: Agent Labs Twitch channel
+      - provider_id: discord
+        capabilities: [account-read, post-text]
+        account_label: Agent Labs Discord announcement channel
+      - provider_id: kick
+        capabilities: [account-read, live-stream]
+        account_label: Agent Labs Kick channel

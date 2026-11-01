@@ -1,0 +1,205 @@
+# Subjects for the `ai-learning` module: the four lessons of the AI Learning Series
+# (docs/learning/README.md § Syllabus). These are what generated content is about.
+#
+# Unlike the other modules, the subjects are lessons, not templates or product modules — so
+# `status` means "has this lesson aired", and `coverage` tracks the five surfaces a lesson is
+# delivered to (docs/learning/README.md § Where each lesson is delivered). Every cell is a
+# real gap until the surface exists.
+#
+# status_evidence cites the syllabus row verbatim. When a lesson airs, update that row and this
+# file together: `validate` fails on drift rather than letting either over-claim.
+schema_version: 1
+
+module: ai-learning
+product: ai-learning
+source_docs:
+  subjects: "docs/learning/README.md § Syllabus"
+  coverage: "docs/learning/README.md § Where each lesson is delivered"
+  status: "docs/learning/README.md § Syllabus (Status column)"
+  channels: "shared machine from OpenTechApp MARKETING.md §3, plus the live stream itself"
+  content_model: "docs/learning/README.md § Stream format"
+
+# Where each asset lands in THIS module's target, the blog. Every draft is filed against a post in
+# the blog's AI content inventory; a human moves it to its real surface (the run of show and the
+# X thread never publish on the blog itself — they are filed with the post they belong to).
+# Lesson status is NOT read from the blog: each `status_evidence` names `target:
+# hybrid-creator-platform`, where docs/learning/README.md is authored.
+# ── Discovery metadata (see ../schema.md § Discovery metadata) ────────────────────────
+# Read by humans and agents, ignored by the loader. Canonical index: ../modules.yml
+discovery:
+  status: drafted
+  last_verified: 2026-10-08
+  notes: >-
+    A four-lesson teaching series about HOW TO USE AI — pick a model, prompt with project
+    context, build apps with docs/rules/skills, then cut cost. It is a curriculum, not a product
+    and not a governance framework. Authored here under docs/learning/, delivered to the blog.
+    Nothing has aired; all four lessons remain `scaffolded`. All four written lesson previews
+    are publicly available; HTTP 200 and matching article headings verified 2026-10-08.
+  discovery_keywords:
+    [AI Learning, AI Learning Series, learning series, AI usage, AI lessons, lesson series,
+     model usage, prompting, prompting with context, app building, cost workflow,
+     cutting AI cost, P-064]
+  not_to_be_confused_with:
+    - "ai-control-layer — a GOVERNANCE/practice library on the blog, not a lesson series. These two have been misrouted for each other twice; compare discovery_keywords before choosing."
+    - "chatbot-routing — about OpenTechApp's vendor routing features, not about learning AI"
+  counts:
+    basis: "four public lesson-preview URLs returned HTTP 200 with matching article headings, 2026-10-08; lesson-airing status remains in docs/learning/"
+    subjects: 4
+    source_docs: 5
+    lessons_aired: 0
+    blog_posts_published: 4
+    blog_posts_drafted: 0
+    marketing_assets_available: 5
+    icps: 3
+  files:
+    proposal: docs/proposals/PROPOSAL_AI_LEARNING_SERIES.md
+    series_index: docs/learning/README.md
+    lesson_docs:
+      - docs/learning/lesson-01-model-usage.md
+      - docs/learning/lesson-02-prompting-context.md
+      - docs/learning/lesson-03-app-building.md
+      - docs/learning/lesson-04-cost-workflow.md
+    target_inventory: docs/AI_CONTENT_INVENTORY.md
+
+asset_landing:
+  stream-script:  {doc: ai_inventory, anchor: posts}
+  lesson-brief:     {doc: ai_inventory, anchor: posts}
+  stream-runofshow: {doc: ai_inventory, anchor: posts}
+  x-thread:         {doc: ai_inventory, anchor: posts}
+  comment-ammo:     {doc: ai_inventory, anchor: posts}
+
+channels:
+  stream: "Live stream — Twitch / YouTube via Stream Extend"
+  seo: "OpenTechnologyBlog — SEO source post"
+  x_twitter: "X — clips and thread from the recording"
+  reddit: "Reddit — reply threads only, 9:1 rule"
+
+plan_notes:
+  free: "free to watch and read — no subscription and no account"
+
+# ICPs for the series. Deliberately NOT MARKETING.md §2 (who buys OpenTechnology) and NOT the
+# Stream Extend list — these are who learns from the series. UNVERIFIED: derived from the
+# lesson topics and the platform's existing audiences, not from measured demand.
+icps:
+  solo-builder:
+    rank: 1
+    who: Solo developers and founders building apps with AI assistance
+    why_they_switch: They burn time and spend on trial-and-error prompting because nothing tells them which model, how much context, or what structure to set up first
+    where: r/ClaudeAI, r/ChatGPTCoding, r/SideProject, X
+
+  creator-learner:
+    rank: 2
+    who: Streamers and creators adopting AI tools in their workflow
+    why_they_switch: Tool sprawl — every AI product wants a different setup, and there is no way to tell which model or workflow fits which job
+    where: r/Twitch, r/streaming, r/NewTubers, YouTube
+
+  it-operator:
+    rank: 3
+    who: IT admins and small-team operators automating work with AI
+    why_they_switch: They need repeatable, cost-bounded AI workflows, not one-off chats, and a bill that does not surprise them
+    where: r/sysadmin, r/ITManagers, LinkedIn
+
+subjects:
+  # Written preview verified live 2026-10-08; this does not establish an aired lesson.
+  - id: model-usage
+    name: "Lesson 1 — Model usage"
+    what_it_is: >-
+      Which model to use for which job, how much context to give it, and what that will roughly
+      cost — decided before typing anything, and shown on real tasks.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      target: hybrid-creator-platform
+      file: docs/learning/README.md
+      contains: "| 1 | Model usage | Outlined |"
+    plan: free
+    coverage:
+      stream_episode: false
+      blog_post: true
+      opentechapp_link: false
+      stream_extend_link: false
+      creator_extend_link: false
+    icps: [solo-builder, creator-learner]
+    channels: [stream, seo, x_twitter, reddit]
+    assets: [lesson-brief, stream-runofshow, x-thread, comment-ammo, stream-script]
+    keywords: ["which claude model to use", "ai model comparison for coding", "llm context window explained"]
+    competitors: ["Trial-and-error prompting", "Vendor documentation alone"]
+
+  # Written preview verified live 2026-10-08; this does not establish an aired lesson.
+  - id: prompting-context
+    name: "Lesson 2 — Prompting best practices: project and context"
+    what_it_is: >-
+      Writing prompts that hold up, and setting up a project and its context so the model starts
+      every session already knowing the work.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      target: hybrid-creator-platform
+      file: docs/learning/README.md
+      contains: "| 2 | Prompting best practices — project and context | Outlined |"
+    plan: free
+    coverage:
+      stream_episode: false
+      blog_post: true
+      opentechapp_link: false
+      stream_extend_link: false
+      creator_extend_link: false
+    icps: [solo-builder, it-operator]
+    channels: [stream, seo, x_twitter, reddit]
+    assets: [lesson-brief, stream-runofshow, x-thread, comment-ammo, stream-script]
+    keywords: ["prompt engineering best practices", "claude projects context", "how to write better ai prompts"]
+    competitors: ["Copy-pasted prompt lists", "Trial-and-error prompting"]
+
+  # Written preview verified live 2026-10-08; this does not establish an aired lesson.
+  - id: app-building
+    name: "Lesson 3 — App building: documentation structure, rules, and skills"
+    what_it_is: >-
+      Building an application with AI by giving the repository a documentation structure, rules
+      the model must follow, and skills it can reuse.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      target: hybrid-creator-platform
+      file: docs/learning/README.md
+      contains: "| 3 | App building — documentation structure, rules, and skills | Outlined |"
+    plan: free
+    coverage:
+      stream_episode: false
+      blog_post: true
+      opentechapp_link: false
+      stream_extend_link: false
+      creator_extend_link: false
+    icps: [solo-builder, it-operator]
+    channels: [stream, seo, x_twitter, reddit]
+    assets: [lesson-brief, stream-runofshow, x-thread, comment-ammo, stream-script]
+    keywords: ["claude code project structure", "ai coding rules file", "claude skills tutorial"]
+    competitors: ["Trial-and-error prompting", "Vendor documentation alone"]
+
+  # Written preview verified live 2026-10-08; this does not establish an aired lesson.
+  - id: cost-workflow
+    name: "Lesson 4 — Cutting cost with an AI workflow"
+    what_it_is: >-
+      Using what lessons 1 to 3 established — model choice, context, and structure — to build a
+      workflow that does the same work for measurably less.
+    upstream: none
+    visibility: private
+    status: scaffolded
+    status_evidence:
+      target: hybrid-creator-platform
+      file: docs/learning/README.md
+      contains: "| 4 | Cutting cost with an AI workflow | Outlined |"
+    plan: free
+    coverage:
+      stream_episode: false
+      blog_post: true
+      opentechapp_link: false
+      stream_extend_link: false
+      creator_extend_link: false
+    icps: [it-operator, solo-builder]
+    channels: [stream, seo, x_twitter, reddit]
+    assets: [lesson-brief, stream-runofshow, x-thread, comment-ammo, stream-script]
+    keywords: ["reduce ai api costs", "llm cost optimization", "ai workflow cost savings"]
+    competitors: ["Trial-and-error prompting", "Vendor documentation alone"]

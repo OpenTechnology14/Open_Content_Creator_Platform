@@ -1,0 +1,35 @@
+groups:
+  - name: services
+    interval: 30s
+    rules:
+      - alert: FastAPIDown
+        expr: up{job="fastapi"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "FastAPI backend is down"
+          description: "The HCP FastAPI scrape target has been unreachable for >2m."
+
+      - alert: FastAPIHighErrorRate
+        expr: |
+          sum(rate(http_requests_total{job="fastapi",status=~"5.."}[5m]))
+          /
+          sum(rate(http_requests_total{job="fastapi"}[5m])) > 0.05
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "FastAPI 5xx rate >5% over 10m"
+          description: "Investigate recent deploys, DB/Redis health, and logs in Loki."
+
+      - alert: FastAPISlowRequests
+        expr: |
+          histogram_quantile(0.95,
+            sum(rate(http_request_duration_seconds_bucket{job="fastapi"}[5m])) by (le)
+          ) > 1.0
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "FastAPI p95 latency >1s for 10m"

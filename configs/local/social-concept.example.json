@@ -1,0 +1,18 @@
+{
+  "channel_id": "ai-content",
+  "title": "What still works when an AI workstation goes offline?",
+  "audience": "Creators choosing between local and hosted AI tools",
+  "hook": "Turn off Wi-Fi and test one small creative task from start to finish.",
+  "original_contribution": "An original recorded experiment with timings and clearly stated limitations, not a reading of the source article.",
+  "outline": ["State the task and setup", "Run the offline experiment", "Show results and explain the tradeoffs"],
+  "format": "long-form",
+  "sources": [{
+    "kind": "blog-post",
+    "repository": "Example/Blog",
+    "revision": "abc1234",
+    "path": "content/blog/local-ai.mdx",
+    "note": "Synthetic example only; replace with an actually inspected source and revision before review."
+  }],
+  "rights_note": "Plan original screen recordings and licensed music; confirm rights before production.",
+  "effort": "small"
+}

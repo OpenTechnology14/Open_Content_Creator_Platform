@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  body { margin: 0; background: transparent; font-family: 'Inter', system-ui, sans-serif; color: #fff; }
+  .lower {
+    position: fixed; bottom: 60px; left: -800px;
+    width: 760px; padding: 18px 26px;
+    background: linear-gradient(90deg, rgba(20,24,40,0.95), rgba(20,24,40,0.6));
+    border-left: 4px solid #4ec5ff;
+    transition: left 600ms cubic-bezier(.2,.8,.2,1);
+  }
+  .lower.show { left: 60px; }
+  .title { font-weight: 700; font-size: 28px; }
+  .subtitle { opacity: 0.75; font-size: 18px; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <div class="lower" id="lower">
+    <div class="title" id="title"></div>
+    <div class="subtitle" id="subtitle"></div>
+  </div>
+  <script>
+    const rep = nodecg.Replicant('lowerThird');
+    rep.on('change', (v) => {
+      if (!v) return;
+      document.getElementById('title').textContent    = v.title    ?? '';
+      document.getElementById('subtitle').textContent = v.subtitle ?? '';
+      document.getElementById('lower').classList.toggle('show', !!v.visible);
+    });
+  </script>
+</body>
+</html>

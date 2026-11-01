@@ -1,0 +1,71 @@
+# Discovery record for animalhouse: AnimalHouse — a local game project. Discovery-only.
+#
+# `subjects: []` is deliberate: nothing is generated and no status claim is made. `status` below
+# describes the underlying project (code and docs found), not marketing content, using the mechanical
+# rule in schema.md § Discovery-only modules.
+schema_version: 1
+
+module: animalhouse
+product: none  # no products.yml entry until the owner approves marketing copy
+source_docs:
+  project: "the project directory or repository named in discovery.files; see discovery.counts.basis"
+
+asset_landing: {}
+channels: {}
+plan_notes: {}
+
+# Required by the loader. A placeholder, not an audience.
+icps:
+  unspecified:
+    rank: 1
+    who: "Not defined — a discovery-only module has no audience until it is promoted"
+    why_they_switch: "n/a"
+    where: "n/a"
+
+# ── Discovery metadata (see ../schema.md § Discovery metadata) ────────────────────────
+# Read by humans and agents, ignored by the loader. Canonical index: ../modules.yml
+discovery:
+  status: drafted
+  last_verified: 2026-10-20
+  notes: >-
+    A third-person, noncombat animal-collection game: catches accumulate in an expedition bag and
+    are extracted home. A UE 5.8 Mac arm64 prototype exists, but engine selection is still a pending
+    owner decision (Unreal is only the recommendation) and Windows/PC packaging is paused by the
+    owner (D-030). It is a local project with no repository or remote yet. Its own agent context
+    calls Ironfall a reference project, not its design specification.
+  discovery_keywords:
+    ["AnimalHouse", "Animal House", "animal-house", "AnimalHouseGame", "animal collection game",
+     "animal capture game", "noncombat capture", "expedition bag", "Mac arm64 prototype",
+     "UE 5.8", "UE5.8", "Unreal Engine 5.8"]
+  not_to_be_confused_with:
+    - "ironfall — a separate UE 5.8 game. AnimalHouse's own agent context says IronFall is a reference project, not its design specification."
+    - "Engine selection is a pending decision: do not describe AnimalHouse as an Unreal game without that caveat, even though a UE 5.8 prototype exists."
+  counts:
+    basis: "find on the local project directory (not a git repository), 2026-10-20. code_files: .h/.cpp under AnimalHouseGame/Source. doc_files: *.md under Docs/ and Agent/ plus the root. content_assets: .uasset/.umap under AnimalHouseGame/Content. art_files: files under Art/. config_files: files under AnimalHouseGame/Config. engine: the uproject's EngineAssociation. Navigation aid, not evidence."
+    subjects: 0
+    code_files: 54
+    doc_files: 70
+    content_assets: 171
+    art_files: 14
+    config_files: 4
+    engine: "5.8"
+  files:
+    location: "local project directory; no repository or remote yet"
+    agent_context: "AGENTS.md"
+    decisions: "Docs/DECISIONS.md"
+    core_design: "Docs/design/CORE-DESIGN.md"
+    animal_data_contract: "Docs/architecture/ANIMAL-DATA.md"
+    catalog: "Data/animal-catalog.json"
+    project: "AnimalHouseGame/AnimalHouseGame.uproject"
+
+subjects: []
+
+# ── Promotion: how this stops being discovery-only ─────────────────────────────────────
+promotion:
+  blocked_on: "Owner decision to market AnimalHouse, the pending engine-selection decision, and a repository to cite evidence from"
+  steps:
+    - "Resolve the engine-selection decision (D-030 and the decisions log) before any claim names the engine"
+    - "Put the project in a repository so a subject's status_evidence has something re-readable"
+    - "Decide whether AnimalHouse is marketed and to whom; define its ICPs in this file"
+    - "Add a products.yml entry with owner-approved copy, then set `product:` here"
+    - "Add subjects with status evidence, then a Nova persona and show profile"

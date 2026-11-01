@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Start with a private practice recording. Learn the Stream and Creator workflow, troubleshoot common problems, and explore the engineering behind it.">
+  <title>Learn · Open Content Creator Platform</title>
+  <style>
+    :root { color-scheme: light dark; --paper:#f6f4ef; --ink:#202b29; --muted:#4e605a; --line:#c8d2cc; --accent:#17614b; --panel:#fff; }
+    * { box-sizing:border-box; }
+    html { scroll-padding-top:1rem; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.65 system-ui,sans-serif; }
+    a { color:var(--accent); text-underline-offset:4px; }
+    a:focus-visible, summary:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+    header, main, footer { max-width:1120px; margin:auto; padding:24px; }
+    header { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; border-bottom:1px solid var(--line); }
+    header a { display:inline-block; padding:10px 0; }
+    nav { display:flex; flex-wrap:wrap; gap:22px; }
+    .brand { font-weight:750; text-decoration:none; letter-spacing:-.03em; }
+    .eyebrow { text-transform:uppercase; font-size:12px; font-weight:750; letter-spacing:.13em; color:var(--muted); }
+    .hero { padding:58px 0 36px; max-width:780px; }
+    h1 { font-size:clamp(38px,6vw,64px); line-height:1.08; letter-spacing:-.055em; margin:12px 0 24px; }
+    h2 { font-size:30px; line-height:1.2; letter-spacing:-.035em; margin:0 0 18px; }
+    h3 { font-size:20px; margin:0 0 8px; }
+    p { max-width:76ch; margin:12px 0; }
+    .lead { font-size:21px; color:var(--muted); }
+    .notice { border-left:3px solid var(--accent); padding:10px 18px; background:var(--panel); }
+    .paths { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:28px 0 48px; }
+    .path { padding:24px; border:1px solid var(--line); border-radius:14px; background:var(--panel); text-decoration:none; color:var(--ink); }
+    .path span { display:block; color:var(--muted); margin-top:10px; }
+    section { border-top:1px solid var(--line); padding:40px 0; }
+    .steps { padding-left:26px; max-width:83ch; }
+    .steps > li { padding:10px 0 20px 8px; }
+    li::marker { color:var(--accent); font-weight:750; }
+    details { border-bottom:1px solid var(--line); padding:16px 0; max-width:83ch; }
+    summary { cursor:pointer; min-height:44px; font-weight:650; }
+    .columns { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+    code { font-size:.9em; overflow-wrap:anywhere; }
+    pre { padding:20px; background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:auto; }
+    pre code { white-space:pre-wrap; }
+    dt { font-weight:700; margin-top:14px; }
+    dd { margin-left:0; color:var(--muted); }
+    footer { border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
+    .skip { position:absolute; left:16px; top:-100px; background:var(--panel); padding:12px; }
+    .skip:focus { top:12px; }
+    @media (prefers-color-scheme:dark) { :root { --paper:#15201d; --ink:#eff5ef; --muted:#b7c8bf; --line:#465d50; --accent:#95dfbd; --panel:#202f29; } }
+    @media (max-width:700px) { .paths,.columns { grid-template-columns:1fr; } header,main,footer { padding:20px; } .hero { padding-top:34px; } nav { gap:18px; } }
+    @media print { header nav,.skip { display:none; } body { background:white; color:black; } section { break-inside:avoid; } }
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <a class="brand" href="#main">Open Content Creator Platform / Learn</a>
+  <nav aria-label="Documentation"><a href="#start">Start recording</a><a href="#clips">Make a clip</a><a href="#engineers">For engineers</a></nav>
+</header>
+<main id="main">
+  <div class="hero">
+    <div class="eyebrow">Local first · A practical introduction</div>
+    <h1>Your first recording.<br>Then your first clip.</h1>
+    <p class="lead">Begin with a small, private practice run. Get your picture and sound right, watch what you made, and build from there.</p>
+    <p class="notice"><strong>Preview documentation · reviewed October 5, 2026.</strong> Stream Extend and Creator Extend are separate desktop prototypes today. A combined app is planned. This documentation site is a local preview; public downloads and an open-source release are not available through this page.</p>
+  </div>
+  <div class="paths" aria-label="Choose a reading path">
+    <a class="path" href="#start"><h2>I'm new</h2><span>Make a private practice recording with OBS. No streaming account needed.</span></a>
+    <a class="path" href="#clips"><h2>I have a recording</h2><span>Understand the recording inbox and the current clip-making path.</span></a>
+    <a class="path" href="#engineers"><h2>I want to build</h2><span>Find contracts, setup instructions, tests and release evidence.</span></a>
+  </div>
+  <section id="start">
+    <div class="eyebrow">Beginner path · private practice</div>
+    <h2>Make a recording you can watch back</h2>
+    <p>You need OBS Studio, enough free disk space for a short recording, and something to capture: a window, a game or a camera. A microphone is optional. OBS is the program that captures your picture and sound; Stream Extend adds controls around it.</p>
+    <p>This first exercise uses OBS directly. You can learn it before installing either Extend prototype. AI tools, Docker, a cloud account and a capture card are optional for this exercise; a capture card is needed only for an external video source such as a console.</p>
+    <ol class="steps">
+      <li><h3>Choose one thing to show</h3><p>Open OBS. A <strong>scene</strong> is a layout; a <strong>source</strong> is one thing inside it. In Sources, use the add control and choose the capture option for a window, game or camera. Names vary by operating system. Pick a harmless test window instead of your entire desktop.</p><p><strong>Check:</strong> the preview shows only what you intended. If it is blank, confirm the chosen source and your operating system's camera or screen-recording permission.</p></li>
+      <li><h3>Listen before you record</h3><p>Speak into the microphone and watch its meter in the Audio Mixer. Play a little game or application audio if you want to include it. Use headphones so the speakers do not feed back into the microphone.</p><p><strong>Check:</strong> the intended meters move and are not muted. If sound is doubled, capture each device once and check monitoring settings.</p></li>
+      <li><h3>Record a short test</h3><p>Choose a recording folder in OBS Settings → Output. Use a folder you can find again. Press <strong>Start Recording</strong>, speak a sentence, make a little movement on screen, then press <strong>Stop Recording</strong> after about 20 seconds. Start Streaming is a separate action; you do not need it here.</p><p><strong>Check:</strong> the recording stops and a new file appears. If the file is missing, check the selected folder, free disk space and any OBS error message.</p></li>
+      <li><h3>Open the actual file</h3><p>Play the saved file. Confirm that your picture appears, speech is understandable, and sound matches the visible movement. A moving meter alone does not prove the recording contains the right audio.</p><p><strong>Done means:</strong> you have watched and heard the saved recording. If OBS saved MKV and your next tool needs MP4, use its remux function; keep the original until you have checked the converted file.</p></li>
+    </ol>
+    <p>Next: <a href="#clips">prepare a clip</a>. For installation and device details, use the <a href="../../modules/creator-experience/setup/manual.md">capture setup reference</a>. Streaming to an audience adds account, destination and network checks; follow the <a href="../guides/production-setup/STREAM_EXTEND_PRODUCTION_SETUP.md">Stream setup guide</a> when you are ready.</p>
+  </section>
+  <section id="help">
+    <h2>When something does not work</h2>
+    <details><summary>The picture is black or the camera is missing</summary><p>Confirm the selected source and device, then check OS permissions. Another application may be using the camera. Close that application and retry. For an external capture card, check the cable path and the input selected in OBS.</p></details>
+    <details><summary>The recording is silent, doubled or out of sync</summary><p>Check the saved file first. Select the intended microphone and application audio device; avoid capturing the same audio twice. Use headphones. Change one setting, record another short test and compare before adding effects or routing tools.</p></details>
+    <details><summary>Module setup shows many missing tools</summary><p>Choose the task you are trying to complete. Optional AI effects and render tools are separate from a basic OBS recording. Read the check's explanation before installing anything. The current prototypes may expose more setup detail than the planned combined app.</p></details>
+    <details><summary>I need to report a problem</summary><p>Include the app version, OS, exact step, expected result and observed result. Use a sample recording if needed. Review any diagnostic bundle before sharing it; remove tokens, stream keys, account details and personal paths. Follow the repository's <a href="../../SECURITY.md">security reporting policy</a> for vulnerabilities.</p></details>
+  </section>
+  <section id="clips">
+    <div class="eyebrow">Creator path · current capabilities</div>
+    <h2>Turn a finished recording into a clip</h2>
+    <p>A <strong>clip</strong> is a selected part of a longer recording. Start with one clear moment and keep a copy of your original recording.</p>
+    <p>Stream Extend can register recordings from its managed recording session in the shared library. Creator Extend's <strong>Recordings</strong> inbox can show these recordings or accept a manual import. The current <strong>Start editing</strong> action records an editing status; it does not open a complete video editor.</p>
+    <ol class="steps">
+      <li><h3>Choose the correct recording</h3><p>Open it and confirm its contents and duration. A filename or matching duration alone cannot prove it is the recording you meant.</p></li>
+      <li><h3>Review your start and end</h3><p>The local Shorts tool can create a browser review page, let you preview intervals and download a selected clip plan. Its setup currently requires Python and command-line steps. Use the <a href="../../modules/content-creation/stream_shorts/README.md">Shorts setup and command reference</a>; the included demo metadata describes a synthetic 90-second recording, not your own file.</p></li>
+      <li><h3>Render and inspect</h3><p>The render command reads the reviewed plan and source recording, then writes vertical MP4 files into a new output directory. Play each result and check framing, sound and the first and last moments before sharing.</p></li>
+    </ol>
+    <p class="notice"><strong>Still being connected:</strong> the desktop inbox does not yet send a recording directly into the Shorts review-and-render workflow. Captions must be supplied; this tool does not automatically transcribe speech. It does not upload or publish your clips.</p>
+    <p>For beginners who prefer a graphical editor today, open your recording in an editor you already use. The integrated recording → review → export path is the target for the combined app.</p>
+  </section>
+  <section id="engineers">
+    <div class="eyebrow">Engineering path · inspect the evidence</div>
+    <h2>Understand a workflow before extending it</h2>
+    <p>The platform runs capture and latency-sensitive processing on the workstation. Cloud features are optional. Each module owns its setup and contracts; a failure in an optional module should not stop a basic local workflow.</p>
+    <div class="columns">
+      <div><h3>Follow the recording boundary</h3><ol><li>Read the <a href="../architecture/roadmap.md">canonical roadmap</a> and <a href="../AUDIT.md">current audit</a>.</li><li>Inspect <a href="../../apps/shared/recording-library/">the shared recording library</a> for ownership, locking and profile boundaries.</li><li>Read the <a href="../../modules/content-creation/stream_shorts/README.md">Shorts input/output contract</a>, including duration checks and partial-failure behavior.</li><li>Use the <a href="../agent/VERIFICATION-MATRIX.md">verification matrix</a> to choose automated and live checks.</li></ol></div>
+      <div><h3>Prepare a contribution</h3><ol><li>Check the <a href="../PROPOSALS.md">proposal queue</a> for the authorized scope.</li><li>Follow <a href="../../CONTRIBUTING.md">contribution setup</a> and the owning module's instructions.</li><li>Record the source revision, command, result and anything not exercised.</li><li>Update the affected user guide and demonstrate recovery as well as success.</li></ol></div>
+    </div>
+    <p>After preparing the repository's test environment, run the required offline suite from its root:</p>
+    <pre><code>make test
+git diff --check</code></pre>
+    <p>Offline tests do not prove device capture, GPU behavior, account connections or release readiness. Consult the <a href="../../tests/ACCEPTANCE-CHECKLIST.md">acceptance checklist</a> and record live evidence where required. The repository is currently private; these source links are for authorized local reviewers.</p>
+  </section>
+  <section id="walkthroughs">
+    <h2>Make material people can follow</h2>
+    <p>The existing marketing module generates draft walkthrough briefs for Stream Extend, Creator Extend and OpenTechnologyApp templates. Each brief asks for an actual action, visible result, recovery step, capture evidence and an engineering companion.</p>
+    <p>Begin with one task, then produce an illustrated article, captioned walkthrough, transcript and short excerpt from the same verified demonstration. A draft script is not a finished video. See the <a href="../../modules/marketing-crosswalk/README.md#walkthrough-briefs">generator instructions</a> and <a href="../PUBLIC_DOCS_AND_MARKETING_REVIEW.md">reference review</a>.</p>
+  </section>
+  <section id="release">
+    <h2>Release and open-source status</h2>
+    <p>The owner intends to release this project as open source. The root license and public release scope still need to be established. The existing desktop builds are prototypes, and the combined interface remains planned.</p>
+    <p>There is no public download or purchase offer on this preview. Follow the <a href="../OPEN_SOURCE_RELEASE_CHECKLIST.md">release checklist</a> for the current gates. Before this website is published, its internal source links must be replaced with accessible, versioned documentation and verified downloads.</p>
+  </section>
+</main>
+<footer>Open Content Creator Platform · Documentation preview · October 5, 2026<br>Works without JavaScript, third-party fonts, analytics or a cloud connection.</footer>
+</body>
+</html>

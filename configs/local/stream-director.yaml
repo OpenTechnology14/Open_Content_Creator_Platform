@@ -1,0 +1,32 @@
+schema_version: 1
+on_air_session: minecraft-main
+lower_third: true
+captions_seconds: 8
+sound_cooldown_seconds: 20
+event_ttl_seconds: 15
+request_timeout_seconds: 3
+# These slots come from the existing soundboard/sounds/manifest.yaml.
+reaction_sounds:
+  minecraft:
+    victory: victory-fanfare
+    defeat: record-scratch
+  dota2:
+    victory: dramatic-impact
+    defeat: wrong-answer
+  league-of-legends:
+    victory: bell-hit
+    defeat: record-scratch
+  world-of-warcraft:
+    victory: victory-fanfare
+    defeat: wrong-answer
+# Fill after --discover-obs, using exact registered names, not keyboard shortcuts.
+# No automatic plugin installation, clip loading, or guessed hotkey names.
+sound_hotkeys: {}
+stop_sound_hotkey: null
+# Select existing OBS names after discovery. Null leaves a capability unbound.
+pause_scene: null
+resume_scene: null
+ai_voice_input: null
+# Optional existing n8n/backend automation trigger names keyed by pause/resume/persona.
+# Queuing a trigger does not prove a workflow subscriber ran it.
+automation_triggers: {}

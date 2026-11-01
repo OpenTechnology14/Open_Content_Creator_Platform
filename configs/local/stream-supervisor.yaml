@@ -1,0 +1,19 @@
+schema_version: 1
+max_concurrent_running: 1
+emergency_timeout_seconds: 0.25
+operation_history: 64
+sessions:
+  minecraft-main:
+    persona_id: nova-builder
+    game_id: minecraft
+    mode: cohost
+    enabled: true
+    broadcast_start_authorized: false
+    gameplay_enabled: false
+  dota-lobby:
+    persona_id: rook-tactician
+    game_id: dota2
+    mode: cohost
+    enabled: true
+    broadcast_start_authorized: false
+    gameplay_enabled: false

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "manifest_version": "2026.09.1",
+  "product": "extend-preview",
+  "checks": [
+    {
+      "id": "stream.obs.websocket",
+      "label": "OBS WebSocket"
+    },
+    {
+      "id": "stream.obs.scenes",
+      "label": "OBS scene collection"
+    },
+    {
+      "id": "creator.comfyui.api",
+      "label": "ComfyUI API"
+    },
+    {
+      "id": "creator.comfyui.workflows",
+      "label": "Committed workflow catalog"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "obs-control",
+      "label": "OBS scene control",
+      "requires": [
+        "stream.obs.websocket",
+        "stream.obs.scenes"
+      ]
+    },
+    {
+      "id": "comfy-workflows",
+      "label": "Preflight committed ComfyUI workflows",
+      "requires": [
+        "creator.comfyui.api",
+        "creator.comfyui.workflows"
+      ]
+    }
+  ]
+}

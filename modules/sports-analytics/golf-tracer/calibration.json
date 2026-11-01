@@ -1,0 +1,15 @@
+{
+  "_comment": "Camera intrinsics. Replace with values from your own calibration run (cv2.calibrateCamera). Defaults assume 1920x1080 @ 60deg HFOV.",
+  "image_size": [1920, 1080],
+  "camera_matrix": [
+    [1480.0,    0.0,  960.0],
+    [   0.0, 1480.0,  540.0],
+    [   0.0,    0.0,    1.0]
+  ],
+  "dist_coeffs": [0.0, 0.0, 0.0, 0.0, 0.0],
+  "ground_plane": {
+    "_comment": "Pixel coords of 4 known points on the ground in clockwise order, with their real-world (meters) coords. Used by replay.py to project trajectories.",
+    "image_points": [[0, 0], [0, 0], [0, 0], [0, 0]],
+    "world_points": [[0, 0], [0, 0], [0, 0], [0, 0]]
+  }
+}

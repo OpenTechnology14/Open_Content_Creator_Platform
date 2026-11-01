@@ -1,0 +1,6 @@
+{
+  "identifier": "module-setup",
+  "description": "Local main-window module selection, dependency installation and readiness checks",
+  "windows": ["main"],
+  "permissions": ["module-setup:default"]
+}

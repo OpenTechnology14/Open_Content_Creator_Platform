@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "title": "Realtime Segmentation v1",
+    "description": "RMBG-1.4 background removal for webcam frames. Target: 30-60 fps. No diffusion — pure segmentation.",
+    "module": "realtime-ai",
+    "status": "template — the fastest realtime starting point"
+  },
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "webcam_frame.png"
+    }
+  },
+  "2": {
+    "class_type": "BRIA_RMBG_ModelLoader",
+    "_note": "Requires ComfyUI-BRIA_AI-RMBG custom node. Install via ComfyUI Manager.",
+    "inputs": {}
+  },
+  "3": {
+    "class_type": "BRIA_RMBG_Zho",
+    "inputs": {
+      "rmbg_model": ["2", 0],
+      "image": ["1", 0]
+    }
+  },
+  "4": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": ["3", 0],
+      "filename_prefix": "segmented"
+    }
+  }
+}

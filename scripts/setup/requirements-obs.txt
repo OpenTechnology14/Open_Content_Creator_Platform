@@ -1,0 +1,2 @@
+# OBS WebSocket v5 client used by scripts/setup/test_obs_websocket.py (make test-obs).
+obsws-python==1.8.0

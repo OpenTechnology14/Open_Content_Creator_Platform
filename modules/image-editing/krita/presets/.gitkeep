@@ -1,0 +1,4 @@
+Placeholder so this directory is tracked by git — git does not track
+empty directories, so without this file "presets/" would not exist at
+all on a fresh checkout, only on a workstation where it happened to be
+created locally. See krita/README.md's Workspace Presets section.

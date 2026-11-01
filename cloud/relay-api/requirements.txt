@@ -1,0 +1,14 @@
+fastapi==0.115.*
+uvicorn[standard]==0.32.*
+websockets==13.*
+asyncpg==0.30.*
+pydantic==2.*
+pydantic-settings==2.*
+python-jose[cryptography]==3.3.*
+passlib[bcrypt]==1.7.*
+stripe==11.*
+boto3==1.35.*
+httpx==0.28.*
+redis==5.*
+python-multipart==0.0.*
+loguru==0.7.2

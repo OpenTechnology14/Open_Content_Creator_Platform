@@ -1,0 +1,108 @@
+# Secrets
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+.venv-stream-autopilot/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.next/
+.nuxt/
+.svelte-kit/
+
+# Rust
+target/
+
+# Tauri — auto-generated capability/ACL schema JSON, regenerated on every build
+**/src-tauri/gen/schemas/
+
+# IDE
+# Ignore .claude/ CONTENTS rather than the directory itself, so the negation below can
+# re-include committed skills. `.claude/` with a trailing slash would stop git descending
+# into it at all, and no `!` rule can undo that.
+.claude/*
+!.claude/skills/
+!.claude/commands/
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# OS
+Thumbs.db
+
+# OBS exports
+modules/creator-experience/obs-config/*.local.json
+
+# AI assets — these can be huge; track in MinIO instead
+*.ckpt
+*.safetensors
+*.pt
+*.pth
+*.gguf
+*.onnx
+# actual ComfyUI install
+modules/realtime-ai/comfyui/app/
+modules/realtime-ai/comfyui/models/checkpoints/
+modules/realtime-ai/comfyui/models/loras/
+modules/realtime-ai/comfyui/models/vae/
+modules/realtime-ai/comfyui/output/
+
+# P-068 local TTS: model weights and the owner's reference recordings stay on the workstation
+models/tts/
+
+# Sports CV
+modules/sports-analytics/models/*.pt
+modules/sports-analytics/models/*.onnx
+
+# AR filter sprite art — not shipped in-repo, same as model weights above
+modules/realtime-ai/ar-filters/assets/
+
+# Recordings / outputs
+recordings/
+output/
+*.mkv
+*.mp4
+*.mov
+
+# Logs
+logs/
+*.log
+
+# Database dumps
+*.sql.gz
+*.dump
+
+# marketing-crosswalk generated drafts (regenerate, never commit)
+modules/marketing-crosswalk/out/
+
+# Per-device selective module environments
+.venv-modules/
+
+# Local installer coordination
+.module-install.lock
+
+# Private operating records are never public source.
+/private/

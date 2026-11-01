@@ -1,0 +1,128 @@
+# DigitalOcean overlay for docker-compose.yml
+#
+# Differences from local:
+#   - Removes Postgres / Redis containers (use DO Managed Databases instead)
+#   - Removes MinIO (use DO Spaces — S3-compatible)
+#   - FastAPI points at external DATABASE_URL / REDIS_URL / SPACES_ENDPOINT from env
+#   - Adds resource limits appropriate for a $24-48/mo droplet
+#
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.digitalocean.yml up -d
+
+services:
+  postgres:
+    deploy:
+      replicas: 0    # disabled — use DO Managed PostgreSQL
+    profiles:
+      - never
+
+  redis:
+    deploy:
+      replicas: 0    # disabled — use DO Managed Redis
+    profiles:
+      - never
+
+  minio:
+    deploy:
+      replicas: 0    # disabled — use DO Spaces
+    profiles:
+      - never
+
+  fastapi:
+    environment:
+      # These come from .env on the droplet — values point at managed services
+      DATABASE_URL: ${DATABASE_URL:?DO managed PG URL required}
+      REDIS_URL: ${REDIS_URL:?DO managed Redis URL required}
+      MINIO_ENDPOINT: ${SPACES_ENDPOINT:?DO Spaces endpoint required}
+      MINIO_ACCESS_KEY: ${SPACES_ACCESS_KEY:?}
+      MINIO_SECRET_KEY: ${SPACES_SECRET_KEY:?}
+      MINIO_SECURE: "true"   # Spaces uses HTTPS
+      MINIO_REGION: ${SPACES_REGION:-nyc3}
+    # !override, not a bare empty list: Compose's default merge strategy
+    # for depends_on merges with the base file's mapping-form entries
+    # rather than replacing them, so an un-tagged `[]` here left
+    # postgres/redis/minio as required dependencies even though this
+    # overlay disables all three (profiles: [never]) — an invalid
+    # project ("depends on undefined service"). !override forces a
+    # real replacement instead of a merge.
+    depends_on: !override []   # external managed services, no compose dependency
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2G
+        reservations:
+          cpus: "0.5"
+          memory: 512M
+
+  prometheus:
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 2G
+
+  grafana:
+    # No port override here. Docker's `ports:` bind syntax takes one host IP,
+    # not a CIDR range — "100.64.0.0/10:3000:3000" (a previous version of this
+    # line) is not valid syntax and broke `docker compose config` for every
+    # commit that touched this file. A tailnet IP is per-node and cannot have
+    # one correct committed value anyway.
+    #
+    # Falling through to the base file's `127.0.0.1:3000:3000` is the correct
+    # safe default: no exposure beyond loopback on the droplet, consistent
+    # with CLAUDE.md's "no service exposed without an auth layer". To reach
+    # Grafana over the tailnet, either `tailscale serve` it on the droplet
+    # (see modules/infrastructure/setup/manual.md's Funnel section) or
+    # override the port here with this specific node's real tailnet IP —
+    # never a CIDR block.
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+
+  loki:
+    # On DO, configure Loki to ship chunks to Spaces for long retention
+    volumes:
+      - ./configs/digitalocean/loki-s3.yml:/etc/loki/loki-config.yml:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+
+  promtail:
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
+
+  nodecg:
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+
+  n8n:
+    # Same bug as fastapi's depends_on above: the base file has
+    # `postgres: {condition: service_healthy}` here, and an un-tagged
+    # `[]` merges rather than replaces it. n8n's own profile
+    # (automation) is not active by default, but `compose config`
+    # validates the dependency graph regardless of which profiles are
+    # active, so this was a second live instance of the same error.
+    depends_on: !override []   # external Postgres
+    environment:
+      DB_POSTGRESDB_HOST: ${POSTGRES_HOST:?}
+      DB_POSTGRESDB_PORT: ${POSTGRES_PORT:-5432}
+      DB_POSTGRESDB_DATABASE: ${POSTGRES_DB:-hcp}
+      DB_POSTGRESDB_USER: ${POSTGRES_USER:-hcp}
+      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED: "false"
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G

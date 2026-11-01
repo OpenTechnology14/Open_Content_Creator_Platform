@@ -1,0 +1,119 @@
+{
+  "_meta": {
+    "title": "Video Range Edit v1",
+    "description": "Extend video-frame-edit-v1.json from a single frame to a frame range: the caller draws a mask on frame 1 only, RAFT optical flow propagates it forward across the batch so the edit tracks motion instead of staying pinned to frame 1's pixel coordinates. RAFT node verified against ComfyUI-Buff-Nodes' RaftOpticalFlowNode (2026-09-01 web search).",
+    "module": "image-editing",
+    "status": "template, needs design work not a naming fix (confirmed 2026-09-02, P-043) — VideoHelperSuite nodes are real and correctly named; RaftOpticalFlowNode (ComfyUI-Buff-Nodes) is real but returns a flow VISUALIZATION IMAGE, not a usable flow field, so no mask-warp node can consume its output regardless of what it is called. See workflows/README.md Status for the two candidate fixes. Propagation quality on fast motion or occlusion remains unverified.",
+    "required_models": ["SDXL Inpainting or Flux Fill", "RAFT (raft-things.pth)"],
+    "required_nodes": ["VideoHelperSuite", "ComfyUI-Buff-Nodes (RAFT)"]
+  },
+  "1": {
+    "class_type": "VHS_LoadVideo",
+    "_note": "VideoHelperSuite LoadVideo node. frame_load_cap bounds the edited range; 0 = whole clip.",
+    "inputs": {
+      "video": "input_video.mp4",
+      "force_rate": 0,
+      "force_size": "Disabled",
+      "frame_load_cap": 48,
+      "skip_first_frames": 0,
+      "select_every_nth": 1
+    }
+  },
+  "2": {
+    "class_type": "LoadImage",
+    "_note": "User-drawn mask for frame 1 only. Later frames' masks come from RAFT propagation (node 4), not from this image.",
+    "inputs": {
+      "image": "mask_frame1.png"
+    }
+  },
+  "3": {
+    "class_type": "ImageToMask",
+    "inputs": {
+      "image": ["2", 0],
+      "channel": "red"
+    }
+  },
+  "4": {
+    "class_type": "RaftOpticalFlowNode",
+    "_note": "Computes dense optical flow across the loaded frame batch; downstream node 5 warps the frame-1 mask along that flow field for every subsequent frame.",
+    "inputs": {
+      "images": ["1", 0],
+      "model_name": "raft-things.pth",
+      "iterations": 12
+    }
+  },
+  "5": {
+    "class_type": "MaskWarpByFlow",
+    "_note": "Not a built-in ComfyUI node — a placeholder for whatever flow-warp node ships with the installed RAFT pack (packs differ here; ComfyUI-Buff-Nodes, Code2Collapse's mask-propagation pack, and comfyui-optical-flow each name this step differently). Confirm the real class_type before use.",
+    "inputs": {
+      "mask": ["3", 0],
+      "flow": ["4", 0],
+      "images": ["1", 0]
+    }
+  },
+  "6": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "sd_xl_base_1.0_inpainting_0.1.safetensors"
+    }
+  },
+  "7": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "PLACEHOLDER_PROMPT",
+      "clip": ["6", 1]
+    }
+  },
+  "8": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "flicker, temporal inconsistency, blurry, lowres, artifacts, watermark",
+      "clip": ["6", 1]
+    }
+  },
+  "9": {
+    "class_type": "VAEEncodeForInpaint",
+    "_note": "Batched over the full loaded frame range; masks come from node 5, one per frame.",
+    "inputs": {
+      "pixels": ["1", 0],
+      "vae": ["6", 2],
+      "mask": ["5", 0],
+      "grow_mask_by": 8
+    }
+  },
+  "10": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": ["6", 0],
+      "positive": ["7", 0],
+      "negative": ["8", 0],
+      "latent_image": ["9", 0],
+      "seed": 42,
+      "steps": 25,
+      "cfg": 7.0,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 0.8
+    }
+  },
+  "11": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": ["10", 0],
+      "vae": ["6", 2]
+    }
+  },
+  "12": {
+    "class_type": "VHS_VideoCombine",
+    "_note": "VideoHelperSuite. Re-assembles the edited frame batch back into a video file.",
+    "inputs": {
+      "images": ["11", 0],
+      "frame_rate": 30,
+      "filename_prefix": "video_range_edit",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_output": true
+    }
+  }
+}

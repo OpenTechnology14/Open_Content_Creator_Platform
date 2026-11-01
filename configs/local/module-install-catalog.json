@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "profiles": {
+    "stream-test": [
+      "ai-agents",
+      "audio-production",
+      "automation-control",
+      "content-creation",
+      "social-management"
+    ],
+    "broadcast": [
+      "creator-experience",
+      "soundboard",
+      "audio-production",
+      "broadcast-graphics",
+      "social-management"
+    ],
+    "creator": [
+      "content-creation",
+      "image-editing",
+      "asset-pipeline",
+      "model-registry",
+      "social-management"
+    ]
+  },
+  "modules": {
+    "creator-experience": {
+      "requirements": [],
+      "depends_on": [],
+      "manual": "modules/creator-experience/setup/manual.md",
+      "automated": "modules/creator-experience/setup/automated.md",
+      "remaining": "Install OBS and configure scenes, encoder, capture and recording manually.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": [
+        {
+          "label": "OBS application",
+          "commands": [
+            "obs64",
+            "obs"
+          ],
+          "macos_paths": [
+            "/Applications/OBS.app"
+          ],
+          "windows_paths": [
+            "%ProgramFiles%/obs-studio/bin/64bit/obs64.exe"
+          ]
+        }
+      ]
+    },
+    "soundboard": {
+      "requirements": [],
+      "depends_on": [],
+      "manual": "modules/soundboard/setup/manual.md",
+      "automated": "modules/soundboard/setup/automated.md",
+      "remaining": "Install the matching DJ Soundbox OBS plugin build; configure clips, hotkeys and audio tracks.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": [
+        {
+          "label": "OBS application",
+          "commands": [
+            "obs64",
+            "obs"
+          ],
+          "macos_paths": [
+            "/Applications/OBS.app"
+          ],
+          "windows_paths": [
+            "%ProgramFiles%/obs-studio/bin/64bit/obs64.exe"
+          ]
+        }
+      ]
+    },
+    "realtime-ai": {
+      "requirements": [],
+      "depends_on": [],
+      "manual": "modules/realtime-ai/setup/manual.md",
+      "automated": "modules/realtime-ai/setup/automated.md",
+      "remaining": "Select and install an OS/GPU-compatible inference tool and licensed models; no model or GPU runtime installation is automated.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": []
+    },
+    "automation-control": {
+      "requirements": [
+        "modules/automation-control/stream_director/requirements.txt",
+        "modules/automation-control/show_planner/requirements.txt",
+        "modules/automation-control/stream_autopilot/requirements.txt"
+      ],
+      "depends_on": [],
+      "manual": "modules/automation-control/setup/manual.md",
+      "automated": "modules/automation-control/setup/automated.md",
+      "remaining": "The app can start the selected local storage, API and n8n containers and import the inactive reference workflow. OBS bindings, activation and account credentials remain manual.",
+      "compose_services": [
+        "postgres",
+        "redis",
+        "minio",
+        "fastapi",
+        "n8n"
+      ],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": []
+    },
+    "storage-data": {
+      "requirements": [],
+      "depends_on": [],
+      "manual": "modules/storage-data/setup/manual.md",
+      "automated": "modules/storage-data/setup/automated.md",
+      "remaining": "The app can start Postgres, Redis and MinIO, then apply migrations and initialize buckets through a resumable job. Real Docker and repeat-run acceptance remain open.",
+      "compose_services": [
+        "postgres",
+        "redis",
+        "minio"
+      ],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": [
+        {
+          "label": "Docker command",
+          "commands": [
+            "docker"
+          ],
+          "macos_paths": [],
+          "windows_paths": []
+        }
+      ]
+    },
+    "sports-analytics": {
+      "requirements": [
+        "modules/sports-analytics/requirements.txt"
+      ],
+      "depends_on": [],
+      "manual": "modules/sports-analytics/setup/manual.md",
+      "automated": "modules/sports-analytics/setup/automated.md",
+      "remaining": "Python dependencies only; camera permissions, model weights and actual inference require separate verification.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": []
+    },
+    "content-creation": {
+      "requirements": [
+        "modules/content-creation/stream_shorts/requirements.txt"
+      ],
+      "depends_on": [],
+      "manual": "modules/content-creation/setup/manual.md",
+      "automated": "modules/content-creation/setup/automated.md",
+      "remaining": "Python scope: local Shorts only. Blender, DaVinci and editor integrations are separate manual installs.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": [
+        {
+          "label": "Blender application",
+          "commands": [
+            "blender"
+          ],
+          "macos_paths": [
+            "/Applications/Blender.app"
+          ],
+          "windows_paths": []
+        }
+      ]
+    },
+    "image-editing": {
+      "requirements": [],
+      "depends_on": [],
+      "manual": "modules/image-editing/setup/manual.md",
+      "automated": "modules/image-editing/setup/automated.md",
+      "remaining": "Install Krita and AI Diffusion, configure ComfyUI/models and verify an edit round trip.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": [
+        {
+          "label": "Krita application",
+          "commands": [
+            "krita"
+          ],
+          "macos_paths": [
+            "/Applications/krita.app"
+          ],
+          "windows_paths": [
+            "%ProgramFiles%/Krita (x64)/bin/krita.exe"
+          ]
+        }
+      ]
+    },
+    "nature-generation": {
+      "requirements": [],
+      "depends_on": [],
+      "manual": "modules/nature-generation/setup/manual.md",
+      "automated": "modules/nature-generation/setup/automated.md",
+      "remaining": "Tier 0 deterministic grading exists; learned Tiers 1\u20134 and a complete generation runtime remain unbuilt. Follow the manual dependency/setup guide.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": []
+    },
+    "cityscape-generation": {
+      "requirements": [],
+      "depends_on": [],
+      "manual": "modules/cityscape-generation/setup/manual.md",
+      "automated": "modules/cityscape-generation/setup/automated.md",
+      "remaining": "Tier 0 deterministic grading exists; learned Tiers 1\u20134 and a complete generation runtime remain unbuilt. Follow the manual dependency/setup guide.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": []
+    },
+    "marketing-crosswalk": {
+      "requirements": [
+        "modules/marketing-crosswalk/requirements.txt"
+      ],
+      "depends_on": [],
+      "manual": "modules/marketing-crosswalk/setup/manual.md",
+      "automated": "modules/marketing-crosswalk/setup/automated.md",
+      "remaining": "Python CLI dependencies only; configure consumer repository paths and validate content generation.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": []
+    },
+    "backend-api": {
+      "requirements": [
+        "modules/backend-api/fastapi/requirements.txt"
+      ],
+      "depends_on": [
+        "storage-data"
+      ],
+      "manual": "modules/backend-api/setup/manual.md",
+      "automated": "modules/backend-api/setup/automated.md",
+      "remaining": "The app can start and initialize the selected local API and storage services with private generated credentials. External client handoff and live API acceptance remain manual.",
+      "compose_services": [
+        "fastapi"
+      ],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": [
+        {
+          "label": "Docker command",
+          "commands": [
+            "docker"
+          ],
+          "macos_paths": [],
+          "windows_paths": []
+        }
+      ]
+    },
+    "broadcast-graphics": {
+      "requirements": [],
+      "depends_on": [
+        "backend-api"
+      ],
+      "manual": "modules/broadcast-graphics/setup/manual.md",
+      "automated": "modules/broadcast-graphics/setup/automated.md",
+      "remaining": "The app can start the selected local storage, API and NodeCG services. Configure browser sources and live overlay acceptance manually.",
+      "compose_services": [
+        "nodecg"
+      ],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": [
+        {
+          "label": "Docker command",
+          "commands": [
+            "docker"
+          ],
+          "macos_paths": [],
+          "windows_paths": []
+        }
+      ]
+    },
+    "observability": {
+      "requirements": [
+        "modules/observability/source-health-exporter/requirements.txt"
+      ],
+      "depends_on": [],
+      "manual": "modules/observability/setup/manual.md",
+      "automated": "modules/observability/setup/automated.md",
+      "remaining": "The app can start the selected local monitoring services and provide the generated Grafana password through a bounded copy action. Grafana login acceptance and alert destinations remain manual.",
+      "compose_services": [
+        "prometheus",
+        "source-health-exporter",
+        "loki",
+        "promtail",
+        "grafana"
+      ],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": [
+        {
+          "label": "Docker command",
+          "commands": [
+            "docker"
+          ],
+          "macos_paths": [],
+          "windows_paths": []
+        }
+      ]
+    },
+    "infrastructure": {
+      "requirements": [],
+      "depends_on": [],
+      "manual": "modules/infrastructure/setup/manual.md",
+      "automated": "modules/infrastructure/setup/automated.md",
+      "remaining": "The app can detect, install and open Docker Desktop on Windows/macOS. Resolve elevation, virtualization, WSL/reboot and optional Tailscale manually; no cloud resources are provisioned.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": [
+        {
+          "label": "Docker command",
+          "commands": [
+            "docker"
+          ],
+          "macos_paths": [],
+          "windows_paths": []
+        }
+      ]
+    },
+    "audio-production": {
+      "requirements": [
+        "modules/audio-production/tts/requirements.txt",
+        "modules/audio-production/stream_speech/requirements.txt"
+      ],
+      "depends_on": [],
+      "manual": "modules/audio-production/setup/manual.md",
+      "automated": "modules/audio-production/setup/automated.md",
+      "remaining": "Python scope: saved-reply export and continuous Autopilot speech. OBS audio routing still needs acceptance. Mac playback is verified; Windows uses System.Speech and remains gated.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": [
+        {
+          "label": "System speech executable",
+          "commands": [],
+          "macos_paths": [
+            "/usr/bin/say"
+          ],
+          "windows_paths": [
+            "%SystemRoot%/System32/WindowsPowerShell/v1.0/powershell.exe"
+          ]
+        }
+      ]
+    },
+    "character-avatar": {
+      "requirements": [
+        "modules/character-avatar/stream_avatar/requirements.txt"
+      ],
+      "depends_on": [],
+      "manual": "modules/character-avatar/setup/manual.md",
+      "automated": "modules/character-avatar/setup/automated.md",
+      "remaining": "Install and accept an original VTube Studio avatar plus Talk/Idle hotkeys. Speech-timed control exists; full-body animation remains open.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": []
+    },
+    "ai-agents": {
+      "requirements": [
+        "modules/ai-agents/stream_host/requirements.txt"
+      ],
+      "depends_on": [],
+      "manual": "modules/ai-agents/setup/manual.md",
+      "automated": "modules/ai-agents/setup/automated.md",
+      "remaining": "Python scope: conversational stream host only. Install Ollama/model separately for inference. Gameplay automation is not implemented.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": [
+        {
+          "label": "Ollama application",
+          "commands": [
+            "ollama"
+          ],
+          "macos_paths": [
+            "/Applications/Ollama.app"
+          ],
+          "windows_paths": [
+            "%LOCALAPPDATA%/Programs/Ollama/ollama.exe"
+          ]
+        }
+      ]
+    },
+    "asset-pipeline": {
+      "requirements": [
+        "modules/asset-pipeline/requirements.txt"
+      ],
+      "depends_on": [],
+      "manual": "modules/asset-pipeline/setup/manual.md",
+      "automated": "modules/asset-pipeline/setup/automated.md",
+      "remaining": "Python library dependencies only; configure credentials/storage and verify an asset round trip.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": []
+    },
+    "model-registry": {
+      "requirements": [
+        "modules/model-registry/requirements.txt"
+      ],
+      "depends_on": [
+        "asset-pipeline"
+      ],
+      "manual": "modules/model-registry/setup/manual.md",
+      "automated": "modules/model-registry/setup/automated.md",
+      "remaining": "Python CLI dependencies only; configure the asset pipeline and validate actual model provenance.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Not certified by this installer; consult module-specific Mac acceptance evidence.",
+        "windows": "Native module acceptance pending; dependency installation is not a compatibility certification."
+      },
+      "tools": []
+    },
+    "social-management": {
+      "requirements": [
+        "modules/social-management/requirements.txt"
+      ],
+      "depends_on": [],
+      "manual": "modules/social-management/setup/manual.md",
+      "automated": "modules/social-management/setup/automated.md",
+      "remaining": "Register provider applications, connect the intended accounts, and complete live post/upload/stream acceptance.",
+      "compose_services": [],
+      "platform_evidence": {
+        "macos": "Offline contracts pass; real Keychain/provider account acceptance remains pending.",
+        "windows": "Offline contracts pass; real Credential Manager/provider account acceptance remains pending."
+      },
+      "tools": []
+    }
+  }
+}

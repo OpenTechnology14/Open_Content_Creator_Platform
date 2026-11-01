@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-start-python-bootstrap"
+description = "Enables the start_python_bootstrap command without any pre-configured scope."
+commands.allow = ["start_python_bootstrap"]
+
+[[permission]]
+identifier = "deny-start-python-bootstrap"
+description = "Denies the start_python_bootstrap command without any pre-configured scope."
+commands.deny = ["start_python_bootstrap"]

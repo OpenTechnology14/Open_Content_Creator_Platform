@@ -1,0 +1,19 @@
+{
+  "name": "hcp-minecraft-adapter",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test core.test.mjs"
+  },
+  "dependencies": {
+    "mineflayer": "4.39.0"
+  },
+  "overrides": {
+    "uuid": "11.1.1"
+  }
+}

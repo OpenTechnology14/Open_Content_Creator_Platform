@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "platforms": {
+    "macos": {
+      "tools": [
+        {"label": "BlackHole driver", "paths": ["/Library/Audio/Plug-Ins/HAL/BlackHole2ch.driver", "/Library/Audio/Plug-Ins/HAL/BlackHole16ch.driver", "/Library/Audio/Plug-Ins/HAL/BlackHole64ch.driver"]},
+        {"label": "Loopback application", "paths": ["/Applications/Loopback.app", "${HOME}/Applications/Loopback.app"]}
+      ],
+      "reference": "modules/audio-production/routing/blackhole-loopback.json",
+      "guidance": "Use Audio MIDI Setup or Loopback to create your routing. This JSON is a reference, not an importable Loopback preset. Match physical device names and sample rates; select the virtual device as an OBS audio input."
+    },
+    "windows": {
+      "tools": [
+        {"label": "VoiceMeeter Potato application", "paths": ["${ProgramFiles(x86)}/VB/Voicemeeter/voicemeeter8.exe", "${ProgramFiles(x86)}/VB/Voicemeeter/voicemeeter8x64.exe", "${ProgramFiles}/VB/Voicemeeter/voicemeeter8.exe", "${ProgramFiles}/VB/Voicemeeter/voicemeeter8x64.exe"]}
+      ],
+      "reference": "modules/audio-production/voicemeeter/potato-config.xml",
+      "guidance": "Use the bus matrix as a reference and configure VoiceMeeter against your actual hardware. The bundled XML is a platform template; its compatibility with VoiceMeeter's Load Settings format has not been verified. Save a working preset from VoiceMeeter before trying any import. Check virtual audio devices separately in Windows Sound settings."
+    },
+    "linux": {
+      "tools": [
+        {"label": "PipeWire executable", "paths": ["/usr/bin/pipewire", "/usr/local/bin/pipewire"]},
+        {"label": "PipeWire link tool", "paths": ["/usr/bin/pw-link", "/usr/local/bin/pw-link"]}
+      ],
+      "reference": "modules/audio-production/routing/pipewire.conf",
+      "guidance": "Review the loopback configuration against your existing PipeWire setup before adding it. Executable presence does not prove the user audio service or any links are running. Keep a backup of your current configuration."
+    }
+  },
+  "acceptance": [
+    "In OBS, speak into the mic, play desktop audio and a local AI voice sample separately. Confirm each intended source moves its meter and reaches the recording track; avoid capturing the same source twice.",
+    "Record a short local sample and listen on headphones. Confirm usable relative levels, peaks below -1 dB and no clipping or dropouts.",
+    "With a call partner, confirm they cannot hear their own voice returned. Keep CALL-IN and AI-VOICE out of their own input routes.",
+    "In OBS Settings > Hotkeys, assign mic mute/unmute and any soundboard clip hotkeys. Test each key off-air and confirm the intended source changes or clip plays exactly once."
+  ]
+}

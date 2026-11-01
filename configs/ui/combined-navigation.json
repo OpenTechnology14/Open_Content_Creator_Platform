@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "pages": [
+    {
+      "id": "home",
+      "label": "Home"
+    },
+    {
+      "id": "stream",
+      "label": "Stream",
+      "pack": "stream"
+    },
+    {
+      "id": "create",
+      "label": "Create",
+      "pack": "content"
+    },
+    {
+      "id": "library",
+      "label": "Library",
+      "pack": "content"
+    },
+    {
+      "id": "settings",
+      "label": "Settings"
+    }
+  ],
+  "groups": [
+    {
+      "label": "Streaming basics",
+      "modules": [
+        "creator-experience",
+        "audio-production",
+        "soundboard"
+      ]
+    },
+    {
+      "label": "Looks, overlays and avatars",
+      "modules": [
+        "realtime-ai",
+        "broadcast-graphics",
+        "character-avatar"
+      ]
+    },
+    {
+      "label": "Hosts and automation",
+      "modules": [
+        "ai-agents",
+        "automation-control"
+      ]
+    },
+    {
+      "label": "Clips and creative editing",
+      "modules": [
+        "content-creation",
+        "image-editing"
+      ]
+    },
+    {
+      "label": "Sports and motion",
+      "modules": [
+        "sports-analytics"
+      ]
+    },
+    {
+      "label": "Landscape and city assets",
+      "modules": [
+        "nature-generation",
+        "cityscape-generation"
+      ]
+    },
+    {
+      "label": "Accounts and promotion",
+      "modules": [
+        "social-management",
+        "marketing-crosswalk"
+      ]
+    },
+    {
+      "label": "Shared foundations and diagnostics",
+      "modules": [
+        "storage-data",
+        "asset-pipeline",
+        "model-registry",
+        "backend-api",
+        "observability",
+        "infrastructure"
+      ]
+    }
+  ],
+  "workflow_labels": {
+    "auto-select-sam-v1": {
+      "label": "Select a subject",
+      "purpose": "Create a mask from a selected point."
+    },
+    "background-replace-v1": {
+      "label": "Change a background",
+      "purpose": "Prepare a subject mask and a new background."
+    },
+    "inpaint-fill-v1": {
+      "label": "Fill a selected area",
+      "purpose": "Prepare a masked image edit."
+    },
+    "inpaint-remove-v1": {
+      "label": "Remove an object",
+      "purpose": "Prepare an edit that fills the selected area."
+    },
+    "outpaint-expand-v1": {
+      "label": "Extend an image",
+      "purpose": "Prepare additional space around an image."
+    },
+    "realtime-lcm-stylize-v1": {
+      "label": "Stylize webcam frames",
+      "purpose": "Browse the local realtime stylization workflow."
+    },
+    "realtime-segmentation-v1": {
+      "label": "Separate a webcam background",
+      "purpose": "Browse the local segmentation workflow."
+    },
+    "upscale-4x-v1": {
+      "label": "Upscale an image",
+      "purpose": "Browse the image enlargement workflow."
+    },
+    "video-frame-edit-v1": {
+      "label": "Edit a video frame",
+      "purpose": "Prepare an image edit for one frame."
+    },
+    "video-range-edit-v1": {
+      "label": "Edit a video range",
+      "purpose": "Prepare an edit across a group of frames."
+    }
+  }
+}
