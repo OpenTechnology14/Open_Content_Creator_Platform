@@ -14,6 +14,15 @@ from generator.crosswalk import load  # noqa: E402
 from generator.render import PrivateLinkLeak, render  # noqa: E402
 
 
+def _private_edition() -> bool:
+    """The exporter rewrites the private repository's name to the public edition's, so the guards that prove the private
+    name is refused only mean something in the private edition. In the public edition they are skipped, not failed."""
+    return load(MODULE, ROOT).targets["hybrid-creator-platform"]["repo"].endswith("_Private")
+
+
+private_edition_only = pytest.mark.skipif(not _private_edition(), reason="public edition: the private repository name is rewritten at export")
+
+
 @pytest.mark.parametrize("module", ["stream-extend", "content-extend", "task-management"])
 def test_unfinished_subjects_produce_preparation_not_demonstration_claims(module):
     cw = load(MODULE, ROOT)
@@ -30,6 +39,7 @@ def test_unfinished_subjects_produce_preparation_not_demonstration_claims(module
         assert original["status"] == cw.subject(module, original["id"])["status"]
 
 
+@private_edition_only
 def test_walkthrough_source_text_cannot_leak_private_repo_links():
     cw = load(MODULE, ROOT)
     subject = deepcopy(cw.subjects["stream-extend"][0])

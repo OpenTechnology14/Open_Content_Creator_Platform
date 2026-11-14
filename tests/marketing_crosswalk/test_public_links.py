@@ -22,6 +22,15 @@ PUBLIC = "https://github.com/OpenTechnology14/Open_Content_Creator_Platform"
 PRIVATE = "https://github.com/OpenTechnology14/Open_Content_Creator_Platform"
 
 
+def _private_edition() -> bool:
+    """The exporter rewrites the private repository's name to the public edition's, so the guards that prove the private
+    name is refused only mean something in the private edition. In the public edition they are skipped, not failed."""
+    return load(MODULE, ROOT).targets["hybrid-creator-platform"]["repo"].endswith("_Private")
+
+
+private_edition_only = pytest.mark.skipif(not _private_edition(), reason="public edition: the private repository name is rewritten at export")
+
+
 def draft_with(text):
     cw = load(MODULE, ROOT)
     subject = deepcopy(cw.subjects["stream-extend"][0])
@@ -29,6 +38,7 @@ def draft_with(text):
     return cw, subject
 
 
+@private_edition_only
 def test_the_platform_target_names_its_public_edition():
     cw = load(MODULE, ROOT)
     assert public_edition_repos(cw) == {"Open_Content_Creator_Platform": "hybrid-creator-platform"}
@@ -41,6 +51,7 @@ def test_a_link_to_a_file_the_public_edition_contains_is_allowed():
     assert f"{PUBLIC}/blob/main/README.md" in body
 
 
+@private_edition_only
 @pytest.mark.parametrize("url", [PRIVATE, f"{PRIVATE}/blob/main/README.md", "https://github.com/OpenTechnology14/Hybrid_Creator_Platform"])
 def test_the_private_repository_is_still_refused_under_either_name(url):
     cw, subject = draft_with(f"See {url}")
