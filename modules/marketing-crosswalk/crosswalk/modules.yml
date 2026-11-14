@@ -1,6 +1,6 @@
 # Content Platform module registry — THE CANONICAL DISCOVERY INDEX.
 #
-# If you are an agent or a person in ANY of the three repositories (hybrid-creator-platform,
+# If you are an agent or a person in ANY of the three repositories (Content Creator Platform,
 # OpenTechnologyApp, OpenTechnologyBlog) trying to answer "what marketing
 # modules exist?", this file is the answer. Read it first, before grepping either other repo.
 #
@@ -153,7 +153,7 @@ modules:
       generation, sports analytics, and the shared foundations (storage, social profiles, the
       asset and model registries). `marketing-crosswalk` carries the label but is excluded: it
       ships in neither app. Naming is unsettled:
-      "ContentExtend" is the repository/product name in REPOSITORY_ALIGNMENT.md, while
+      "ContentExtend" is the candidate name in REPOSITORY_ALIGNMENT.md, while
       "Creator Extend" appears in README, roadmap, product-spec and the live domain.
       Both names find this module. The go-to-market playbook for both products is MARKETING.md
       at the repository root.
@@ -212,7 +212,7 @@ modules:
     notes: >-
       A four-lesson teaching series about HOW TO USE AI — pick a model, prompt with project
       context, build apps with docs/rules/skills, then cut cost. It is a curriculum, not a
-      product and not a governance framework. Authored in hybrid-creator-platform under
+      product and not a governance framework. Authored in the Content Creator Platform under
       docs/learning/, delivered to the blog. Nothing has aired; all four lessons are
       `scaffolded`; four written previews are publicly available, verified 2026-10-08.
     discovery_keywords:
@@ -271,7 +271,7 @@ modules:
     onboarded: 2026-09-23
     status: drafted
     last_verified: 2026-10-20
-    merged_pr: https://github.com/OpenTechnology14/OpenTechnologyBlog/pull/38
+    merged_pr: OpenTechnologyBlog#38
     source_revision: "03970722f37555198faea7cfbe28cbd57c5ff563"
     notes: >-
       A GOVERNANCE and PRACTICE library, not a course. It connects intent, documentation,
@@ -325,7 +325,7 @@ modules:
       marketing_package_unmerged:   # exist only on open PR #58; move into marketing_package when it merges
         - marketing/ai-control-layer/editorial-backlog.md
         - marketing/ai-control-layer/source-and-claim-ledger.md
-      marketing_package_pr: https://github.com/OpenTechnology14/OpenTechnologyBlog/pull/58
+      marketing_package_pr: OpenTechnologyBlog#58
       downloads:
         - public/downloads/ai-control-layer-workbook.md
         - public/downloads/ai-control-evaluation-cases.json
@@ -359,7 +359,7 @@ modules:
     onboarded: 2026-09-23
     status: drafted
     last_verified: 2026-10-20
-    merged_pr: https://github.com/OpenTechnology14/OpenTechnologyBlog/pull/49
+    merged_pr: OpenTechnologyBlog#49
     source_revision: "03970722f37555198faea7cfbe28cbd57c5ff563"
     notes: >-
       Narrow and concrete: it documents real product behaviour — vendor selection, complexity

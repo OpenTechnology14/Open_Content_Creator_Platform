@@ -68,7 +68,7 @@ assignments, bounded Terra/Luna children, and preserved execution/acceptance bou
 
 ## Proposals and process
 
-[Open the proposal dashboard](proposal-dashboard.html) to select Hybrid Platform or MyFeed,
+[Open the proposal dashboard](proposal-dashboard.html) to select Content Creator Platform or MyFeed,
 review Testing and remaining features, and prepare a bounded work request. See the
 [dashboard workflow and refresh guide](PROPOSAL_DASHBOARD.md).
 
@@ -91,7 +91,7 @@ installer history; the queue retains its original inbound anchor as a redirect.
 | Document | Purpose |
 |---|---|
 | [Product spec](architecture/product-spec.md) | App architecture, pricing, build order, guides-as-content |
-| [Repository alignment](architecture/../REPOSITORY_ALIGNMENT.md) | Canonical ownership and standalone export policy |
+| [Repository alignment](architecture/../REPOSITORY_ALIGNMENT.md) | Canonical ownership, the public export, and the archived standalone repositories |
 | [Deviations](architecture/deviations.md) | Where reality diverged from the roadmap, and why |
 | [Kubernetes decision](architecture/k8s-decision.md) | The four conditions that would justify it |
 | [Future work](architecture/future.md) | Deferred items, each with the trigger that reopens it |
@@ -108,6 +108,10 @@ Recent local checks and on-demand audit findings: [capped audit log](AUDIT_LOG.m
 | [Gap audit](GAP_AUDIT.md) | Prioritized gaps and acceptance criteria |
 | [Full audit matrix](FULL_APPLICATION_AUDIT_MATRIX.md) | Surface-by-surface coverage |
 | [API route ledger](API_ROUTE_AUDIT_LEDGER.md) | HTTP, WebSocket, and Tauri command inventory |
+| [AI actions inventory](AI_ACTIONS_INVENTORY.md) | The AI actions the apps have today, where each lives and how to see it, and what is only proposed |
+| [Technical notes](TECHNICAL_NOTES.md) | Technical detail by pull request: what, why, trade-offs and migration notes |
+| [Bugs noticed while coding](BUGS.md) | Zero-ceremony log of bugs a session spots while working, with severity and status |
+| [Potential gaps](POTENTIAL_GAPS.md) | Things flagged as a possible gap during work, before they become proposals |
 | [Pressure-test plan](PRESSURE_TEST_LOAD.md) | Reliability and failure-mode scenarios |
 | [Implementation notes](IMPLEMENTATION_NOTES.md) | Decisions, constraints, and verification record |
 | [Continuous improvement](CONTINUOUS_IMPROVEMENT.md) | Recurring audit cadence and metrics |

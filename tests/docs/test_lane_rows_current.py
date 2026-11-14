@@ -8,7 +8,12 @@ once and fixed by hand:
 * a decision asks the owner to accept or retire a proposal that is already accepted (`PL-D09`, with P-005 In progress);
 * an "also <ID>" pointer leads to a row about something else (`PL-D07` pointed at `CT-D13`, the lesson status words, for the
   product naming decision, which is `CT-D12`);
-* the design-system hub says the repository has no root `LICENSE` after one was added (D-9).
+* the design-system hub says the repository has no root `LICENSE` after one was added (D-9), and so can the three documents
+  that state current facts rather than dated history (`GAP_AUDIT`, `future-state`, `product-spec`);
+* a lane-map row starts with a different status from the queue's (eight rows kept `Code complete` or `Partially done` after
+  the queue filed them under `In progress`);
+* the lane map waits on a row that is resolved or does not exist (`P-064` listed `CT-R10` and `CT-R14` after both were resolved);
+* a decision that lives in two lanes points one way only, or is open in one lane and closed in the other (`PL-D07` and `CT-D12`).
 
 Offline and read-only.
 """
@@ -26,7 +31,14 @@ LANES = [
 MARKER = "**Question:**"
 CLOSED = ("resolved", "decided", "done", "dropped")
 ROW_ID = re.compile(r"^(?:CT|ST|PL)-[AD]\d+$")
+ANY_ROW_ID = re.compile(r"^(?:CT|ST|PL)-[A-Z]\d+$")
+LANE_ID = re.compile(r"\b((?:CT|ST|PL)-[A-Z])(\d+)(?:\s*[–-]\s*(?:(?:CT|ST|PL)-[A-Z])?(\d+))?")
 PROPOSAL = re.compile(r"\bP-\d{3}\b")
+LANE_MAP = "## Queue to lane map"
+NO_ROOT_LICENSE = re.compile(r"\bno root[\s`*]*licen[sc]e", re.I)
+# Documents that state a current fact. The proposals and reviews keep dated history ("no root license" was true when
+# they were written), so they carry a dated update instead of a rewrite and are not checked here.
+STATE_DOCS = ["docs/GAP_AUDIT.md", "docs/architecture/future-state.md", "docs/architecture/product-spec.md"]
 
 
 def read(relative: str) -> str:
@@ -64,10 +76,54 @@ def queue_states() -> dict[str, str]:
     return states
 
 
+def lane_map_rows() -> dict[str, list[str]]:
+    """Proposal id -> the cells of its row in the queue-to-lane map of docs/todo/README.md."""
+    lines = read("docs/todo/README.md").splitlines()
+    start = next(index for index, line in enumerate(lines) if line.startswith(LANE_MAP))
+    found: dict[str, list[str]] = {}
+    for line in lines[start + 1:]:
+        if line.startswith("## "):
+            break
+        match = re.match(r"^\| (P-\d+) ", line)
+        if match:
+            found[match.group(1)] = cells_of(line)
+    return found
+
+
+def lead(state: str) -> str:
+    """The status word of a state cell: what stands before the first dash, comma, semicolon, colon or bracket."""
+    plain = re.sub(r"[*`]", "", state).strip().lower()
+    return re.split(r"\s+[—–-]\s+|[,;:(]", plain, maxsplit=1)[0].strip()
+
+
+def lane_ids() -> dict[str, bool]:
+    """Every lane row id of any kind -> whether the row is still open. A Resolved-log entry is not a row."""
+    found: dict[str, bool] = {}
+    for relative in LANES:
+        for line in read(relative).splitlines():
+            if not line.startswith("| "):
+                continue
+            cells = cells_of(line)
+            if ANY_ROW_ID.match(cells[0]):
+                state = re.sub(r"[*`_]", "", cells[-1]).strip().lower()
+                found[cells[0]] = not state.startswith(CLOSED)
+    return found
+
+
+def expand_ids(text: str) -> list[str]:
+    """Row ids named in a cell, with a range such as CT-R09–CT-R11 written out."""
+    ids = []
+    for prefix, first, last in LANE_ID.findall(text):
+        for number in range(int(first), int(last or first) + 1):
+            ids.append(f"{prefix}{number:0{len(first)}d}")
+    return ids
+
+
 def test_the_rows_and_the_queue_were_read():
     rows, states = lane_rows(), queue_states()
     assert {"CT-A01", "CT-D12", "PL-D07", "PL-D09"} <= set(rows)
     assert states["P-061"].startswith("in progress") and len(states) >= 60
+    assert len(lane_map_rows()) >= 25 and len(lane_ids()) >= 80
 
 
 def test_an_awaiting_acceptance_row_names_a_pending_proposal():
@@ -123,9 +179,57 @@ def test_an_also_pointer_leads_to_a_row_about_the_same_proposal():
 
 def test_the_hub_does_not_say_the_repository_has_no_root_license():
     assert (REPO / "LICENSE").exists(), "this check holds only while a root LICENSE exists"
-    claim = re.compile(r"\bno root[\s`*]*licen[sc]e", re.I)
     stale = []
     for path in sorted((REPO / "design-system").rglob("*")):
-        if path.suffix in {".md", ".yaml"} and claim.search(path.read_text(encoding="utf-8")):
+        if path.suffix in {".md", ".yaml"} and NO_ROOT_LICENSE.search(path.read_text(encoding="utf-8")):
             stale.append(str(path.relative_to(REPO)))
     assert not stale, f"{stale} still say there is no root LICENSE; the repository has had one since P-075"
+
+
+def test_the_documents_that_state_current_facts_do_not_say_there_is_no_root_license():
+    assert (REPO / "LICENSE").exists(), "this check holds only while a root LICENSE exists"
+    stale = [relative for relative in STATE_DOCS if NO_ROOT_LICENSE.search(read(relative))]
+    assert not stale, f"{stale} still say there is no root LICENSE; add a dated update, as the proposals do, or correct the line"
+
+
+def test_the_lane_map_starts_each_state_with_the_queue_status():
+    states, failures = queue_states(), []
+    for proposal, cells in lane_map_rows().items():
+        if proposal not in states:
+            failures.append(f"{proposal} is in the lane map but not in the queue")
+        elif lead(cells[1]) != lead(states[proposal]):
+            failures.append(
+                f"{proposal}: the lane map says {cells[1]!r} but the queue starts {lead(states[proposal])!r}. "
+                "The queue wins; start the map cell with its status."
+            )
+    assert not failures, "\n".join(failures)
+
+
+def test_the_lane_map_waits_only_on_rows_that_exist():
+    rows, failures = lane_ids(), []
+    for proposal, cells in lane_map_rows().items():
+        for clause in re.split(r"[;.](?!\d)", cells[3]):
+            for row_id in expand_ids(clause):
+                state = rows.get(row_id)
+                if state is True or (state is False and "resolved" in clause.lower()):
+                    continue
+                failures.append(
+                    f"{proposal} waits on {row_id}, which "
+                    f"{'is resolved and not called resolved here' if state is False else 'has no open row (it may be in the Resolved log)'}"
+                )
+    assert not failures, "\n".join(failures)
+
+
+def test_a_decision_in_two_lanes_points_both_ways_and_closes_in_both():
+    rows, failures = lane_rows(), []
+    for row_id, row in rows.items():
+        source = row["cells"][2] if len(row["cells"]) > 3 else ""
+        for target in re.findall(r"\balso ((?:CT|ST|PL)-[AD]\d+)\b", source):
+            other = rows.get(target)
+            if other is None:
+                continue  # test_an_also_pointer_leads_to_a_row_about_the_same_proposal reports a missing target
+            if f"also {row_id}" not in (other["cells"][2] if len(other["cells"]) > 3 else ""):
+                failures.append(f"{row_id} says 'also {target}', but {target} does not say 'also {row_id}'")
+            if other["open"] != row["open"]:
+                failures.append(f"{row_id} and {target} are one decision, but only one of them is open")
+    assert not failures, "\n".join(failures)

@@ -36,7 +36,7 @@ This Code of Conduct applies within all community spaces, and also applies when 
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at [OWNER-SET: conduct reporting contact, see OSS-D04 in docs/proposals/PROPOSAL_OPEN_SOURCE_RELEASE_PLAN.md]. All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement through this repository's [private reporting form](https://github.com/OpenTechnology14/Open_Content_Creator_Platform/security/advisories/new); please title the report "Code of conduct". The form is visible only to the maintainers. All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 

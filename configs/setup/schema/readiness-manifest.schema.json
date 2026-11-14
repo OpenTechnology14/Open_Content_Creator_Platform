@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://hybridcreator.local/schemas/readiness-manifest.schema.json",
-  "title": "Hybrid Creator readiness manifest",
+  "title": "Content Creator readiness manifest",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "manifest_version", "product", "checks", "capabilities"],

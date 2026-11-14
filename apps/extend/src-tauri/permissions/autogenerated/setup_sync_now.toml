@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-setup-sync-now"
+description = "Enables the setup_sync_now command without any pre-configured scope."
+commands.allow = ["setup_sync_now"]
+
+[[permission]]
+identifier = "deny-setup-sync-now"
+description = "Denies the setup_sync_now command without any pre-configured scope."
+commands.deny = ["setup_sync_now"]

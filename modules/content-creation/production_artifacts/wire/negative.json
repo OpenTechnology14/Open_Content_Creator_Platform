@@ -1,0 +1,1017 @@
+[
+  {
+    "model": "ExportJobV1",
+    "name": "job-duration_seconds-'12'",
+    "value": {
+      "automatic": false,
+      "duration_seconds": "12",
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "job-automatic-'false'",
+    "value": {
+      "automatic": "false",
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "job-automatic-0",
+    "value": {
+      "automatic": 0,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "job-automatic-True",
+    "value": {
+      "automatic": true,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "job-schema_version-2",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 2,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "job-schema_version-True",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": true,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "job-schema_version-1.0",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1.0,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "job-unknown-True",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech",
+      "unknown": true
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "range-start_seconds-'2'",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": "2"
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "range-end_seconds-'10'",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": "10",
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "range-label-'https://example.invalid/synthetic'",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "https://example.invalid/synthetic",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "range-label-'MAILTO:synthetic@example.invalid'",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "MAILTO:synthetic@example.invalid",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "range-label-'bad\\x00label'",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "bad\u0000label",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "range-label-'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "edit-enabled-'false'",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": "false"
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "edit-enabled-0",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": 0
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "edit-enabled-True",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": true
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "edit-enabled-None",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": null
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "unused-edit-style",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false,
+        "style": {
+          "watermark": "https://example.invalid/synthetic"
+        }
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "unused-edit-captions",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "captions": [],
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "unused-edit-punch_ins",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false,
+        "punch_ins": []
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "too-many-ranges",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        },
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "PlanRecord",
+    "name": "plan-nested-label",
+    "value": {
+      "clip_plan": {
+        "clips": [
+          {
+            "clip_id": "clip-001",
+            "end_seconds": 10.0,
+            "label": "https://example.invalid/synthetic",
+            "origin": "manual",
+            "score": 0.0,
+            "start_seconds": 2.0,
+            "unique_viewers": 0
+          }
+        ],
+        "duration_seconds": 12.0,
+        "edit": {
+          "enabled": false
+        },
+        "game_id": "walkthrough",
+        "ignored_events": 0,
+        "recording_id": "source-aab2981918c14590b1573934a2da4979",
+        "schema_version": 1,
+        "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+        "show_id": "opentech"
+      },
+      "description": "Local test pattern and sine tone; not an App walkthrough.",
+      "id": "plan-affb256f8f5347d1904d59c45606ba5a",
+      "metadata_revision": 1,
+      "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "schema_version": 1,
+      "sha256": "18980e85753e37c6708d7bf3eb39f2e0b70edca7c9e6589e8ab135c0f4f7f825",
+      "source_id": "source-aab2981918c14590b1573934a2da4979",
+      "title": "Synthetic export fixture"
+    }
+  },
+  {
+    "model": "PlanRecord",
+    "name": "plan-disabled-style",
+    "value": {
+      "clip_plan": {
+        "clips": [
+          {
+            "clip_id": "clip-001",
+            "end_seconds": 10.0,
+            "label": "Selected moment",
+            "origin": "manual",
+            "score": 0.0,
+            "start_seconds": 2.0,
+            "unique_viewers": 0
+          }
+        ],
+        "duration_seconds": 12.0,
+        "edit": {
+          "enabled": false,
+          "style": {
+            "watermark": "https://example.invalid/synthetic"
+          }
+        },
+        "game_id": "walkthrough",
+        "ignored_events": 0,
+        "recording_id": "source-aab2981918c14590b1573934a2da4979",
+        "schema_version": 1,
+        "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+        "show_id": "opentech"
+      },
+      "description": "Local test pattern and sine tone; not an App walkthrough.",
+      "id": "plan-affb256f8f5347d1904d59c45606ba5a",
+      "metadata_revision": 1,
+      "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "schema_version": 1,
+      "sha256": "18980e85753e37c6708d7bf3eb39f2e0b70edca7c9e6589e8ab135c0f4f7f825",
+      "source_id": "source-aab2981918c14590b1573934a2da4979",
+      "title": "Synthetic export fixture"
+    }
+  },
+  {
+    "model": "PlanRecord",
+    "name": "plan-string-range",
+    "value": {
+      "clip_plan": {
+        "clips": [
+          {
+            "clip_id": "clip-001",
+            "end_seconds": 10.0,
+            "label": "Selected moment",
+            "origin": "manual",
+            "score": 0.0,
+            "start_seconds": "2",
+            "unique_viewers": 0
+          }
+        ],
+        "duration_seconds": 12.0,
+        "edit": {
+          "enabled": false
+        },
+        "game_id": "walkthrough",
+        "ignored_events": 0,
+        "recording_id": "source-aab2981918c14590b1573934a2da4979",
+        "schema_version": 1,
+        "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+        "show_id": "opentech"
+      },
+      "description": "Local test pattern and sine tone; not an App walkthrough.",
+      "id": "plan-affb256f8f5347d1904d59c45606ba5a",
+      "metadata_revision": 1,
+      "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "schema_version": 1,
+      "sha256": "18980e85753e37c6708d7bf3eb39f2e0b70edca7c9e6589e8ab135c0f4f7f825",
+      "source_id": "source-aab2981918c14590b1573934a2da4979",
+      "title": "Synthetic export fixture"
+    }
+  },
+  {
+    "model": "PlanRecord",
+    "name": "plan-wrong-range",
+    "value": {
+      "clip_plan": {
+        "clips": [
+          {
+            "clip_id": "clip-001",
+            "end_seconds": 10.0,
+            "label": "Selected moment",
+            "origin": "manual",
+            "score": 0.0,
+            "start_seconds": 1.0,
+            "unique_viewers": 0
+          }
+        ],
+        "duration_seconds": 12.0,
+        "edit": {
+          "enabled": false
+        },
+        "game_id": "walkthrough",
+        "ignored_events": 0,
+        "recording_id": "source-aab2981918c14590b1573934a2da4979",
+        "schema_version": 1,
+        "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+        "show_id": "opentech"
+      },
+      "description": "Local test pattern and sine tone; not an App walkthrough.",
+      "id": "plan-affb256f8f5347d1904d59c45606ba5a",
+      "metadata_revision": 1,
+      "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "schema_version": 1,
+      "sha256": "18980e85753e37c6708d7bf3eb39f2e0b70edca7c9e6589e8ab135c0f4f7f825",
+      "source_id": "source-aab2981918c14590b1573934a2da4979",
+      "title": "Synthetic export fixture"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "duration-too-large",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 86401.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "duration-bool",
+    "value": {
+      "automatic": false,
+      "duration_seconds": true,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "range-bool",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": false
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "string-version",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": "1",
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "ExportJobV1",
+    "name": "empty-ranges",
+    "value": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_num-0",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 15,
+      "sar_num": 0,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_num--1",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 15,
+      "sar_num": -1,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_num-65536",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 15,
+      "sar_num": 65536,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_num-'16'",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 15,
+      "sar_num": "16",
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_num-True",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 15,
+      "sar_num": true,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_num-16.0",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 15,
+      "sar_num": 16.0,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_num-None",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 15,
+      "sar_num": null,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-missing-sar_num",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 15,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_den-0",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 0,
+      "sar_num": 16,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_den--1",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": -1,
+      "sar_num": 16,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_den-65536",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 65536,
+      "sar_num": 16,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_den-'16'",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": "16",
+      "sar_num": 16,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_den-True",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": true,
+      "sar_num": 16,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_den-16.0",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 16.0,
+      "sar_num": 16,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-sar_den-None",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": null,
+      "sar_num": 16,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-missing-sar_den",
+    "value": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_num": 16,
+      "width": 720
+    }
+  },
+  {
+    "model": "Video",
+    "name": "video-untrusted-dar-field",
+    "value": {
+      "codec": "h264",
+      "dar_den": 3,
+      "dar_num": 4,
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 576,
+      "pixel_format": "yuv420p",
+      "sar_den": 15,
+      "sar_num": 16,
+      "width": 720
+    }
+  }
+]

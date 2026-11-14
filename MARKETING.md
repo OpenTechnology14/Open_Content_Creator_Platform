@@ -2,7 +2,7 @@
 
 A go-to-market plan for the two desktop products this repository builds — **Stream Extend** and
 **Creator Extend** — and for the Nova-hosted marketing shows that present them. It keeps the section
-numbering of [OpenTechnologyApp's MARKETING.md](https://github.com/OpenTechnology14/OpenTechnologyApp/blob/main/MARKETING.md),
+numbering of OpenTechnologyApp's MARKETING.md,
 so "§3a" or "§4" in the crosswalk's [asset catalogue](modules/marketing-crosswalk/crosswalk/assets.yml)
 means the same step in both, but the audiences, claims and evidence are this repository's own.
 
@@ -29,6 +29,8 @@ operating-system acceptance are incomplete, and that paid remote features are pr
 [`docs/AUDIT.md`](docs/AUDIT.md) is the repository's verdict on what is real. A `scaffolded` subject can
 only be given roadmap-level copy; assets that assert "it works today" are blocked for it by the
 generator (§4).
+
+**What the apps look like.** [`marketing/content-creator-wireframe/`](marketing/content-creator-wireframe/README.md) maps each feature of the two apps as click paths with screenshot placeholders, every step tied to the code and re-checked by a test. It is reference material for a conversation about what the product does, not a source of claims: the status rule above still decides what may be said.
 
 ---
 
@@ -62,7 +64,7 @@ Run `python3 -m generator.cli coverage --module stream-extend` (or `content-exte
 `modules/marketing-crosswalk` to see exactly which assets are blocked.
 
 **Naming is unsettled.** Every marketing surface and `products.yml` say *Creator Extend*;
-[`REPOSITORY_ALIGNMENT.md`](docs/REPOSITORY_ALIGNMENT.md) names the product *ContentExtend* and requires an
+[`REPOSITORY_ALIGNMENT.md`](docs/REPOSITORY_ALIGNMENT.md) records *ContentExtend* as the candidate name and requires an
 approved proposal to rename. The generator stamps guide and comparison pages for it "Do not publish under
 either name". Treat all external Creator Extend copy as draft until that resolves.
 

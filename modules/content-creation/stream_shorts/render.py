@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 import hashlib
 import json
 import subprocess
@@ -106,7 +107,15 @@ def build_video_filter(plan: ClipPlan, clip: Clip, asset_dir: Path) -> str:
     return ";".join(filters)
 
 
-def render_plan(plan: ClipPlan, source: Path, destination: Path) -> dict:
+def render_plan(
+    plan: ClipPlan,
+    source: Path,
+    destination: Path,
+    *,
+    source_fd: int | None = None,
+    command_runner: Callable[..., subprocess.CompletedProcess] | None = None,
+    media_inspector: Callable[[Path], dict] | None = None,
+) -> dict:
     """Render to a new directory; refuse overwrite and incomplete source recordings.
 
     Full-frame fit preserves the game's HUD. Optional validated edit cues add branding,
@@ -114,12 +123,20 @@ def render_plan(plan: ClipPlan, source: Path, destination: Path) -> dict:
     """
     import imageio_ffmpeg
 
-    source = source.resolve(strict=True)
-    if not source.is_file() or source.suffix.lower() not in {".mp4", ".mkv", ".mov", ".webm"}:
+    source = source.resolve(strict=True) if source_fd is None else source
+    if (source_fd is None and not source.is_file()) or source.suffix.lower() not in {
+        ".mp4",
+        ".mkv",
+        ".mov",
+        ".webm",
+    }:
         raise ValueError("provide a local MP4/MKV/MOV/WebM recording")
     if not plan.clips:
         raise ValueError("plan contains no clips")
-    metadata = inspect_media(source)
+    input_source = source if source_fd is None else Path(f"/dev/fd/{source_fd}")
+    inspect = media_inspector or inspect_media
+    run = command_runner or subprocess.run
+    metadata = inspect(input_source)
     actual_duration = float(metadata.get("duration", 0))
     if actual_duration <= 0 or abs(actual_duration - plan.duration_seconds) > 0.25:
         raise ValueError("declared duration does not match media; regenerate the job/plan")
@@ -159,7 +176,7 @@ def render_plan(plan: ClipPlan, source: Path, destination: Path) -> dict:
                     "-ss",
                     str(clip.start_seconds),
                     "-i",
-                    str(source),
+                    str(input_source),
                     "-t",
                     str(clip.end_seconds - clip.start_seconds),
                     "-map",
@@ -184,10 +201,8 @@ def render_plan(plan: ClipPlan, source: Path, destination: Path) -> dict:
                 command.extend(
                     ["-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", str(target)]
                 )
-                subprocess.run(
-                    command, check=True, capture_output=True, timeout=300, cwd=asset_dir
-                )
-            rendered = inspect_media(target)
+                run(command, check=True, capture_output=True, timeout=300, cwd=asset_dir)
+            rendered = inspect(target)
             if (
                 tuple(rendered["size"]) != (720, 1280)
                 or abs(rendered["duration"] - (clip.end_seconds - clip.start_seconds)) > 0.3
@@ -225,9 +240,7 @@ def render_plan(plan: ClipPlan, source: Path, destination: Path) -> dict:
                         if plan.edit.enabled
                         else 0
                     ),
-                    "audio_normalized": (
-                        plan.edit.enabled and plan.edit.style.normalize_audio
-                    ),
+                    "audio_normalized": (plan.edit.enabled and plan.edit.style.normalize_audio),
                 }
             )
             save()

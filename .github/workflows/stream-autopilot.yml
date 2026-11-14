@@ -74,7 +74,7 @@ jobs:
         run: cargo test --locked --manifest-path apps/shared/setup-engine/Cargo.toml
       - run: python -m pip install -r configs/local/stream-test-requirements.txt
       - name: Focused contracts
-        run: python -m pytest tests/ai_agents/test_stream_host.py tests/audio_production/test_host_speech.py tests/automation_control/test_stream_director.py tests/automation_control/test_gameplay_handoff.py tests/automation_control/test_show_planner.py tests/content_creation tests/setup
+        run: python -m pytest -p scripts.testing.production_artifacts_diagnostics tests/ai_agents/test_stream_host.py tests/audio_production/test_host_speech.py tests/automation_control/test_stream_director.py tests/automation_control/test_gameplay_handoff.py tests/automation_control/test_show_planner.py tests/content_creation tests/setup
       - run: python scripts/setup/modules.py plan --profile stream-test
       - name: Windows bootstrap plan
         if: runner.os == 'Windows'

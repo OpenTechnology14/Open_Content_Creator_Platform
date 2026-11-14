@@ -56,7 +56,7 @@ PYTHONPATH=modules/automation-control .venv-stream-autopilot/bin/python \
   -m show_planner.youtube \
   --profile opentech-marketing \
   --source task-management \
-  --source-artifact /absolute/path/to/hybrid-creator-platform/modules/marketing-crosswalk/out/task-management--extend_platform--stream-script.md \
+  --source-artifact /absolute/path/to/content-creator/modules/marketing-crosswalk/out/task-management--extend_platform--stream-script.md \
   --media /absolute/path/to/approved-demo.mp4 \
   --title "OpenTechApp workflow demo"
 ```

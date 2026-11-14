@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-production-recover"
+description = "Enables the production_recover command without any pre-configured scope."
+commands.allow = ["production_recover"]
+
+[[permission]]
+identifier = "deny-production-recover"
+description = "Denies the production_recover command without any pre-configured scope."
+commands.deny = ["production_recover"]

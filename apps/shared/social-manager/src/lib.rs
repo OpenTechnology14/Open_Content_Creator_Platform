@@ -239,6 +239,15 @@ fn read_selection(root: &Path, kind: &str) -> Result<ActiveSelection, String> {
     })
 }
 
+/// Resolve the same validated Stream/Content selections used by the native
+/// profile switchers. Recording attribution never trusts caller-provided IDs.
+pub fn recording_profiles(root: &Path) -> Result<(String, String), String> {
+    Ok((
+        read_selection(root, "stream")?.profile_id,
+        read_selection(root, "content")?.profile_id,
+    ))
+}
+
 fn write_selection(root: &Path, selection: ActiveSelection) -> Result<ActiveSelection, String> {
     let catalog = catalog()?;
     validate_selection(&catalog, &selection)?;
@@ -596,6 +605,25 @@ mod tests {
         assert_eq!(labs.profile_id, "agent-labs");
         let restored = activate(&root, "stream", "stream-main").unwrap();
         assert_eq!(restored, main);
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recording_attribution_reads_both_real_catalog_profile_selections() {
+        let root =
+            std::env::temp_dir().join(format!("hcp-recording-profiles-{}", std::process::id()));
+        let _ = fs::remove_dir_all(&root);
+        assert_eq!(
+            recording_profiles(&root).unwrap(),
+            ("stream-main".into(), "content-main".into())
+        );
+        activate(&root, "stream", "agent-labs").unwrap();
+        activate(&root, "content", "opentech-marketing").unwrap();
+        assert_eq!(
+            recording_profiles(&root).unwrap(),
+            ("agent-labs".into(), "opentech-marketing".into())
+        );
+        assert!(activate(&root, "stream", "content-main").is_err());
         fs::remove_dir_all(root).unwrap();
     }
 

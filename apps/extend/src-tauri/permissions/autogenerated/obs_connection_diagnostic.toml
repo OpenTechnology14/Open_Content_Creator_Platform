@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-obs-connection-diagnostic"
+description = "Enables the obs_connection_diagnostic command without any pre-configured scope."
+commands.allow = ["obs_connection_diagnostic"]
+
+[[permission]]
+identifier = "deny-obs-connection-diagnostic"
+description = "Denies the obs_connection_diagnostic command without any pre-configured scope."
+commands.deny = ["obs_connection_diagnostic"]

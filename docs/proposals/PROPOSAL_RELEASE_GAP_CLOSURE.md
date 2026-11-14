@@ -131,7 +131,7 @@ cannot delete the default creator stack's data volumes.
 at source `907c3dc` built both pinned source images and passed both live acceptance tests:
 the creator journey plus real `mc` bucket/lifecycle initialization. Both desktop build jobs
 and the macOS/Windows native rehearsals passed. This closes PL-D08's image-distribution
-decision on PR #67; main remains unchanged until merge. ARM64 container/runtime, existing-data
+decision on PR #67; main remains unchanged until merge. **Update, 2026-11-04:** it landed on `main` as `907c3dc` through PR #69 on 2026-10-09, and PR #67 was closed unmerged because #69 carried its commits. ARM64 container/runtime, existing-data
 upgrade, physical Windows/device acceptance and production/licensing review are not asserted.
 
 Close HCP-001 through HCP-014 by producing one secure, buildable, scenario-tested local alpha slice. The release slice is:
@@ -163,7 +163,7 @@ Other roadmap modules remain Scaffolded or Experimental until separately proven.
 - `cloud/docker-compose.relay.yml` defaults to production with fallback JWT/database credentials and publishes Postgres and Redis ports.
 - `cloud/relay-api/app/main.py` combines wildcard origins with credentials.
 - `.env.example` does not fully document the relay/Spaces variables referenced by Compose.
-- The root now has contribution, security, and conduct documents, but no root license and no completed release evidence.
+- The root now has contribution, security, and conduct documents, but no root license and no completed release evidence. *(Update, 2026-10-23: P-075 added an MIT root `LICENSE`, #84.)*
 
 ### 3.1 State refresh — 2026-08-30
 
@@ -183,7 +183,7 @@ proposal writes into, plus two new facts that affect its scope.
 | Compose defaults to production with fallback credentials; DB/Redis ports published | Unchanged |
 | Wildcard origins with credentials | Unchanged |
 | `.env.example` incomplete | Unchanged — six Compose-referenced values still missing |
-| No root license | Unchanged — `D-01` still open and still the only blocker on public release |
+| No root license | **Prepared 2026-10-23, `P-075` (#84):** an MIT root `LICENSE` is in the tree; `D-01` stays open until the owner confirms it (`OSS-D01`), and is still the only blocker on public release |
 
 **Changed since this proposal was written — affects where its documentation tasks land:**
 
@@ -238,7 +238,7 @@ proposal this session):**
 | Relay TODOs can initiate purchase/subscription/invite/push | Unchanged |
 | ~~Compose defaults to production with fallback credentials; DB/Redis ports published~~ | **Closed same day, `P-050` (`P-001` WP-2):** `startup_security.py` fails closed in production on a weak `RELAY_JWT_SECRET` or default `RELAY_DATABASE_URL`; Postgres/Redis ports now `127.0.0.1`-bound |
 | ~~Wildcard origins with credentials~~ | **Closed same day, `P-050`:** `main.py`'s CORS now lists the two real Tauri origins (`tauri://localhost`, `https://tauri.localhost`, pulled from each app's own `tauri.conf.json`), not `*` |
-| No root license | Unchanged — `D-01` still open and still the only blocker on public release |
+| No root license | **Prepared 2026-10-23, `P-075` (#84):** an MIT root `LICENSE` is in the tree; `D-01` stays open until the owner confirms it (`OSS-D01`), and is still the only blocker on public release |
 
 **No longer true — closed by work in this session, none of it targeting this proposal directly:**
 

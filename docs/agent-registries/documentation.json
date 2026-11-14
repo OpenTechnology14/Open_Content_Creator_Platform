@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "source_sha256": {
-    "CLAUDE.md": "e40708ba32a64e97288c2162c0a9fa4c1d97714775a835127b6f5cfe5ec4903f",
-    "docs/PROPOSALS.md": "75491fa2581aa9337c4a250ebd68bfd9a6d3401ab6f2ba2332256b84ec79177f",
-    "docs/todo/README.md": "ac167873d40a02706a4afee143d0171080f0e510f4a6ff67adf8d704898baf4c",
+    "CLAUDE.md": "71024859d90f9e210a5c7a1b3e51328eb5899234ab21c8d9bc789c8601f2d0fc",
+    "docs/PROPOSALS.md": "cc368eaf867107011c84839357328816ea58d98c996c1ed7a1070cfde572bc82",
+    "docs/todo/README.md": "64b2f6180a5adc312da840dc6c7fa334b5ac66681e2d3adc672075de6b5b94d3",
     "docs/agent/DOC-UPDATE-MATRIX.md": "e2ebc81d5611a593b475b8260b84ccf6a56993457a23c33d6309f5690a48678d",
     "modules/creator-experience/README.md": "4c556a776f79e79320cca3c364f240305d3d1bb6298ce93672d0cec1f5d5e1de",
     "modules/creator-experience/setup/manual.md": "c1bc6ade97f864ed0db17409f35265eb31385dbe291d112bd68cc07391f02758",
@@ -35,7 +35,7 @@
     "modules/cityscape-generation/README.md": "3c9f10c38c1afc60e884edb18bd2e0760919e13aa61f06fd6881d79e1f4a6eeb",
     "modules/cityscape-generation/setup/manual.md": "52eed21cc67ea75a2d2c4ab6983a2d8a4c8d356166b0547ffd8cd35006f7aa39",
     "modules/cityscape-generation/setup/automated.md": "f8f894af1d19a72c6e04024bbd6224c0ff405d4d4fe6e9eb5d28224ee8cc3042",
-    "modules/marketing-crosswalk/README.md": "e1157af47cc3ecb560577cd56a05dadbc361b46dff9f96e99ce6af463e0be659",
+    "modules/marketing-crosswalk/README.md": "aade283d40c550cfbd19048083057c481fd223bcd0f9fabc50306c9caa23cb24",
     "modules/marketing-crosswalk/setup/manual.md": "31b202f0c242330d7c1df0236603dae19b1ad7c33decfba9bbc23dd396ca644c",
     "modules/marketing-crosswalk/setup/automated.md": "be18f51d7bf896c7eb077af38b08d4a7589ff42458b60422dc7471a1d56a9e50",
     "modules/social-management/README.md": "5f5e9958fd64ee9bf071d1fcf0cbe190ecd2c0af607373893d71cb20012bac9c",
@@ -68,20 +68,28 @@
     "modules/model-registry/README.md": "790f1aeef8fee44ed14d9c7fb318dd138a0b6997cdbf06209342a986782f027f",
     "modules/model-registry/setup/manual.md": "d3f9a3b098ac87261e6447e793fa86c71b5e8ae28670d3985e4ca3ced4772d2a",
     "modules/model-registry/setup/automated.md": "bd79cd779597326f356baf4b66ed9247aff5e77458af3af55677abaeeba8f031",
-    "docs/PROJECT_CROSSWALK.md": "3642afb1dbca8a6bccc46508dba379ff756ac9160cfd75346b290d7edf1db469"
+    "docs/PROJECT_CROSSWALK.md": "f07ef1dad8f78f5da7e8657fd622f5db5d969d1163a764d1ac1bccfcbf1cfac7"
   },
   "proposals": {
     "schema_version": 1,
     "total": 75,
     "unfinished": 30,
     "counts": {
+      "accepted": 1,
       "deferred": 5,
       "done": 43,
       "in_progress": 18,
-      "pending": 7,
+      "pending": 6,
       "standing": 2
     },
     "unfinished_by_model": {
+      "gpt-6-astra": [
+        "P-067",
+        "P-065",
+        "P-066",
+        "P-056",
+        "P-001"
+      ],
       "gpt-6.1-sol": [
         "P-074",
         "P-075",
@@ -108,22 +116,16 @@
         "P-022",
         "P-023"
       ],
-      "gpt-6-astra": [
-        "P-065",
-        "P-066",
-        "P-056",
-        "P-001",
-        "P-067"
-      ],
       "gpt-5.6-terra": [
         "P-032"
       ]
     },
     "work_counts": {
+      "accepted": 1,
       "deferred": 5,
       "done": 43,
       "in_progress": 2,
-      "pending": 7,
+      "pending": 6,
       "standing": 2,
       "testing": 16
     },
@@ -134,6 +136,16 @@
     "lane_missing": [],
     "lane_extra": [],
     "proposals": [
+      {
+        "id": "P-067",
+        "title": "[Nova profile registry, walkthrough engine and mascot system](proposals/PROPOSAL_AI_WALKTHROUGH_MASCOT_SYSTEM.md)",
+        "status": "**Accepted** — bounded app-owned production; wider creative decisions remain open",
+        "state": "accepted",
+        "model": "gpt-6-astra",
+        "effort": "xhigh",
+        "work_focus": "accepted",
+        "testing_group": null
+      },
       {
         "id": "P-074",
         "title": "[Redesign from the OpenTechnologyApp pattern — design-parity audit of content and document structure](proposals/PROPOSAL_REDESIGN_FROM_OPENTECHAPP_PATTERN.md)",
@@ -147,7 +159,7 @@
       {
         "id": "P-075",
         "title": "[Open-source release plan](proposals/PROPOSAL_OPEN_SOURCE_RELEASE_PLAN.md)",
-        "status": "**In progress** — the steps that need no decision merged on 2026-10-23 (#84); sixteen gates (OSS-D01 to D16, PL-D16) await the owner. 2026-11-01 owner authorized a private/public repository split and product rename; clean-history source publication is in progress, production acceptance remains open",
+        "status": "**In progress** — the steps that need no decision merged on 2026-10-23 (#84); sixteen gates (OSS-D01 to D16, PL-D16) await the owner. 2026-11-01 owner authorized a private/public repository split and product rename; public source snapshot published with fresh project/noreply history and no private account records or copied PRs; production acceptance remains open",
         "state": "in_progress",
         "model": "gpt-6.1-sol",
         "effort": "high",
@@ -237,7 +249,7 @@
       {
         "id": "P-072",
         "title": "[One desktop app and optional cloud companion scope](proposals/PROPOSAL_UNIFIED_DESKTOP_AND_CLOUD_SCOPE.md)",
-        "status": "**In progress** — private shared-shell preview built; native/parity/migration acceptance open",
+        "status": "**In progress** — Testing; accepted repairs integrated; managed Start/Stop fenced on atomic ownership blocker; parity/migration acceptance open",
         "state": "in_progress",
         "model": "gpt-6.1-sol",
         "effort": "high",
@@ -321,16 +333,6 @@
         "state": "pending",
         "model": "gpt-6.1-sol",
         "effort": "high",
-        "work_focus": "pending",
-        "testing_group": null
-      },
-      {
-        "id": "P-067",
-        "title": "[Nova profile registry, walkthrough engine and mascot system](proposals/PROPOSAL_AI_WALKTHROUGH_MASCOT_SYSTEM.md)",
-        "status": "`Pending` — awaiting owner decision",
-        "state": "pending",
-        "model": "gpt-6-astra",
-        "effort": "xhigh",
         "work_focus": "pending",
         "testing_group": null
       },

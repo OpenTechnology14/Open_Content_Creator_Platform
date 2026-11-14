@@ -26,7 +26,7 @@ installed package, are a 24×24 grid, `strokeWidth` 2 and round line caps.
 | Asset | Location | Notes |
 |---|---|---|
 | Platform logo | `docs/assets/logo.svg` | 60×60 viewBox; declared canonical in `modules/social-management/catalog.yaml` and used by the root README |
-| Brand marks served by the apps | `modules/social-management/assets/brands/` | four fixed marks (hybrid platform, Stream Extend, Creator Extend, OpenTechApp), compiled into both desktop apps |
+| Brand marks served by the apps | `modules/social-management/assets/brands/` | four fixed marks (Content Creator Platform, Stream Extend, Creator Extend, OpenTechApp), compiled into both desktop apps |
 | Desktop app icons | `apps/<app>/src-tauri/icons/` and `apps/<app>/icon-source.png` | **Placeholders.** The 1024×1024 sources come from `scripts/setup/generate_placeholder_icons.py`: a flat product-color square with the product's first letter, which its own docstring calls "not real branding" and says exists to unblock `tauri icon` (the full set is generated from a 1024×1024 source). `catalog.yaml` still labels these PNGs canonical. Real brand assets: **Blocked (D-7)** |
 | UI icons in web consumers | imported from `lucide-react` inline | no icon files are committed |
 | Channel art | produced by hand per account | specs below |

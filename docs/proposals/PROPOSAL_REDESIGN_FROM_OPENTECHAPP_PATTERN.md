@@ -16,26 +16,26 @@ Model assignment: [proposal queue policy](../PROPOSALS.md#agent-model-selection)
 
 ## 1. Executive summary
 
-**Top line: Hybrid already matches OpenTechnologyApp on every pattern the App itself names as its
+**Top line: Content Creator already matches OpenTechnologyApp on every pattern the App itself names as its
 template-of-record, so no restructure is warranted.** Of 27 patterns compared (§2.2), **7 match, 9 are
 partial, 5 are missing and 6 do not apply**. Of the 14 partial or missing, **8 are worth closing, 4 are
 better left, and 2 are already registered** in [`FUTURE_DOCS.md`](../FUTURE_DOCS.md) with triggers. The
 recommended redesign is eight small additions — seven small, one medium — behind ten owner decisions
-(`HYB-REDESIGN-D01` to `D10`, §12.1). None of it touches Hybrid's registry authority or the design-system hub.
+(`HYB-REDESIGN-D01` to `D10`, §12.1). None of it touches Content Creator's registry authority or the design-system hub.
 
 Five findings corrected or reframed the request's premises, and each changed the answer:
 
 1. **The App has no voice-register section.** A search of the App for "voice register", "voice and tone",
    "brand voice" and "tone of voice" finds one unrelated source file and nothing in its documents; its
-   `MARKETING.md` mentions voice only for lead emails. Voice registers are Hybrid's —
+   `MARKETING.md` mentions voice only for lead emails. Voice registers are Content Creator's —
    [`design-system/voice-and-tone.md`](../../design-system/voice-and-tone.md), merged in PR #82 — and
-   MyFeed's pointer already inherits them. That row is N/A and the direction of travel is App to Hybrid.
+   MyFeed's pointer already inherits them. That row is N/A and the direction of travel is App to Content Creator.
 2. **The App's template-of-record is narrower than the request's list.** `App:docs/design/BUILD-PROMPTING-DIGEST.md`
    §2 records an owner decision (2026-10-20) naming four things: a root `MARKETING.md` with fixed numbering,
    a pointer rather than a copy of the single module registry, a companion ledger that states a tie-break,
-   and an engineering crosswalk. Hybrid has all four.
+   and an engineering crosswalk. Content Creator has all four.
 3. **`docs/readable/` is a two-repo habit, not a template.** The App has 33 documents there and MyFeed 17;
-   only 3 file names are shared. Hybrid already keeps nine of the App's file names (beyond `README.md`) flat
+   only 3 file names are shared. Content Creator already keeps nine of the App's file names (beyond `README.md`) flat
    in `docs/`, and its generated half is already split out as `docs/agent-registries/`. A rename moves 22
    documents and every inbound link for no content parity.
 4. **MyFeed is a selective mirror, so it is weak evidence for "adopt everything".** It took `docs/readable/`,
@@ -66,7 +66,7 @@ instruction change is proposed for merge here.**
 |---|---|---|---|
 | OpenTechnologyApp (private) | `origin/main` at `d2467d8`, 2026-10-22 | `git show`, `git ls-tree`, `git grep` on the local clone | **App** |
 | MyFeed (private) | `origin/main` at `a7eaf28`, 2026-10-21, after its PR #13 | same | **MyFeed** — the reference mirror |
-| This repository | `54266fc`, `main` after PR #82 | read, counted, tests run | **Hybrid** |
+| This repository | `54266fc`, `main` after PR #82 | read, counted, tests run | **Content Creator** |
 | Claude Code skill documentation | `https://code.claude.com/docs/en/skills`, fetched 2026-10-22 | web fetch; the first 100,000 of 114,484 characters read | source for the `when_to_use` and `paths` fields (§7.2) |
 
 Paths written `App:` or `MyFeed:` are in those repositories. Three measures are heuristics and are labelled so:
@@ -75,7 +75,7 @@ line starting `Status`, `Last reviewed` or `Last verified` (optionally after `**
 holding a line that is exactly `<!-- PROPOSAL_WORK_INTAKE -->`.
 
 ```bash
-# Reproduce the counts (A = App clone, M = MyFeed clone, run from the Hybrid root)
+# Reproduce the counts (A = App clone, M = MyFeed clone, run from the Content Creator root)
 git -C "$A" ls-tree --name-only origin/main docs/readable/ | grep -c '\.md$'                 # 33
 git -C "$M" ls-tree --name-only origin/main docs/readable/ | grep -c '\.md$'                 # 17
 git -C "$A" grep -l '^<!-- PROPOSAL_WORK_INTAKE -->' origin/main -- docs '*.md' | wc -l      # 18
@@ -86,27 +86,27 @@ ls .claude/skills | wc -l                                                       
 
 Legend: **Match** — the same mechanism exists and works. **Partial** — the purpose is served but the mechanism or
 coverage differs. **Missing** — the purpose is unserved and nothing equivalent exists. **N/A** — does not apply to
-Hybrid, either because Hybrid is the authority or because the pattern is product-specific. *none* — examined and
+Content Creator, either because Content Creator is the authority or because the pattern is product-specific. *none* — examined and
 absent; a bare dash — not examined.
 
 ### 2.2 Audit matrix
 
 **Part A — the eight patterns the request names.**
 
-| ID | Pattern | App | MyFeed | Hybrid today | Verdict | Disposition |
+| ID | Pattern | App | MyFeed | Content Creator today | Verdict | Disposition |
 |---|---|---|---|---|---|---|
-| A1 | `MARKETING.md` playbook | Root file, fixed §1–§8: positioning, ICPs, channels 3a–3f, content engine, cadence, funnel, first 30 days, mistakes | none | Root file with the same §1–§8 numbering plus a Hybrid-only §3g (live streams); registered as a `marketing_playbook` doc in `targets.yml` and checked by `tests/marketing_crosswalk/test_playbook.py` | **Match** | — |
+| A1 | `MARKETING.md` playbook | Root file, fixed §1–§8: positioning, ICPs, channels 3a–3f, content engine, cadence, funnel, first 30 days, mistakes | none | Root file with the same §1–§8 numbering plus a Content Creator-only §3g (live streams); registered as a `marketing_playbook` doc in `targets.yml` and checked by `tests/marketing_crosswalk/test_playbook.py` | **Match** | — |
 | A2 | `docs/readable/` beside generated `docs/agent-registries/` | 33 hand-written documents; 12 entries in the generated directory, whose README forbids hand edits | 17 documents (3 share a name with the App's); registries directory present | No `docs/readable/`. 22 hand-written documents sit at `docs/` top level, 10 sharing a name with an App readable or registry document; the generated half is already split out (`docs/agent-registries/`: README and `documentation.json`) | **Partial** — split exists, directory name differs | Leave (§10.3.2, D03) |
 | A3 | PR template | `.github/pull_request_template.md` (what changed, why, validation, proposal bookkeeping, docs advisory) plus a blocking `bookkeeping` job that reads the PR body | none; also no `CONTRIBUTING.md` | No template; `.github/` holds five workflows. The standard is one paragraph in `CONTRIBUTING.md` ("Pull request description": outcome, layer, exact verification, privacy and security, docs, rollback, blocked checks) | **Partial** — standard exists, template and check do not | Close (R8, D10) |
-| A4 | Proposal queue format | `PRIORITY.md` for order, `proposal-registry.json` as source of truth, a validator, `WORK_INTAKE_SOP.md`, IDs such as `AICONN-01` | `PROPOSAL_WORK_QUEUE.md` and a dashboard in `docs/readable/`; `PROP-NNN` IDs | `docs/PROPOSALS.md`: six status-sectioned tables, permanent `P-NNN`, owner-only acceptance, a model and effort column; `proposal_report.py --check` diffs the queue against the lane map (FD-21) | **Partial** — three repos, three formats; Hybrid's is machine-checked | Leave (§10.3.2, D02) |
-| A5 | Voice register section | **No such section** (search in §1, finding 1) | Pointer only; inherits the hub's register | `design-system/voice-and-tone.md` (registers, never names), the `design` skill, `docs/design/BUILD-PROMPTING-DIGEST.md` | **N/A** — nothing to adopt; Hybrid is the source | — |
+| A4 | Proposal queue format | `PRIORITY.md` for order, `proposal-registry.json` as source of truth, a validator, `WORK_INTAKE_SOP.md`, IDs such as `AICONN-01` | `PROPOSAL_WORK_QUEUE.md` and a dashboard in `docs/readable/`; `PROP-NNN` IDs | `docs/PROPOSALS.md`: six status-sectioned tables, permanent `P-NNN`, owner-only acceptance, a model and effort column; `proposal_report.py --check` diffs the queue against the lane map (FD-21) | **Partial** — three repos, three formats; Content Creator's is machine-checked | Leave (§10.3.2, D02) |
+| A5 | Voice register section | **No such section** (search in §1, finding 1) | Pointer only; inherits the hub's register | `design-system/voice-and-tone.md` (registers, never names), the `design` skill, `docs/design/BUILD-PROMPTING-DIGEST.md` | **N/A** — nothing to adopt; Content Creator is the source | — |
 | A6 | Marketing module structure (digest §2: fixed numbering; pointer-not-copy; companion ledger with tie-break; engineering crosswalk) | Template-of-record for this shape only, by owner decision 2026-10-20 | none | Numbering as A1; the single registry is `modules/marketing-crosswalk/crosswalk/modules.yml`, and `MARKETING.md` states that the registry wins where a table repeats it; engineering crosswalk is `docs/PROJECT_CROSSWALK.md` with generated rows (FD-09) | **Match** | — |
-| A7 | Crosswalk pointer pattern | `App:docs/readable/MARKETING_CROSSWALK_POINTER.md` points at Hybrid's `modules.yml` | `docs/design/DESIGN-SYSTEM-POINTER.md` (PR #13), hub-pending | Hybrid is the authority; `design-system/crosswalk/consumers.md` names the expected pointer path per consumer | **N/A** as consumer; hub side **Match** | — |
+| A7 | Crosswalk pointer pattern | `App:docs/readable/MARKETING_CROSSWALK_POINTER.md` points at Content Creator's `modules.yml` | `docs/design/DESIGN-SYSTEM-POINTER.md` (PR #13), hub-pending | Content Creator is the authority; `design-system/crosswalk/consumers.md` names the expected pointer path per consumer | **N/A** as consumer; hub side **Match** | — |
 | A8 | Verify-script discipline | `npm run verify:all`, generated from `ci.yml`, with a minimum-steps tripwire and a NOT RUN list | `npm run verify` | `make verify` (`scripts/testing/verify.py`) runs the recognised CI gates and lists every NOT RUN check (FD-06); `make proposal-report`; `generate_docs.py --check` | **Match** | — |
 
 **Part B — other App conventions found while reading.**
 
-| ID | Pattern | App | MyFeed | Hybrid today | Verdict | Disposition |
+| ID | Pattern | App | MyFeed | Content Creator today | Verdict | Disposition |
 |---|---|---|---|---|---|---|
 | B1 | Generated agent-instruction mirror | `AGENTS.md` generated from `CLAUDE.md` by `scripts/generate-agents-md.ts`, CI-checked | both files exist; generation not checked | `AGENTS.md` generated from `CLAUDE.md` by `scripts/testing/generate_docs.py --write`; `--check` enforced by the offline suite and CI (FD-07) | **Match** | — |
 | B2 | Generated-registries directory | `docs/agent-registries/`, 12 entries including the doc-update matrix, route ledger and skill matrix | directory present | `docs/agent-registries/`: README and `documentation.json` (FD-08) | **Match** (smaller set) | — |
@@ -124,11 +124,11 @@ absent; a bare dash — not examined.
 | B14 | Testing and operations documents: manual testing workflow, bug tracker and SOP, finding ledger, scheduled audits, runbooks, session handoff, pressure plans | present | `MANUAL_TESTING_WORKFLOW.md`, `MANUAL_TEST_RESULTS.md` | each registered with a state and trigger: FD-14, FD-16, FD-17 (`Proposed`); FD-18, FD-19, FD-20, FD-24 (`Deferred`) | **Missing** | Registered (FD-14 to FD-20, FD-24) |
 | B15 | Proposal closing ritual (Revisit & Review, review notes, Step 5b) | present | — | `DM-PROPOSAL-DONE` and the row's verification record | **N/A** | — |
 | B16 | Agent response-style directive | "Response style" section in `CLAUDE.md` | — | none | **N/A** | — |
-| B17 | Hosted-app gates: migration safety, tenancy, CSRF, Stripe, Vercel | present | — | Hybrid's local-first equivalents are `CLAUDE.md` §7, §10, §13 | **N/A** | — |
+| B17 | Hosted-app gates: migration safety, tenancy, CSRF, Stripe, Vercel | present | — | Content Creator's local-first equivalents are `CLAUDE.md` §7, §10, §13 | **N/A** | — |
 | B18 | UI stack conventions: shadcn, Tailwind, strict TypeScript | present | — | `design-system/` and `CLAUDE.md` §6 | **N/A** | — |
 | B19 | Proposal document template | 17 sections, with header fields "Verified against" and "Source intake", separate documentation and code injection maps, "Files intentionally unchanged", "Release gates and definition of done" and "First implementation slice" | `docs/design/proposals/TEMPLATE.md` for design proposals | 13 sections: one direct injection map, "Documentation updates", a delivery plan; no "Verified against", "Files intentionally unchanged" or "First implementation slice" | **Partial** | Close (R7, D09) |
 
-**Part C — Hybrid has it, the App does not.** These are not scored; §10.3.1 explains why each stays Hybrid's.
+**Part C — Content Creator has it, the App does not.** These are not scored; §10.3.1 explains why each stays Content Creator's.
 The crosswalk registry and generator, the design-system hub, the voice-register framework, the Blender
 production-job lifecycle, the Stream Extend and Creator Extend profiles with the show bible and Nova persona,
 per-module `setup/manual.md` and `setup/automated.md` with Content and Stream labels, the proposal
@@ -187,9 +187,9 @@ Each is measured by a check in §9, and each is conditional on the gate in §12.
 
 | Boundary | Held by | What this proposal does at it |
 |---|---|---|
-| Registry authority | `modules/marketing-crosswalk/crosswalk/` (`modules.yml`, `targets.yml`, `assets.yml`) | Nothing. No row, field or file in the registry changes, and Hybrid adds no pointer document for its own registry |
+| Registry authority | `modules/marketing-crosswalk/crosswalk/` (`modules.yml`, `targets.yml`, `assets.yml`) | Nothing. No row, field or file in the registry changes, and Content Creator adds no pointer document for its own registry |
 | Design-system hub | `design-system/` and the `design-system` registry row | Nothing. No token, component rule, voice register or consumer changes; `DM-DESIGN-SYSTEM` does not fire |
-| Direction of authority | The App is template-of-record for the marketing-module *shape*; Hybrid is the registry and design authority | Borrows mechanisms, never content. No App text becomes authority for Hybrid |
+| Direction of authority | The App is template-of-record for the marketing-module *shape*; Content Creator is the registry and design authority | Borrows mechanisms, never content. No App text becomes authority for Content Creator |
 | Modules | `modules/` | No module added or changed |
 | Sensitive paths (`CLAUDE.md` §13) | `apps/*/src-tauri/**`, `modules/character-avatar/**`, credential config, cross-app shared crates, streaming and gameplay pipelines | No code in any of them. R2 writes *about* them as a skill and edits no path they cover |
 | CI and billing | `.github/workflows/` | No workflow change. R4 and R8 name CI wiring as a later step that waits on CI executing steps again |
@@ -226,7 +226,7 @@ script (R4). No service, network, secret or OAuth scope.
 | Marketing registry | `modules/marketing-crosswalk/` | Unchanged |
 | Design system | `design-system/` | Unchanged |
 
-**Idiom.** Where Hybrid adopts a mechanism it uses its own layout: a hand-written matrix in `docs/agent/`
+**Idiom.** Where Content Creator adopts a mechanism it uses its own layout: a hand-written matrix in `docs/agent/`
 parsed into `docs/agent-registries/documentation.json` by `generate_docs.py`. It does not copy the App's
 JSON-first layout, because [`../agent-registries/README.md`](../agent-registries/README.md) says every file in that
 directory is generated.
@@ -395,8 +395,8 @@ script and its tests, roughly 4–8 agent-hours. Owner time is one answer per ga
 | R3 | Intake banner on ten source documents, with a guard (B5) | 2 of about 10 comparable documents tell a reader where a new finding goes; the App carries the marker on 18 | Medium | S | D08 | 2 |
 | R4 | Path-triggered doc-update advisory, local only (B8) | `DM-*` rules exist and are drift-checked, but nothing tells an agent which a diff fires; the App's workflow does exactly that | Medium | M | D07 | 3 |
 | R5 | Status header on 11 headerless documents, with a guard (B7) | 11 of 22 top-level documents say nothing about whether they bind or when they were reviewed; the App has 21 of 33 | Low–Medium | S | D08 | 2 |
-| R6 | `when_to_use` on every skill, with the frontmatter test amended (B10) | Claude Code appends it to the skill listing; the App has it on 7 of 7, MyFeed on 0 of 4, Hybrid on 0 of 5. Modest value at near-zero cost beside R2 | Low–Medium | S | D05 | 1b |
-| R7 | Three proposal-template fields (B19) | Hybrid practice delivers one smallest slice per PR, but the template does not ask for it, nor for a verified-against commit or the files left unchanged | Low–Medium | S | D09 | 4 |
+| R6 | `when_to_use` on every skill, with the frontmatter test amended (B10) | Claude Code appends it to the skill listing; the App has it on 7 of 7, MyFeed on 0 of 4, Content Creator on 0 of 5. Modest value at near-zero cost beside R2 | Low–Medium | S | D05 | 1b |
+| R7 | Three proposal-template fields (B19) | Content Creator practice delivers one smallest slice per PR, but the template does not ask for it, nor for a verified-against commit or the files left unchanged | Low–Medium | S | D09 | 4 |
 | R8 | PR template, timed to P-002 (A3) | A template alone does nothing for agent-authored PRs (§7.4). Its value arrives with outside contributors | Low now | S | D10 | 5 |
 
 Total if everything is accepted: seven S and one M, about 11–29 agent-hours across five phases. The recommendation
@@ -423,32 +423,32 @@ documents and its guard (R5); Phase 5 is not started. See §12.1b.
 
 ### 10.3 Gaps worth leaving
 
-#### 10.3.1 Hybrid-only — the App lacks these and should not be asked to adopt them
+#### 10.3.1 Content Creator-only — the App lacks these and should not be asked to adopt them
 
-| Feature | Where | Why it stays Hybrid's |
+| Feature | Where | Why it stays Content Creator's |
 |---|---|---|
 | Marketing crosswalk registry and generator | `modules/marketing-crosswalk/` | It is the single registry the App and the Blog point at; a second copy is the failure the pointer pattern exists to prevent |
-| Design-system hub | `design-system/` | Hybrid owns tokens, components and registers by owner decision; consumers point here |
-| Voice-register framework | `design-system/voice-and-tone.md` | The App has no voice work to attach it to; registers, never names, are Hybrid's guardrail (P-067 §7.3) |
+| Design-system hub | `design-system/` | Content Creator owns tokens, components and registers by owner decision; consumers point here |
+| Voice-register framework | `design-system/voice-and-tone.md` | The App has no voice work to attach it to; registers, never names, are Content Creator's guardrail (P-067 §7.3) |
 | Blender production-job lifecycle | `modules/content-creation/`, `plugins/blender-addon/`, P-061 | Needs Blender, a local GPU and owned fixtures; nothing in the App's stack uses it |
 | Stream Extend and Creator Extend profiles, show bible, Nova persona | `apps/`, `docs/proposals/STREAM_AUTOPILOT_SHOW_BIBLE.md`, P-056, P-067 | Live-stream and creator-workstation concerns; the App is a hosted web product |
-| Per-module `setup/manual.md` and `setup/automated.md` with Content and Stream labels | `modules/` | Hybrid's module layering; the App has no module layer |
-| Proposal model-selection policy and child-scope pattern | `docs/PROPOSALS.md`, P-073 | Hybrid assigns development-agent models per proposal; the App routes its own tiers |
-| Lane index with proof markers and a queue-to-lane check | `docs/todo/`, FD-21 | Hybrid's form of *Operator action handoffs*; it differs because Hybrid has live-hardware runs the App does not |
-| Roadmap layers, status ladder, Kubernetes gate | `docs/architecture/roadmap.md`, `docs/architecture/k8s-decision.md` | Local-first constraints belong to Hybrid |
+| Per-module `setup/manual.md` and `setup/automated.md` with Content and Stream labels | `modules/` | Content Creator's module layering; the App has no module layer |
+| Proposal model-selection policy and child-scope pattern | `docs/PROPOSALS.md`, P-073 | Content Creator assigns development-agent models per proposal; the App routes its own tiers |
+| Lane index with proof markers and a queue-to-lane check | `docs/todo/`, FD-21 | Content Creator's form of *Operator action handoffs*; it differs because Content Creator has live-hardware runs the App does not |
+| Roadmap layers, status ladder, Kubernetes gate | `docs/architecture/roadmap.md`, `docs/architecture/k8s-decision.md` | Local-first constraints belong to Content Creator |
 
-#### 10.3.2 App patterns Hybrid should not adopt
+#### 10.3.2 App patterns Content Creator should not adopt
 
-| Pattern | Matrix ID | Why Hybrid leaves it |
+| Pattern | Matrix ID | Why Content Creator leaves it |
 |---|---|---|
 | Move hand-written documents under `docs/readable/` | A2 | 22 documents and every inbound link move; only 3 names are shared between the App and MyFeed, so there is no content template behind the directory name. D03 keeps the layout flat and records the equivalence |
-| Registry JSON as the queue's source of truth, `PRIORITY.md`, four-axis states | A4 | Hybrid's queue is owner-accepted tables with a machine check (FD-21); three repositories use three formats and none depends on another's |
-| Generated skill matrix | B11 | Claude Code's own `paths:` covers file-scoped loading for the one skill that needs it, and the matrix's coverage check pays off at more skills than Hybrid has. Register a future-documents row with a trigger (D06) |
-| `daily`, `bug-sweep`, `migration-check` commands | B13 | They run on artifacts Hybrid lacks or has rejected: a bug tracker (FD-20, `Deferred`), an unattended routine (FD-28, `Rejected`), Supabase migrations (not applicable) |
-| Revisit & Review, review notes, Step 5b | B15 | An App-specific closing ritual; `DM-PROPOSAL-DONE` and the row's verification record close Hybrid's loop |
+| Registry JSON as the queue's source of truth, `PRIORITY.md`, four-axis states | A4 | Content Creator's queue is owner-accepted tables with a machine check (FD-21); three repositories use three formats and none depends on another's |
+| Generated skill matrix | B11 | Claude Code's own `paths:` covers file-scoped loading for the one skill that needs it, and the matrix's coverage check pays off at more skills than Content Creator has. Register a future-documents row with a trigger (D06) |
+| `daily`, `bug-sweep`, `migration-check` commands | B13 | They run on artifacts Content Creator lacks or has rejected: a bug tracker (FD-20, `Deferred`), an unattended routine (FD-28, `Rejected`), Supabase migrations (not applicable) |
+| Revisit & Review, review notes, Step 5b | B15 | An App-specific closing ritual; `DM-PROPOSAL-DONE` and the row's verification record close Content Creator's loop |
 | Response-style directive | B16 | An owner preference for one repository's agent output, not document structure |
-| Hosted-app gates | B17 | Hybrid's local-first equivalents are `CLAUDE.md` §7, §10 and §13 |
-| `code-health` skill and UI stack conventions | B18 | TypeScript, Tailwind and shadcn; Hybrid's UI rules are in `design-system/` and §6 |
+| Hosted-app gates | B17 | Content Creator's local-first equivalents are `CLAUDE.md` §7, §10 and §13 |
+| `code-health` skill and UI stack conventions | B18 | TypeScript, Tailwind and shadcn; Content Creator's UI rules are in `design-system/` and §6 |
 | An `agent-work` skill | B9 | Would duplicate §9 and the proposed §16 in the file every agent already loads (D04) |
 | Copying App text such as its model-routing policy or FUTURE documents | — | FD-26 and FD-27 already reject verbatim copies: mechanisms transfer, copied content drifts |
 
@@ -540,7 +540,7 @@ it guards is removed.
 | The App moves faster than this audit | Rows go stale | Pinned SHAs; rerun with the §2.1 commands as an `audits`-skill pass — owner | on demand |
 | FD-25 trigger | The platform table is already past its guideline | One umbrella row now; the owner decides FD-25 separately — owner | at acceptance |
 | The owner knows of an App voice-register document that was not found | A5 would change | The search covered the App repository only, not the Blog or private notes; point the audit at it — owner | any time |
-| Parity becomes a goal in itself | Hybrid inherits choices that do not fit | §3.4 and §10.3; MyFeed's "concrete need" rule is the test for each addition — agent | continuous |
+| Parity becomes a goal in itself | Content Creator inherits choices that do not fit | §3.4 and §10.3; MyFeed's "concrete need" rule is the test for each addition — agent | continuous |
 
 ## 13. Documentation updates
 

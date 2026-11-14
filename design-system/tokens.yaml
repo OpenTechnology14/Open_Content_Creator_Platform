@@ -371,7 +371,7 @@ radius:
       app:  {source: app-tailwind, raw: 'md: "calc(var(--radius) - 2px)",'}
   observed_desktop:
     description: Border radii in the desktop apps, by declaration count.
-    values: {8px: 18, 6px: 14, 12px: 11, 7px: 9, 10px: 6}
+    values: {8px: 19, 6px: 14, 12px: 12, 7px: 9, 10px: 6}
     source: apps/**/*.svelte
     raw: "border-radius: 8px"
 

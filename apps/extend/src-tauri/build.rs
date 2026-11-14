@@ -46,5 +46,33 @@ fn main() {
         code,
     )
     .unwrap();
-    tauri_build::build();
+    tauri_build::try_build(tauri_build::Attributes::new().app_manifest(
+        tauri_build::AppManifest::new().commands(&[
+            "production_status",
+            "production_start_recording",
+            "production_stop_recording",
+            "production_recover",
+            "production_abandon_handoff",
+            "production_scenes",
+            "production_switch_scene",
+            "production_audio_inputs",
+            "production_set_mute",
+            "preview_preferences",
+            "preview_save_preferences",
+            "preview_set_obs_password",
+            "setup_last_readiness",
+            "setup_refresh_readiness",
+            "setup_sync_settings",
+            "setup_save_sync_settings",
+            "setup_sync_now",
+            "obs_connection_diagnostic",
+            "obs_recording_test",
+            "preview_workflows",
+            "recordings_list",
+            "recordings_import",
+            "recordings_update",
+            "recordings_reveal",
+        ]),
+    ))
+    .expect("combined desktop build");
 }

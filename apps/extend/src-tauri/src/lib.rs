@@ -1,4 +1,4 @@
-//! Private shell preview. Existing native adapters are reused for observations only.
+//! Private combined desktop: native observations and owned local OBS recording.
 #[allow(dead_code)]
 #[path = "../../../creator-extend/src-tauri/src/comfyui.rs"]
 mod comfyui;
@@ -6,6 +6,7 @@ mod comfyui;
 #[path = "../../../stream-extend/src-tauri/src/obs.rs"]
 mod obs;
 mod preferences;
+mod production;
 
 use local_settings::{LocalSettings, OsCredentials};
 use preferences::Preferences;
@@ -21,6 +22,9 @@ struct Preview {
     readiness: SetupEngine,
     obs: obs::ObsClientCache,
     recordings: RecordingLibrary,
+    production: tokio::sync::Mutex<production::Controller>,
+    production_cache: obs::ObsClientCache,
+    profile_root: std::path::PathBuf,
 }
 impl Preview {
     fn preferences(&self) -> Result<Preferences, String> {
@@ -140,11 +144,25 @@ async fn preview_save_preferences(
     preferences: Preferences,
 ) -> Result<Preferences, String> {
     preferences.validate()?;
+    let mut controller = state.production.lock().await;
+    let previous = state.preferences()?;
+    controller.allow_preferences(&previous, &preferences)?;
+    // Invalidate before the durable write: a failed response can follow an
+    // applied rename/fsync. Never let an old idle observation survive ambiguity.
+    if previous.obs_host != preferences.obs_host
+        || previous.obs_port != preferences.obs_port
+        || previous.enabled_packs != preferences.enabled_packs
+    {
+        controller.invalidate_idle_observations();
+    }
     state
         .preferences
         .save(&preferences)
         .map_err(|_| "Could not save preview settings")?;
     state.obs.clear().await;
+    if !controller.busy() {
+        state.production_cache.clear().await;
+    }
     Ok(preferences)
 }
 #[tauri::command]
@@ -152,15 +170,19 @@ async fn preview_set_obs_password(
     state: tauri::State<'_, Preview>,
     password: String,
 ) -> Result<(), String> {
+    let mut controller = state.production.lock().await;
+    controller.allow_password_change()?;
     state.preferences()?.require_pack("stream")?;
     if password.is_empty() || password.len() > 4096 {
         return Err("Enter a valid OBS password".into());
     }
+    controller.invalidate_idle_observations();
     state
         .credentials
         .set("obs-password", &password)
         .map_err(|_| "Could not save password in the OS credential manager")?;
     state.obs.clear().await;
+    state.production_cache.clear().await;
     Ok(())
 }
 #[tauri::command]
@@ -292,12 +314,170 @@ fn recordings_reveal(state: tauri::State<'_, Preview>, id: String) -> Result<(),
     state.recordings.reveal(&id)
 }
 
+fn production_admit(window: &tauri::WebviewWindow) -> Result<(), String> {
+    production::admit(
+        window.label(),
+        &window.url().map_err(|_| "Cannot verify window origin")?,
+    )
+}
+impl Preview {
+    fn production_connection(&self, prefs: &Preferences) -> Result<production::Connection, String> {
+        Ok(production::Connection {
+            host: prefs.obs_host.clone(),
+            port: prefs.obs_port,
+            password: self
+                .credentials
+                .get("obs-password")
+                .map_err(|_| "OS credential manager unavailable")?,
+        })
+    }
+}
+impl Preview {
+    fn idle_production_connection(&self) -> Result<production::Connection, String> {
+        let prefs = self.preferences()?;
+        prefs.require_pack("stream")?;
+        self.production_connection(&prefs)
+    }
+}
+#[tauri::command]
+async fn production_status(
+    window: tauri::WebviewWindow,
+    state: tauri::State<'_, Preview>,
+) -> Result<production::Status, String> {
+    production_admit(&window)?;
+    production::observe_status(&state.production, || state.idle_production_connection()).await
+}
+#[tauri::command]
+async fn production_start_recording(
+    window: tauri::WebviewWindow,
+    state: tauri::State<'_, Preview>,
+) -> Result<production::StartReceipt, String> {
+    production_admit(&window)?;
+    production::admit_managed_recording()?;
+    let mut controller = state.production.lock().await;
+    let connection = state.idle_production_connection()?;
+    let (source, content) = social_manager::recording_profiles(&state.profile_root)
+        .map_err(|_| "Select valid Stream and Content profiles before recording")?;
+    controller
+        .start(&state.production_cache, connection, source, content)
+        .await
+}
+#[tauri::command]
+async fn production_stop_recording(
+    window: tauri::WebviewWindow,
+    state: tauri::State<'_, Preview>,
+    session_id: String,
+) -> Result<String, String> {
+    production_admit(&window)?;
+    state
+        .production
+        .lock()
+        .await
+        .stop(&state.production_cache, &state.recordings, &session_id)
+        .await
+}
+#[tauri::command]
+async fn production_recover(
+    window: tauri::WebviewWindow,
+    state: tauri::State<'_, Preview>,
+    session_id: String,
+) -> Result<(), String> {
+    production_admit(&window)?;
+    state
+        .production
+        .lock()
+        .await
+        .recover(&state.production_cache, &session_id)
+        .await
+}
+#[tauri::command]
+async fn production_abandon_handoff(
+    window: tauri::WebviewWindow,
+    state: tauri::State<'_, Preview>,
+    session_id: String,
+) -> Result<String, String> {
+    production_admit(&window)?;
+    state
+        .production
+        .lock()
+        .await
+        .abandon_handoff(&obs::ObsClientCache::new(), &session_id)
+        .await
+}
+#[tauri::command]
+async fn production_scenes(
+    window: tauri::WebviewWindow,
+    state: tauri::State<'_, Preview>,
+) -> Result<production::Observation<Vec<obs::SceneInfo>>, String> {
+    production_admit(&window)?;
+    production::inspect_scenes(&state.production, || state.idle_production_connection()).await
+}
+#[tauri::command]
+async fn production_switch_scene(
+    window: tauri::WebviewWindow,
+    state: tauri::State<'_, Preview>,
+    scene_name: String,
+    session_id: Option<String>,
+    expected_context_id: String,
+) -> Result<Vec<obs::SceneInfo>, String> {
+    production_admit(&window)?;
+    production::switch_observed_scene(
+        &state.production,
+        || state.idle_production_connection(),
+        production::MutationContext {
+            expected_context_id,
+            session_id,
+        },
+        &scene_name,
+    )
+    .await
+}
+#[tauri::command]
+async fn production_audio_inputs(
+    window: tauri::WebviewWindow,
+    state: tauri::State<'_, Preview>,
+) -> Result<production::Observation<Vec<obs::AudioInput>>, String> {
+    production_admit(&window)?;
+    production::inspect_audio(&state.production, || state.idle_production_connection()).await
+}
+#[tauri::command]
+async fn production_set_mute(
+    window: tauri::WebviewWindow,
+    state: tauri::State<'_, Preview>,
+    input_name: String,
+    muted: bool,
+    session_id: Option<String>,
+    expected_context_id: String,
+) -> Result<Vec<obs::AudioInput>, String> {
+    production_admit(&window)?;
+    production::set_observed_mute(
+        &state.production,
+        || state.idle_production_connection(),
+        production::MutationContext {
+            expected_context_id,
+            session_id,
+        },
+        &input_name,
+        muted,
+    )
+    .await
+}
+
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .plugin(setup_wizard::init())
         .plugin(social_manager::init())
         .invoke_handler(tauri::generate_handler![
+            production_status,
+            production_start_recording,
+            production_stop_recording,
+            production_recover,
+            production_abandon_handoff,
+            production_scenes,
+            production_switch_scene,
+            production_audio_inputs,
+            production_set_mute,
             preview_preferences,
             preview_save_preferences,
             preview_set_obs_password,
@@ -321,6 +501,9 @@ pub fn run() {
                 preferences: LocalSettings::new(root.join("extend-preview"), "preferences")?,
                 credentials: OsCredentials::new("HybridCreatorPlatform", &identity)?,
                 readiness: SetupEngine::new(&root.join("extend-preview"), &identity)?,
+                production: tokio::sync::Mutex::new(production::Controller::default()),
+                production_cache: obs::ObsClientCache::new(),
+                profile_root: root.join("social-manager"),
                 obs: obs::ObsClientCache::new(),
                 recordings: RecordingLibrary::new(root.join("recording-library"))?,
             });
@@ -348,8 +531,11 @@ mod preview_tests {
             .await;
         Mock::given(method("GET"))
             .and(path("/queue"))
-            .respond_with(ResponseTemplate::new(200).set_body_json(serde_json::json!({"queue_pending": []})))
-            .mount(&server).await;
+            .respond_with(
+                ResponseTemplate::new(200).set_body_json(serde_json::json!({"queue_pending": []})),
+            )
+            .mount(&server)
+            .await;
         let mut prefs = Preferences::initial();
         prefs.comfyui_url = server.uri();
         let checks = observe(
@@ -374,6 +560,27 @@ mod preview_tests {
             status("creator.comfyui.api"),
             setup_engine::ReadinessStatus::Ready
         );
+        // A separate real loopback refusal (rather than a vault failure)
+        // also leaves the Content capability ready and independent of OBS.
+        prefs.obs_host = "127.0.0.1".into();
+        prefs.obs_port = 1;
+        let unreachable = observe(&prefs, &obs::ObsClientCache::new(), Ok(None)).await;
+        assert_eq!(
+            unreachable
+                .iter()
+                .find(|c| c.check_id == "stream.obs.websocket")
+                .unwrap()
+                .status,
+            setup_engine::ReadinessStatus::Blocked
+        );
+        assert_eq!(
+            unreachable
+                .iter()
+                .find(|c| c.check_id == "creator.comfyui.api")
+                .unwrap()
+                .status,
+            setup_engine::ReadinessStatus::Ready
+        );
     }
 
     #[tokio::test]
@@ -394,6 +601,48 @@ mod preview_tests {
     }
 
     #[test]
+    fn repair_real_corrupt_preferences_are_not_read_for_a_pinned_safety_connection() {
+        let root = std::env::temp_dir().join(format!("hcp-v71-prefs-{}", uuid::Uuid::new_v4()));
+        let preview = Preview {
+            preferences: LocalSettings::new(root.join("preview"), "preferences").unwrap(),
+            credentials: OsCredentials::new("HybridCreatorPlatform", "test-v71-preview").unwrap(),
+            readiness: SetupEngine::new(&root, "test-v71-preview").unwrap(),
+            production: tokio::sync::Mutex::new(production::Controller::default()),
+            production_cache: obs::ObsClientCache::new(),
+            profile_root: root.join("social-manager"),
+            obs: obs::ObsClientCache::new(),
+            recordings: RecordingLibrary::new(root.join("recordings")).unwrap(),
+        };
+        preview
+            .preferences
+            .save(&serde_json::json!({"broken":true}))
+            .unwrap();
+        assert!(preview.preferences().is_err());
+        let controller = production::Controller::test_reservation(production::Connection {
+            host: "pinned.test".into(),
+            port: 4455,
+            password: Some("synthetic-private".into()),
+        });
+        assert_eq!(
+            controller
+                .resolve_connection(|| preview.idle_production_connection())
+                .unwrap()
+                .host,
+            "pinned.test"
+        );
+        assert!(production::Controller::default()
+            .resolve_connection(|| preview.idle_production_connection())
+            .is_err());
+        let mut prefs = Preferences::initial();
+        prefs.enabled_packs = vec!["content".into()];
+        preview.preferences.save(&prefs).unwrap();
+        assert!(
+            matches!(preview.idle_production_connection(), Err(error) if error.contains("Enable this workspace"))
+        );
+        std::fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
     fn disabled_create_pack_rejects_the_native_library_operation() {
         let root = std::env::temp_dir().join(format!("hcp-preview-{}", uuid::Uuid::new_v4()));
         let store = LocalSettings::new(root.join("preview"), "preferences").unwrap();
@@ -404,6 +653,9 @@ mod preview_tests {
             preferences: store,
             credentials: OsCredentials::new("HybridCreatorPlatform", "test-preview").unwrap(),
             readiness: SetupEngine::new(&root, "test-preview").unwrap(),
+            production: tokio::sync::Mutex::new(production::Controller::default()),
+            production_cache: obs::ObsClientCache::new(),
+            profile_root: root.join("social-manager"),
             obs: obs::ObsClientCache::new(),
             recordings: RecordingLibrary::new(root.join("recordings")).unwrap(),
         };

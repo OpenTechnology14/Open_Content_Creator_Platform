@@ -29,6 +29,7 @@ REQUIRED = [
     "docs/AUDIT.md",
     "docs/GAP_AUDIT.md",
     "docs/API_ROUTE_AUDIT_LEDGER.md",
+    "docs/AI_ACTIONS_INVENTORY.md",
     "docs/FULL_APPLICATION_AUDIT_MATRIX.md",
     "docs/CONTINUOUS_IMPROVEMENT.md",
     "docs/IMPLEMENTATION_NOTES.md",

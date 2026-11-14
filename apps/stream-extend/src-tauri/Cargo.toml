@@ -13,6 +13,7 @@ crate-type = ["lib", "cdylib", "staticlib"]
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
+futures-util = "0.3"
 fs2 = "0.4"
 tauri = { version = "2", features = ["tray-icon"] }
 tauri-plugin-shell = "2"
@@ -24,7 +25,7 @@ serde_json = "1"
 tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
 tracing-subscriber = "0.3"
-obws = "0.15"
+obws = { version = "0.15", features = ["events"] }
 time = "0.3"  # obws reports StreamStatus timecode/duration as time::Duration; named directly, no conversion shim
 url = "2"
 

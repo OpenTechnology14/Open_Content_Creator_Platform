@@ -432,6 +432,26 @@ pub async fn switch_scene(
     get_scenes(cache, host, port, password).await
 }
 
+/// Combined desktop admits only a scene present in the current OBS collection.
+pub async fn switch_observed_scene(
+    cache: &ObsClientCache,
+    host: &str,
+    port: u16,
+    password: Option<&str>,
+    name: &str,
+) -> Result<Vec<SceneInfo>, ErrorEnvelope> {
+    if !get_scenes(cache, host, port, password)
+        .await?
+        .iter()
+        .any(|scene| scene.name == name)
+    {
+        return Err(ErrorEnvelope::invalid_request(
+            "Choose an observed OBS scene",
+        ));
+    }
+    switch_scene(cache, host, port, password, name).await
+}
+
 // obws reports `timecode`/`duration` as `time::Duration` (a signed
 // duration), not `std::time::Duration` — matching its real response type
 // here rather than converting at every call site.
@@ -638,6 +658,87 @@ pub async fn stop_live_session(
             "Stream stopped. This app did not own a recording for the session.".into()
         },
     })
+}
+
+#[path = "obs_local_recording.rs"]
+mod local_recording;
+pub use local_recording::{start_owned_recording, stop_owned_recording, LocalRecordingState};
+
+pub async fn recording_active(
+    cache: &ObsClientCache,
+    host: &str,
+    port: u16,
+    password: Option<&str>,
+) -> Result<bool, ErrorEnvelope> {
+    with_client(cache, host, port, password, |client| {
+        Box::pin(async move { client.recording().status().await.map(|value| value.active) })
+    })
+    .await
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AudioInput {
+    pub name: String,
+    pub muted: bool,
+}
+
+pub async fn audio_inputs(
+    cache: &ObsClientCache,
+    host: &str,
+    port: u16,
+    password: Option<&str>,
+) -> Result<Vec<AudioInput>, ErrorEnvelope> {
+    with_client(cache, host, port, password, |client| {
+        Box::pin(async move {
+            let inputs = client.inputs().list(None).await?;
+            let mut audio = Vec::new();
+            for input in inputs.into_iter().take(64) {
+                // OBS rejects GetInputMute for non-audio sources. Do not offer
+                // a mute control whose current state cannot be observed.
+                if let Ok(muted) = client.inputs().muted(input.id.name.as_str().into()).await {
+                    audio.push(AudioInput {
+                        name: input.id.name,
+                        muted,
+                    });
+                }
+            }
+            Ok(audio)
+        })
+    })
+    .await
+}
+
+pub async fn set_input_muted(
+    cache: &ObsClientCache,
+    host: &str,
+    port: u16,
+    password: Option<&str>,
+    name: &str,
+    muted: bool,
+) -> Result<Vec<AudioInput>, ErrorEnvelope> {
+    // Observe this audio input directly; enumerating the entire source list
+    // here would let a slow inspection queue the safety mute command.
+    let observed = name.to_string();
+    with_client(cache, host, port, password, move |client| {
+        let name = observed.clone();
+        Box::pin(async move { client.inputs().muted(name.as_str().into()).await })
+    })
+    .await?;
+    let target = name.to_string();
+    with_client(cache, host, port, password, move |client| {
+        let name = target.clone();
+        Box::pin(async move { client.inputs().set_muted(name.as_str().into(), muted).await })
+    })
+    .await?;
+    let name = name.to_string();
+    with_client(cache, host, port, password, move |client| {
+        let name = name.clone();
+        Box::pin(async move {
+            let muted = client.inputs().muted(name.as_str().into()).await?;
+            Ok(vec![AudioInput { name, muted }])
+        })
+    })
+    .await
 }
 
 #[cfg(test)]

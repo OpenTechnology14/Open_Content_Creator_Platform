@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-preview-workflows"
+description = "Enables the preview_workflows command without any pre-configured scope."
+commands.allow = ["preview_workflows"]
+
+[[permission]]
+identifier = "deny-preview-workflows"
+description = "Denies the preview_workflows command without any pre-configured scope."
+commands.deny = ["preview_workflows"]

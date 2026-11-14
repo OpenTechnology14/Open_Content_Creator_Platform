@@ -1,0 +1,493 @@
+{
+  "ArtifactGet": {
+    "artifact_id": "artifact-1cb9970fc16840649b37139d2e198c43",
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894"
+  },
+  "ArtifactV1": {
+    "artifact_id": "artifact-1cb9970fc16840649b37139d2e198c43",
+    "attempt_id": "attempt-190a96dd2c1a4f9184d4932b0a4a80ef",
+    "bytes": 3639170,
+    "destination": "youtube-longform",
+    "editorial_state": "review-needed",
+    "local_state": "validated",
+    "media": {
+      "audio": {
+        "channels": 1,
+        "codec": "aac",
+        "duration_seconds": 12.010666666666667,
+        "sample_rate": 48000
+      },
+      "container": "mp4",
+      "duration_seconds": 12.01,
+      "video": {
+        "codec": "h264",
+        "fps_den": 1,
+        "fps_num": 30,
+        "height": 720,
+        "pixel_format": "yuv420p",
+        "sar_den": 1,
+        "sar_num": 1,
+        "width": 1280
+      }
+    },
+    "metadata_path": "content-main/prod-c18d29c5f1364d5a93f6b096359e7894/youtube/long-form/attempts/attempt-190a96dd2c1a4f9184d4932b0a4a80ef/metadata.json",
+    "metadata_sha256": "416af41c194d9b7644d2920fe96e2bde61377b1cbd4e9956f3264d404ebe67f1",
+    "preset_version": "youtube-longform-v1",
+    "relative_path": "content-main/prod-c18d29c5f1364d5a93f6b096359e7894/youtube/long-form/attempts/attempt-190a96dd2c1a4f9184d4932b0a4a80ef/video.mp4",
+    "schema_version": 1,
+    "sha256": "29b1d23e9aa080eebe5131b771c019eb0d15f34ab89e5c1e376987dac79c15a9",
+    "source_id": "source-aab2981918c14590b1573934a2da4979"
+  },
+  "Create": {
+    "content_profile_id": "content-main",
+    "content_root_id": "fixture-root",
+    "operation_id": "fixture-create",
+    "show_profile_id": "opentech",
+    "source_profile_id": "stream-main",
+    "target": {
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "fixture_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "kind": "opentechnologyapp",
+      "scenario_id": "synthetic-export-only",
+      "tree_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  },
+  "ErrorV1": {
+    "code": "source_unavailable",
+    "retryable": false
+  },
+  "ExportAttemptV1": {
+    "artifacts": [
+      {
+        "artifact_id": "artifact-1cb9970fc16840649b37139d2e198c43",
+        "attempt_id": "attempt-190a96dd2c1a4f9184d4932b0a4a80ef",
+        "bytes": 3639170,
+        "destination": "youtube-longform",
+        "editorial_state": "review-needed",
+        "local_state": "validated",
+        "media": {
+          "audio": {
+            "channels": 1,
+            "codec": "aac",
+            "duration_seconds": 12.010666666666667,
+            "sample_rate": 48000
+          },
+          "container": "mp4",
+          "duration_seconds": 12.01,
+          "video": {
+            "codec": "h264",
+            "fps_den": 1,
+            "fps_num": 30,
+            "height": 720,
+            "pixel_format": "yuv420p",
+            "sar_den": 1,
+            "sar_num": 1,
+            "width": 1280
+          }
+        },
+        "metadata_path": "content-main/prod-c18d29c5f1364d5a93f6b096359e7894/youtube/long-form/attempts/attempt-190a96dd2c1a4f9184d4932b0a4a80ef/metadata.json",
+        "metadata_sha256": "416af41c194d9b7644d2920fe96e2bde61377b1cbd4e9956f3264d404ebe67f1",
+        "preset_version": "youtube-longform-v1",
+        "relative_path": "content-main/prod-c18d29c5f1364d5a93f6b096359e7894/youtube/long-form/attempts/attempt-190a96dd2c1a4f9184d4932b0a4a80ef/video.mp4",
+        "schema_version": 1,
+        "sha256": "29b1d23e9aa080eebe5131b771c019eb0d15f34ab89e5c1e376987dac79c15a9",
+        "source_id": "source-aab2981918c14590b1573934a2da4979"
+      },
+      {
+        "artifact_id": "artifact-47eacc60251e465b8643061cd245482a",
+        "attempt_id": "attempt-190a96dd2c1a4f9184d4932b0a4a80ef",
+        "bytes": 585233,
+        "destination": "youtube-shorts",
+        "editorial_state": "review-needed",
+        "local_state": "validated",
+        "media": {
+          "audio": {
+            "channels": 1,
+            "codec": "aac",
+            "duration_seconds": 8.0,
+            "sample_rate": 48000
+          },
+          "container": "mp4",
+          "duration_seconds": 8.0,
+          "video": {
+            "codec": "h264",
+            "fps_den": 1,
+            "fps_num": 30,
+            "height": 1280,
+            "pixel_format": "yuv420p",
+            "sar_den": 1,
+            "sar_num": 1,
+            "width": 720
+          }
+        },
+        "metadata_path": "content-main/prod-c18d29c5f1364d5a93f6b096359e7894/youtube/shorts/attempts/attempt-190a96dd2c1a4f9184d4932b0a4a80ef/metadata.json",
+        "metadata_sha256": "6a6f9bdbcd8b8e89ce0369beb4de600e52e6f4084bf1824bf930cb76907ae399",
+        "preset_version": "youtube-shorts-v1",
+        "relative_path": "content-main/prod-c18d29c5f1364d5a93f6b096359e7894/youtube/shorts/attempts/attempt-190a96dd2c1a4f9184d4932b0a4a80ef/clip-001.mp4",
+        "schema_version": 1,
+        "sha256": "e7629391e69a65c9f5b460a42c8a5867c8ba46d272da5fd383368a6a7f0bba8c",
+        "source_id": "source-aab2981918c14590b1573934a2da4979"
+      },
+      {
+        "artifact_id": "artifact-dfbdfd93ef5944cdb657a43f130df13a",
+        "attempt_id": "attempt-190a96dd2c1a4f9184d4932b0a4a80ef",
+        "bytes": 585233,
+        "destination": "tiktok",
+        "editorial_state": "review-needed",
+        "local_state": "validated",
+        "media": {
+          "audio": {
+            "channels": 1,
+            "codec": "aac",
+            "duration_seconds": 8.0,
+            "sample_rate": 48000
+          },
+          "container": "mp4",
+          "duration_seconds": 8.0,
+          "video": {
+            "codec": "h264",
+            "fps_den": 1,
+            "fps_num": 30,
+            "height": 1280,
+            "pixel_format": "yuv420p",
+            "sar_den": 1,
+            "sar_num": 1,
+            "width": 720
+          }
+        },
+        "metadata_path": "content-main/prod-c18d29c5f1364d5a93f6b096359e7894/tiktok/attempts/attempt-190a96dd2c1a4f9184d4932b0a4a80ef/metadata.json",
+        "metadata_sha256": "828d6050e3490dbc9437ba65eec667768085cb060e367fa378890401ecd27369",
+        "preset_version": "tiktok-local-v1",
+        "relative_path": "content-main/prod-c18d29c5f1364d5a93f6b096359e7894/tiktok/attempts/attempt-190a96dd2c1a4f9184d4932b0a4a80ef/clip-001.mp4",
+        "schema_version": 1,
+        "sha256": "e7629391e69a65c9f5b460a42c8a5867c8ba46d272da5fd383368a6a7f0bba8c",
+        "source_id": "source-aab2981918c14590b1573934a2da4979"
+      }
+    ],
+    "attempt_id": "attempt-190a96dd2c1a4f9184d4932b0a4a80ef",
+    "ended_at": "2026-11-07T00:49:04.273272Z",
+    "failures": [],
+    "generation": 1,
+    "job_id": "job-ffaab02189984f53852e3b91a3cf2e69",
+    "metadata_revision": 1,
+    "phase": "complete",
+    "plan_sha256": "18980e85753e37c6708d7bf3eb39f2e0b70edca7c9e6589e8ab135c0f4f7f825",
+    "preset_version": "local-presets-v1",
+    "process_epoch": "epoch-32367738df224892b076c79ee8ed5827",
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+    "requested_output_ids": [
+      "youtube-longform-v1",
+      "youtube-shorts-v1",
+      "tiktok-local-v1"
+    ],
+    "schema_version": 1,
+    "sequence": 8,
+    "source_id": "source-aab2981918c14590b1573934a2da4979",
+    "source_sha256": "dbba4189e8a8100192cb1450d554078899d8710ad2e83303d178b8baa2da2d57",
+    "started_at": "2026-11-07T00:49:01.396043Z"
+  },
+  "ExportClipPlanV1": {
+    "clips": [
+      {
+        "clip_id": "clip-001",
+        "end_seconds": 10.0,
+        "label": "Selected moment",
+        "origin": "manual",
+        "score": 0.0,
+        "start_seconds": 2.0,
+        "unique_viewers": 0
+      }
+    ],
+    "duration_seconds": 12.0,
+    "edit": {
+      "enabled": false
+    },
+    "game_id": "walkthrough",
+    "ignored_events": 0,
+    "recording_id": "source-aab2981918c14590b1573934a2da4979",
+    "schema_version": 1,
+    "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+    "show_id": "opentech"
+  },
+  "ExportClipV1": {
+    "clip_id": "clip-001",
+    "end_seconds": 10.0,
+    "label": "Selected moment",
+    "origin": "manual",
+    "score": 0.0,
+    "start_seconds": 2.0,
+    "unique_viewers": 0
+  },
+  "ExportJobV1": {
+    "automatic": false,
+    "duration_seconds": 12.0,
+    "edit": {
+      "enabled": false
+    },
+    "game_id": "walkthrough",
+    "manual_sections": [
+      {
+        "end_seconds": 10.0,
+        "label": "Selected moment",
+        "start_seconds": 2.0
+      }
+    ],
+    "recording_id": "source-aab2981918c14590b1573934a2da4979",
+    "schema_version": 1,
+    "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+    "show_id": "opentech"
+  },
+  "ExportRequestV1": {
+    "clip_plan_ref": {
+      "id": "plan-affb256f8f5347d1904d59c45606ba5a",
+      "sha256": "18980e85753e37c6708d7bf3eb39f2e0b70edca7c9e6589e8ab135c0f4f7f825"
+    },
+    "expected_revision": 3,
+    "metadata_revision": 1,
+    "operation_id": "fixture-export",
+    "presets": [
+      "youtube-longform-v1",
+      "youtube-shorts-v1",
+      "tiktok-local-v1"
+    ],
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+    "source_id": "source-aab2981918c14590b1573934a2da4979",
+    "source_sha256": "dbba4189e8a8100192cb1450d554078899d8710ad2e83303d178b8baa2da2d57"
+  },
+  "ExportSectionV1": {
+    "end_seconds": 10.0,
+    "label": "Selected moment",
+    "start_seconds": 2.0
+  },
+  "FinalizedSourceV1": {
+    "audio": {
+      "channels": 1,
+      "codec": "aac",
+      "duration_seconds": 12.010666666666667,
+      "sample_rate": 48000
+    },
+    "bytes": 4199076,
+    "container": "mp4",
+    "content_profile_id": "content-main",
+    "duration_seconds": 12.0,
+    "origin": "fixture",
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+    "provenance": {},
+    "relative_path": "content-main/prod-c18d29c5f1364d5a93f6b096359e7894/source/source-aab2981918c14590b1573934a2da4979/recording.mp4",
+    "root_id": "fixture-root",
+    "schema_version": 1,
+    "sha256": "dbba4189e8a8100192cb1450d554078899d8710ad2e83303d178b8baa2da2d57",
+    "source_id": "source-aab2981918c14590b1573934a2da4979",
+    "source_profile_id": "stream-main",
+    "validation": {
+      "full_decode": true,
+      "validated_at": "2026-11-07T00:49:01.390107Z",
+      "validator_version": "ffmpeg-full-v1"
+    },
+    "video": {
+      "codec": "h264",
+      "fps_den": 1,
+      "fps_num": 30,
+      "height": 720,
+      "pixel_format": "yuv420p",
+      "sar_den": 1,
+      "sar_num": 1,
+      "width": 1280
+    }
+  },
+  "Get": {
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894"
+  },
+  "JobCancel": {
+    "expected_revision": 12,
+    "job_id": "job-ffaab02189984f53852e3b91a3cf2e69",
+    "operation_id": "fixture-cancel",
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894"
+  },
+  "JobEventV1": {
+    "attempt_id": "attempt-190a96dd2c1a4f9184d4932b0a4a80ef",
+    "elapsed_ms": 1,
+    "event_id": "event-4abd9faeaad24d69867280562097a63c",
+    "generation": 1,
+    "job_id": "job-ffaab02189984f53852e3b91a3cf2e69",
+    "kind": "job.event.v1",
+    "phase": "validating",
+    "process_epoch": "epoch-32367738df224892b076c79ee8ed5827",
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+    "progress": {
+      "completed": 0,
+      "total": 3,
+      "unit": "outputs"
+    },
+    "schema_version": 1,
+    "sequence": 1
+  },
+  "JobGet": {
+    "job_id": "job-ffaab02189984f53852e3b91a3cf2e69",
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894"
+  },
+  "Metadata": {
+    "description": "Local test pattern and sine tone; not an App walkthrough.",
+    "end_seconds": 12.0,
+    "metadata_revision": 1,
+    "preset_version": "youtube-longform-v1",
+    "schema_version": 1,
+    "start_seconds": 0.0,
+    "timebase": "source-seconds",
+    "title": "Synthetic export fixture"
+  },
+  "Page": {
+    "cursor": 0,
+    "limit": 100
+  },
+  "PlainEditV1": {
+    "enabled": false
+  },
+  "PlanPayload": {
+    "description": "Local test pattern and sine tone; not an App walkthrough.",
+    "expected_revision": 2,
+    "job": {
+      "automatic": false,
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "manual_sections": [
+        {
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "start_seconds": 2.0
+        }
+      ],
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    },
+    "metadata_revision": 1,
+    "operation_id": "fixture-plan",
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+    "source_id": "source-aab2981918c14590b1573934a2da4979",
+    "title": "Synthetic export fixture"
+  },
+  "PlanRecord": {
+    "clip_plan": {
+      "clips": [
+        {
+          "clip_id": "clip-001",
+          "end_seconds": 10.0,
+          "label": "Selected moment",
+          "origin": "manual",
+          "score": 0.0,
+          "start_seconds": 2.0,
+          "unique_viewers": 0
+        }
+      ],
+      "duration_seconds": 12.0,
+      "edit": {
+        "enabled": false
+      },
+      "game_id": "walkthrough",
+      "ignored_events": 0,
+      "recording_id": "source-aab2981918c14590b1573934a2da4979",
+      "schema_version": 1,
+      "session_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "show_id": "opentech"
+    },
+    "description": "Local test pattern and sine tone; not an App walkthrough.",
+    "id": "plan-affb256f8f5347d1904d59c45606ba5a",
+    "metadata_revision": 1,
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+    "schema_version": 1,
+    "sha256": "18980e85753e37c6708d7bf3eb39f2e0b70edca7c9e6589e8ab135c0f4f7f825",
+    "source_id": "source-aab2981918c14590b1573934a2da4979",
+    "title": "Synthetic export fixture"
+  },
+  "ProductionSessionV1": {
+    "content_profile_id": "content-main",
+    "content_root_id": "fixture-root",
+    "created_at": "2026-11-07T00:49:01.021409Z",
+    "export_attempt_ids": [],
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+    "revision": 1,
+    "schema_version": 1,
+    "show_profile_id": "opentech",
+    "source_ids": [],
+    "source_profile_id": "stream-main",
+    "target": {
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "fixture_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "kind": "opentechnologyapp",
+      "scenario_id": "synthetic-export-only",
+      "tree_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  },
+  "ReplyV1": {
+    "ok": true,
+    "request_id": "req-0000",
+    "revision": 1,
+    "value": {
+      "content_profile_id": "content-main",
+      "content_root_id": "fixture-root",
+      "created_at": "2026-11-07T00:49:01.021409Z",
+      "export_attempt_ids": [],
+      "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "revision": 1,
+      "schema_version": 1,
+      "show_profile_id": "opentech",
+      "source_ids": [],
+      "source_profile_id": "stream-main",
+      "target": {
+        "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "fixture_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "kind": "opentechnologyapp",
+        "scenario_id": "synthetic-export-only",
+        "tree_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    }
+  },
+  "RequestV1": {
+    "command": "export.start",
+    "payload": {
+      "clip_plan_ref": {
+        "id": "plan-affb256f8f5347d1904d59c45606ba5a",
+        "sha256": "18980e85753e37c6708d7bf3eb39f2e0b70edca7c9e6589e8ab135c0f4f7f825"
+      },
+      "expected_revision": 3,
+      "metadata_revision": 1,
+      "operation_id": "fixture-export",
+      "presets": [
+        "youtube-longform-v1",
+        "youtube-shorts-v1",
+        "tiktok-local-v1"
+      ],
+      "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+      "source_id": "source-aab2981918c14590b1573934a2da4979",
+      "source_sha256": "dbba4189e8a8100192cb1450d554078899d8710ad2e83303d178b8baa2da2d57"
+    },
+    "request_id": "req-fixture-export-001",
+    "schema_version": 1
+  },
+  "SourceRegister": {
+    "content_profile_id": "content-main",
+    "expected_revision": 1,
+    "input_id": "fixture-input",
+    "operation_id": "fixture-source",
+    "origin": "fixture",
+    "production_id": "prod-c18d29c5f1364d5a93f6b096359e7894",
+    "provenance": {},
+    "source_profile_id": "stream-main",
+    "source_sha256": "dbba4189e8a8100192cb1450d554078899d8710ad2e83303d178b8baa2da2d57"
+  },
+  "Video": {
+    "codec": "h264",
+    "fps_den": 1,
+    "fps_num": 30,
+    "height": 576,
+    "pixel_format": "yuv420p",
+    "sar_den": 15,
+    "sar_num": 16,
+    "width": 720
+  }
+}

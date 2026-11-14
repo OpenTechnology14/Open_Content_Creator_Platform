@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-production-start-recording"
+description = "Enables the production_start_recording command without any pre-configured scope."
+commands.allow = ["production_start_recording"]
+
+[[permission]]
+identifier = "deny-production-start-recording"
+description = "Denies the production_start_recording command without any pre-configured scope."
+commands.deny = ["production_start_recording"]

@@ -33,8 +33,6 @@ EXEMPT = {
     "CONTINUOUS_IMPROVEMENT.md": NO_REVIEW,
     "IMPLEMENTATION_NOTES.md": NO_REVIEW,
     "PRESSURE_TEST_LOAD.md": NO_REVIEW,
-    # It has a status and the date it was written, 2026-07-13, which is the initial import and not a review.
-    "REPOSITORY_ALIGNMENT.md": NO_REVIEW,
 }
 
 

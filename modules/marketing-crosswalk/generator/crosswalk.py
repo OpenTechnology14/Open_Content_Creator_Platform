@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -217,7 +218,28 @@ def validate(cw: Crosswalk) -> List[Finding]:
     # 4. Private modules stay discoverable but inert, and public rows never name them.
     findings.extend(_validate_visibility(cw))
 
+    # 5. A target's public edition is a different, explicitly named repository.
+    findings.extend(_validate_public_repos(cw))
+
     cw.findings = findings
+    return findings
+
+
+def _validate_public_repos(cw: Crosswalk) -> List[Finding]:
+    """`public_repo` is the only private-target repository a draft may link, so it must be unambiguous."""
+    findings: List[Finding] = []
+    private_names = {spec["repo"].split("/")[-1] for spec in cw.targets.values() if spec.get("repo")}
+    for key, spec in cw.targets.items():
+        public = spec.get("public_repo")
+        if not public:
+            continue
+        where = f"targets.yml: {key}"
+        if not re.fullmatch(r"OpenTechnology14/[A-Za-z0-9_.-]+", str(public)):
+            findings.append(Finding("error", where, f"public_repo {public!r} is not an OpenTechnology14/<name> repository",
+                                    "write it as OpenTechnology14/<repository>"))
+        elif public == spec.get("repo") or public.split("/")[-1] in private_names:
+            findings.append(Finding("error", where, "public_repo names a repository that is also a target's private `repo`",
+                                    "public_repo must be a different repository from every target `repo`"))
     return findings
 
 

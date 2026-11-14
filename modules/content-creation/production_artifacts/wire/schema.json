@@ -1,0 +1,2993 @@
+{
+  "ArtifactGet": {
+    "additionalProperties": false,
+    "properties": {
+      "artifact_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Artifact Id",
+        "type": "string"
+      },
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "production_id",
+      "artifact_id"
+    ],
+    "title": "ArtifactGet",
+    "type": "object"
+  },
+  "ArtifactV1": {
+    "$defs": {
+      "Audio": {
+        "additionalProperties": false,
+        "properties": {
+          "channels": {
+            "maximum": 8,
+            "minimum": 1,
+            "title": "Channels",
+            "type": "integer"
+          },
+          "codec": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Codec",
+            "type": "string"
+          },
+          "duration_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 86400.0,
+            "title": "Duration Seconds",
+            "type": "number"
+          },
+          "sample_rate": {
+            "maximum": 192000,
+            "minimum": 8000,
+            "title": "Sample Rate",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "codec",
+          "sample_rate",
+          "channels",
+          "duration_seconds"
+        ],
+        "title": "Audio",
+        "type": "object"
+      },
+      "Media": {
+        "additionalProperties": false,
+        "properties": {
+          "audio": {
+            "$ref": "#/$defs/Audio"
+          },
+          "container": {
+            "enum": [
+              "mp4",
+              "matroska",
+              "mov",
+              "webm"
+            ],
+            "title": "Container",
+            "type": "string"
+          },
+          "duration_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 86400.0,
+            "title": "Duration Seconds",
+            "type": "number"
+          },
+          "video": {
+            "$ref": "#/$defs/Video"
+          }
+        },
+        "required": [
+          "container",
+          "video",
+          "audio",
+          "duration_seconds"
+        ],
+        "title": "Media",
+        "type": "object"
+      },
+      "Video": {
+        "additionalProperties": false,
+        "properties": {
+          "codec": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Codec",
+            "type": "string"
+          },
+          "fps_den": {
+            "maximum": 10000,
+            "minimum": 1,
+            "title": "Fps Den",
+            "type": "integer"
+          },
+          "fps_num": {
+            "maximum": 240000,
+            "minimum": 1,
+            "title": "Fps Num",
+            "type": "integer"
+          },
+          "height": {
+            "maximum": 4320,
+            "minimum": 2,
+            "title": "Height",
+            "type": "integer"
+          },
+          "pixel_format": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Pixel Format",
+            "type": "string"
+          },
+          "sar_den": {
+            "maximum": 65535,
+            "minimum": 1,
+            "title": "Sar Den",
+            "type": "integer"
+          },
+          "sar_num": {
+            "maximum": 65535,
+            "minimum": 1,
+            "title": "Sar Num",
+            "type": "integer"
+          },
+          "width": {
+            "maximum": 7680,
+            "minimum": 2,
+            "title": "Width",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "codec",
+          "width",
+          "height",
+          "sar_num",
+          "sar_den",
+          "fps_num",
+          "fps_den",
+          "pixel_format"
+        ],
+        "title": "Video",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "artifact_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Artifact Id",
+        "type": "string"
+      },
+      "attempt_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Attempt Id",
+        "type": "string"
+      },
+      "bytes": {
+        "exclusiveMinimum": 0,
+        "maximum": 1099511627776,
+        "title": "Bytes",
+        "type": "integer"
+      },
+      "destination": {
+        "enum": [
+          "youtube-longform",
+          "youtube-shorts",
+          "tiktok"
+        ],
+        "title": "Destination",
+        "type": "string"
+      },
+      "editorial_state": {
+        "const": "review-needed",
+        "default": "review-needed",
+        "enum": [
+          "review-needed"
+        ],
+        "title": "Editorial State",
+        "type": "string"
+      },
+      "local_state": {
+        "const": "validated",
+        "default": "validated",
+        "enum": [
+          "validated"
+        ],
+        "title": "Local State",
+        "type": "string"
+      },
+      "media": {
+        "$ref": "#/$defs/Media"
+      },
+      "metadata_path": {
+        "maxLength": 512,
+        "pattern": "^[a-zA-Z0-9_-]+(?:[./][a-zA-Z0-9_-]+)*$",
+        "title": "Metadata Path",
+        "type": "string"
+      },
+      "metadata_sha256": {
+        "pattern": "^[a-f0-9]{64}$",
+        "title": "Metadata Sha256",
+        "type": "string"
+      },
+      "preset_version": {
+        "enum": [
+          "youtube-longform-v1",
+          "youtube-shorts-v1",
+          "tiktok-local-v1"
+        ],
+        "title": "Preset Version",
+        "type": "string"
+      },
+      "relative_path": {
+        "maxLength": 512,
+        "pattern": "^[a-zA-Z0-9_-]+(?:[./][a-zA-Z0-9_-]+)*$",
+        "title": "Relative Path",
+        "type": "string"
+      },
+      "schema_version": {
+        "const": 1,
+        "default": 1,
+        "enum": [
+          1
+        ],
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "sha256": {
+        "pattern": "^[a-f0-9]{64}$",
+        "title": "Sha256",
+        "type": "string"
+      },
+      "source_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Source Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "artifact_id",
+      "attempt_id",
+      "source_id",
+      "destination",
+      "relative_path",
+      "metadata_path",
+      "metadata_sha256",
+      "sha256",
+      "bytes",
+      "media",
+      "preset_version"
+    ],
+    "title": "ArtifactV1",
+    "type": "object"
+  },
+  "Create": {
+    "$defs": {
+      "ConceptReference": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Id",
+            "type": "string"
+          },
+          "revision": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "title": "Revision",
+            "type": "integer"
+          },
+          "sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Sha256",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "sha256",
+          "revision"
+        ],
+        "title": "ConceptReference",
+        "type": "object"
+      },
+      "Target": {
+        "additionalProperties": false,
+        "properties": {
+          "commit": {
+            "pattern": "^[a-f0-9]{40}$",
+            "title": "Commit",
+            "type": "string"
+          },
+          "fixture_sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Fixture Sha256",
+            "type": "string"
+          },
+          "kind": {
+            "const": "opentechnologyapp",
+            "enum": [
+              "opentechnologyapp"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "scenario_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Scenario Id",
+            "type": "string"
+          },
+          "tree_sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Tree Sha256",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "commit",
+          "tree_sha256",
+          "fixture_sha256",
+          "scenario_id"
+        ],
+        "title": "Target",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "concept_ref": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ConceptReference"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "content_profile_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Content Profile Id",
+        "type": "string"
+      },
+      "content_root_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Content Root Id",
+        "type": "string"
+      },
+      "operation_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Operation Id",
+        "type": "string"
+      },
+      "script_sha256": {
+        "anyOf": [
+          {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Script Sha256"
+      },
+      "show_profile_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Show Profile Id",
+        "type": "string"
+      },
+      "source_profile_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Source Profile Id",
+        "type": "string"
+      },
+      "target": {
+        "$ref": "#/$defs/Target"
+      }
+    },
+    "required": [
+      "operation_id",
+      "source_profile_id",
+      "content_profile_id",
+      "show_profile_id",
+      "content_root_id",
+      "target"
+    ],
+    "title": "Create",
+    "type": "object"
+  },
+  "ErrorV1": {
+    "additionalProperties": false,
+    "properties": {
+      "code": {
+        "enum": [
+          "artifact_unavailable",
+          "cancelled",
+          "corrupt_state",
+          "dependency_unavailable",
+          "disk_space",
+          "disk_unavailable",
+          "export_busy",
+          "execution_unsettled",
+          "invalid_media",
+          "invalid_registry",
+          "invalid_request",
+          "job_not_owned",
+          "job_unavailable",
+          "limit_exceeded",
+          "media_failed",
+          "media_limit",
+          "operation_conflict",
+          "persistence_failed",
+          "plan_conflict",
+          "platform_unavailable",
+          "process_timeout",
+          "production_unavailable",
+          "profile_conflict",
+          "revision_conflict",
+          "source_changed",
+          "source_unavailable",
+          "terminal_attempt",
+          "unsafe_path",
+          "worker_busy",
+          "worker_restarted"
+        ],
+        "title": "Code",
+        "type": "string"
+      },
+      "retryable": {
+        "title": "Retryable",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "code",
+      "retryable"
+    ],
+    "title": "ErrorV1",
+    "type": "object"
+  },
+  "ExportAttemptV1": {
+    "$defs": {
+      "ArtifactV1": {
+        "additionalProperties": false,
+        "properties": {
+          "artifact_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Artifact Id",
+            "type": "string"
+          },
+          "attempt_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Attempt Id",
+            "type": "string"
+          },
+          "bytes": {
+            "exclusiveMinimum": 0,
+            "maximum": 1099511627776,
+            "title": "Bytes",
+            "type": "integer"
+          },
+          "destination": {
+            "enum": [
+              "youtube-longform",
+              "youtube-shorts",
+              "tiktok"
+            ],
+            "title": "Destination",
+            "type": "string"
+          },
+          "editorial_state": {
+            "const": "review-needed",
+            "default": "review-needed",
+            "enum": [
+              "review-needed"
+            ],
+            "title": "Editorial State",
+            "type": "string"
+          },
+          "local_state": {
+            "const": "validated",
+            "default": "validated",
+            "enum": [
+              "validated"
+            ],
+            "title": "Local State",
+            "type": "string"
+          },
+          "media": {
+            "$ref": "#/$defs/Media"
+          },
+          "metadata_path": {
+            "maxLength": 512,
+            "pattern": "^[a-zA-Z0-9_-]+(?:[./][a-zA-Z0-9_-]+)*$",
+            "title": "Metadata Path",
+            "type": "string"
+          },
+          "metadata_sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Metadata Sha256",
+            "type": "string"
+          },
+          "preset_version": {
+            "enum": [
+              "youtube-longform-v1",
+              "youtube-shorts-v1",
+              "tiktok-local-v1"
+            ],
+            "title": "Preset Version",
+            "type": "string"
+          },
+          "relative_path": {
+            "maxLength": 512,
+            "pattern": "^[a-zA-Z0-9_-]+(?:[./][a-zA-Z0-9_-]+)*$",
+            "title": "Relative Path",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": 1,
+            "default": 1,
+            "enum": [
+              1
+            ],
+            "title": "Schema Version",
+            "type": "integer"
+          },
+          "sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Sha256",
+            "type": "string"
+          },
+          "source_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Source Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "artifact_id",
+          "attempt_id",
+          "source_id",
+          "destination",
+          "relative_path",
+          "metadata_path",
+          "metadata_sha256",
+          "sha256",
+          "bytes",
+          "media",
+          "preset_version"
+        ],
+        "title": "ArtifactV1",
+        "type": "object"
+      },
+      "Audio": {
+        "additionalProperties": false,
+        "properties": {
+          "channels": {
+            "maximum": 8,
+            "minimum": 1,
+            "title": "Channels",
+            "type": "integer"
+          },
+          "codec": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Codec",
+            "type": "string"
+          },
+          "duration_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 86400.0,
+            "title": "Duration Seconds",
+            "type": "number"
+          },
+          "sample_rate": {
+            "maximum": 192000,
+            "minimum": 8000,
+            "title": "Sample Rate",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "codec",
+          "sample_rate",
+          "channels",
+          "duration_seconds"
+        ],
+        "title": "Audio",
+        "type": "object"
+      },
+      "Failure": {
+        "additionalProperties": false,
+        "properties": {
+          "error_code": {
+            "enum": [
+              "artifact_unavailable",
+              "cancelled",
+              "corrupt_state",
+              "dependency_unavailable",
+              "disk_space",
+              "disk_unavailable",
+              "export_busy",
+              "execution_unsettled",
+              "invalid_media",
+              "invalid_registry",
+              "invalid_request",
+              "job_not_owned",
+              "job_unavailable",
+              "limit_exceeded",
+              "media_failed",
+              "media_limit",
+              "operation_conflict",
+              "persistence_failed",
+              "plan_conflict",
+              "platform_unavailable",
+              "process_timeout",
+              "production_unavailable",
+              "profile_conflict",
+              "revision_conflict",
+              "source_changed",
+              "source_unavailable",
+              "terminal_attempt",
+              "unsafe_path",
+              "worker_busy",
+              "worker_restarted"
+            ],
+            "title": "Error Code",
+            "type": "string"
+          },
+          "preset": {
+            "enum": [
+              "youtube-longform-v1",
+              "youtube-shorts-v1",
+              "tiktok-local-v1"
+            ],
+            "title": "Preset",
+            "type": "string"
+          }
+        },
+        "required": [
+          "preset",
+          "error_code"
+        ],
+        "title": "Failure",
+        "type": "object"
+      },
+      "Media": {
+        "additionalProperties": false,
+        "properties": {
+          "audio": {
+            "$ref": "#/$defs/Audio"
+          },
+          "container": {
+            "enum": [
+              "mp4",
+              "matroska",
+              "mov",
+              "webm"
+            ],
+            "title": "Container",
+            "type": "string"
+          },
+          "duration_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 86400.0,
+            "title": "Duration Seconds",
+            "type": "number"
+          },
+          "video": {
+            "$ref": "#/$defs/Video"
+          }
+        },
+        "required": [
+          "container",
+          "video",
+          "audio",
+          "duration_seconds"
+        ],
+        "title": "Media",
+        "type": "object"
+      },
+      "Video": {
+        "additionalProperties": false,
+        "properties": {
+          "codec": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Codec",
+            "type": "string"
+          },
+          "fps_den": {
+            "maximum": 10000,
+            "minimum": 1,
+            "title": "Fps Den",
+            "type": "integer"
+          },
+          "fps_num": {
+            "maximum": 240000,
+            "minimum": 1,
+            "title": "Fps Num",
+            "type": "integer"
+          },
+          "height": {
+            "maximum": 4320,
+            "minimum": 2,
+            "title": "Height",
+            "type": "integer"
+          },
+          "pixel_format": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Pixel Format",
+            "type": "string"
+          },
+          "sar_den": {
+            "maximum": 65535,
+            "minimum": 1,
+            "title": "Sar Den",
+            "type": "integer"
+          },
+          "sar_num": {
+            "maximum": 65535,
+            "minimum": 1,
+            "title": "Sar Num",
+            "type": "integer"
+          },
+          "width": {
+            "maximum": 7680,
+            "minimum": 2,
+            "title": "Width",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "codec",
+          "width",
+          "height",
+          "sar_num",
+          "sar_den",
+          "fps_num",
+          "fps_den",
+          "pixel_format"
+        ],
+        "title": "Video",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "artifacts": {
+        "items": {
+          "$ref": "#/$defs/ArtifactV1"
+        },
+        "maxItems": 3,
+        "title": "Artifacts",
+        "type": "array"
+      },
+      "attempt_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Attempt Id",
+        "type": "string"
+      },
+      "ended_at": {
+        "anyOf": [
+          {
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{6}Z$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Ended At"
+      },
+      "error_code": {
+        "anyOf": [
+          {
+            "enum": [
+              "artifact_unavailable",
+              "cancelled",
+              "corrupt_state",
+              "dependency_unavailable",
+              "disk_space",
+              "disk_unavailable",
+              "export_busy",
+              "execution_unsettled",
+              "invalid_media",
+              "invalid_registry",
+              "invalid_request",
+              "job_not_owned",
+              "job_unavailable",
+              "limit_exceeded",
+              "media_failed",
+              "media_limit",
+              "operation_conflict",
+              "persistence_failed",
+              "plan_conflict",
+              "platform_unavailable",
+              "process_timeout",
+              "production_unavailable",
+              "profile_conflict",
+              "revision_conflict",
+              "source_changed",
+              "source_unavailable",
+              "terminal_attempt",
+              "unsafe_path",
+              "worker_busy",
+              "worker_restarted"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Error Code"
+      },
+      "failures": {
+        "items": {
+          "$ref": "#/$defs/Failure"
+        },
+        "maxItems": 3,
+        "title": "Failures",
+        "type": "array"
+      },
+      "generation": {
+        "minimum": 1,
+        "title": "Generation",
+        "type": "integer"
+      },
+      "job_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Job Id",
+        "type": "string"
+      },
+      "metadata_revision": {
+        "maximum": 2147483647,
+        "minimum": 1,
+        "title": "Metadata Revision",
+        "type": "integer"
+      },
+      "phase": {
+        "enum": [
+          "queued",
+          "validating",
+          "rendering",
+          "validating-output",
+          "complete",
+          "partial",
+          "failed",
+          "cancelled",
+          "interrupted"
+        ],
+        "title": "Phase",
+        "type": "string"
+      },
+      "plan_sha256": {
+        "pattern": "^[a-f0-9]{64}$",
+        "title": "Plan Sha256",
+        "type": "string"
+      },
+      "preset_version": {
+        "const": "local-presets-v1",
+        "default": "local-presets-v1",
+        "enum": [
+          "local-presets-v1"
+        ],
+        "title": "Preset Version",
+        "type": "string"
+      },
+      "process_epoch": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Process Epoch",
+        "type": "string"
+      },
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      },
+      "requested_output_ids": {
+        "items": {
+          "enum": [
+            "youtube-longform-v1",
+            "youtube-shorts-v1",
+            "tiktok-local-v1"
+          ],
+          "type": "string"
+        },
+        "maxItems": 3,
+        "minItems": 1,
+        "title": "Requested Output Ids",
+        "type": "array"
+      },
+      "schema_version": {
+        "const": 1,
+        "default": 1,
+        "enum": [
+          1
+        ],
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "sequence": {
+        "minimum": 0,
+        "title": "Sequence",
+        "type": "integer"
+      },
+      "source_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Source Id",
+        "type": "string"
+      },
+      "source_sha256": {
+        "pattern": "^[a-f0-9]{64}$",
+        "title": "Source Sha256",
+        "type": "string"
+      },
+      "started_at": {
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{6}Z$",
+        "title": "Started At",
+        "type": "string"
+      }
+    },
+    "required": [
+      "attempt_id",
+      "job_id",
+      "production_id",
+      "source_id",
+      "source_sha256",
+      "plan_sha256",
+      "metadata_revision",
+      "requested_output_ids",
+      "phase",
+      "started_at",
+      "process_epoch",
+      "generation",
+      "sequence"
+    ],
+    "title": "ExportAttemptV1",
+    "type": "object"
+  },
+  "ExportClipPlanV1": {
+    "$defs": {
+      "ExportClipV1": {
+        "additionalProperties": false,
+        "properties": {
+          "clip_id": {
+            "const": "clip-001",
+            "enum": [
+              "clip-001"
+            ],
+            "title": "Clip Id",
+            "type": "string"
+          },
+          "end_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 86400.0,
+            "title": "End Seconds",
+            "type": "number"
+          },
+          "label": {
+            "default": "Selected moment",
+            "format": "portable-text-v1",
+            "maxLength": 120,
+            "minLength": 1,
+            "not": {
+              "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+            },
+            "title": "Label",
+            "type": "string"
+          },
+          "origin": {
+            "const": "manual",
+            "enum": [
+              "manual"
+            ],
+            "title": "Origin",
+            "type": "string"
+          },
+          "score": {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "title": "Score",
+            "type": "number"
+          },
+          "start_seconds": {
+            "maximum": 86400.0,
+            "minimum": 0.0,
+            "title": "Start Seconds",
+            "type": "number"
+          },
+          "unique_viewers": {
+            "maximum": 0,
+            "minimum": 0,
+            "title": "Unique Viewers",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "start_seconds",
+          "end_seconds",
+          "clip_id",
+          "origin",
+          "score",
+          "unique_viewers"
+        ],
+        "title": "ExportClipV1",
+        "type": "object"
+      },
+      "PlainEditV1": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "const": false,
+            "default": false,
+            "enum": [
+              false
+            ],
+            "title": "Enabled",
+            "type": "boolean"
+          }
+        },
+        "title": "PlainEditV1",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "clips": {
+        "items": {
+          "$ref": "#/$defs/ExportClipV1"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "title": "Clips",
+        "type": "array"
+      },
+      "duration_seconds": {
+        "exclusiveMinimum": 0.0,
+        "maximum": 86400.0,
+        "title": "Duration Seconds",
+        "type": "number"
+      },
+      "edit": {
+        "$ref": "#/$defs/PlainEditV1"
+      },
+      "game_id": {
+        "const": "walkthrough",
+        "enum": [
+          "walkthrough"
+        ],
+        "title": "Game Id",
+        "type": "string"
+      },
+      "ignored_events": {
+        "maximum": 0,
+        "minimum": 0,
+        "title": "Ignored Events",
+        "type": "integer"
+      },
+      "recording_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Recording Id",
+        "type": "string"
+      },
+      "schema_version": {
+        "const": 1,
+        "default": 1,
+        "enum": [
+          1
+        ],
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "session_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Session Id",
+        "type": "string"
+      },
+      "show_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Show Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "recording_id",
+      "session_id",
+      "game_id",
+      "show_id",
+      "duration_seconds",
+      "ignored_events",
+      "clips"
+    ],
+    "title": "ExportClipPlanV1",
+    "type": "object"
+  },
+  "ExportClipV1": {
+    "additionalProperties": false,
+    "properties": {
+      "clip_id": {
+        "const": "clip-001",
+        "enum": [
+          "clip-001"
+        ],
+        "title": "Clip Id",
+        "type": "string"
+      },
+      "end_seconds": {
+        "exclusiveMinimum": 0.0,
+        "maximum": 86400.0,
+        "title": "End Seconds",
+        "type": "number"
+      },
+      "label": {
+        "default": "Selected moment",
+        "format": "portable-text-v1",
+        "maxLength": 120,
+        "minLength": 1,
+        "not": {
+          "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+        },
+        "title": "Label",
+        "type": "string"
+      },
+      "origin": {
+        "const": "manual",
+        "enum": [
+          "manual"
+        ],
+        "title": "Origin",
+        "type": "string"
+      },
+      "score": {
+        "maximum": 0.0,
+        "minimum": 0.0,
+        "title": "Score",
+        "type": "number"
+      },
+      "start_seconds": {
+        "maximum": 86400.0,
+        "minimum": 0.0,
+        "title": "Start Seconds",
+        "type": "number"
+      },
+      "unique_viewers": {
+        "maximum": 0,
+        "minimum": 0,
+        "title": "Unique Viewers",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "start_seconds",
+      "end_seconds",
+      "clip_id",
+      "origin",
+      "score",
+      "unique_viewers"
+    ],
+    "title": "ExportClipV1",
+    "type": "object"
+  },
+  "ExportJobV1": {
+    "$defs": {
+      "ExportSectionV1": {
+        "additionalProperties": false,
+        "properties": {
+          "end_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 86400.0,
+            "title": "End Seconds",
+            "type": "number"
+          },
+          "label": {
+            "default": "Selected moment",
+            "format": "portable-text-v1",
+            "maxLength": 120,
+            "minLength": 1,
+            "not": {
+              "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+            },
+            "title": "Label",
+            "type": "string"
+          },
+          "start_seconds": {
+            "maximum": 86400.0,
+            "minimum": 0.0,
+            "title": "Start Seconds",
+            "type": "number"
+          }
+        },
+        "required": [
+          "start_seconds",
+          "end_seconds"
+        ],
+        "title": "ExportSectionV1",
+        "type": "object"
+      },
+      "PlainEditV1": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "const": false,
+            "default": false,
+            "enum": [
+              false
+            ],
+            "title": "Enabled",
+            "type": "boolean"
+          }
+        },
+        "title": "PlainEditV1",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "automatic": {
+        "const": false,
+        "default": false,
+        "enum": [
+          false
+        ],
+        "title": "Automatic",
+        "type": "boolean"
+      },
+      "duration_seconds": {
+        "exclusiveMinimum": 0.0,
+        "maximum": 86400.0,
+        "title": "Duration Seconds",
+        "type": "number"
+      },
+      "edit": {
+        "$ref": "#/$defs/PlainEditV1"
+      },
+      "game_id": {
+        "const": "walkthrough",
+        "enum": [
+          "walkthrough"
+        ],
+        "title": "Game Id",
+        "type": "string"
+      },
+      "manual_sections": {
+        "items": {
+          "$ref": "#/$defs/ExportSectionV1"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "title": "Manual Sections",
+        "type": "array"
+      },
+      "recording_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Recording Id",
+        "type": "string"
+      },
+      "schema_version": {
+        "const": 1,
+        "enum": [
+          1
+        ],
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "session_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Session Id",
+        "type": "string"
+      },
+      "show_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Show Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "schema_version",
+      "recording_id",
+      "session_id",
+      "game_id",
+      "show_id",
+      "duration_seconds",
+      "manual_sections"
+    ],
+    "title": "ExportJobV1",
+    "type": "object"
+  },
+  "ExportRequestV1": {
+    "$defs": {
+      "Reference": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Id",
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Sha256",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "sha256"
+        ],
+        "title": "Reference",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "clip_plan_ref": {
+        "$ref": "#/$defs/Reference"
+      },
+      "expected_revision": {
+        "maximum": 2147483647,
+        "minimum": 1,
+        "title": "Expected Revision",
+        "type": "integer"
+      },
+      "metadata_revision": {
+        "maximum": 2147483647,
+        "minimum": 1,
+        "title": "Metadata Revision",
+        "type": "integer"
+      },
+      "operation_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Operation Id",
+        "type": "string"
+      },
+      "presets": {
+        "items": {
+          "enum": [
+            "youtube-longform-v1",
+            "youtube-shorts-v1",
+            "tiktok-local-v1"
+          ],
+          "type": "string"
+        },
+        "maxItems": 3,
+        "minItems": 1,
+        "title": "Presets",
+        "type": "array"
+      },
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      },
+      "source_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Source Id",
+        "type": "string"
+      },
+      "source_sha256": {
+        "pattern": "^[a-f0-9]{64}$",
+        "title": "Source Sha256",
+        "type": "string"
+      }
+    },
+    "required": [
+      "production_id",
+      "expected_revision",
+      "source_id",
+      "source_sha256",
+      "operation_id",
+      "presets",
+      "clip_plan_ref",
+      "metadata_revision"
+    ],
+    "title": "ExportRequestV1",
+    "type": "object"
+  },
+  "ExportSectionV1": {
+    "additionalProperties": false,
+    "properties": {
+      "end_seconds": {
+        "exclusiveMinimum": 0.0,
+        "maximum": 86400.0,
+        "title": "End Seconds",
+        "type": "number"
+      },
+      "label": {
+        "default": "Selected moment",
+        "format": "portable-text-v1",
+        "maxLength": 120,
+        "minLength": 1,
+        "not": {
+          "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+        },
+        "title": "Label",
+        "type": "string"
+      },
+      "start_seconds": {
+        "maximum": 86400.0,
+        "minimum": 0.0,
+        "title": "Start Seconds",
+        "type": "number"
+      }
+    },
+    "required": [
+      "start_seconds",
+      "end_seconds"
+    ],
+    "title": "ExportSectionV1",
+    "type": "object"
+  },
+  "FinalizedSourceV1": {
+    "$defs": {
+      "Audio": {
+        "additionalProperties": false,
+        "properties": {
+          "channels": {
+            "maximum": 8,
+            "minimum": 1,
+            "title": "Channels",
+            "type": "integer"
+          },
+          "codec": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Codec",
+            "type": "string"
+          },
+          "duration_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 86400.0,
+            "title": "Duration Seconds",
+            "type": "number"
+          },
+          "sample_rate": {
+            "maximum": 192000,
+            "minimum": 8000,
+            "title": "Sample Rate",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "codec",
+          "sample_rate",
+          "channels",
+          "duration_seconds"
+        ],
+        "title": "Audio",
+        "type": "object"
+      },
+      "Provenance": {
+        "additionalProperties": false,
+        "properties": {
+          "fixture_recipe_sha256": {
+            "anyOf": [
+              {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Fixture Recipe Sha256"
+          }
+        },
+        "title": "Provenance",
+        "type": "object"
+      },
+      "Validation": {
+        "additionalProperties": false,
+        "properties": {
+          "full_decode": {
+            "const": true,
+            "default": true,
+            "enum": [
+              true
+            ],
+            "title": "Full Decode",
+            "type": "boolean"
+          },
+          "validated_at": {
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{6}Z$",
+            "title": "Validated At",
+            "type": "string"
+          },
+          "validator_version": {
+            "const": "ffmpeg-full-v1",
+            "default": "ffmpeg-full-v1",
+            "enum": [
+              "ffmpeg-full-v1"
+            ],
+            "title": "Validator Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "validated_at"
+        ],
+        "title": "Validation",
+        "type": "object"
+      },
+      "Video": {
+        "additionalProperties": false,
+        "properties": {
+          "codec": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Codec",
+            "type": "string"
+          },
+          "fps_den": {
+            "maximum": 10000,
+            "minimum": 1,
+            "title": "Fps Den",
+            "type": "integer"
+          },
+          "fps_num": {
+            "maximum": 240000,
+            "minimum": 1,
+            "title": "Fps Num",
+            "type": "integer"
+          },
+          "height": {
+            "maximum": 4320,
+            "minimum": 2,
+            "title": "Height",
+            "type": "integer"
+          },
+          "pixel_format": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Pixel Format",
+            "type": "string"
+          },
+          "sar_den": {
+            "maximum": 65535,
+            "minimum": 1,
+            "title": "Sar Den",
+            "type": "integer"
+          },
+          "sar_num": {
+            "maximum": 65535,
+            "minimum": 1,
+            "title": "Sar Num",
+            "type": "integer"
+          },
+          "width": {
+            "maximum": 7680,
+            "minimum": 2,
+            "title": "Width",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "codec",
+          "width",
+          "height",
+          "sar_num",
+          "sar_den",
+          "fps_num",
+          "fps_den",
+          "pixel_format"
+        ],
+        "title": "Video",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "audio": {
+        "$ref": "#/$defs/Audio"
+      },
+      "bytes": {
+        "exclusiveMinimum": 0,
+        "maximum": 1099511627776,
+        "title": "Bytes",
+        "type": "integer"
+      },
+      "container": {
+        "enum": [
+          "mp4",
+          "matroska",
+          "mov",
+          "webm"
+        ],
+        "title": "Container",
+        "type": "string"
+      },
+      "content_profile_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Content Profile Id",
+        "type": "string"
+      },
+      "duration_seconds": {
+        "exclusiveMinimum": 0.0,
+        "maximum": 86400.0,
+        "title": "Duration Seconds",
+        "type": "number"
+      },
+      "inbox_record_id": {
+        "anyOf": [
+          {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Inbox Record Id"
+      },
+      "origin": {
+        "enum": [
+          "manual",
+          "fixture"
+        ],
+        "title": "Origin",
+        "type": "string"
+      },
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      },
+      "provenance": {
+        "$ref": "#/$defs/Provenance"
+      },
+      "relative_path": {
+        "maxLength": 512,
+        "pattern": "^[a-zA-Z0-9_-]+(?:[./][a-zA-Z0-9_-]+)*$",
+        "title": "Relative Path",
+        "type": "string"
+      },
+      "root_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Root Id",
+        "type": "string"
+      },
+      "schema_version": {
+        "const": 1,
+        "default": 1,
+        "enum": [
+          1
+        ],
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "sha256": {
+        "pattern": "^[a-f0-9]{64}$",
+        "title": "Sha256",
+        "type": "string"
+      },
+      "source_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Source Id",
+        "type": "string"
+      },
+      "source_profile_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Source Profile Id",
+        "type": "string"
+      },
+      "validation": {
+        "$ref": "#/$defs/Validation"
+      },
+      "video": {
+        "$ref": "#/$defs/Video"
+      }
+    },
+    "required": [
+      "container",
+      "video",
+      "audio",
+      "duration_seconds",
+      "source_id",
+      "production_id",
+      "origin",
+      "source_profile_id",
+      "content_profile_id",
+      "root_id",
+      "relative_path",
+      "sha256",
+      "bytes",
+      "validation"
+    ],
+    "title": "FinalizedSourceV1",
+    "type": "object"
+  },
+  "Get": {
+    "additionalProperties": false,
+    "properties": {
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "production_id"
+    ],
+    "title": "Get",
+    "type": "object"
+  },
+  "JobCancel": {
+    "additionalProperties": false,
+    "properties": {
+      "expected_revision": {
+        "maximum": 2147483647,
+        "minimum": 1,
+        "title": "Expected Revision",
+        "type": "integer"
+      },
+      "job_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Job Id",
+        "type": "string"
+      },
+      "operation_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Operation Id",
+        "type": "string"
+      },
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "production_id",
+      "job_id",
+      "expected_revision",
+      "operation_id"
+    ],
+    "title": "JobCancel",
+    "type": "object"
+  },
+  "JobEventV1": {
+    "$defs": {
+      "Progress": {
+        "additionalProperties": false,
+        "properties": {
+          "completed": {
+            "maximum": 3,
+            "minimum": 0,
+            "title": "Completed",
+            "type": "integer"
+          },
+          "total": {
+            "maximum": 3,
+            "minimum": 1,
+            "title": "Total",
+            "type": "integer"
+          },
+          "unit": {
+            "const": "outputs",
+            "default": "outputs",
+            "enum": [
+              "outputs"
+            ],
+            "title": "Unit",
+            "type": "string"
+          }
+        },
+        "required": [
+          "completed",
+          "total"
+        ],
+        "title": "Progress",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "attempt_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Attempt Id",
+        "type": "string"
+      },
+      "elapsed_ms": {
+        "minimum": 0,
+        "title": "Elapsed Ms",
+        "type": "integer"
+      },
+      "error_code": {
+        "anyOf": [
+          {
+            "enum": [
+              "artifact_unavailable",
+              "cancelled",
+              "corrupt_state",
+              "dependency_unavailable",
+              "disk_space",
+              "disk_unavailable",
+              "export_busy",
+              "execution_unsettled",
+              "invalid_media",
+              "invalid_registry",
+              "invalid_request",
+              "job_not_owned",
+              "job_unavailable",
+              "limit_exceeded",
+              "media_failed",
+              "media_limit",
+              "operation_conflict",
+              "persistence_failed",
+              "plan_conflict",
+              "platform_unavailable",
+              "process_timeout",
+              "production_unavailable",
+              "profile_conflict",
+              "revision_conflict",
+              "source_changed",
+              "source_unavailable",
+              "terminal_attempt",
+              "unsafe_path",
+              "worker_busy",
+              "worker_restarted"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Error Code"
+      },
+      "event_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Event Id",
+        "type": "string"
+      },
+      "generation": {
+        "minimum": 1,
+        "title": "Generation",
+        "type": "integer"
+      },
+      "job_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Job Id",
+        "type": "string"
+      },
+      "kind": {
+        "const": "job.event.v1",
+        "default": "job.event.v1",
+        "enum": [
+          "job.event.v1"
+        ],
+        "title": "Kind",
+        "type": "string"
+      },
+      "phase": {
+        "enum": [
+          "queued",
+          "validating",
+          "rendering",
+          "validating-output",
+          "complete",
+          "partial",
+          "failed",
+          "cancelled",
+          "interrupted"
+        ],
+        "title": "Phase",
+        "type": "string"
+      },
+      "process_epoch": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Process Epoch",
+        "type": "string"
+      },
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      },
+      "progress": {
+        "$ref": "#/$defs/Progress"
+      },
+      "schema_version": {
+        "const": 1,
+        "default": 1,
+        "enum": [
+          1
+        ],
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "sequence": {
+        "minimum": 1,
+        "title": "Sequence",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "event_id",
+      "production_id",
+      "job_id",
+      "attempt_id",
+      "process_epoch",
+      "generation",
+      "sequence",
+      "phase",
+      "elapsed_ms",
+      "progress"
+    ],
+    "title": "JobEventV1",
+    "type": "object"
+  },
+  "JobGet": {
+    "additionalProperties": false,
+    "properties": {
+      "job_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Job Id",
+        "type": "string"
+      },
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "production_id",
+      "job_id"
+    ],
+    "title": "JobGet",
+    "type": "object"
+  },
+  "Metadata": {
+    "additionalProperties": false,
+    "properties": {
+      "description": {
+        "format": "portable-text-v1",
+        "maxLength": 5000,
+        "not": {
+          "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+        },
+        "title": "Description",
+        "type": "string"
+      },
+      "end_seconds": {
+        "exclusiveMinimum": 0.0,
+        "maximum": 86400.0,
+        "title": "End Seconds",
+        "type": "number"
+      },
+      "metadata_revision": {
+        "maximum": 2147483647,
+        "minimum": 1,
+        "title": "Metadata Revision",
+        "type": "integer"
+      },
+      "preset_version": {
+        "enum": [
+          "youtube-longform-v1",
+          "youtube-shorts-v1",
+          "tiktok-local-v1"
+        ],
+        "title": "Preset Version",
+        "type": "string"
+      },
+      "schema_version": {
+        "const": 1,
+        "default": 1,
+        "enum": [
+          1
+        ],
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "start_seconds": {
+        "maximum": 86400.0,
+        "minimum": 0.0,
+        "title": "Start Seconds",
+        "type": "number"
+      },
+      "timebase": {
+        "const": "source-seconds",
+        "default": "source-seconds",
+        "enum": [
+          "source-seconds"
+        ],
+        "title": "Timebase",
+        "type": "string"
+      },
+      "title": {
+        "format": "portable-text-v1",
+        "maxLength": 120,
+        "minLength": 1,
+        "not": {
+          "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+        },
+        "title": "Title",
+        "type": "string"
+      }
+    },
+    "required": [
+      "title",
+      "description",
+      "start_seconds",
+      "end_seconds",
+      "preset_version",
+      "metadata_revision"
+    ],
+    "title": "Metadata",
+    "type": "object"
+  },
+  "Page": {
+    "additionalProperties": false,
+    "properties": {
+      "cursor": {
+        "default": 0,
+        "maximum": 1000,
+        "minimum": 0,
+        "title": "Cursor",
+        "type": "integer"
+      },
+      "limit": {
+        "default": 100,
+        "maximum": 100,
+        "minimum": 1,
+        "title": "Limit",
+        "type": "integer"
+      }
+    },
+    "title": "Page",
+    "type": "object"
+  },
+  "PlainEditV1": {
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "const": false,
+        "default": false,
+        "enum": [
+          false
+        ],
+        "title": "Enabled",
+        "type": "boolean"
+      }
+    },
+    "title": "PlainEditV1",
+    "type": "object"
+  },
+  "PlanPayload": {
+    "$defs": {
+      "ExportJobV1": {
+        "additionalProperties": false,
+        "properties": {
+          "automatic": {
+            "const": false,
+            "default": false,
+            "enum": [
+              false
+            ],
+            "title": "Automatic",
+            "type": "boolean"
+          },
+          "duration_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 86400.0,
+            "title": "Duration Seconds",
+            "type": "number"
+          },
+          "edit": {
+            "$ref": "#/$defs/PlainEditV1"
+          },
+          "game_id": {
+            "const": "walkthrough",
+            "enum": [
+              "walkthrough"
+            ],
+            "title": "Game Id",
+            "type": "string"
+          },
+          "manual_sections": {
+            "items": {
+              "$ref": "#/$defs/ExportSectionV1"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "title": "Manual Sections",
+            "type": "array"
+          },
+          "recording_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Recording Id",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": 1,
+            "enum": [
+              1
+            ],
+            "title": "Schema Version",
+            "type": "integer"
+          },
+          "session_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Session Id",
+            "type": "string"
+          },
+          "show_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Show Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema_version",
+          "recording_id",
+          "session_id",
+          "game_id",
+          "show_id",
+          "duration_seconds",
+          "manual_sections"
+        ],
+        "title": "ExportJobV1",
+        "type": "object"
+      },
+      "ExportSectionV1": {
+        "additionalProperties": false,
+        "properties": {
+          "end_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 86400.0,
+            "title": "End Seconds",
+            "type": "number"
+          },
+          "label": {
+            "default": "Selected moment",
+            "format": "portable-text-v1",
+            "maxLength": 120,
+            "minLength": 1,
+            "not": {
+              "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+            },
+            "title": "Label",
+            "type": "string"
+          },
+          "start_seconds": {
+            "maximum": 86400.0,
+            "minimum": 0.0,
+            "title": "Start Seconds",
+            "type": "number"
+          }
+        },
+        "required": [
+          "start_seconds",
+          "end_seconds"
+        ],
+        "title": "ExportSectionV1",
+        "type": "object"
+      },
+      "PlainEditV1": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "const": false,
+            "default": false,
+            "enum": [
+              false
+            ],
+            "title": "Enabled",
+            "type": "boolean"
+          }
+        },
+        "title": "PlainEditV1",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "description": {
+        "format": "portable-text-v1",
+        "maxLength": 5000,
+        "not": {
+          "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+        },
+        "title": "Description",
+        "type": "string"
+      },
+      "expected_revision": {
+        "maximum": 2147483647,
+        "minimum": 1,
+        "title": "Expected Revision",
+        "type": "integer"
+      },
+      "job": {
+        "$ref": "#/$defs/ExportJobV1"
+      },
+      "metadata_revision": {
+        "maximum": 2147483647,
+        "minimum": 1,
+        "title": "Metadata Revision",
+        "type": "integer"
+      },
+      "operation_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Operation Id",
+        "type": "string"
+      },
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      },
+      "source_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Source Id",
+        "type": "string"
+      },
+      "title": {
+        "format": "portable-text-v1",
+        "maxLength": 120,
+        "minLength": 1,
+        "not": {
+          "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+        },
+        "title": "Title",
+        "type": "string"
+      }
+    },
+    "required": [
+      "production_id",
+      "expected_revision",
+      "operation_id",
+      "source_id",
+      "job",
+      "title",
+      "description",
+      "metadata_revision"
+    ],
+    "title": "PlanPayload",
+    "type": "object"
+  },
+  "PlanRecord": {
+    "$defs": {
+      "ExportClipPlanV1": {
+        "additionalProperties": false,
+        "properties": {
+          "clips": {
+            "items": {
+              "$ref": "#/$defs/ExportClipV1"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "title": "Clips",
+            "type": "array"
+          },
+          "duration_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 86400.0,
+            "title": "Duration Seconds",
+            "type": "number"
+          },
+          "edit": {
+            "$ref": "#/$defs/PlainEditV1"
+          },
+          "game_id": {
+            "const": "walkthrough",
+            "enum": [
+              "walkthrough"
+            ],
+            "title": "Game Id",
+            "type": "string"
+          },
+          "ignored_events": {
+            "maximum": 0,
+            "minimum": 0,
+            "title": "Ignored Events",
+            "type": "integer"
+          },
+          "recording_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Recording Id",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": 1,
+            "default": 1,
+            "enum": [
+              1
+            ],
+            "title": "Schema Version",
+            "type": "integer"
+          },
+          "session_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Session Id",
+            "type": "string"
+          },
+          "show_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Show Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "recording_id",
+          "session_id",
+          "game_id",
+          "show_id",
+          "duration_seconds",
+          "ignored_events",
+          "clips"
+        ],
+        "title": "ExportClipPlanV1",
+        "type": "object"
+      },
+      "ExportClipV1": {
+        "additionalProperties": false,
+        "properties": {
+          "clip_id": {
+            "const": "clip-001",
+            "enum": [
+              "clip-001"
+            ],
+            "title": "Clip Id",
+            "type": "string"
+          },
+          "end_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 86400.0,
+            "title": "End Seconds",
+            "type": "number"
+          },
+          "label": {
+            "default": "Selected moment",
+            "format": "portable-text-v1",
+            "maxLength": 120,
+            "minLength": 1,
+            "not": {
+              "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+            },
+            "title": "Label",
+            "type": "string"
+          },
+          "origin": {
+            "const": "manual",
+            "enum": [
+              "manual"
+            ],
+            "title": "Origin",
+            "type": "string"
+          },
+          "score": {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "title": "Score",
+            "type": "number"
+          },
+          "start_seconds": {
+            "maximum": 86400.0,
+            "minimum": 0.0,
+            "title": "Start Seconds",
+            "type": "number"
+          },
+          "unique_viewers": {
+            "maximum": 0,
+            "minimum": 0,
+            "title": "Unique Viewers",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "start_seconds",
+          "end_seconds",
+          "clip_id",
+          "origin",
+          "score",
+          "unique_viewers"
+        ],
+        "title": "ExportClipV1",
+        "type": "object"
+      },
+      "PlainEditV1": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "const": false,
+            "default": false,
+            "enum": [
+              false
+            ],
+            "title": "Enabled",
+            "type": "boolean"
+          }
+        },
+        "title": "PlainEditV1",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "clip_plan": {
+        "$ref": "#/$defs/ExportClipPlanV1"
+      },
+      "description": {
+        "format": "portable-text-v1",
+        "maxLength": 5000,
+        "not": {
+          "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+        },
+        "title": "Description",
+        "type": "string"
+      },
+      "id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Id",
+        "type": "string"
+      },
+      "metadata_revision": {
+        "maximum": 2147483647,
+        "minimum": 1,
+        "title": "Metadata Revision",
+        "type": "integer"
+      },
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      },
+      "schema_version": {
+        "const": 1,
+        "default": 1,
+        "enum": [
+          1
+        ],
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "sha256": {
+        "pattern": "^[a-f0-9]{64}$",
+        "title": "Sha256",
+        "type": "string"
+      },
+      "source_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Source Id",
+        "type": "string"
+      },
+      "title": {
+        "format": "portable-text-v1",
+        "maxLength": 120,
+        "minLength": 1,
+        "not": {
+          "pattern": "(?:[a-zA-Z][a-zA-Z0-9+.-]*://|(?:[fF][iI][lL][eE]|[mM][aA][iI][lL][tT][oO]|[dD][aA][tT][aA]):|[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f])"
+        },
+        "title": "Title",
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "sha256",
+      "production_id",
+      "source_id",
+      "clip_plan",
+      "title",
+      "description",
+      "metadata_revision"
+    ],
+    "title": "PlanRecord",
+    "type": "object"
+  },
+  "ProductionSessionV1": {
+    "$defs": {
+      "ConceptReference": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Id",
+            "type": "string"
+          },
+          "revision": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "title": "Revision",
+            "type": "integer"
+          },
+          "sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Sha256",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "sha256",
+          "revision"
+        ],
+        "title": "ConceptReference",
+        "type": "object"
+      },
+      "Target": {
+        "additionalProperties": false,
+        "properties": {
+          "commit": {
+            "pattern": "^[a-f0-9]{40}$",
+            "title": "Commit",
+            "type": "string"
+          },
+          "fixture_sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Fixture Sha256",
+            "type": "string"
+          },
+          "kind": {
+            "const": "opentechnologyapp",
+            "enum": [
+              "opentechnologyapp"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "scenario_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "title": "Scenario Id",
+            "type": "string"
+          },
+          "tree_sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Tree Sha256",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "commit",
+          "tree_sha256",
+          "fixture_sha256",
+          "scenario_id"
+        ],
+        "title": "Target",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "concept_ref": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ConceptReference"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "content_profile_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Content Profile Id",
+        "type": "string"
+      },
+      "content_root_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Content Root Id",
+        "type": "string"
+      },
+      "created_at": {
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{6}Z$",
+        "title": "Created At",
+        "type": "string"
+      },
+      "export_attempt_ids": {
+        "items": {
+          "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+          "type": "string"
+        },
+        "maxItems": 100,
+        "title": "Export Attempt Ids",
+        "type": "array"
+      },
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      },
+      "revision": {
+        "maximum": 2147483647,
+        "minimum": 1,
+        "title": "Revision",
+        "type": "integer"
+      },
+      "schema_version": {
+        "const": 1,
+        "default": 1,
+        "enum": [
+          1
+        ],
+        "title": "Schema Version",
+        "type": "integer"
+      },
+      "script_sha256": {
+        "anyOf": [
+          {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Script Sha256"
+      },
+      "show_profile_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Show Profile Id",
+        "type": "string"
+      },
+      "source_ids": {
+        "items": {
+          "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+          "type": "string"
+        },
+        "maxItems": 100,
+        "title": "Source Ids",
+        "type": "array"
+      },
+      "source_profile_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Source Profile Id",
+        "type": "string"
+      },
+      "target": {
+        "$ref": "#/$defs/Target"
+      }
+    },
+    "required": [
+      "production_id",
+      "revision",
+      "created_at",
+      "source_profile_id",
+      "content_profile_id",
+      "show_profile_id",
+      "content_root_id",
+      "target"
+    ],
+    "title": "ProductionSessionV1",
+    "type": "object"
+  },
+  "ReplyV1": {
+    "$defs": {
+      "ErrorV1": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "enum": [
+              "artifact_unavailable",
+              "cancelled",
+              "corrupt_state",
+              "dependency_unavailable",
+              "disk_space",
+              "disk_unavailable",
+              "export_busy",
+              "execution_unsettled",
+              "invalid_media",
+              "invalid_registry",
+              "invalid_request",
+              "job_not_owned",
+              "job_unavailable",
+              "limit_exceeded",
+              "media_failed",
+              "media_limit",
+              "operation_conflict",
+              "persistence_failed",
+              "plan_conflict",
+              "platform_unavailable",
+              "process_timeout",
+              "production_unavailable",
+              "profile_conflict",
+              "revision_conflict",
+              "source_changed",
+              "source_unavailable",
+              "terminal_attempt",
+              "unsafe_path",
+              "worker_busy",
+              "worker_restarted"
+            ],
+            "title": "Code",
+            "type": "string"
+          },
+          "retryable": {
+            "title": "Retryable",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "code",
+          "retryable"
+        ],
+        "title": "ErrorV1",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "error": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ErrorV1"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "ok": {
+        "title": "Ok",
+        "type": "boolean"
+      },
+      "request_id": {
+        "anyOf": [
+          {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Request Id"
+      },
+      "revision": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Revision"
+      },
+      "value": {
+        "anyOf": [
+          {
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Value"
+      }
+    },
+    "required": [
+      "request_id",
+      "ok"
+    ],
+    "title": "ReplyV1",
+    "type": "object"
+  },
+  "RequestV1": {
+    "additionalProperties": false,
+    "properties": {
+      "command": {
+        "enum": [
+          "production.create",
+          "production.list",
+          "production.get",
+          "source.register",
+          "plan.register",
+          "export.start",
+          "job.get",
+          "job.cancel",
+          "artifact.inspect"
+        ],
+        "title": "Command",
+        "type": "string"
+      },
+      "payload": {
+        "title": "Payload",
+        "type": "object"
+      },
+      "request_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Request Id",
+        "type": "string"
+      },
+      "schema_version": {
+        "const": 1,
+        "enum": [
+          1
+        ],
+        "title": "Schema Version",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "schema_version",
+      "request_id",
+      "command",
+      "payload"
+    ],
+    "title": "RequestV1",
+    "type": "object"
+  },
+  "SourceRegister": {
+    "$defs": {
+      "Provenance": {
+        "additionalProperties": false,
+        "properties": {
+          "fixture_recipe_sha256": {
+            "anyOf": [
+              {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Fixture Recipe Sha256"
+          }
+        },
+        "title": "Provenance",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "content_profile_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Content Profile Id",
+        "type": "string"
+      },
+      "expected_revision": {
+        "maximum": 2147483647,
+        "minimum": 1,
+        "title": "Expected Revision",
+        "type": "integer"
+      },
+      "inbox_record_id": {
+        "anyOf": [
+          {
+            "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Inbox Record Id"
+      },
+      "input_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Input Id",
+        "type": "string"
+      },
+      "operation_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Operation Id",
+        "type": "string"
+      },
+      "origin": {
+        "enum": [
+          "manual",
+          "fixture"
+        ],
+        "title": "Origin",
+        "type": "string"
+      },
+      "production_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Production Id",
+        "type": "string"
+      },
+      "provenance": {
+        "$ref": "#/$defs/Provenance"
+      },
+      "source_profile_id": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Source Profile Id",
+        "type": "string"
+      },
+      "source_sha256": {
+        "pattern": "^[a-f0-9]{64}$",
+        "title": "Source Sha256",
+        "type": "string"
+      }
+    },
+    "required": [
+      "production_id",
+      "expected_revision",
+      "operation_id",
+      "input_id",
+      "source_sha256",
+      "source_profile_id",
+      "content_profile_id",
+      "origin"
+    ],
+    "title": "SourceRegister",
+    "type": "object"
+  },
+  "Video": {
+    "additionalProperties": false,
+    "properties": {
+      "codec": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Codec",
+        "type": "string"
+      },
+      "fps_den": {
+        "maximum": 10000,
+        "minimum": 1,
+        "title": "Fps Den",
+        "type": "integer"
+      },
+      "fps_num": {
+        "maximum": 240000,
+        "minimum": 1,
+        "title": "Fps Num",
+        "type": "integer"
+      },
+      "height": {
+        "maximum": 4320,
+        "minimum": 2,
+        "title": "Height",
+        "type": "integer"
+      },
+      "pixel_format": {
+        "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+        "title": "Pixel Format",
+        "type": "string"
+      },
+      "sar_den": {
+        "maximum": 65535,
+        "minimum": 1,
+        "title": "Sar Den",
+        "type": "integer"
+      },
+      "sar_num": {
+        "maximum": 65535,
+        "minimum": 1,
+        "title": "Sar Num",
+        "type": "integer"
+      },
+      "width": {
+        "maximum": 7680,
+        "minimum": 2,
+        "title": "Width",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "codec",
+      "width",
+      "height",
+      "sar_num",
+      "sar_den",
+      "fps_num",
+      "fps_den",
+      "pixel_format"
+    ],
+    "title": "Video",
+    "type": "object"
+  }
+}

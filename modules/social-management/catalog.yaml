@@ -4,22 +4,22 @@ brands:
   - id: hybrid-platform
     display_name: Open Content Creator Platform
     logo_path: assets/brands/hybrid-platform.svg
-    website: https://github.com/OpenTechnology14/hybrid-creator-platform
+    website: https://github.com/OpenTechnology14/Open_Content_Creator_Platform
     source: Canonical platform logo from docs/assets/logo.svg.
   - id: stream-extend
     display_name: Stream Extend
     logo_path: assets/brands/stream-extend.png
-    website: https://github.com/OpenTechnology14/hybrid-creator-platform
+    website: https://github.com/OpenTechnology14/Open_Content_Creator_Platform
     source: Canonical Stream Extend application icon.
   - id: creator-extend
     display_name: Creator Extend
     logo_path: assets/brands/creator-extend.png
-    website: https://github.com/OpenTechnology14/hybrid-creator-platform
+    website: https://github.com/OpenTechnology14/Open_Content_Creator_Platform
     source: Canonical Creator Extend application icon.
   - id: opentechapp
     display_name: OpenTechApp
     logo_path: assets/brands/opentechapp.svg
-    website: https://github.com/OpenTechnology14/Task-Management
+    website: https://www.opentechnologyapp.com
     source: OpenTechApp public favicon copied from the owner workspace on 2026-09-10.
 
 providers:

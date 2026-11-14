@@ -1,12 +1,11 @@
 <p align="center">
 
-
   <img src="docs/assets/logo.svg" width="60" alt="Open Content Creator Platform logo" />
 </p>
 
 <h1 align="center">Open Content Creator Platform</h1>
 
-**Public source preview:** [what is included and how privacy is preserved](PUBLIC_SOURCE.md).
+
 
 <p align="center">
   A local-first toolkit that connects OBS, ComfyUI, Blender, Krita, AI agents and broadcast graphics.<br />

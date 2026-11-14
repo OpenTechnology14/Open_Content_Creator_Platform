@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-production-status"
+description = "Enables the production_status command without any pre-configured scope."
+commands.allow = ["production_status"]
+
+[[permission]]
+identifier = "deny-production-status"
+description = "Denies the production_status command without any pre-configured scope."
+commands.deny = ["production_status"]

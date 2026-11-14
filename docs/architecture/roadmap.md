@@ -262,7 +262,13 @@ the existing apps. Migration, full parity, public release and legacy replacement
 gates. The preview does not certify the convergence conditions; see
 [the exception](deviations.md#2026-10-12--private-combined-shell-preview-before-convergence).
 
-Consolidation parity/migration and replacement remain gated by all of these:
+**Owner v6 exception, 2026-11-01:** full P-072 combined desktop parity development may proceed
+before convergence, beyond the earlier navigation-only preview limit. Reviewable local OBS
+recording/controller work starts first. Final parity acceptance, release/replacement, paid providers,
+live accounts and credential/account migrations retain their gates; cloud remains separate.
+See [the dated exception](deviations.md#2026-11-01--combined-desktop-parity-development-before-convergence).
+
+Final consolidation acceptance, migration and replacement remain gated by all of these:
 
 1. Stream and Content desktop journeys each pass their own acceptance path.
 2. Shared setup, settings, readiness, relay, API, and UI packages cover both apps without

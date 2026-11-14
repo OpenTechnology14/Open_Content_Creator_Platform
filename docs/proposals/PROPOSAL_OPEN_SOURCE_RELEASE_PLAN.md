@@ -20,7 +20,7 @@ Model assignment: [proposal queue policy](../PROPOSALS.md#agent-model-selection)
 ### Owner-directed repository split — 2026-11-01
 
 **Work registration:** P-075 / public-snapshot-and-rename; Kind: proposal remainder;
-state: private rename applied; sanitized source export under verification. Assignment: inherited Sol/high for release hygiene;
+state: private rename and public source publication verified; production-release gates remain open. Assignment: inherited Sol/high for release hygiene;
 credential boundaries receive capable review; no model-switch or worker-dispatch claim.
 
 Owner instructed that the existing repository remain private, that a second repository
@@ -486,3 +486,33 @@ data-flow document (S15).
 No application installers, private logs, account metadata or historical PR archives are part
 of the public source copy. Hosted CI, native acceptance, actual account sign-in and the
 unresolved production-release gates are not claimed by these source/documentation checks.
+
+
+### Publication receipt — 2026-11-01
+
+GitHub reports `OpenTechnology14/Open_Content_Creator_Platform` PRIVATE and
+`OpenTechnology14/Open_Content_Creator_Platform` PUBLIC. Public main began at `97ffdf8`,
+a parentless snapshot, followed by `0395557` documenting the enabled private security-report
+channel and commit privacy. Both use the project contributor name and GitHub noreply address.
+No original commit history, WIP branches, PRs, issues or Actions logs were copied. The public
+API returned only `main`, zero PRs/issues/runs, and no private directory or local installation
+record. Actions were disabled for initial inspection and restored for future work; private
+vulnerability reporting is enabled. The conduct-contact owner choice remains pending.
+
+The public tree contains 911 tracked files. Staged-tree checks found no configured personal
+identifiers or original/private repository review links. Redacted `gitleaks dir` and
+`gitleaks git --log-opts=--all`, including allowed-comment bypass checks, found zero leaks.
+One initial finding was the existing synthetic OBS expected digest; its independent expected
+bytes were retained in the test without a credential-shaped literal (37 combined tests passed).
+No scanner suppression or real credential rotation was used to achieve this result.
+
+Public `make test` exited 0 with three existing skips. After the public README notice, the
+public documentation suite passed 1,032 tests. Generated docs, Ruff and hygiene checks passed;
+the hygiene check retains the conduct contact as pending. Initial-root diff checking needed
+legacy Markdown hard-break/end-blank whitespace excluded; subsequent changed-file diff checks
+passed normally. The remaining public contacts/privacy edits are documentation-only.
+
+Private changes are prepared in PR #93 (private development evidence; not distributed),
+based on the existing P-062 branch/PR #92. No private PR was merged, and foreign worktrees and
+coordinator identities were retained. Public source is a reviewed snapshot of the requested
+branch, not a production build or an assertion that all historical owner gates were answered.

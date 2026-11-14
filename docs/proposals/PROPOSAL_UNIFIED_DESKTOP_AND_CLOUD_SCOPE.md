@@ -3,11 +3,519 @@
 **Queue row:** `P-072`
 **Agent model / effort:** `gpt-6.1-sol` / `high` — Desktop consolidation, migration contracts and staged cloud scope
 Model assignment: [queue assignment](../PROPOSALS.md#agent-model-selection).
-**Status:** In progress — Testing; private shared-shell preview built and critical checks pass. Parity, migration, public release and replacement remain gated. State is authoritative in [the queue](../PROPOSALS.md).
+**Status:** In progress — Testing; private combined desktop includes OBS observation/scenes/mute and recovery; managed recording is fenced on unresolved atomic Stop safety. Remaining workflow parity and final native acceptance are open; migration, public release and replacement retain gates. State is authoritative in [the queue](../PROPOSALS.md).
+
+### Round3 acceptance and normal integration — 2026-11-06
+
+**Kind:** proposal remainder / documentation reconciliation, including **P072-R3-01**, the
+nonblocking P3 lane wording finding. **Model:** `codex / gpt-6.1-sol / high`, inherited from
+the canonical P-072 assignment for evidence/lane/approval consistency; same sole writer, no override.
+
+Independent round3 **approved the bounded R2 repair and R1 containment** at exact source
+`abaf6a49e34c97c9d38e59ef07beb37126b2b8e6`. The parent independently confirmed all eight hosted
+checks passed for that head, marked PR94 ready and normally merged it as
+`aa24e8bf46e0442e8faadc74ad997e7e9e1ba893` (private development evidence; not distributed)
+at **2026-11-07T01:39:24Z** (November 6 local). The full independent record is retained privately
+as `artifacts/p072-review-r3-20261106/REVIEW.md`; no old CI/review result is attributed to this
+subsequent docs-only checkpoint.
+
+| Finding | Current disposition |
+|---|---|
+| P072-R1-01 | **Unresolved; containment accepted and integrated.** Native managed Start/destructive Stop remain unavailable. Source-only ABI research proposes an upstream dependency; it is not an accepted runtime implementation or atomic/native proof. |
+| P072-R1-02–05 | **Bounded repairs accepted** at cb9 by round2, retained by round3 and integrated through PR94. Full/native feature acceptance remains open. |
+| P072-R2-01 | **Accepted** by independent round3 at abaf6a4 and integrated in aa24e8b. Observation-bound endpoint/context admission and safe UI recovery are the accepted scope. |
+| P072-R3-01 | **Wording corrected in this docs checkpoint, pending docs review.** CT-R15's state now names the R1-01 atomic-contract block, remaining Shorts desktop adapter and actual native repeat. No recording capability is enabled to match prose. |
+
+P-072 stays **Testing, not Done**. P067 Accepted §18/exact ORCH assignments, CT-A01 bounded
+resolution and CT-D09 OpenTechnologyApp selection remain. Independent ORCH04 export source is
+not integrated by this change. Real OBS/playable output, native GUI/vault/CSP, Windows, migration,
+resources, rollback, convergence and release gates (including PL-D10–13 and ST-D07) remain open.
+The private `P072-ATOMIC-OBS-CONTRACT-v1.md` source study is now complete as research; its proposed
+ABI/patch/IPC route still needs independent engineering review, implementation and native proof.
+No plugin, Go Live, account, credential migration or release work is included here.
+
+The dated pre-review checkpoints and briefs below remain historical evidence. Their pending or
+unaccepted wording is superseded only for the repair dispositions stated above; their NOT RUN
+native/output/acceptance limits remain. Next is parent review of this narrow docs reconciliation
+and the separate private ABI route, with no repeat owner continuation question.
+
+**This docs-only checkpoint:** base `aa24e8bf46e0442e8faadc74ad997e7e9e1ba893`;
+prepared Python `-B -m pytest tests/docs -q -o addopts='' -p no:cacheprovider
+-p scripts.testing.no_skips` — **1,021 passed**, including model, link, lane and decision checks.
+Blocking Ruff 0.6.4 on `modules/ scripts/ tests/docs`, generated-doc check, proposal report
+(`lane_missing=[]`, `lane_extra=[]`), whitespace and conflict-marker checks pass. CT-R15 changes
+only its state cell; CT-A01/CT-D09, P067/ORCH and all other queue rows are unchanged. Runtime/test
+delta against the actual main base is empty; runtime tree-object SHA256 remains
+`f704ca6296c7e36fc7534c09591a115d7708d83d0417853366574e38e9f6c5fd`.
+**NOT RUN here:** product/native/full offline builds/tests, GUI/output/vault/CSP/Windows/migration
+and release acceptance; this proportional documentation pass does not repeat unchanged runtime
+suites or claim old CI as new-head evidence. The new docs PR records its exact commit and checks.
+
+### Round-2 review repair — P072-R2-01 — 2026-11-06
+
+**Kind:** bug / Security + UI / P2. **Model:** `codex / gpt-6.1-sol / high`, inherited from the canonical P-072 queue for native endpoint/context admission and safe recovery. Same writer/branch, current clean source `cb76111be24dc2e0ee7c3b3faeb21ba7d3da4494`; no override, HF or spend. Independent round2 reviewed frozen `cb9d22412dc3948bc2860349a22fbfbe9ce045d8` and returned **REQUEST CHANGES**. The subsequent cb76111 normal docs merge preserves PR96 Accepted §18/ORCH model table and CT decisions; its runtime tree is identical to cb9.
+
+Round2 **accepted R1-02–05 repairs** and **R1-01 containment only**. R1-01 remains unresolved/unavailable; native managed Start/destructive Stop fences stay. This acceptance does not complete P-072 or real/native output criteria. Prior dated pending-review entries remain historical.
+
+| Finding | Evidence / disposition |
+|---|---|
+| P072-R2-01 | Audio/scene observed on A at `0:idle`, endpoint save changes native context to `1:idle`; old `session_id=null` passes generation admission and mutates B. Reviewer executed actual trusted handler bodies against two fake WebSocket endpoints; both assertions fail. Browser failed status after saving port 4456 leaves old mute usable with no expected context. **Accepted at abaf6a4 by round3; integrated in aa24e8b:** required observation-bound context and generation, checked under the native mutation lock before lazy settings/vault/network resolution; unique controller-lifetime epoch prevents reconstructed/prior-instance idle keys. Idle context invalidates before settings/credential writes (including ambiguous failure), while safe pinned settings preserve it. UI clears idle observations around relevant saves, pauses idle reads during save, rejects stale completion/action, and requires fresh observations; no mutation retry. Pinned safety and prior repairs retained. |
+
+**Historical R2 handoff, superseded by round3 above:** scope was this bounded finding only. Private pinned-OBS ABI study was saved at `P072-ATOMIC-OBS-CONTRACT-v1.md` and paused; no plugin/Go Live/social/export changes. Parent created fresh exact-head round3 carrying R1/R2 and the docs merge; no owner continuation permission was needed.
+
+#### Historical R2 pre-review verification checkpoint
+
+**Runtime/test commit:** `d28ab8d7053d7dc2f200d33ab20f065409a0ac3a`, parent
+`cb76111be24dc2e0ee7c3b3faeb21ba7d3da4494`. Same T3 worktree/branch, verified
+`codex / gpt-6.1-sol / high`; no dependency, identity, plugin or legacy-runtime changes.
+Evidence is retained privately under `artifacts/p072-r2-repair-20261106` in the installed
+project notes. At this historical checkpoint it was **implemented, awaiting independent round3**;
+round3 acceptance/integration is recorded above, without overall feature acceptance or Done.
+
+- **Fail before fix:** `endpoint-review.py` executed the cb76111 trusted mute/scene handler bodies
+  against two fake OBS sockets: both regressions failed, mutating B after observing A; logs
+  `endpoint-repro.log` and `before-run.log`. `browser-before.json` records the enabled old mute
+  sending `sessionId:null` without an expected context after port 4456 save/status failure.
+- **Temporary reverts / mutations:** 18 valid detections, restored source verified byte-for-byte:
+  5 Rust behavioral guards, 11 Node behavioral guards, and 2 compiled native pre-write/admission
+  assertions. Native context removal independently fails mute and scene replacement regressions;
+  generation, controller lifetime, pinned preservation, observation binding, save/read fencing,
+  failure invalidation and public-settings reconciliation also fail when reverted. Compiler errors,
+  locator/setup failures and timeouts are excluded. Runners/summaries and each failing assertion
+  are retained privately; source hashes and restored passing suites are recorded there.
+- `CARGO_TARGET_DIR="$PWD/apps/extend/src-tauri/target" cargo test --offline --locked --manifest-path
+  apps/extend/src-tauri/Cargo.toml` — **24 passed**. Same target/flags with the Stream manifest —
+  **17 unit + 52 protocol/controller passed**, 1 existing packaged-owner case ignored. The 52
+  retain R1 containment/held-read/autoload/abandon coverage and add stale/missing/lifetime contexts,
+  same-name A/B, delayed reads/commands, credential/pack rotation and corrupt-settings pinned mute.
+- Same locked/offline Creator manifest suite — **44 passed**, 2 existing real Blender/ComfyUI cases
+  ignored. Selected shared crates via combined manifest `-p recording-library -p local-settings
+  -p tauri-plugin-social-manager` — **3 / 2 / 5 passed**. No ignored live case is claimed as passed.
+- `npm --prefix apps/extend test` — **29 passed**; all three apps' `npm run check` — **0 errors,
+  0 warnings**; all three frontend builds pass. Combined private bundle built with
+  `npm --prefix apps/extend run tauri build -- --debug --bundles app -- --locked`;
+  executable SHA256 `2ae7f9ad6c820ae23e7ab7b9797796a01660eee87867f40b8ae6d3dc138fd554`.
+  Production build scan finds no fixture markers. Existing unused candidate-import/test warnings
+  remain; they are not a new managed-recording capability.
+- Existing prepared Python environment: no-skip `pytest tests/desktop_apps -q -o addopts=''
+  -p no:cacheprovider -p scripts.testing.no_skips` — **24 passed**; full `make test` — **exit 0,
+  100%**. Its four collection-skip locations and 15 case skips cover missing FastAPI/asyncpg,
+  absent sibling source paths and intentional ComfyUI stubs; one hcp-alerts scaffold xfail remains.
+  These do not prove relay/backend/live security. Blocking Ruff 0.6.4, generated/model/lane/docs
+  checks pass: **1,045 no-skip docs/desktop tests** (model/lane/link/security declarations),
+  `generate_docs.py --check` matches, `make proposal-report ARGS='--check --summary'` reports no
+  missing/extra lane IDs; Ruff and `git diff --check` pass. No unresolved conflict markers.
+- Rendered T3 synthetic fixture: actual audio/scene handlers send their observation's required
+  context; pending save and lost save response plus failed status leave no old controls; fresh B
+  restores actions with B's context. Ambiguous save re-reads public preferences, so navigation
+  preserves B; unreadable preferences enter existing Retry while pinned safety stays mounted.
+  Same-host synthetic credential rotation, released old held audio/scene reads, pinned reload
+  with corrupt preferences and independent held-inspection mute pass. At **320×736**, scroll
+  width is 320 and Tab/Enter operates the observed mute. No real credential or output is used.
+- **NOT RUN:** final native built-in-display smoke: automation returned `cgWindowNotFound` twice;
+  bundle-ID selection is ambiguous across three checkouts. Only this task's launched process was
+  stopped. Build success is not native GUI acceptance. Real OBS/plugin/atomic generation, playable
+  output, Windows, OS-vault/CSP GUI, migration/rollback, accounts, cloud and public release remain
+  open. Hosted checks/review are not inherited from older heads.
+
+**Historical round3 brief (completed at abaf6a4; retained below):** P-072 / P072-R1-01–05 + P072-R2-01, **Sol / high**, inherited from the
+canonical queue for sensitive native/context safety. Parent creates a new independent round3
+task on the exact repair/evidence head, carrying the original R1 and round2 reports/responses.
+Verify R2 required observation-bound command fields, lock-before-settings/vault/network admission,
+zero B effects for old/omitted/null/reconstructed context, pre-write ambiguity invalidation, fresh
+B positive path, delayed read/command ordering, same-host credentials/pack changes and pinned
+corrupt-settings safety. Recheck preserved R1-02–05 acceptance and R1-01 containment without enabling
+recording; inspect cb76111 docs integration preserves accepted P067 §18/ORCH models/CT decisions.
+No plugin, Go Live, exports or source changes in that review; report finite architectural objections
+and exact-head CI/NOT RUN. Parent owns review/integration; private ABI study remains pending.
+
+### Recovery authority — 2026-11-06
+
+**Model-label clarification (`P072-MODEL-LABELS-20261106-V1`):** Owner: "Are the work blocks labeled by which model to use?  That should be built into proposal queue already". P-072 / P072-R1-01–05 inherits **gpt-6.1-sol / high** from the [canonical queue assignment](../PROPOSALS.md#agent-model-selection): sensitive native ownership, cross-app controller and safety regressions. Native Codex configuration is verified; no override or recommended Terra/Luna child is selected. Subsequent briefs and review handoffs must state proposal/child ID, model, effort and scope rationale or explicit inheritance. No second registry.
+
+Owner exact instruction: "Did you use T3 for this?  Use T3 to drive this all to completion"
+(`P072-COMPLETION-20261106-V1`). The existing coordinator drives review, bounded repair, normal
+integration, sequential accepted desktop slices and available acceptance without continuation
+permission. This writer's current scope remains P072-R1-01–05 on PR94, not integration or another
+feature slice. PL-D10–13, ST-D07 and all release/account/provider/migration gates persist. No new
+writer, review delegation or watcher is created here. Surviving edits were inspected on the same
+branch at `f7074ab166f0ccb3960a695c85dde01543beb1e2`; `/tmp` evidence/backups were unavailable.
+The interrupted audio-inspection lock mutation was present and must be restored; prior mutation
+counts and pre-interruption green runs are not evidence of the recovered tree. All five repair
+dispositions below remain **unaccepted pending fresh independent review**.
+
+### Review repair v7.1 — 2026-11-01
+
+Owner v7 directs the existing coordinator through review → repair → integration → the next desktop
+slice → acceptance without repeat continuation prompts. This sole writer continues on the same
+branch/PR94; no new agent, thread, schedule, provider spend or backlog work. Actual model verified
+`codex/gpt-6.1-sol/high`; accepted workflow `07f5d729`, with upstream `b70913d` drift unchanged.
+Independent review of `f7074ab166f0ccb3960a695c85dde01543beb1e2` returned **REQUEST CHANGES**.
+The earlier green tests did not cover these defects; acceptance is not granted by those runs.
+
+| Finding | Kind / bug group / severity | Reproduced evidence and repair disposition |
+|---|---|---|
+| P072-R1-01 | bug / Security / P1 | Retained ownership boolean lets Stop claim an external replacement, including after uncertain Stop. Reproduced before fix: replacement was stopped and uncertain Stop was sent twice. Continuous witness candidate improves prior replacement/loss/unknown-outcome handling but deterministic after-admission replacement still destroys external output. **Unresolved; containment accepted at `cb9d224` by round2, native managed Start/destructive Stop fenced.** OBS-side atomic-generation contract required. |
+| P072-R1-02 | bug / Security + UI / P1 | Pinned status/audio consult corrupt preferences; successful Start ID is discarded before a failed observation. Reproduced corrupt-load/failed-observation identity loss. Implemented lazy pinned resolution, immediate Start reservation receipt, request/context fencing; accepted at `cb9d224` by round2; full feature/native acceptance remains open. |
+| P072-R1-03 | bug / UI / P2 | Slow inspection disables safety UI and holds the native controller/cache lock across reads. Reproduced held native mutex and disabled browser controls. Implemented short snapshots, independent read/control sockets, direct per-input mute and separate UI read activity; accepted at `cb9d224` by round2; full feature/native acceptance remains open. |
+| P072-R1-04 | bug / UI / P2 | Fresh Start → Library has no automatic audio enumeration/mute. Fresh fixture reproduced zero audio calls/mute. Implemented automatic connection/session audio refresh, one read in flight, stale-context rejection; accepted at `cb9d224` by round2; full feature/native acceptance remains open. |
+| P072-R1-05 | bug / Other / P2 | Permanently missing finalized file traps pending handoff; recovery rejects it forever. Reproduced permanent missing-file recovery rejection. Added explicit generation-fenced finalized/inactive abandonment; no second Stop/file mutation; accepted at `cb9d224` by round2; full feature/native acceptance remains open. |
+
+P072-NAV-01/02 remain unchanged. This pass adds no Go Live, creative, cloud, account or migration
+functionality. The current bundle identity stays preview. The coordinator generates the next
+independent review for the new head; no additional owner permission is needed for these repairs.
+
+### OBS-side completion contract required
+
+**P072-R1-01 is unresolved.** `StopRecord` has no expected output/session field in installed
+`obws 0.15.0` (`requests/recording.rs`, `client/recording.rs`). The official
+[protocol](https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md#stoprecord),
+[record handler](https://github.com/obsproject/obs-websocket/blob/master/src/requesthandler/RequestHandler_Record.cpp)
+and [frontend API](https://github.com/obsproject/obs-studio/blob/master/frontend/OBSStudioAPI.cpp)
+corroborate a current-output Stop and queued frontend operation. These upstream master sources
+were read on 2026-11-06; they are not certification of installed OBS 32.2.2 internals.
+
+Deterministic trace: candidate Start acknowledges/witnesses STARTED → same-socket status confirms
+active → fake server receives Stop but holds execution → another controller stops original and
+starts replacement → held Stop executes on replacement → app rejects mismatched lifecycle but
+`recording_active=false`: replacement already destroyed. The regression failed with
+“parameterless StopRecord destroyed the replacement after its admission barrier”. An event
+subscription or timecode alone cannot close this gap. Reconnect and unknown mutation outcomes
+continue to revoke ownership, never authorize replay.
+
+Native Start is rejected before settings/vault/network access and again by the controller.
+Native Stop validates generation and permits **only already-finalized inbox retry**; it sends no
+StopRecord for an active/uncertain pin. No race waiver/configuration switch exists. Runtime status
+sets `managed_recording_available=false`; UI does not offer a new managed start/destructive Stop
+and tells existing pins to finish in OBS then recover inactive. Candidate transport Start/Stop
+methods are test-only on the combined controller; candidate tests do not prove product availability.
+Observation, scenes, mute, Content readiness/import, inactive recovery and finalized abandonment
+remain independent. The original legacy live functions and their existing guard contract are unchanged.
+
+Viable next design (engineering proposal, **not implemented or accepted**):
+
+- An OBS-side vendor ABI returns a random server-epoch plus recording-generation capability only
+  for a successful owned Start. It refuses external/pre-existing output and never adopts a PID.
+- `StopOwned(epoch, generation, operation_id)` checks the current generation **at execution on the
+  OBS output/frontend serialization boundary**, then stops exactly that output or returns stale
+  without side effects. A check followed by queuing parameterless StopRecording is insufficient.
+  Retain/refcount the exact output or serialize frontend generation validation and stop together;
+  prove stop/restart on the same reused output object cannot bypass generation checks.
+- Lifecycle changes, splits, output replacement, plugin/OBS restart and observation loss invalidate
+  capabilities. Idempotent operation receipts distinguish pre-execution rejection, finalized path,
+  and unknown outcomes. Re-query a receipt; never replay a mutation against “currently active”.
+- Reuse `plugins/obs-plugin` only after source/ABI review against pinned OBS/obs-websocket versions
+  and supported Mac/Windows architectures. No plugin installation or implementation in this pass.
+  Require authenticated local vendor calls, per-owner capabilities, strict schemas/bounds, no secret
+  logging or public listener, no generic script/command endpoint, trusted-native IPC and CSP denial.
+- Prove interleavings with fake and real OBS-side tests: replacement before check, between check and
+  queued execution, after execution, stale/duplicate receipts, disconnect/restart/lag, split, stop
+  failure and unknown outcomes; zero external Stop and zero wrong-profile/path attribution.
+  Packaging must verify artifact/source hashes, plugin/version handshake, absence/incompatible-plugin
+  admission denial, installation/upgrade/uninstall/rollback, and native ABI on each claimed OS.
+  Only then run isolated synthetic real recording → playable picture/audio → exact owned Stop →
+  shared Library attribution/navigation/recovery on built-in MacBook display; Windows remains separate.
+
+The parent owns the next engineering route under existing completion authority. No owner safety
+waiver or duplicate recorder is requested. `P-067-ORCH-03` (future Sol/high override in accepted
+PR96/7731fc3 §18) must reuse this controller boundary. ORCH01 may read interfaces; this repair does
+not broaden into Go Live or the new orchestration implementation. Preserve PR96's canonical changes
+when integrating; this branch changes only its existing P-072 records, not P-067's queue state.
+
+### Recovered repair verification — 2026-11-06
+
+**Source commit:** `1e5b689723a2bbe7154905e55a9dd080ead8913e`; review baseline
+`f7074ab166f0ccb3960a695c85dde01543beb1e2`; preserved integration base
+`ab2bc473030bbfbb35e8c40a1d13f2cd6a844fd5` / main
+`a19f9b32e78ead7a8d57ff039f592139681e988f`. Same isolated branch and PR94, no reset/rebase.
+Native configuration `codex/gpt-6.1-sol/high`. R1-01 is **unresolved/contained**, not repaired
+managed-recording capability; R1-02–05 are **implemented/unaccepted pending independent review**.
+
+- `CARGO_TARGET_DIR="$PWD/apps/extend/src-tauri/target" cargo test --locked --manifest-path
+  apps/extend/src-tauri/Cargo.toml` — **24 passed**. Includes actual corrupt preference JSON with
+  pinned lazy resolution; disabled idle pack/vault admission and independent real fake-HTTP Content
+  readiness remain tested. Native origin/window rejection and unsafe preference guards pass.
+- The same target with `cargo test --locked --manifest-path apps/stream-extend/src-tauri/Cargo.toml`
+  — **17 unit + 45 protocol/controller passed**, existing packaged Python-owner test ignored.
+  The 45 include runtime no-network Start denial and no-Stop replacement protection. Other recording
+  transport cases call explicit **test-only candidate** methods; they do not claim product availability.
+- Locked Creator suite — **44 passed**, existing real-Blender and selected-ComfyUI cases ignored.
+  Shared suites through the combined manifest with `-p local-settings -p recording-library
+  -p tauri-plugin-social-manager -p tauri-plugin-module-setup -p relay-client` — **2/3/5/23/5 passed**.
+  Locked standalone `apps/shared/setup-engine/Cargo.toml` — **7 passed** using its existing ignored
+  lock. An initial attempt to select setup-engine via `-p` was rejected because it is not a workspace
+  member; standalone locked verification replaces it. No existing package versions were upgraded.
+  OBS's events feature requires `futures-util` and locked optional `tokio-stream 0.1.19`.
+- Each of `apps/extend`, `apps/stream-extend`, `apps/creator-extend`: `npm run check` — **0 errors,
+  0 warnings**; `npm run build` — exit 0. Combined `npm test` — **18 passed**, including fresh audio,
+  failed status/receipt identity, before/during-Start old status, held inspection, one read in flight,
+  duplicate mutation, reload before preferences and disabled idle observation. An initial fixture
+  DTO type omission was corrected; final checks/build pass. Production build contains no fixture
+  call-log/banner/native-pin/synthetic-session markers.
+- `make test` with the existing prepared Python environment — **100%, exit 0** (15 skip markers,
+  one expected-failure marker; not live acceptance). `ruff 0.6.4 check modules/ scripts/` — clean.
+  `python3 -m pytest -p scripts.testing.no_skips tests/desktop_apps -q` — **24 passed, zero skips**.
+  No-skip `tests/docs tests/desktop_apps` also passes. Generated-doc check, proposal/lane report
+  (zero missing/extra IDs) and `git diff --check` pass. Private release hygiene guard: zero failures,
+  existing two owner-set contact placeholders remain pending; not release approval.
+- An extra no-skip docs/design/native run initially failed on six optional sibling-source observations.
+  Read-only environment pointers verified five; Job-Hunter's pinned `8f9b4f2` is absent from the
+  available checkout, so that one observation is **NOT RUN**, not passed. No foreign fetch/edit or
+  token adoption. Ordinary docs/design run passes with the declared skips; the required native
+  admission lane is independently no-skip. Aggregate `make verify` is only planned with `--list`,
+  not claimed executed; separate cloud/backend service CI lanes are not rerun locally for this slice.
+
+**Regression/revert evidence:** [protocol tests](../../apps/stream-extend/src-tauri/tests/obs_contract.rs),
+[client tests](../../apps/extend/tests/production-client.test.js), native unit tests and desktop
+admission contracts are committed. Local logs/runners are retained beside this worktree in
+`p072-repair-evidence-20261106` (private evidence, not a repository dependency).
+
+| Finding | Executable failing counterfactual / temporary revert | Restored result |
+|---|---|---|
+| R1-01 | Reused the `f7074ab` adapter body with only test type adaptation: external replacement is stopped; uncertain Stop is sent twice. New deterministic after-admission replacement also fails against the witness candidate. Removing native Start/Stop fences fails the runtime regressions. | Runtime Start sends zero requests; destructive Stop sends zero StopRecord. Candidate continuity does not close the architectural gap. |
+| R1-02 | Eager load before pin fails corrupt-load regression; dropping Start receipt or status epochs fails client identity cases. Reload bootstrap failed before its fix and fails again when reverted. | Pinned access, failed observation, receipt/epoch and reload tests pass; idle admission stays native-gated. |
+| R1-03 | Restoring held native inspection lock fails the deterministic held-read safety test; making inspection use the UI mutation flag fails the client test. | Held fake audio waits on explicit synchronization while per-input mute and candidate Stop dispatch on separate sockets; stale read rejected. Runtime Stop remains fenced. |
+| R1-04 | Removing automatic audio calls fails fresh connection/Start regression; removing single-flight guard fails bounded-read test. | Fresh fixture Start → Media Library has one automatic audio call without manual inspection; mute visible. |
+| R1-05 | Restoring unconditional pending rejection fails missing-file abandonment. Removing generation/finalized/inactive guards fails their cases. | Runtime pending retry never sends another Stop; inactive explicit abandonment preserves original profile note, releases preferences/new session reservation, rejects stale generation and leaves manual import validation intact. |
+
+**Mutation accounting:** 28 failing executable revert/mutation runs, including repeat checks after
+containment; all source restored in `finally`, then suites/bundle rerun. Do not count the old
+missing-comma compiler error, early recovery compiler-invalid attempts, a duplicate-test timeout,
+or two surviving isolated termination mutations (other loss guards still revoked). The duplicate
+case was changed to resolve both promises and assert actual dispatch count, then caught the guard
+removal. The broader executable termination-revocation mutation was caught. Machine-readable
+summaries and per-run logs distinguish every excluded result; no compiler error is a caught guard.
+
+**Browser/native:** final fresh synthetic T3 fixture passes Start receipt + failed status, automatic
+safety audio after Start → Library, held scene/audio reads with dispatched mute/Stop, missing-file
+handoff with exactly one Stop and keyboard abandonment, and reload with corrupt preferences +
+pinned inactive recovery using the right generation and zero Stop. At **320×736**, abandonment
+and recovery work by Enter and no horizontal overflow is observed. Native unavailable recording
+fixture offers no managed Start/Stop. This is IPC mocking, not real output acceptance.
+
+`npm --prefix apps/extend run tauri build -- --debug --bundles app -- --locked` — private Mac app
+built and reopened on the built-in Retina display. Unknown status/audio are honest, managed Start
+is absent, blocked/manual guidance is visible, and status remains across collapsed Production →
+Media Library navigation. Existing profile selection/ledger only observed; no profiles, secrets or
+media were changed/imported. Binary SHA-256:
+`bd9896273b64632d5fab5f6130a3e4310509c1141b274db1f94b2d592d49ed54`.
+One unused candidate-export warning remains; no build failure. App and test server/tab closed.
+
+**NOT RUN:** real OBS outputs/atomic-generation plugin/encoder/playable picture/audio/handoff,
+real native recovery with output, Windows/clean-host/signing/vault persistence/migration, actual
+CSP enforcement/crafted native origin GUI probes, real relay/account/publish/live/provider work,
+resource/convergence/rollback and public release. Existing ignored tests remain ignored. No feature
+acceptance, module promotion or Done. U-01–U-13 remain exact open evidence; U-10–U-12 cloud stays out.
+
+**Next independent review brief:** P-072 / P072-R1-01–05, `gpt-6.1-sol / high` inherited from the
+canonical queue for adversarial native/controller/security review. Parent creates a **new** round-2
+`delegate_task` for the final PR head; original REQUEST CHANGES at `f7074ab` remains evidence.
+Read this five-finding table, source commit and exact current PR head. Review containment of R1-01
+(no managed Start/destructive Stop or fallback), and R1-02–05's pin/reload/unknown-state, read/mutation
+concurrency, auto audio, generation and finalized inactive abandonment. Reproduce the committed
+regressions and inspect source, not green counts alone. Return each finding's disposition and finite
+architectural objections; never accept managed recording from the witness candidate. No source edits,
+new worker, real OBS output or owner race waiver. After review the parent drives normal gated
+integration and the OBS-side engineering route/independent desktop work under existing authority.
+
+### Owner v6 desktop authorization and recording-first slice — 2026-11-01
+
+**Kind:** feature (existing P-072); **State:** implementation authorized. The owner explicitly
+authorized completing the combined desktop product beyond navigation-only preview before the
+convergence checks finish. Actual release/replacement, paid providers, live account publishing or
+streaming, and credential/account migrations retain their gates. This supersedes the earlier
+preview-only development limit, not final acceptance. **Agent:** `codex` / `gpt-6.1-sol` / `high`,
+verified in the task's native T3 configuration. HF/OpenCode is not used: disabled and unsuitable
+for sensitive ownership orchestration. Sole implementation worker reports to the installed coordinator.
+
+This bounded slice implements local recording, scene switching and per-input mute through the
+existing Stream OBS adapter, with a native root controller, pinned source/content profile IDs,
+connection and in-memory ownership, shared inbox registration, and persistent visible safety controls.
+Go Live transport is deliberately deferred to the next controller slice: the legacy live-start
+failure/cleanup path needs separate regression evidence before reuse. No live account is exercised.
+Unconfirmed recording starts require explicit OBS inspection and inactive-output recovery; they never
+adopt an externally observed recording. Restart never restores ownership or adopts a PID.
+
+Source base is `ab2bc473030bbfbb35e8c40a1d13f2cd6a844fd5`, one sidebar commit above
+`a19f9b32e78ead7a8d57ff039f592139681e988f`. The clean isolated task branch was moved from
+`5d3e87e8017bf38aa710e2a423f83d45c1197bb5` only after native binding/configuration inspection.
+The installed guide is read from the prepared coordinator checkout because absent here. Its accepted
+workflow reference checks as upstream-drift (`07f5d729` versus `b70913d`); root work-type/entry-gate
+links at `9495bfb6` remain unavailable. Foreign references are not repaired by this feature.
+
+Refreshed registrations at this base: **31 Stream + 42 Creator command entries**, 15 shared
+names / 58 distinct commands; combined base has 15 entries, extended to 24 by this slice (including explicit finalized abandonment).
+Autopilot nested registrations count as entries. This supersedes the historical phase-0
+27/42 count below without rewriting its dated evidence. Source-present does not mean accepted:
+
+| Accepted legacy workflow / source | Existing evidence and limits | Combined state / remaining or blocked |
+|---|---|---|
+| Shared module selection/install/retry/guides — [setup plugin](../../apps/shared/setup-wizard/src/lib.rs) | P-003/P-063 Mac setup evidence; physical Windows/capture remains open | Combined shared setup present; native/clean-host acceptance remains U-01/U-02 |
+| Saved connections and readiness — [Stream registry](../../apps/stream-extend/src-tauri/src/lib.rs), [Creator registry](../../apps/creator-extend/src-tauri/src/lib.rs), [local settings](../../apps/shared/local-settings/src/lib.rs) | P-003 isolated public/vault contracts; provider/device readiness needs actual runs | Combined isolated preferences/vault and independent pack readiness present; R1-02 pins safety access through corrupt preferences; no migration |
+| Optional setup sync — same native registries and [setup engine](../../apps/shared/setup-engine/src/lib.rs) | P-003 loopback contract; hosted sync separate | Combined sync explicitly unavailable; cloud authorization still separate |
+| Stream/Content profile selection and remembered routing — [social manager](../../apps/shared/social-manager/src/lib.rs) | P-065 synthetic profile persistence; account/provider acceptance open | Combined separate selections present; native recording snapshots their real IDs; no account migration |
+| OBS status and existing-scene switching — [OBS adapter](../../apps/stream-extend/src-tauri/src/obs.rs) | P-055/P-063 fake protocol; picture/audio/native scene acceptance open | Combined real status/scenes present; R1-03 independent inspection sockets; source editing still missing |
+| Managed Go Live + Record / ordered Stop / handoff — same adapter and [recording library](../../apps/shared/recording-library/src/lib.rs) | P-065 ownership/request order; ST-R05/ST-R06 real handoff remains open | Combined Go Live missing; managed local Start/Stop fenced on P072-R1-01; not managed-live parity |
+| Local recording / input mute — [continuous local owner](../../apps/stream-extend/src-tauri/src/obs_local_recording.rs), [root controller](../../apps/extend/src-tauri/src/production.rs) | Fake lifecycle and safety cases; no actual encoder/media quality acceptance | Status/scenes/mute operational; managed local Start/Stop blocked, witness candidate test-only. R1-04 auto-loads audio; atomic proof then real U-04/ST-T16 remain open |
+| Grafana/API/n8n/NodeCG service links — [Stream page](../../apps/stream-extend/src/routes/+page.svelte) | Source-present links; not proof of embedded service/overlay operation | Combined configured service-link parity missing; no new service introduced |
+| Autopilot rehearsal/status — [autopilot](../../apps/stream-extend/src-tauri/src/autopilot.rs) | P-056 bounded source/rehearsal evidence | Combined adapter missing; no unrelated gameplay/autonomy work |
+| Production host/game/rig control — [native production owner](../../apps/stream-extend/src-tauri/src/autopilot_control.rs) | P-056 guarded local owner; actual game/rig/live bindings remain open | Combined adapter missing; original session/off-air/stale-event guards unchanged |
+| Voice/personality authoring/review/scripted Q&A — [voice studio](../../apps/stream-extend/src-tauri/src/voice_studio.rs) | P-066 native authoring and local audio evidence; audible OBS/account binding open | Combined adapter missing; no paid provider or voice activation |
+| Remote discovery/approval/correlated result — [relay client](../../apps/shared/relay-client/src/lib.rs) | P-058 loopback; hosted two-device ST-R14 open | Combined remote missing/denied; U-08 later, no new remote permission |
+| Account/OAuth/private provider actions — [social bridge](../../apps/shared/social-manager/src/lib.rs) | P-062 source routes; actual sign-in/destination acceptance open | Combined profile selection only; OAuth/publish not granted |
+| Workflow catalog/preflight — [ComfyUI adapter](../../apps/creator-extend/src-tauri/src/comfyui.rs) | P-054/P-057/P-063 source and historical GPU evidence; per-target gates open | Combined catalog/readiness present; operational preflight/queue adapter missing |
+| Workflow inputs/upload/queue/history/output preview — [workflow inputs](../../apps/creator-extend/src-tauri/src/workflow_inputs.rs), same ComfyUI adapter | Existing fake contracts and historical local output; native target acceptance remains | Combined operational creative jobs missing; not implemented in this repair |
+| Media import/list/reveal/archive/status — [shared inbox](../../apps/shared/ui/RecordingLibrary.svelte) and recording library | P-065 synthetic Mac import/reveal; Start editing/Published are metadata only | Combined Content-gated import/list/reveal/archive present; editing/published updates denied. R1-05 explicit manual-import abandonment does not claim registration |
+| Blender launch/planning/owned render jobs/cancel/retry — [Blender jobs](../../apps/creator-extend/src-tauri/src/blender_jobs.rs) | P-061 Mac picker/two-scene evidence; recovery/Windows remain open | Combined operational adapter missing; no job/process guard changes |
+| Krita fixed launch/scripts/addon archive/tool checks — [Krita adapter](../../apps/creator-extend/src-tauri/src/krita.rs), [tool runtime](../../apps/creator-extend/src-tauri/src/tool_runtime.rs) | P-057 fixed adapters; live DCC acceptance separate | Combined adapter missing; no caller-supplied script or executable path |
+| Posture analysis — [posture adapter](../../apps/creator-extend/src-tauri/src/posture.rs) | P-057 native source; input quality/physical acceptance separate | Combined adapter missing; optional capability must remain independent |
+| Recording → reviewed Shorts draft / generated asset → overlay — [local Shorts](../../modules/content-creation/stream_shorts/README.md), P-072 U-09 | P-056 local CLI/synthetic output exists; cross-workspace acceptance not complete | Combined Shorts/overlay adapters missing; no metadata-only editing claim |
+| Packaging/upgrade/rollback — P-072 U-01/U-03/U-06/U-07/U-13 | Private unsigned Mac build is not clean-host/signing/migration acceptance | Bundle identity remains preview; actual replacement/release still gated |
+| Cloud U-10–U-12 / unrelated Pending/Deferred scope | Proposed candidates, not accepted legacy desktop parity | Out of scope; no implementation or provider spend |
+
+This is the single current workflow inventory. The dated phase-0 tables below preserve historical
+source evidence only; neither table nor native registrations grant acceptance or backlog authority.
+
+PR #93 overlaps configuration/branding/setup documentation and #92 social catalog/content. Neither
+is merged or overwritten here; `com.hybridcreator.extend.preview` remains the bundle identifier.
+
+#### Recording-first checkpoint verification — 2026-11-01
+
+**Runtime source commit:** `804a395236046f092f825d62567cb8cf574f2e19`; integration base
+`ab2bc473030bbfbb35e8c40a1d13f2cd6a844fd5`; upstream main checked as
+`a19f9b32e78ead7a8d57ff039f592139681e988f`. The following evidence is independent of the
+sidebar's earlier runs. This is a working local-recording slice, not completed P-072 parity.
+
+- `npm --prefix apps/extend run check` — 0 errors/warnings; `npm --prefix apps/extend test` —
+  8 passed; `npm --prefix apps/extend run build` — exit 0. Both legacy apps independently passed
+  `npm run check` (0 errors/warnings) and `npm run build`. Production assets contain none of the
+  browser-fixture/session/call-log markers.
+- `cargo test --locked --manifest-path apps/extend/src-tauri/Cargo.toml` — 22 passed. Includes
+  foreign window/origin rejection, unsafe pack/host/port/password changes, and both locked-vault
+  and unreachable-loopback OBS leaving a real fake-HTTP Content readiness path usable.
+- `cargo test --locked --manifest-path apps/stream-extend/src-tauri/Cargo.toml` — 17 unit +
+  29 protocol/controller tests passed; one packaged Python-owner test ignored by its existing gate.
+  Ten new combined cases cover actual local start/Stop, scenes/input mute, external outputs,
+  actual saved-profile attribution, pinned reconnect after cache loss, failed/unconfirmed start,
+  failed Stop/retry, lost Stop response/manual import, inbox retry without another Stop, duplicate
+  concurrent calls, stale generations, restart non-adoption and legacy external-recording ownership.
+- `cargo test --locked --manifest-path apps/creator-extend/src-tauri/Cargo.toml` — 44 passed;
+  real-Blender and operator-selected-ComfyUI tests remain ignored. No live test is reported passed.
+- Locked shared suites used the combined manifest with `-p local-settings -p recording-library
+  -p tauri-plugin-social-manager -p tauri-plugin-module-setup -p relay-client`: respectively
+  2 / 3 / 5 / 23 / 5 passed. `cargo test --locked --manifest-path apps/shared/setup-engine/Cargo.toml`
+  — 7 passed using the existing ignored setup-engine lock. A standalone shared-plugin invocation
+  without a lock was rejected by `--locked`; rerouted to the application's existing lock, without
+  changing dependencies or manifests. All Rust suites share the task's app target cache.
+- **23 guard mutations caught, source restored:** trusted window/origin; Stream pack, host, port
+  and credential changes; session generation and duplicate start; external-output checks in both
+  controller and adapter; pinned reconnect; pending-inbox retry; owned/pending/active-output recovery;
+  adapter duplicate/unowned/externally-owned recording Stop; observed scene/audio input; one-shot
+  start/Stop; inactive Stop; native pack admission. Rust mutations fail executable tests; the wrapper
+  pack mutation fails the no-skips desktop admission contract. The pin mutation initially survived
+  because an already-cached connection masked redirection; clearing the cache makes it fail, and
+  the restored test passes. No compiler failure was counted as a caught mutation.
+- `python3 -m pytest tests/desktop_apps -q -p scripts.testing.no_skips` — 24 passed; the focused
+  desktop + docs run also exits 0 under `scripts.testing.no_skips`. `make test` — required offline
+  suite reaches 100%, exit 0. The first post-commit run detected a stale desktop radius observation:
+  the check counts tracked files, so the new component entered its inventory only after commit.
+  Updated only the hub's two observed declaration counts (no proposed/approved design value changed)
+  and reran the suite. `ruff check modules/ scripts/`, generated-doc check,
+  `make proposal-report ARGS='--check --summary'` (no missing/extra lane IDs), public-release hygiene
+  (0 failures; 2 existing owner-set placeholders) and `git diff --check` pass.
+- Explicit synthetic browser fixture: start local recording, load scenes/audio, navigate directly
+  Stream → Content with correct profile options, collapse Production/Studio, open Help, mute and Stop
+  using the same session generation. Stop/mute stay usable and in view. At 320×736 there is no
+  horizontal overflow and both controls remain usable. This fixture invokes no real native actions.
+  Regression assertion `assertContentProfile` failed with the keyed-remount fix removed, then passed
+  restored; the original Stream options incorrectly remained under the Content selector.
+- `npm --prefix apps/extend run tauri build -- --debug --bundles app -- --locked` — private unsigned
+  Mac app built. Opened that task bundle and moved it through Window → Built-in Retina Display.
+  Native main-window ACL admits preferences/navigation/catalog; local status strip remains visible
+  while scrolling Studio, OBS unavailable is sanitized, Start stays disabled, and direct navigation
+  correctly shows Main Stream then Main Content without editing either selection. No native recording,
+  scene switch, mute, install, import, render, upload, publish or broadcast action was invoked.
+
+**NOT RUN / remaining:** full aggregate `make verify` (its 46-command plan was inspected; 17 checks
+listed not-run), hosted CI, Docker/service acceptance, real OBS encoder/file/picture/audio and Stop
+stress, private playable-media handoff, actual vault unlock/failure recovery, native Windows,
+clean-host/signing/public distribution, migration/relay/two-device and full U-01–U-13 convergence.
+U-10–U-12 cloud remains out of scope. Native foreign-origin IPC/CSP enforcement still needs the
+manual U-07 pass; executable origin-policy and configured ACL tests do not certify that runtime.
+Closing/restarting the app loses ownership by design; control any surviving output in OBS and
+import manually. Do not stop/restart OBS recording independently inside an owned session.
+
+**Next completion brief:** first independently review this diff and repeat U-04 with synthetic,
+playable local OBS output and real source/content profile handoff. Then extend the root controller
+with the existing live-session start/Stop only after regression/mutation tests for uncertain stream
+start and failed recording rollback prove safety ownership is retained. Keep generation/connection
+pins and root safety commands, audit original live/off-air guards, and preserve the live-account gate.
+Transport the remaining accepted creative adapters in separate bounded slices; do not activate
+unrelated Pending/Deferred features. No new owner choice blocks this local slice. Existing PL-D10–
+PL-D13 and release/account decisions remain at their canonical gates; no duplicate alignment question.
+
+### Owner-approved sidebar slice — 2026-11-01
+
+**Kind:** feature (existing P-072); **State:** implementation authorized by “Start building?”
+after agreement on the navigation and expandable controls. **Agent:** `gpt-6.1-sol` / `high`,
+retaining P-072's assignment for configuration-driven Svelte navigation and capability isolation.
+The installed coordinator retains this bounded assignment; no additional worker or timer is created.
+The referenced work-type/entry-gate files at the root instructions' library pin were unavailable;
+this explicitly labelled feature row records the work without inventing additional authority.
+
+Owner decisions **P072-NAV-01** and **P072-NAV-02** supersede the earlier visible
+Home/Stream/Create/Library/Settings grouping with these feature sections:
+
+- **Workspace:** Home, Media Library, Jobs & Activity, Automations.
+- **Production:** Live & Recording, Scenes & Sources, Audio & Soundboard, Overlays & Avatars.
+- **Studio:** Clips & Video, Images & Thumbnails, 3D & Environments, Sports Analysis.
+- **Pinned utilities:** Profiles & Accounts, Setup & Settings, Help & Diagnostics.
+
+Workspace, Production and Studio expand/collapse independently. Feature links open a page;
+section shortcuts also expand the destination and bring it into view. Everyday controls remain
+visible and advanced configuration expands in place. Collapsing either navigation or configuration
+must not stop jobs, change profiles/accounts, disable a capability or hide live safety controls.
+The preview has no broadcast controller, so this slice does not introduce an imitation live strip.
+MyFeed supplies layout/interaction references; exact branding and drafted hub tokens remain unapproved.
+
+Implementation scope: the existing private preview frontend and navigation configuration,
+accessible disclosure/section targeting and presentation-state persistence. Reuse existing native
+page IDs and admission, isolated preferences, setup/profile and recording contracts. Unimplemented
+features are explicitly unavailable; no new operational native commands, credential migration,
+stream controller, render/export implementation or replacement release is included. Library access
+continues to require the Content pack until native shared-library admission is separately migrated.
+
+**Verification — 2026-11-01:** P-072 private-shell-preview row in the verification matrix:
+
+- `npm --prefix apps/extend run check` (0 errors/warnings), `npm --prefix apps/extend test`
+  (8 passed); five navigation/admission guard mutations each made the Node suite fail, then restored.
+- Stream Extend and Creator Extend each passed `npm run check` and `npm run build`.
+- `cargo test --locked --manifest-path apps/extend/src-tauri/Cargo.toml`: 20 passed.
+  Both legacy app locked Rust suites passed; their opt-in real-service/Blender tests remain ignored.
+- Locked shared crate suites: recording-library 3, local-settings 2, social-manager 4,
+  module-setup 23, relay-client 5 and setup-engine 7 passed. Legacy/shared suites reused a common
+  `CARGO_TARGET_DIR`; native source, permissions and commands were not changed.
+- `make test`: offline suite exit 0; `ruff check modules/ scripts/`, generated-doc check,
+  proposal report and `git diff --check` passed. The CI-derived `make verify ARGS=--list` plan
+  was inspected; full aggregate `make verify`, Docker/Compose, separate service security lanes,
+  hosted CI and live acceptance were not run for this frontend slice.
+- Explicit synthetic browser fixture: section expansion/focus, keyboard group toggling,
+  remembered folding after reload, Stream-only hiding Studio/library, rejection of a disabled
+  deep link, and no horizontal overflow at 320/736px. The fixture uses test-only official Tauri
+  IPC mocks; production build contents were checked for absence of fixture markers.
+- `npm --prefix apps/extend run tauri build -- --debug --bundles app -- --locked`: private Mac
+  app built. Actual native UI on the built-in Retina display: both groups and utilities render;
+  Stream-only/Create-only/both admission, advanced-connections shortcut expansion/focus and
+  restart restoration of collapsed Production/Studio verified. No install, secret edit, profile
+  change, media import, broadcast, render, upload or publish action was taken.
+
+Full parity, migration, clean-host/native Windows, live broadcast safety and public distribution
+remain open. This is a navigation implementation in the private preview, not the completed merger.
+
 **Owner:** OpenTechnology14 + agent
 **Date:** 2026-10-04
 **Roadmap layer(s):** Existing product surfaces; Creator Experience, Content Creation, Realtime AI, Automation / Control, Social Management, Backend / API, Storage / Data, Infrastructure and Observability. No new top-level module.
-**Evidence level:** Current source inspected; consolidation and cloud expansion are Proposed. Historical acceptance is attributed to its existing proposal, not rerun here.
+**Evidence level:** Current source inspected; desktop consolidation is partially implemented under v6 authorization and cloud expansion remains Proposed. Historical acceptance is attributed to its existing proposal, not rerun here.
 
 The owner explicitly wants the apps combined to make distribution to other people easier. This
 records that direction and a phased implementation contract. The initial 2026-10-04 task created
@@ -32,8 +540,8 @@ folders and compact layout; persisted Stream/Create/both choices; one shared set
 separate profile selections; the shared locked recording inbox; read-only OBS/ComfyUI readiness
 and bundled workflow catalog. Native pack checks reject disabled-domain operations. Invalid
 connection drafts preserve saved settings; OBS secret updates use a separate preview vault identity.
-No legacy settings/tokens are migrated. There are no native broadcast/render/remote/publishing
-commands in its registered IPC surface. Editing/published status changes are denied, including
+No legacy settings/tokens are migrated. The v6 recording-first slice adds native local recording,
+scene and input-mute commands; broadcast/render/remote/publishing commands remain absent. Editing/published status changes are denied, including
 crafted invokes, and the inbox hides those metadata-only actions in preview mode.
 
 New configuration is `configs/ui/combined-navigation.json`, `extend-preview-defaults.json` and
@@ -54,8 +562,8 @@ Windows/clean-host/signing, native UI/voice/video, restart/vault and public migr
 absent, pack/layout persistence and keyboard/narrow-window navigation, selected-tool install/retry,
 synthetic local import/reveal and profile separation, denied crafted invokes/remote origins and
 vault failure recovery. The recording/streaming/export/remote parity journeys U-03–U-09 and public
-rollback U-13 remain later gates. No global live stop/mute strip is claimed by this preview, since
-it does not own/control a live session. Continue controlling live work in the existing apps.
+rollback U-13 remain later gates. The v6 slice adds a global owned-local-recording Stop/status strip and observed-input mute;
+Go Live remains in Stream Extend pending its controller recovery slice and real acceptance.
 
 Ship **one local desktop application**, with **Stream** and **Create** workspaces, one setup flow,
 one recording/asset library and one settings/account area. A new user downloads one installer for
@@ -521,6 +1029,175 @@ Full HTTP/job schemas and storage migrations belong to separately accepted C1–
 ## 9. Test and pressure matrix
 
 These are required future implementation checks; none is claimed as completed by writing this doc.
+
+### Conditional acceptance-run consolidation (2026-11-07)
+
+**Record:** `P072-ACCEPTANCE-20261107` — owner steering on acceptance testing, within existing
+P-072; `gpt-6.1-sol` / `high` remains the assigned model/effort. No override or new proposal.
+
+**Owner verbatim:** “Noticed stream-only and create-only testing.  We should look to just drop those once we confirm testing works for all features”
+
+**State: recorded, conditional; not executed.** No tests, test selections or acceptance runs are
+removed by this documentation change. The combined desktop has not yet verified every supported
+Stream and Create workflow on each applicable platform; P-072 remains Testing. The comparison
+below identifies coverage to reconcile, not evidence that those runs have passed.
+
+**Answered owner direction:** retire the separate full Stream-only and Create-only acceptance
+runs once the combined desktop proves all supported Stream and Create workflows, including the
+cross-workspace journeys, on their applicable platforms. This concerns test runs; removing
+user-facing modes, selectable packs or legacy apps is outside this decision. It consolidates
+existing acceptance obligations, adds no release gate and requires no repeat owner approval.
+**Question:** Should duplicate full single-mode acceptance runs retire once combined coverage is verified?
+
+Before removing duplication, compare each single-mode run with the existing §3 feature inventory,
+its module/proposal evidence and U-01 through U-09 below. Include controls that are not separate
+navigation entries. For each supported workflow and applicable OS/architecture, retain the
+artifact/build identity, prerequisites, actual result/output and evidence location; identify any
+behavior or failure/recovery case exercised only by the single-mode run. Move that distinct
+coverage into the combined journey or retain its focused check. Unproved, fenced or unavailable
+workflows remain explicitly open; source presence, mocks, builds or a pass on another platform
+cannot supply missing native/output evidence. Only demonstrated duplicate full runs retire in
+ordinary test maintenance, with their replacement evidence recorded here and in the verification
+matrix. Do not delete unique coverage merely because the combined app opens.
+
+| Existing acceptance ID | Distinct behavior to preserve when comparing full runs |
+|---|---|
+| U-01 | Clean-host/offline first opening and usable setup on applicable platforms, including missing dependencies, skip and retry. |
+| U-02 | Initial pack selection, enabling the other pack later, selection persistence across restarts, no duplicate installation and no unwanted background service startup. Retain focused checks while packs remain selectable. |
+| U-03 | Neither/either/both legacy import paths, settings/profile identity, schema conflicts, corrupt state, locked vault, disk full and interrupted-write recovery. |
+| U-04 | Stream controls and owned live/recording session safety while navigating between workspaces; external/pre-existing output and failed or uncertain start/Stop behavior; correct playable handoff and attribution. |
+| U-05 | Supported Creator jobs during OBS work, resource contention and worker failure; responsive safety controls and unaffected modules. |
+| U-06 | Setup/job cancel, retry and restart, shared locks, coexisting legacy apps and protection against duplicate controllers or destructive cleanup. |
+| U-07 | Disabled capability enforcement in native invokes as well as UI visibility, crafted calls and untrusted/remote origins. Retain focused pack-denial checks while packs remain selectable. |
+| U-08 | Applicable relay/device combinations, tenant/device/profile scope, stale or duplicate approval rejection and one correlated execution. |
+| U-09 | All three real cross-workspace journeys: recording to reviewed Shorts; generated graphic to visible OBS overlay; recording through the selected Content profile to an approved private publishing test. Existing account/action decisions still apply. |
+
+Inventory coverage includes the supported shared setup/connections/profile/relay paths, Stream
+OBS/service/automation/audio controls, and Create workflow inputs/queue/history/preview, library,
+Blender, Krita and optional analysis paths listed in §3. Link each applicable feature to actual
+combined-desktop evidence rather than treating the U-ID table as a substitute for feature parity.
+
+**Source inspection for this direction:** existing
+[navigation tests](../../apps/extend/tests/navigation.test.js) distinguish pack visibility,
+safe navigation after changing packs and enabled destinations;
+[native preview tests](../../apps/extend/src-tauri/src/lib.rs) include Create-only observation
+without OBS/vault access; [preview contracts](../../tests/desktop_apps/test_private_preview.py)
+retain native pack admission. These demonstrate why focused selection/isolation checks are not
+duplicate full journeys. They are not fresh native acceptance results. Restart persistence and
+absence of unwanted service startup still need the applicable U-02 runtime evidence.
+
+The earlier single-pack startup/resource comparisons remain useful focused configuration checks.
+Once full-run equivalence is established, retain selecting/enabling a pack, restart persistence,
+disabled capability denial and service-start isolation checks; do not rerun every Stream/Create
+workflow separately solely to repeat proven combined coverage.
+
+**Documentation verification — 2026-11-07:** Docs only row: 1,021 documentation tests passed
+with no skips; generated-doc check, blocking Ruff, proposal model/lane report and diff checks
+passed. Generation produced no registry changes. Runtime, tests, CI selection, queue status and
+P-072 model assignment are unchanged. Full product/native acceptance and coverage equivalence
+were not run by this documentation pass; no acceptance run is retired.
+
+### macOS platform evidence (2026-11-07)
+
+**State:** recorded macOS command/output evidence; combined UI coverage is **partial**.
+P-072 remains Testing and `gpt-6.1-sol` / `high`; this documentation checkpoint does not
+enable managed recording, close U-04/U-09 or accept PR97's runtime changes.
+
+The owner supplied private evidence bundle `mac-equivalence-20261107-P6PeLk`, report
+`REPORT.md` dated **2026-11-07T15:52:23-05:00**, observed host **arm64 macOS 27.2,
+build 26B123**. Report SHA-256:
+`9ac371b76ce662b4984b72f8155bd9c8dbc6ddcfe022654b275e8b1d4c6e6039`.
+The existing host/dependencies are not clean-machine installation or a new support-matrix claim.
+
+**Source attribution:** native-rehearsal commands and exports use PR97 exact
+`0d2af40d20590a68935a6585bc4c9d57ad036962`. Combined desktop checks use `2f8de22`;
+its `apps/extend` tree `21a90d716073673c4e1147dc90f28d0eca03bf0c` matches main
+`f801fc4d66a665d7840ea5f34a134d76d9a306e7`. Source comparison across apps and
+Creator Experience has no delta between those desktop revisions. The export and desktop branches
+have not thereby been integrated end to end. Existing Python 3.12.13 and locked offline Rust
+manifests were used; audio/soundboard setup had a fresh scoped module data directory.
+
+| Recorded scope | Observed evidence and limit |
+|---|---|
+| PR97 macOS native-rehearsal job commands | All commands passed locally; **420 Python tests passed** (`native-python.log`, 97.14 seconds), same test paths and diagnostics plugin as the hosted job. This is local Mac execution, not Windows callback/ABI proof. |
+| Shared setup and diagnostics | **7 setup-engine Rust tests passed** (`setup-rust.log`); plan, capture scan, module install/doctor and autopilot doctor exited zero. Capture scan establishes discovery only. |
+| Native voice and synthetic Shorts | **11 smoke steps passed** (`autopilot/report.json`), including speech, clip review and rendering. OBS, gameplay, live chat and publication flags remain false. |
+| Combined desktop contracts | **29 Node and 24 Rust tests passed** (`app-js.log`, `app-rust.log`). Stream adapter/controller: **69 passed, one existing ignored case** (`stream-rust.log`). Managed Start still rejects as unavailable before sending an OBS request. |
+| Rendered Stream/Create/Both comparison | Headless Chrome on macOS with synthetic Tauri IPC: expected navigation, selections after reload, profile attribution, selected Stream controls and Content Library/catalog; Profiles at 320/736/1100 pixels (`workspace-check.log`). Create-only allows the status bootstrap for native-session recovery, with no other production commands. This is partial automated U-02 evidence, not native WebView restart, every feature or background-service acceptance. |
+| Real local export files | A finalized 12-second synthetic picture/audio source went through the real stdio worker. Input before/after hashes agree; all three output hashes match. Separate FFmpeg validation decoded video and audio to EOF with fatal-error checking (`playback.json`, `exports/evidence.json`). No in-app Library export button or recording Start/Stop was used. |
+
+| Preset | Dimensions / duration | Bytes | SHA-256 |
+|---|---|---:|---|
+| youtube-longform-v1 | 640 × 360 / 12.01 seconds | 1,093,754 | `77cbc28d4f77716929f9a4588585992aac942e182297a8c29567faad808d5ebc` |
+| youtube-shorts-v1 | 720 × 1280 / 8.0 seconds | 832,044 | `96b49d07c7b07eea3dff4517e6abf64e929c3bedb01c9ab0d29735a53f3e70e1` |
+| tiktok-local-v1 | 720 × 1280 / 8.0 seconds | 832,044 | `96b49d07c7b07eea3dff4517e6abf64e929c3bedb01c9ab0d29735a53f3e70e1` |
+
+The coordinator inspected the supplied logs/JSON, verified the stored output hashes and desktop
+tree comparison, and recorded their provenance without a duplicate product run. The files remain
+private evidence; none is added to Git. Decoding is not subjective picture/listening acceptance.
+The initial browser assumption of zero Create-only production calls was corrected to permit only
+the session-recovery status bootstrap; the report retains this exclusion rather than claiming an
+OBS-free native acceptance run.
+
+**Still open:** PR97 Windows rehearsal at the same head is **cancelled**, and round-five
+independent Astra review is **outstanding** after a quota failure without a verdict. These Mac
+results do not replace either gate. Managed Start/destructive Stop remain unavailable pending
+atomic ownership proof. U-04 in-app owned recording to playable output with correct Content
+attribution, U-09 cross-workspace journeys, native Library export/playback, clean hosts, native
+stress, migration, two-device/account and release acceptance remain unverified. Trusted native
+launcher/helper certification is unchanged. No full test lane is retired under the conditional
+direction above, and no fixture output authorizes re-enablement.
+
+**Documentation-only validation:** 1,021 no-skip docs tests, Ruff, generated-doc, model/lane
+and diff checks passed. Only the proposal, verification matrix and audit log change; no product
+run, media decode, test selection, queue/model assignment or runtime code is changed by this pass.
+
+### Supported recording API assessment (2026-11-07)
+
+**Record:** P072-U04-SUPPORTED-API-20261107. **Blocked on an external supported
+ownership contract; U-04 is not accepted.** Owner: “Complete these with T3”. This
+bounded assessment retains P-072's `gpt-6.1-sol` / `high` assignment and the existing
+writers. It does not resume the provider-rejected upstream proof, reproduce defects,
+or authorize an alternative recorder, manual recording or a mock as U-04 evidence.
+
+The installed application is **OBS 32.2.2**, bundle build `31845296735`. The official
+[latest release](https://github.com/obsproject/obs-studio/releases/tag/33.0.1) is
+**33.0.1**, published 2026-10-29. The coordinator inspected released public declarations
+and protocol definitions for both versions; no OBS process, recording, output, setting,
+credential or plugin was changed. The update was assessed, not installed.
+
+| Supported surface | Verified contract and limit |
+|---|---|
+| 32.2.2 release WebSocket revision `1ef34bf48110c2a18184e50e41cd0b1a855e2147` | [Published protocol](https://github.com/obsproject/obs-websocket/blob/1ef34bf48110c2a18184e50e41cd0b1a855e2147/docs/generated/protocol.json): StartRecord and StopRecord have no request fields. StopRecord returns a path after stopping, not an ownership condition. |
+| Released 33.0.1 bundled WebSocket revision `e28f84975984340e84fc4879cfc05741cc0afde1` | [Published protocol](https://github.com/obsproject/obs-websocket/blob/e28f84975984340e84fc4879cfc05741cc0afde1/docs/generated/protocol.json) retains the same recording request fields. StopOutput accepts an output name, with no expected recording generation or owner. GetRecordStatus reports activity, pause, duration and bytes; it does not issue an ownership token. |
+| Public frontend and output APIs | Both released frontend headers declare parameterless recording start/stop and an accessor for the current output. The [frontend reference](https://docs.obsproject.com/reference-frontend-api) describes an output reference; the [output reference](https://docs.obsproject.com/reference-outputs) describes Stop on an output object. Neither documents a conditional stop for an expected recording activation or an exclusive reservation of the existing frontend recording lifecycle. |
+| Vendor request bridge | CallVendorRequest transports a vendor-defined request; its presence does not supply a supported ownership implementation. No new vendor contract or plugin is claimed. |
+
+**Conclusion (inference from these public contracts):** updating to the current stable
+release does not provide the missing supported ownership condition for this adapter.
+Object/name identity and a prior status observation do not document exclusive ownership
+of a particular recording activation. The existing managed Start/destructive Stop fence
+therefore remains unchanged. The existing static trusted-command/admission compatibility
+check passed; no race reproduction, mutation, live output or rejected source proof ran.
+
+**Exact external dependency and next safe action:** obtain a released, documented OBS-side
+operation that binds Start to an owned recording activation and conditionally stops only
+that activation, rejects stale ownership before effects, and yields its finalized output
+identity. A supported exclusive lifecycle contract could satisfy the same requirement.
+Reassess an actual supported release/vendor contract when available, then implement and
+independently review its adapter before running isolated app-operated synthetic recording
+→ Stop → playable picture/audio → correct Stream/Content Library attribution with unrelated
+output preserved. This is an engineering dependency, not a request for an owner waiver.
+No public upstream message is sent by this checkpoint.
+
+Private evidence bundle `p072-supported-api-assessment-20261107` retains the installed
+version, exact released headers/protocols, selected fields and SHA-256 manifest. Existing
+PR100 macOS evidence remains reusable but does not complete this journey. PR97 Windows
+diagnosis continues independently in the original Sol/high writer; its independent export
+review remains Astra/xhigh on the final repaired head. Account/release decisions and the
+conditional acceptance-run consolidation record above remain unchanged.
+
+### Existing acceptance scenarios
 
 | ID | Scenario | Expected result | Test level | Release gate |
 |---|---|---|---|---|

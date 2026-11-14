@@ -1,0 +1,43 @@
+name: ORCH04 Windows execution diagnostic
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/orch04-windows-diagnostics.yml'
+      - 'scripts/testing/windows_contract_diagnostics.py'
+      - 'scripts/testing/production_artifacts_diagnostics.py'
+      - 'tests/content_creation/test_production_artifacts*.py'
+permissions:
+  contents: read
+jobs:
+  windows-contract-diagnosis:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 97
+    runs-on: windows-latest
+    timeout-minutes: 15
+    env:
+      PYTHONUTF8: '1'
+      PYTHONTZPATH: ''
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Durable bootstrap before Python
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force output/orch04-windows-diagnostics | Out-Null
+          'ORCH04_BOOTSTRAP_POWERSHELL_ENTERED' | Tee-Object output/orch04-windows-diagnostics/bootstrap.log
+          git rev-parse HEAD | Tee-Object output/orch04-windows-diagnostics/head.txt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Existing test dependencies
+        run: python -m pip install -r configs/local/stream-test-requirements.txt
+      - name: Bounded actual Windows startup and full focused contracts
+        timeout-minutes: 10
+        run: python -u scripts/testing/windows_contract_diagnostics.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orch04-windows-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          path: output/orch04-windows-diagnostics
+          if-no-files-found: error

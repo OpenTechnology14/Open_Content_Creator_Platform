@@ -31,7 +31,7 @@ download `stream-extend-windows-x64` or `creator-extend-windows-x64`. Extract th
 then run the included `*-setup.exe`. These are unsigned private pre-release builds, so Windows
 may show an unknown-publisher/SmartScreen prompt; public signing remains P-001 work.
 
-The installer installs for the current user and adds a shortcut under **Start → Hybrid Creator
+The installer installs for the current user and adds a shortcut under **Start → Open Content Creator
 Platform**. Launch from the finish page or shortcut to reach Module setup. WebView2 is reused
 when present; the embedded Microsoft bootstrapper downloads it when missing, which requires
 internet. No separate Node, Rust, Python, OBS or Docker installation is required to open the app.

@@ -1,6 +1,6 @@
 # Product Spec — Stream Extend + Creator Extend
 
-Two current desktop products built from one modular hybrid-creator-platform codebase, with thin
+Two current desktop products built from one modular Content Creator Platform codebase, with thin
 native plugins as free funnels. The shared platform must also support a future unified desktop
 shell and one companion mobile app without duplicating module implementations.
 
@@ -166,8 +166,8 @@ DigitalOcean ($32/mo base)
 
 ### Source Code
 **Owner direction, 2026-10-05: prepare an open-source release.** The earlier BSL-to-Apache
-plan is superseded as a release direction; no root license exists yet. The maintainer still
-needs to select the license, copyright holder and release scope under P-002/P-001.
+plan is superseded as a release direction. P-075 added an MIT root license on 2026-10-23 (#84); the maintainer still
+needs to confirm the license, copyright holder and release scope (`OSS-D01` and the other gates in P-075 §12.1).
 JobHunter's public MIT repository is a reference, not automatic authorization to copy its
 license or copyright notice. See [the reference review](../PUBLIC_DOCS_AND_MARKETING_REVIEW.md).
 
@@ -182,7 +182,7 @@ Distribution terms remain to be reconciled with the selected source license and 
 ## Repository Structure (future)
 
 ```
-hybrid-creator-platform/          ← This repo (platform core)
+content-creator/                  ← This repo (platform core)
 ├── apps/
 │   ├── stream-extend/            ← Tauri app — Stream Extend
 │   │   ├── src-tauri/            ← Rust backend

@@ -292,3 +292,21 @@ regardless of how many modules individually pass.
   crafted disabled-domain/status invokes and remote origins. — **manual/pending**, U-07.
 - Real cross-workspace outputs, two-device control, credential migration, public upgrade/rollback
   and legacy retirement. — **blocked**, later P-072 phases and existing owner/acceptance gates.
+
+## P-072 combined desktop recording-first slice — creator-experience
+
+2026-11-06: P072-R1-01 remains unresolved. Native managed Start/destructive Stop are blocked;
+continuous lifecycle candidate tests do not prove atomic Stop safety. R1-02–05 await repair review.
+Run managed output acceptance only after the OBS-side atomic-generation contract is implemented
+and reviewed. No actual OBS output is exercised by this repair pass.
+
+- Native managed Start/destructive Stop denial, plus test-only candidate lifecycle/subscription evidence (not atomic exclusion),
+  pinned profiles/connection, generation/context rejection, unknown-outcome revocation, held-inspection
+  safety dispatch, automatic audio and explicit inactive finalized-handoff abandonment. — **auto** Rust fake OBS contracts;
+  command/origin/pack admission also covered by native policy and desktop security contracts.
+- Status/Stop/input mute survive navigation and collapsed groups; Content profile options refresh on
+  a direct Stream → Content switch. — **manual** synthetic browser assertions recorded in P-072;
+  native GUI repeat with synthetic output remains open.
+- Playable local OBS handoff, picture/audio, restart/vault, native Windows, live-stream ownership and
+  U-01–U-13 convergence/release evidence retain their existing gates. — **live/manual**, not passed
+  by this recording-first implementation. Cloud U-10–U-12 remains out of scope.

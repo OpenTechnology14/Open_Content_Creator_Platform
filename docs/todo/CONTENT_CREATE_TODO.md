@@ -19,11 +19,21 @@ Ordered by what unblocks the most, counting only what can start today.
 
 1. **CT-R01 — run the content chain once.** It needs no stream, no pet and no unbuilt code, and it
    is the first time the content half of the recording handoff would be exercised end to end.
-2. **CT-D09 — choose a target for the first walkthrough.** The one P-067 names does not exist as a UI
-   flow (verified 2026-10-04: the blog has no admin). Until this is answered, the walkthrough engine
-   has no first customer.
-3. **CT-D01 — pick the pet.** The only open decision with no default, and it gates every walkthrough
-   and reactive recording. Cheap voice work (CT-D03 → CT-R02) can run beside it.
+2. **CT-D09 — OpenTechnologyApp selected on 2026-11-06.** P-067-ORCH-01 now inspects its
+   actual UI and defines a local demo journey. The earlier nonexistent blog-admin target is superseded.
+3. **CT-D01 — pick the pet.** The only open decision with no default, and it gates final mascot acceptance for walkthrough
+   and reactive recording. Fixture development can proceed under P-067 §18. Cheap voice work (CT-D03 → CT-R02) can run beside it.
+
+## Bounded production direction — 2026-11-06
+
+[P-067 §18](../proposals/PROPOSAL_AI_WALKTHROUGH_MASCOT_SYSTEM.md#18-app-owned-production-and-t3-work-items)
+authorizes app-owned walkthrough and output preparation work. Existing CT-R01 remains
+a baseline acceptance run, not a requirement that the owner manually performs the
+production chain. CT-A01 is resolved for this bounded scope; wider creative decisions remain in their existing rows.
+
+| ID | Proposal | Decision | Retained limits | State |
+|---|---|---|---|---|
+| CT-A01 | [P-067 §18](../proposals/PROPOSAL_AI_WALKTHROUGH_MASCOT_SYSTEM.md#18-app-owned-production-and-t3-work-items) | Owner authorized the app-owned production work items and T3 execution on 2026-11-06 | Wider mascot/voice/reactive decisions remain in their existing decision rows; no blanket creative acceptance | resolved — bounded scope accepted 2026-11-06 |
 
 ## Awaiting acceptance
 
@@ -33,7 +43,6 @@ decisions below it are what acceptance turns on.
 
 | ID | Proposal | What accepting it settles | If accepted as written | State |
 |---|---|---|---|---|
-| CT-A01 | [P-067](../proposals/PROPOSAL_AI_WALKTHROUGH_MASCOT_SYSTEM.md) Nova profile registry, walkthrough engine and mascot system | The registry model (one base character, ~20 profiles), three execution modes, the account router and voice Option B **Question:** Accept the Nova profile, walkthrough and mascot proposal as written, with the pet and the first walkthrough still to be chosen? | The defaults in its §14 apply to CT-D02, CT-D03, CT-D07, CT-D08, CT-D10 and ST-D16/ST-D17. **CT-D01 has no default, and CT-D09 needs a new answer first** | open |
 | CT-A02 | [P-068](../proposals/PROPOSAL_LOCAL_TTS_STACK.md) Local TTS stack for Nova | The hybrid strategy and its test plan **Question:** Accept the plan to clone your own voice locally for OpenTechnology and keep ElevenLabs for the other two, starting with a prototype? | Hybrid; prototype first (CT-D04–CT-D06) | open |
 | CT-A03 | [P-004](../proposals/PROPOSAL_CONTENT_ASSET_GENERATION.md) Content asset generation (text-to-image) | A committed text-to-image workflow with recorded load-test evidence before merge; a hard non-goal of any remote endpoint **Question:** Accept one committed text-to-image workflow, merged only after recorded load tests pass and never exposed as a remote endpoint? | SDXL base (CT-D14) | open |
 | CT-A04 | [P-059](../proposals/PROPOSAL_NATURE_GENERATION_TIERS.md) Nature generation learned tiers | Learned landscape generation above the finished Tier 0 grading CLI **Question:** Accept the nature learned-tiers proposal now, knowing it stalls until you supply a rights-cleared image corpus? | Stalls on CT-D15 — there is no rights-cleared corpus yet | open |
@@ -47,7 +56,7 @@ Columns: **Blocks** is what cannot proceed; **Default** is what applies if nobod
 
 | ID | Decision | Source | Blocks | Default if unanswered | State |
 |---|---|---|---|---|---|
-| CT-D01 | **Pet character** — name, species, visual design, emote sheet **Question:** Which character should the pet be — its name, species, look and emote set? | P-067 §14 Q1; §8 | Every walkthrough and reactive recording; CT-R05 | **None — needs you** | open |
+| CT-D01 | **Pet character** — name, species, visual design, emote sheet **Question:** Which character should the pet be — its name, species, look and emote set? | P-067 §14 Q1; §8 | Final mascot acceptance and CT-R05; fixture development can proceed under P-067 §18 | **None — needs you** | open |
 | CT-D07 | One pet across all profiles, or per-account pets? Does the sprite pet coexist with `avatar_id: nova-vrm`, or replace it? **Question:** Use one pet across all profiles, varied by emote set, with the sprite pet and the VRM avatar kept side by side? | P-067 §14 Q2 | Asset volume, and whether Nova has two visual forms | One pet, varied emote sets. Sprite and VRM coexist — VRM for gameplay, sprite for walkthrough and reactive | open |
 
 ### Voice and narration
@@ -64,9 +73,9 @@ Columns: **Blocks** is what cannot proceed; **Default** is what applies if nobod
 
 | ID | Decision | Source | Blocks | Default if unanswered | State |
 |---|---|---|---|---|---|
-| CT-D09 | **What does the first walkthrough record?** P-067's Run 1 is "Publish your first post" on OpenTechnologyBlog through an admin flow. **Verified 2026-10-04: no admin, login, editor or CMS route exists on the blog's `main`, and none of its proposals or docs plans one (searched 2026-10-04). There are zero `data-testid` attributes in its `src/` and `e2e/`.** A post is an MDX file in `content/blog/`, published by merging a PR. Options: **(a)** a public-site flow with no sign-in — for example reading a lesson and following its learning hub; **(b)** an OpenTechnologyApp Admin Panel flow — a separate product, which the owner descoped on 2026-09-22; **(c)** the GitHub pull-request publish flow — a third-party site, fragile to select; **(d)** hold the walkthrough engine until a blog authoring UI exists **Question:** Make the first walkthrough a public-site flow that needs no sign-in, such as reading a lesson? | P-067 §14 Q9 (premise false), §9 Run 1 | CT-R06; the walkthrough engine's first target | None. (a) is the smallest and keeps the blog-only scope | open — new |
+| CT-D09 | **First walkthrough target: OpenTechnologyApp**, selected by the owner on 2026-11-06. Supersedes the earlier blog-admin target and App-target exclusion for this journey. ORCH-01 must inspect a real UI and select an isolated demo flow; no admin route is assumed | [P-067 §18](../proposals/PROPOSAL_AI_WALKTHROUGH_MASCOT_SYSTEM.md#18-app-owned-production-and-t3-work-items) | CT-R06; actual target mapping is agent work | Owner selected App; no unanswered target default | decided — target selected 2026-11-06; flow mapping is agent work |
 | CT-D08 | `opentech-operator`: one profile with the four blog themes as content-lens tags, or four profiles? **Question:** Keep the OpenTech operator as one profile with the four blog themes as tags, rather than four profiles? | P-067 §14 Q3; §1.4 | Registry size | One; split later without a schema change | open |
-| CT-D10 | Recording target: localhost, or a dedicated staging deploy? **Question:** Record walkthroughs against localhost rather than a dedicated staging deployment? | P-067 §14 Q10 | The allowlist and fixtures | Localhost — no hosting cost, no credentials, fully offline. Moot until CT-D09 is answered | open |
+| CT-D10 | Recording target: localhost, or a dedicated staging deploy? **Question:** Record walkthroughs against localhost rather than a dedicated staging deployment? | P-067 §14 Q10 | The allowlist and fixtures | Localhost — no hosting cost, no credentials, fully offline. ORCH-01 can prepare local fixtures after CT-D09; any external deployment still needs its own decision | open |
 
 ### Series and publishing
 
@@ -74,7 +83,7 @@ Columns: **Blocks** is what cannot proceed; **Default** is what applies if nobod
 |---|---|---|---|---|---|
 | CT-D19 | **AI content publishing.** **Question:** After concept approval, review the finished video or allow automatic publishing under a separate policy? | [P-062 §14](../proposals/PROPOSAL_SOCIAL_MANAGEMENT.md#14-channel-portfolio-and-agentworkflows-controls--2026-10-31) | Automatic publishing policy only; local queue and concept approval can proceed | Preserve existing final approval gate; silence grants nothing | open |
 | CT-D11 | Validate the AI Learning Series audiences — they are derived from lesson topics, not measured demand **Question:** Do you accept the AI Learning Series audiences, which come from lesson topics and not measured demand, before lesson 1 airs? | P-064 §12 | Publishing lesson 1; ST-R09 | None stated; due *before lesson 1 airs* | open |
-| CT-D12 | **Creator Extend or ContentExtend** — which name may published copy use? **Question:** Which name should published copy use: Creator Extend or ContentExtend? | P-064 §12; P-023 (Deferred); [`../REPOSITORY_ALIGNMENT.md`](../REPOSITORY_ALIGNMENT.md) | Naming either product in any published copy, including a lesson's run of show | Both are preserved; nothing is named publicly until it resolves | open — needs re-acceptance, P-023 is Deferred |
+| CT-D12 | **Creator Extend or ContentExtend** — which name may published copy use? **Question:** Which name should published copy use: Creator Extend or ContentExtend? | P-064 §12; P-023 (Deferred); also PL-D07; [`../REPOSITORY_ALIGNMENT.md`](../REPOSITORY_ALIGNMENT.md) | Naming either product in any published copy, including a lesson's run of show | Both are preserved; nothing is named publicly until it resolves | open — needs re-acceptance, P-023 is Deferred; one decision in two lanes, so it closes together with PL-D07 |
 | CT-D13 | Lesson status vocabulary — the products' `scaffolded`…`shipped` set reads oddly for a lesson **Question:** Keep the products' status words for lessons for now, and defer a lesson-specific set? | P-064 §12 | Nothing | Accept for now; a lesson status set is a later change | open — low |
 
 ### Generation modules — these apply once the matching proposal is accepted
@@ -84,8 +93,8 @@ Columns: **Blocks** is what cannot proceed; **Default** is what applies if nobod
 | CT-D14 | Text-to-image checkpoint: SDXL base, or a fine-tune? Record its licence beside its `models.md` entry before first public use **Question:** Use the SDXL base checkpoint for text-to-image rather than a fine-tune? | P-004 §12 | P-004 Phase 1; the first public use of a generated image | SDXL base | open — after CT-A03 |
 | CT-D15 | Rights-cleared corpora: nature, and day and night cityscape **Question:** Will you supply rights-cleared nature images and rights-cleared day and night cityscape images for training? | P-059 §12; P-060 §12 | All training, and any distributable adapter | None — you supply them; see [`../IMAGE_INTAKE.md`](../IMAGE_INTAKE.md) | open — after CT-A04/A05 |
 | CT-D16 | Base checkpoint, IP-Adapter, SAM and depth nodes (nature); lineart and depth versions (cityscape); local GPU benchmark and target resolution **Question:** Will you run a local GPU benchmark, then confirm the model and node choices and the target resolution? | P-059 §12; P-060 §12 | GPU budget, output geometry, and whether batch cloud compute is justified | None | open — after CT-A04/A05 |
-| CT-D17 | Blender jobs: a scene eligibility marker, or an explicit selection UI? **Question:** Should Blender jobs find eligible scenes through a marker on the scene, or through an explicit selection screen? | P-061 §12 | The stable job input | None | open |
-| CT-D18 | Blender jobs: default upload policy and bucket **Question:** Should finished Blender renders upload to a bucket by default, and which one? | P-061 §12 | Storage cost and privacy | None | open |
+| CT-D17 | Blender jobs: a scene eligibility marker, or an explicit selection UI? **Question:** Should Blender jobs find eligible scenes through a marker on the scene, or through an explicit selection screen? | P-061 §12 | The stable job input | Explicit scene selection, which P-061 §1 chose on 2026-10-08 as the first mode; a scene marker can follow | open |
+| CT-D18 | Blender jobs: default upload policy and bucket **Question:** Should finished Blender renders upload to a bucket by default, and which one? | P-061 §12 | Storage cost and privacy | Local-only output with no upload unless it is explicitly enabled, as P-061 §1 chose on 2026-10-08 | open |
 
 ## Runs
 
@@ -98,20 +107,21 @@ Columns: **Blocks** is what cannot proceed; **Default** is what applies if nobod
 | CT-R03 | **Record the voice sample**: 3–10 min, 48 kHz WAV, one sitting, varied real text — your own blog posts work well — in the register Nova should have. Check it afterwards with `modules/audio-production/tts/check_voice_sample.py` (P-068 slice 3): objective pass/fail on format, length, clipping, level, noise, edits and a lossy-source cutoff, while your ears still judge the room, register and content | **manual** | CT-D04, CT-D05 | P-068 §5.4 | blocked by CT-D05 |
 | CT-R04 | **Local TTS prototype.** Install one engine (Chatterbox first, F5-TTS as the alternate); confirm `mps True`; clone; blind A/B against ElevenLabs and `nova-local`; p50 and p95 over 20 paragraphs (`python -m stream_speech --prerender` reports them, P-068 slice 4); the same line on three separate days; then the pipeline check — pet mouth-sync, inbox registration, account routing. That last check needs the `provider: local` branch, which slice 1 built on 2026-10-05 with no engine adapter, so it still cannot render until an engine slice lands | **live** | CT-R03, CT-D06 | P-068 §5–§6 | blocked by CT-R03 |
 | CT-R05 | **Design the pet**: generate raster art in ComfyUI, assemble a sprite sheet and emote map in Krita | **manual** | CT-D01 | P-067 §8 | blocked by CT-D01 |
-| CT-R06 | **Walkthrough prototype (Run 1).** Pass criterion: a 3–5 minute narrated recording, pet animated in time with speech, at least four structured annotations correctly anchored, registered in the inbox and routed to the OpenTechnology account | **live** | CT-D09; the walkthrough engine (not built); CT-R05; CT-D02 | P-067 §9 | blocked by CT-D09 |
+| CT-R06 | **Walkthrough prototype (Run 1).** Pass criterion: a 3–5 minute narrated recording, pet animated in time with speech, at least four structured annotations correctly anchored, registered in the inbox and routed to the OpenTechnology account | **live** | CT-D09; the walkthrough engine (not built); CT-R05; CT-D02 | P-067 §9 and §18 | blocked by runtime and final creative acceptance; target selected |
 | CT-R07 | **Reactive prototype (Run 2, Try Not to Laugh).** One supplied clip with a recorded rights confirmation; the rights gate must **block** a run that has none. The real acceptance criterion: a recognisably different result from Run 1 with no registry schema change | **live** | The reactive composer (not built); CT-R05; CT-D02; ST-D03 for the publish path; a rights record | P-067 §9, §6.2 | blocked |
 | CT-R08 | **Three branding sets** — avatar, banner, panels, watermark and About copy for Games, Reactions and OpenTechnology: generate the raster in ComfyUI, assemble in Krita, upload by hand | **manual** | ST-D01 (the handles) | [Stream guide §3.6](../guides/production-setup/STREAM_EXTEND_PRODUCTION_SETUP.md#36-branding-artifacts--prepare-these-during-setup-not-after) | blocked by ST-D01 |
 | CT-R09 | **After lesson 1 airs**: cut clips and stills, write the X thread and comment ammo; declare lesson-shaped Reddit and LinkedIn templates (P-064 Phase 4); flip `Aired` in [`../learning/README.md`](../learning/README.md) **and** the `ai-learning` subjects file together, then run `validate` | **manual**, then **auto** | ST-R09 | P-064 §10 phases 2 and 4 | blocked by ST-R09 |
 | CT-R11 | **Marketing drafts per consumer**: `validate` → `coverage --module <id>` → `generate --module <id> --asset <asset> --dry-run` → review → `generate`; read the checklist each draft carries. Blocked claims and discovery-only consumers are expected boundaries — never use `--force` | **auto** and **manual** | CT-R10 for the two blog modules; otherwise a registered consumer with evidence-backed subjects | [Documentation workflow § Marketing drafts](../DOCUMENTATION_WORKFLOW.md#marketing-drafts-and-coverage) | ready for `stream-extend`, `content-extend`, `task-management` and `ai-learning` |
 | CT-R12 | **Native Windows acceptance of creator workflow inputs** | **live** | ST-D07 | P-057 | blocked by ST-D07 |
 | CT-R13 | **`realtime-ai`: GPU-run verification of the six missing ComfyUI workflows.** About 14 GB of model downloads — budget it as the session, not as setup. Real inference verification was never something an agent could do | **live** | A GPU host and the model downloads | P-028; [`models.md`](../../modules/realtime-ai/comfyui/models.md) | open — owner work |
-| CT-R15 | **Recording to reviewed Shorts draft** with source/content profile preserved; beginner inbox → review/trim → verified MP4, not merely an editing-status change; baseline first, combined app repeat later | **live** | ST-R05 recording; ST-T16 for combined repeat; local Shorts pipeline and authorized desktop adapter | [P-072 §9 U-09 journey 1](../proposals/PROPOSAL_UNIFIED_DESKTOP_AND_CLOUD_SCOPE.md#9-test-and-pressure-matrix) | open baseline; combined repeat blocked by build |
+| CT-R15 | **Recording to reviewed Shorts draft** with source/content profile preserved; beginner inbox → review/trim → verified MP4, not merely an editing-status change; baseline first, combined app repeat later | **live** | ST-R05 recording; ST-T16 for combined repeat; local Shorts pipeline and authorized desktop adapter | [P-072 §9 U-09 journey 1](../proposals/PROPOSAL_UNIFIED_DESKTOP_AND_CLOUD_SCOPE.md#9-test-and-pressure-matrix) | open baseline and actual combined native repeat; managed recording blocked by P072-R1-01 atomic ownership contract; Shorts desktop adapter remains open; independent ORCH04 export source is not integrated |
 | CT-R16 | **Recording to Content profile to explicitly approved private publishing test**; inspect the actual destination account | **live** | CT-R01 baseline; ST-T16 recording for combined repeat; real provider sign-in and exact-job approval | [P-072 §9 U-09 journey 3](../proposals/PROPOSAL_UNIFIED_DESKTOP_AND_CLOUD_SCOPE.md#9-test-and-pressure-matrix) | blocked by accounts/build; no publishing authorized by this index |
 | CT-R17 | **Future companion availability and conflict test:** expired session, asleep desktop, reconnect and conflicting drafts | **live** | PL-D14; separately accepted C1/C2 proposal and hosted build | [P-072 §9 U-10](../proposals/PROPOSAL_UNIFIED_DESKTOP_AND_CLOUD_SCOPE.md#9-test-and-pressure-matrix) | blocked — cloud candidate scope only |
 | CT-R18 | **Future media review/backup acceptance:** interrupted upload, quota, wrong-tenant access, delete and restore with local original intact | **live** | PL-D14; separately accepted C2 proposal and private storage | [P-072 §9 U-11](../proposals/PROPOSAL_UNIFIED_DESKTOP_AND_CLOUD_SCOPE.md#9-test-and-pressure-matrix) | blocked — cloud candidate scope only |
 | CT-R19 | **Future cloud batch acceptance:** small real job with failure/cancel/retry, pinned models/inputs and a hard cost ceiling | **live** | PL-D14; separately accepted C3 proposal, single executor and budget | [P-072 §9 U-12](../proposals/PROPOSAL_UNIFIED_DESKTOP_AND_CLOUD_SCOPE.md#9-test-and-pressure-matrix) | blocked — cloud candidate scope only |
 
 ## Resolved
+
 
 Newest first. A row stays here until it moves to a dated archive (see
 [how this grows](README.md#how-this-grows)).

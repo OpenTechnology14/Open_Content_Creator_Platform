@@ -21,10 +21,15 @@ from .status import STATUS_MEANING, coverage_gaps, satisfies
 PLACEHOLDER = re.compile(r"\{\{\s*([a-z0-9_]+)\s*\}\}")
 
 # TEMPLATE_REPO_CROSSWALK.md: "Job Hunter is public; everything else is private. Linking a
-# Hybrid_Creator_Platform doc in any public-facing material (the blog, the course) produces
-# a 404 for readers." Generated copy is public-facing, so a private repo URL in a draft is
-# a defect the generator refuses to emit.
+# private repo doc in any public-facing material (the blog, the course) produces a 404 for
+# readers." Generated copy is public-facing, so a private repo URL in a draft is a defect the
+# generator refuses to emit. Two repositories are public: a subject's own public upstream
+# (Job Hunter) and the Content Creator Platform's public edition, which a target names with
+# `public_repo` in targets.yml. A link into that edition must name a path it actually contains.
 PRIVATE_REPO_URL = re.compile(r"github\.com/OpenTechnology14/([A-Za-z0-9_.-]+)")
+REPO_PATH_URL = re.compile(
+    r"github\.com/OpenTechnology14/([A-Za-z0-9_.-]+)/(?:blob|tree)/[^/\s)\"'`>]+/([^\s)\"'`>#?]+)"
+)
 
 
 class RenderError(RuntimeError):
@@ -230,18 +235,43 @@ def build_context(cw: Crosswalk, module: str, subject: dict, asset: str) -> Dict
     return context
 
 
-def check_private_links(body: str, subject: dict) -> None:
-    """Refuse to emit a draft containing a link to a private OpenTechnology14 repo."""
-    public_repo = subject.get("upstream") if subject.get("visibility") == "public" else None
+def public_edition_repos(cw: Crosswalk) -> Dict[str, str]:
+    """Repository name -> target key, for every target that declares a public edition."""
+    return {
+        spec["public_repo"].split("/")[-1]: key
+        for key, spec in cw.targets.items() if spec.get("public_repo")
+    }
+
+
+def _in_public_edition(root: Path, path: str) -> bool:
+    """True when the exporter could have published this path: it exists and is outside private/."""
+    path = path.strip("/")
+    return bool(path) and not path.startswith("private/") and (root / path).exists()
+
+
+def check_private_links(body: str, subject: dict, cw: Optional[Crosswalk] = None) -> None:
+    """Refuse to emit a draft that links a private OpenTechnology14 repo, or a file the public edition lacks."""
+    upstream = subject.get("upstream") if subject.get("visibility") == "public" else None
+    public_names = {upstream.split("/")[-1]} if upstream and upstream != "none" else set()
+    editions = public_edition_repos(cw) if cw else {}
     leaked = {
         name for name in PRIVATE_REPO_URL.findall(body)
-        if not (public_repo and public_repo.endswith(name))
+        if name not in public_names and name not in editions
     }
     if leaked:
         raise PrivateLinkLeak(
-            f"draft links private repo(s) {sorted(leaked)}. TEMPLATE_REPO_CROSSWALK.md: "
-            "'Job Hunter is public; everything else is private' — a link to any other repo "
-            "404s for readers. Remove the link from the template."
+            f"draft links private repo(s) {sorted(leaked)}. Only a subject's own public upstream and "
+            "a target's `public_repo` may be linked; a link to any other repo 404s for readers. "
+            "Remove the link from the template."
+        )
+    missing = sorted({
+        path for name, path in REPO_PATH_URL.findall(body)
+        if name in editions and not _in_public_edition(cw.root, path)
+    })
+    if missing:
+        raise PrivateLinkLeak(
+            f"draft links path(s) {missing} in the public edition, which does not contain them "
+            "(missing, or under private/). Link a file the exported tree has."
         )
 
 
@@ -272,7 +302,7 @@ def render(cw: Crosswalk, module: str, subject: dict, asset: str) -> str:
             f"{sorted(set(missing))}. Available: {sorted(context)}"
         )
 
-    check_private_links(filled, subject)
+    check_private_links(filled, subject, cw)
     return filled
 
 

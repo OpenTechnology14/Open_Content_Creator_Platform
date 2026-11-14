@@ -98,7 +98,7 @@ repository holds a scaffold. The same discipline applies outward.
 | A running Compose stack with provisioned dashboards | That Docker is required to open either app |
 | Bundled ComfyUI workflows and recorded Mac output runs (P-054/P-057) | That every workflow works on every GPU or Windows workstation |
 | An offline test suite, CI acceptance harness and recorded native Mac app runs | Windows desktop installation, credential and physical capture acceptance without corresponding evidence |
-| Source-available intent | "Open source" — no root license exists (`D-01`) |
+| Open-source intent, with an MIT root `LICENSE` in the tree (P-075, #84) | That the project is open source — the owner has not confirmed the license or the release gates (`OSS-D01` to `D16`) |
 
 ---
 
@@ -126,8 +126,8 @@ setup work is delivery and native acceptance, not rebuilding those foundations.
 - **Promote one module to `implemented` with evidence.** `storage-data` (`P-024`) is now the
   first candidate rather than `observability` — it is the smallest real work and eight modules
   depend on it. Proves the mechanism and unblocks the first shipped-claim marketing assets.
-- **Resolve the ContentExtend naming decision.** `REPOSITORY_ALIGNMENT.md` says the product is
-  ContentExtend; every surface says Creator Extend. Until settled, every generated guide-page and
+- **Resolve the ContentExtend naming decision.** `REPOSITORY_ALIGNMENT.md` records ContentExtend as
+  the candidate name; every surface says Creator Extend. Until settled, every generated guide-page and
   comparison-page draft carries a do-not-publish banner.
 - **One storage contract and one model contract** — `P-017` is now **Phase 1**, not later: four
   modules already hand-roll a MinIO client and two more are specified, so doing it at four
@@ -250,7 +250,7 @@ The most useful single number today: **modules past `scaffolded` — currently 4
 (`marketing-crosswalk`, `asset-pipeline` and `model-registry` — repo tools — and `storage-data`, the
 first product module, promoted 2026-09-01 with real CI evidence via `P-016`). *Corrected 2026-10-04;
 this said 2 of 17.* One caveat belongs beside it: `storage-data`'s evidence is a live CI run, and the
-first real CI run since the billing block is red on that module's image pull —
+first real CI run since the billing block was red on that module's image pull; the fix landed and `main` was green on 2026-10-09, then the block returned until 2026-11-01 —
 [`PL-D08`](../todo/README.md#platform-and-release-decisions-no-lane-doc-yet).
 
 ---

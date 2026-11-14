@@ -4,7 +4,7 @@
 
 [Open the proposal dashboard](proposal-dashboard.html). It is a self-contained documentation
 page and can be opened locally without either app or any provider account. The project picker
-shows Hybrid Platform or MyFeed; this repository initially selects Hybrid Platform.
+shows Content Creator Platform or MyFeed; this repository initially selects Content Creator Platform.
 
 The [canonical proposal queue](PROPOSALS.md) owns IDs, states, assignments and authorization.
 The dashboard is a dated view of those records, not a competing backlog. Its source snapshot
@@ -18,7 +18,7 @@ start a game/account action, publish or spend on AI. Selection persists locally 
 Testing means a working core or bounded build slice mainly needs acceptance or named leftover
 work. Keep substantial new implementation in Build and conditional work behind its original
 gates. Move an item back to Build when acceptance exposes substantial missing implementation.
-Hybrid Testing rows retain In progress as their canonical state; completion still needs the
+Content Creator Testing rows retain In progress as their canonical state; completion still needs the
 recorded verification bar. MyFeed's Work view remains independent of its local-delivery status.
 
 ## Sources and refresh
@@ -26,7 +26,7 @@ recorded verification bar. MyFeed's Work view remains independent of its local-d
 - [Dashboard source](assets/proposal-dashboard-source.html): editable exported visual fragment.
 - [Snapshot receipt](proposal-dashboard-snapshot.json): source queue hashes, work counts and date.
 - [P-071 tracker](proposals/PROPOSAL_DOCUMENT_GAPS.md#proposal-dashboard-tracking).
-- `scripts/testing/proposal_report.py` derives Hybrid counts and checks the owner lane map.
+- `scripts/testing/proposal_report.py` derives Content Creator counts and checks the owner lane map.
 - MyFeed's own queue, `docs/readable/PROPOSAL_WORK_QUEUE.md` (in the MyFeed repo; it does not exist here),
   owns each item's Work view and Next step.
 
@@ -36,7 +36,7 @@ refresh the embedded source data, dated label and snapshot receipt in both repos
 the source to `proposal-dashboard.html` with the Visualize renderer, preserving local-only state
 and request preparation. Keep this guide and the dated tracker totals consistent. Automated
 regeneration/freshness CI is a separate future build; the existing proposal report remains the
-current command to check Hybrid queue/lane integrity.
+current command to check Content Creator queue/lane integrity.
 
 Run `make proposal-report ARGS='--check --summary'`, generated-doc write/check, required
 `make test`, local links/ID/count/receipt checks and `git diff --check`. Open the exported page

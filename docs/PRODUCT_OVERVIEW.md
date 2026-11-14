@@ -12,8 +12,8 @@
 | Repository | Role |
 |---|---|
 | [Open_Content_Creator_Platform](https://github.com/OpenTechnology14/Open_Content_Creator_Platform) | Canonical combined integration and shared desktop source |
-| [ContentExtend](https://github.com/OpenTechnology14/ContentExtend) | Content-focused product distribution, modules, guides, and release documentation |
-| [StreamExtend](https://github.com/OpenTechnology14/StreamExtend) | Streaming-focused product distribution, modules, guides, and release documentation |
+| ContentExtend | Content-focused product distribution, modules, guides, and release documentation |
+| StreamExtend | Streaming-focused product distribution, modules, guides, and release documentation |
 
 The existing code path `apps/creator-extend` is the legacy/internal name for the ContentExtend desktop prototype. It remains unchanged during the initial repository import; its controlled rename/export is tracked in the alignment policy.
 

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-setup-refresh-readiness"
+description = "Enables the setup_refresh_readiness command without any pre-configured scope."
+commands.allow = ["setup_refresh_readiness"]
+
+[[permission]]
+identifier = "deny-setup-refresh-readiness"
+description = "Denies the setup_refresh_readiness command without any pre-configured scope."
+commands.deny = ["setup_refresh_readiness"]

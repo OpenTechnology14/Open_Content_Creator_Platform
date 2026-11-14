@@ -30,6 +30,19 @@ The strongest asset is the modular, local-first architecture and its written roa
 
 ## Verified evidence
 
+**P-072 round3 acceptance/integration, 2026-11-06 local:** independent round3 accepted P072-R2-01 at `abaf6a49e34c97c9d38e59ef07beb37126b2b8e6`, retained R1-02–05 acceptance and approved R1-01 containment only. Parent confirmed all eight exact-head hosted checks passed and normally merged PR94 as `aa24e8bf46e0442e8faadc74ad997e7e9e1ba893` at 2026-11-07T01:39:24Z. P-072 stays Testing; managed recording remains unresolved/unavailable, and native/output/migration/release acceptance remains open. P072-R3-01 corrects CT-R15's acceptance wording only. The completed private ABI source study proposes a dependency, not runtime support. Older dated review-pending paragraphs below are historical.
+
+**P-072 round2 repair, 2026-11-06:** independent review at `cb9d224` accepted R1-02–05 repairs and R1-01 containment only. P072-R2-01 confirmed old idle scene/mute controls could target a newly saved endpoint. Required observation contexts and native pre-resolution checks, pre-write idle invalidation, and UI invalidation/fresh reads are implemented for round3 review. Managed recording remains fenced/unresolved. The cb76111 docs merge preserves accepted P-067/ORCH direction; no output or release acceptance follows.
+
+**P-072 repair review, 2026-11-01:** independent REQUEST CHANGES at `f7074ab` found replacement-output ownership, corrupt-preference/failed-observation safety loss, blocking inspection, missing automatic mute and permanent pending handoff. P072-R1-01–05 are registered in P-072. Recovery on 2026-11-06 confirms R1-01 remains unresolved: parameterless Stop can destroy a replacement after the barrier. Native managed Start/destructive Stop are fenced; lifecycle candidate tests are not product capability proof. R1-02–05 safety/recovery repairs await independent re-review. Earlier green tests did not prove these boundaries. No real OBS or release acceptance follows.
+
+**P-072 recording-first controller, 2026-11-01 (historical; managed Start/Stop now fenced by the repair above):** owner v6 authorizes combined desktop development
+before convergence. The private app now wires real local OBS recording, scene switching and input
+mute through the reused Stream adapter and a root native controller. Offline protocol/ownership,
+pinned-profile, generation, recovery and admission evidence is recorded in [P-072](proposals/PROPOSAL_UNIFIED_DESKTOP_AND_CLOUD_SCOPE.md).
+Live streaming, real-account work, encoder/picture/audio acceptance, native Windows, migration and
+release remain open. No module maturity or public-readiness promotion follows from fake OBS tests.
+
 **P-066 local personality audio, 2026-10-02:** The full authoring/review and manual scripted-Q&A
 implementation is built in existing modules and Stream Extend. It includes resolved persona
 prompts, installed Ollama phrase generation, native PCM previews, immutable revision feedback and

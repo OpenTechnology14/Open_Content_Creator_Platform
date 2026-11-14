@@ -23,7 +23,7 @@ P-071 L1/L2/T1/T2 have [full contracts](../proposals/PROPOSAL_DOCUMENT_GAPS.md#t
 
 | Proposal | Primary model / effort | Follow-up routing and boundary |
 |---|---|---|
-| [P-072](../PROPOSALS.md) | `gpt-6.1-sol` / `high` | Terra/medium: proposed beginner navigation/help copy; Luna/high: inventory parity evidence. Sol owns design/migration; convergence gates remain. Owner explicitly authorized private preview before convergence on 2026-10-12; Sol owns native admission/isolated settings/shared contracts and critical checks. Full migration/public replacement retain gates. |
+| [P-072](../PROPOSALS.md) | `gpt-6.1-sol` / `high` | Terra/medium: proposed beginner navigation/help copy; Luna/high: inventory parity evidence. Sol owns design/migration; convergence gates remain. Owner explicitly authorized private preview before convergence on 2026-10-12; Sol owns native admission/isolated settings/shared contracts and critical checks. Full migration/public replacement retain gates. Owner v6 (2026-11-01) authorizes full combined desktop development before convergence; the sole Sol/high writer owns the recording-first native OBS slice, fake protocol tests and security checks. Live accounts, paid providers and credential/account migrations retain gates; HF/OpenCode disabled. P072-R1-01–05 repair block explicitly inherits `gpt-6.1-sol` / `high` for native ownership, cross-app controller and safety regressions (owner model-label clarification 2026-11-06). Native Codex configuration verified. Recommended Terra/Luna children remain unselected; any older Terra ID needs live catalog availability and a documented replacement before selection. P072-R2-01 also inherits Sol/high for native endpoint/context admission and safe UI recovery, with no model override. P072-R3-01 accepted-repair/docs reconciliation inherits Sol/high for evidence/lane/approval consistency; round3 accepted R2-01 at abaf6a4 and PR94 merged aa24e8b, without accepting R1-01 capability or native parity. No override/extra worker. |
 | [P-071](../PROPOSALS.md) | `gpt-6.1-sol` / `high` | Completed approved phases 1–5; scoped phase-6 future work remains deferred. |
 | [P-070](../PROPOSALS.md) | `gpt-6.1-sol` / `high` | Retain completed recommendation; no new work assigned. |
 | [P-068](../PROPOSALS.md) | `gpt-6.1-sol` / `high` | Terra/medium: draft audition narration; Luna/high: format measured audition reports. Sol owns engines, cache and speech routing. |
@@ -96,6 +96,29 @@ P-071 L1/L2/T1/T2 have [full contracts](../proposals/PROPOSAL_DOCUMENT_GAPS.md#t
 | [P-021](../PROPOSALS.md) | `gpt-6.1-sol` / `high` | Primary assignment retained; no executable child while Deferred admission conditions are unmet. |
 | [P-022](../PROPOSALS.md) | `gpt-6.1-sol` / `high` | Primary assignment retained; no executable child while Deferred admission conditions are unmet. |
 | [P-023](../PROPOSALS.md) | `gpt-6.1-sol` / `high` | Primary assignment retained; no executable child while Deferred admission conditions are unmet. |
+
+## App-owned production execution — 2026-11-06
+
+[P-067 §18](../proposals/PROPOSAL_AI_WALKTHROUGH_MASCOT_SYSTEM.md#18-app-owned-production-and-t3-work-items)
+is the canonical per-item table: ORCH-01/02/08 use `gpt-6-astra` / `xhigh` for coupled
+walkthrough contracts/execution and independent review; ORCH-03/04/05 use `gpt-6.1-sol` /
+`high` for existing OBS-controller integration, local export jobs and Library UI;
+ORCH-06/07 use `gpt-6.1-sol` / `xhigh` for account-scoped YouTube and later-provider
+publishing. Each row supplies rationale, dependency and done condition. These bounded
+child overrides preserve parent assignments and the active PR #94 repair owner.
+T3 must configure and read back model/effort/workspace before execution; catalog inspection
+confirmed these options on 2026-11-06 but does not prove any child has launched.
+The owner's explicit handoff request authorizes execution within §18, not blanket
+public posting, unrelated Pending/Deferred work or release-gate bypass.
+
+**2026-11-07 execution checkpoint:** ORCH-04's original `codex / gpt-6.1-sol / high`
+writer completed PR97 at `8f7efc1`; independent ORCH-08 round6 actually ran
+`codex / gpt-6-astra / xhigh` and approved the bounded contract. All nine checks passed;
+normal integration is `fe30516`. ORCH-05 now runs sequentially in that same Sol/high writer
+on new shared plugin/UI paths; P-072 retains existing app/OBS ownership and mounts only after
+the next review/handoff. Schema1 is the accepted ORCH-05 basis under the documented launcher,
+platform and media limits. No native Library, managed recording, account or release acceptance
+is claimed. This records actual configured execution, not an extra model registry or provider.
 
 ## Sol continuation
 

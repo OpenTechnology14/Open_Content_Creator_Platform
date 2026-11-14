@@ -3,26 +3,31 @@
   "pages": [
     {
       "id": "home",
-      "label": "Home"
+      "label": "Home",
+      "feature": "home"
     },
     {
       "id": "stream",
       "label": "Stream",
-      "pack": "stream"
+      "pack": "stream",
+      "feature": "live-recording"
     },
     {
       "id": "create",
       "label": "Create",
-      "pack": "content"
+      "pack": "content",
+      "feature": "images"
     },
     {
       "id": "library",
       "label": "Library",
-      "pack": "content"
+      "pack": "content",
+      "feature": "media-library"
     },
     {
       "id": "settings",
-      "label": "Settings"
+      "label": "Settings",
+      "feature": "setup"
     }
   ],
   "groups": [
@@ -129,5 +134,139 @@
       "label": "Edit a video range",
       "purpose": "Prepare an edit across a group of frames."
     }
-  }
+  },
+  "sidebar_groups": [
+    {
+      "id": "workspace",
+      "label": "Workspace",
+      "items": [
+        {
+          "id": "home",
+          "label": "Home",
+          "page": "home",
+          "section": "workspace-overview"
+        },
+        {
+          "id": "media-library",
+          "label": "Media Library",
+          "page": "library",
+          "section": "recording-library",
+          "pack": "content"
+        },
+        {
+          "id": "jobs",
+          "label": "Jobs & Activity",
+          "available": false
+        },
+        {
+          "id": "automations",
+          "label": "Automations",
+          "available": false
+        }
+      ]
+    },
+    {
+      "id": "production",
+      "label": "Production",
+      "items": [
+        {
+          "id": "live-recording",
+          "label": "Live & Recording",
+          "page": "stream",
+          "section": "stream-readiness",
+          "pack": "stream"
+        },
+        {
+          "id": "scenes",
+          "label": "Scenes & Sources",
+          "pack": "stream",
+          "page": "stream",
+          "section": "production-controls"
+        },
+        {
+          "id": "audio",
+          "label": "Audio & Soundboard",
+          "available": false,
+          "pack": "stream"
+        },
+        {
+          "id": "overlays",
+          "label": "Overlays & Avatars",
+          "available": false,
+          "pack": "stream"
+        }
+      ]
+    },
+    {
+      "id": "studio",
+      "label": "Studio",
+      "items": [
+        {
+          "id": "clips",
+          "label": "Clips & Video",
+          "available": false,
+          "pack": "content"
+        },
+        {
+          "id": "images",
+          "label": "Images & Thumbnails",
+          "page": "create",
+          "section": "workflow-catalog",
+          "pack": "content"
+        },
+        {
+          "id": "environments",
+          "label": "3D & Environments",
+          "available": false,
+          "pack": "content"
+        },
+        {
+          "id": "sports",
+          "label": "Sports Analysis",
+          "available": false,
+          "pack": "content"
+        }
+      ]
+    }
+  ],
+  "utilities": [
+    {
+      "id": "profiles",
+      "label": "Profiles & Accounts",
+      "page": "settings",
+      "section": "profiles"
+    },
+    {
+      "id": "setup",
+      "label": "Setup & Settings",
+      "page": "settings",
+      "section": "guided-setup"
+    },
+    {
+      "id": "help",
+      "label": "Help & Diagnostics",
+      "page": "settings",
+      "section": "help"
+    }
+  ],
+  "shortcuts": [
+    {
+      "id": "connections",
+      "label": "Connections",
+      "page": "settings",
+      "section": "connections"
+    },
+    {
+      "id": "tools",
+      "label": "Enabled tools",
+      "page": "settings",
+      "section": "discover-tools"
+    },
+    {
+      "id": "layout",
+      "label": "Workspace & layout",
+      "page": "settings",
+      "section": "workspace-layout"
+    }
+  ]
 }

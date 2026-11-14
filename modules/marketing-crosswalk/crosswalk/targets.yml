@@ -52,11 +52,14 @@ targets:
 
   hybrid-creator-platform:
     repo: OpenTechnology14/Open_Content_Creator_Platform
+    # The public source edition. Public-facing drafts may link this repository, and only paths it
+    # contains; `repo` above is private and never reaches a draft.
+    public_repo: OpenTechnology14/Open_Content_Creator_Platform
     description: >-
       This repository. Stream Extend's marketing surfaces live here today — README.md carries the
       product overview, installation and module links, and product-spec.md owns the pricing model
       and the "Guides as Content" plan. REPOSITORY_ALIGNMENT.md makes this the canonical source;
-      StreamExtend is a downstream distribution repo, not where this copy is authored.
+      the former standalone StreamExtend repository is archived and is not where this copy is authored.
     path_env: HCP_REPO_PATH
     default_path: .
 

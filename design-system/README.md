@@ -4,7 +4,7 @@
 > **Enforcement: advisory until approved.** Nothing in this folder is owner-approved. Read the
 > [adoption rule](#adoption-rule) before acting on any value.
 
-The ecosystem's design-system hub. This repository (`hybrid-creator-platform`) is the hub; every other
+The ecosystem's design-system hub. This repository (the Content Creator Platform) is the hub; every other
 repository keeps a **pointer doc** plus its own local overrides, never a copy. It is the same pattern the
 [marketing crosswalk](../modules/marketing-crosswalk/README.md) uses for module discovery, for the same
 reason: two copies of a source of truth drift.

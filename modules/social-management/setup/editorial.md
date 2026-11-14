@@ -3,9 +3,9 @@
 P-062 extends Social Management with local channel routing, source-backed video concepts,
 revision-bound review and a production-brief handoff. The public
 [AgentWorkflows library](https://github.com/OpenTechnology14/AgentWorkflows) supplies the
-generic procedure. Its [content approval workflow](https://github.com/OpenTechnology14/AgentWorkflows/blob/fae0ee8/workflows/CONTENT_APPROVAL.md)
-is prepared in [draft PR #3](https://github.com/OpenTechnology14/AgentWorkflows/pull/3),
-not claimed released or installed. This page is the platform adapter and remains usable independently.
+generic procedure. Its [content approval workflow](https://github.com/OpenTechnology14/AgentWorkflows/blob/a2c1f3b6be2aa561717511e737a1b0ded1108684/workflows/CONTENT_APPROVAL.md)
+is in the library's first public commit. The library has no tagged release, and this repository links it
+but does not install it. This page is the platform adapter and remains usable independently.
 
 ## Ownership and channel structure
 

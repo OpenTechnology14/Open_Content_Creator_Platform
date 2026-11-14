@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-recordings-import"
+description = "Enables the recordings_import command without any pre-configured scope."
+commands.allow = ["recordings_import"]
+
+[[permission]]
+identifier = "deny-recordings-import"
+description = "Denies the recordings_import command without any pre-configured scope."
+commands.deny = ["recordings_import"]

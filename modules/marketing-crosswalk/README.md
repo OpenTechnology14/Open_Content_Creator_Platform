@@ -9,11 +9,11 @@ modules registered in [`crosswalk/modules.yml`](crosswalk/modules.yml).
 
 ## This is the canonical marketing-module registry
 
-**Working in any of the three repositories — hybrid-creator-platform, OpenTechnologyApp, or
+**Working in any of the three repositories — Content Creator Platform, OpenTechnologyApp, or
 OpenTechnologyBlog — and need to know what marketing modules exist? Read one file:**
 
 ```
-hybrid-creator-platform/modules/marketing-crosswalk/crosswalk/modules.yml
+content-creator/modules/marketing-crosswalk/crosswalk/modules.yml
 ```
 
 There is no second list. A marketing module that is not registered there is not discoverable, which
@@ -25,8 +25,8 @@ is the whole reason the registry exists.
 # From this repo
 rg -i "ai learning|control layer|chatbot" modules/marketing-crosswalk/crosswalk/modules.yml
 
-# From another repo, if the platform is a sibling checkout
-rg -i "<your term>" ../hybrid-creator-platform/modules/marketing-crosswalk/crosswalk/modules.yml
+# From another repo, if the platform is a sibling checkout (substitute its directory name)
+rg -i "<your term>" ../<platform-checkout>/modules/marketing-crosswalk/crosswalk/modules.yml
 
 # Not sure where the platform is checked out
 find ~ -maxdepth 4 -path '*/marketing-crosswalk/crosswalk/modules.yml' 2>/dev/null
@@ -69,12 +69,12 @@ Layer hub are not new subjects; that module's source docs flag them for a separa
 
 | Module | Target | Subjects | Ledger |
 |---|---|---|---|
-| `task-management` | [OpenTechnology14/OpenTechnologyApp](https://github.com/OpenTechnology14/OpenTechnologyApp) | its six built-in project templates | `BLOG_MARKETING_CONNECTION.md` §2 |
+| `task-management` | OpenTechnology14/OpenTechnologyApp | its six built-in project templates | `BLOG_MARKETING_CONNECTION.md` §2 |
 | `stream-extend` | this repo | the fifteen modules labelled `Stream` | `product-spec.md` §Marketing (streamextend.com rows) |
 | `content-extend` | this repo | the thirteen **product** modules labelled `Content` (fourteen carry the label) | `product-spec.md` §Marketing (creatorextend.com rows) |
-| `ai-learning` | [OpenTechnologyBlog](https://github.com/OpenTechnology14/OpenTechnologyBlog) (status read from this repo) | the four lessons of the [AI Learning Series](../../docs/learning/README.md) | `docs/learning/README.md` § Where each lesson is delivered |
-| `ai-control-layer` | [OpenTechnologyBlog](https://github.com/OpenTechnology14/OpenTechnologyBlog) | ten source guides | `OpenTechnologyBlog:docs/AI_CONTROL_LAYER_MODULE.md` |
-| `chatbot-routing` | [OpenTechnologyBlog](https://github.com/OpenTechnology14/OpenTechnologyBlog) | seven source guides | `OpenTechnologyBlog:docs/CHATBOT_ROUTING_MODULE.md` |
+| `ai-learning` | OpenTechnologyBlog (status read from this repo) | the four lessons of the [AI Learning Series](../../docs/learning/README.md) | `docs/learning/README.md` § Where each lesson is delivered |
+| `ai-control-layer` | OpenTechnologyBlog | ten source guides | `OpenTechnologyBlog:docs/AI_CONTROL_LAYER_MODULE.md` |
+| `chatbot-routing` | OpenTechnologyBlog | seven source guides | `OpenTechnologyBlog:docs/CHATBOT_ROUTING_MODULE.md` |
 
 `marketing-crosswalk` carries the `Content` label but is **not** a `content-extend` subject: the
 roadmap says it "owns no runtime and ships in neither app". Marketing copy about it would describe
@@ -90,9 +90,9 @@ hub row, whose `status` is the review state of its content.
 | Module | Where it lives | What it is |
 |---|---|---|
 | `myfeed` | [OpenTechnology14/MyFeed](https://github.com/OpenTechnology14/MyFeed) | a separate single-user local media reader |
-| `ironfall` | [OpenTechnology14/Ironfall](https://github.com/OpenTechnology14/Ironfall) | a UE 5.8 game specification and C++ project |
+| `ironfall` | OpenTechnology14/Ironfall | a UE 5.8 game specification and C++ project |
 | `animalhouse` | local project, no repository yet | a UE 5.8 animal-collection prototype |
-| `gist` | [OpenTechnology14/Gist](https://github.com/OpenTechnology14/Gist) | a separate mobile-first grocery list and food health-scoring web app with a product directory |
+| `gist` | OpenTechnology14/Gist | a separate mobile-first grocery list and food health-scoring web app with a product directory |
 | `design-system` | this repo, [`design-system/`](../../design-system/README.md) | the ecosystem design-system hub (`kind: design-system-hub`): tokens, component specs, voice registers, and the downstream repositories that mirror it through pointer docs; drafted, awaiting owner review |
 
 **Direction matters.** This repository is the Content Platform; a registered module is a
@@ -102,7 +102,7 @@ directory — onboarding one is an explicit act, not a coverage obligation.
 `stream-extend` targets **this repo** because Stream Extend's marketing surfaces live here today:
 `README.md` carries the product comparison and pricing, and `product-spec.md`
 §"Marketing: Guides as Content" specifies how a module's setup docs become a website page. There
-is no StreamExtend checkout, and `REPOSITORY_ALIGNMENT.md` makes this the canonical source.
+is no StreamExtend checkout (that repository is archived), and `REPOSITORY_ALIGNMENT.md` makes this the canonical source.
 
 The Stream Autopilot catalog uses these same module IDs as direct source bindings. Each scripted
 marketing show profile names exactly one module ID and its crosswalk target, so `task-management`
@@ -272,10 +272,16 @@ reported with their evidence line — they are not defects.
 **2. A private repo link never reaches a draft.**
 
 `TEMPLATE_REPO_CROSSWALK.md` § Known gaps: *"Job Hunter is public; everything else is private.
-Linking a Hybrid_Creator_Platform doc in any public-facing material (the blog, the course)
-produces a 404 for readers."* Generated copy is public-facing, so every rendered draft is scanned
-for `github.com/OpenTechnology14/*` URLs and rejected unless the repo is the subject's own public
-upstream. A private upstream renders as an explicit "do not link" note instead.
+Linking a private repo doc in any public-facing material (the blog, the course) produces a 404
+for readers."* Generated copy is public-facing, so every rendered draft is scanned for
+`github.com/OpenTechnology14/*` URLs and rejected unless the repo is public. Two are: the
+subject's own public upstream, and the **public edition** of a target, named by `public_repo` in
+`targets.yml` (the Content Creator Platform's is `Open_Content_Creator_Platform`; its `repo`,
+the private development repository, never reaches a draft). A link into the public edition must
+also name a path that edition contains: the file has to exist and sit outside `private/`, which
+the exporter never publishes. A private upstream renders as an explicit "do not link" note instead.
+Private-facing references (the T3 work map, agent coordination) are not generated copy and stay
+on the private repository.
 
 **3. `--apply` never edits a marketing doc in place.**
 
@@ -332,7 +338,7 @@ markdown. It has no service, no port, no container, and no `docker-compose.yml` 
 **content-extend**
 
 - **The product name is unsettled, and it blocks publication.** `REPOSITORY_ALIGNMENT.md`
-  §"Naming decision" states the product and repository are **ContentExtend**, while `README.md`,
+  §"Naming decision" records **ContentExtend** as the candidate name (that repository is archived), while `README.md`,
   the roadmap, `product-spec.md`, and the live domain all say *Creator Extend* / creatorextend.com.
   Every `guide-page` and `comparison-page` draft carries a warning banner about this, generated
   from the product's `alias` field. Nothing publishable should ship under either name until a

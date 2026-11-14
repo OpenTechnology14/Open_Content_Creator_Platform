@@ -3,11 +3,11 @@
 **Queue row:** `P-067`
 **Agent model / effort:** `gpt-6-astra` / `xhigh` — Autonomous walkthroughs, account routing and avatar contracts
 Model assignment: [proposal queue policy](../PROPOSALS.md#agent-model-selection).
-**Status:** `Proposed — awaiting owner decision` — state is authoritative in [`../PROPOSALS.md`](../PROPOSALS.md)
+**Status:** `Accepted — bounded app-owned production in §18; wider creative decisions open` — state is authoritative in [`../PROPOSALS.md`](../PROPOSALS.md)
 **Owner:** OpenTechnology14 + agent
 **Date:** 2026-09-22
 **Roadmap layers:** Character / Avatar, Automation / Control, Content Creation, Broadcast Graphics, Social Management
-**Evidence level:** None. This is a specification. No code is proposed in this PR.
+**Evidence level:** Specification plus source/PR inventory. Section 18 authorizes bounded development; no runtime completion is claimed by this documentation change.
 
 ---
 
@@ -137,7 +137,7 @@ diagnoses; the registers differ.
 ### 1.4 Blog themes as content-lens tags, not profiles
 
 The blog's
-[`docs/CONTENT_THEMES.md`](https://github.com/OpenTechnology14/OpenTechnologyBlog/blob/main/docs/CONTENT_THEMES.md)
+`OpenTechnologyBlog:docs/CONTENT_THEMES.md`
 defines four themes: The Operator, The Alternative, Hire the Operator, For Dummies.
 
 **Start as one `opentech-operator` profile with `theme` as a per-episode tag.** Reasoning: the four
@@ -780,7 +780,7 @@ No TTS, no pet, no recorder. Stills mode is video mode with three subsystems off
 sign the layering is right.
 
 **Where they go:** referenced from the companion blog post. This closes a real gap — the blog's
-[`AI_CONTENT_INVENTORY.md`](https://github.com/OpenTechnology14/OpenTechnologyBlog/blob/main/docs/AI_CONTENT_INVENTORY.md)
+`OpenTechnologyBlog:AI_CONTENT_INVENTORY.md`
 has an "Images and video (not started)" section stating no AI-generated images or video exist yet,
 with columns deliberately not added until the work starts. This is that work.
 
@@ -861,14 +861,14 @@ Module-doc obligations if accepted: `setup/manual.md`, `setup/automated.md`, lab
 
 **OpenTechnologyBlog**
 
-- [`docs/CONTENT_THEMES.md`](https://github.com/OpenTechnology14/OpenTechnologyBlog/blob/main/docs/CONTENT_THEMES.md) — the four themes (§1.4)
-- [`docs/AI_CONTENT_INVENTORY.md`](https://github.com/OpenTechnology14/OpenTechnologyBlog/blob/main/docs/AI_CONTENT_INVENTORY.md) — output log; the empty images/video section (§11)
-- [`course/scripts/module-01.md`](https://github.com/OpenTechnology14/OpenTechnologyBlog/blob/main/course/scripts/module-01.md) — the format's direct ancestor (§4)
-- [`proposals/2026-08-23-ai-content-creation-module.md`](https://github.com/OpenTechnology14/OpenTechnologyBlog/blob/main/proposals/2026-08-23-ai-content-creation-module.md) · [`2026-09-01-dummies-content-module.md`](https://github.com/OpenTechnology14/OpenTechnologyBlog/blob/main/proposals/2026-09-01-dummies-content-module.md) · [`2026-08-26-livestream-working-sessions.md`](https://github.com/OpenTechnology14/OpenTechnologyBlog/blob/main/proposals/2026-08-26-livestream-working-sessions.md)
+- `OpenTechnologyBlog:docs/CONTENT_THEMES.md` — the four themes (§1.4)
+- `OpenTechnologyBlog:docs/AI_CONTENT_INVENTORY.md` — output log; the empty images/video section (§11)
+- `OpenTechnologyBlog:course/scripts/module-01.md` — the format's direct ancestor (§4)
+- `OpenTechnologyBlog:proposals/2026-08-23-ai-content-creation-module.md` · `OpenTechnologyBlog:2026-09-01-dummies-content-module.md` · `OpenTechnologyBlog:2026-08-26-livestream-working-sessions.md`
 
 **OpenTechnologyApp**
 
-- [`docs/readable/BLOG_MARKETING_CONNECTION.md`](https://github.com/OpenTechnology14/Task-Management/blob/main/docs/readable/BLOG_MARKETING_CONNECTION.md) · [`TEMPLATE_REPO_CROSSWALK.md`](https://github.com/OpenTechnology14/Task-Management/blob/main/docs/readable/TEMPLATE_REPO_CROSSWALK.md)
+- `OpenTechnologyApp:docs/readable/BLOG_MARKETING_CONNECTION.md` · `OpenTechnologyApp:TEMPLATE_REPO_CROSSWALK.md`
 
 ---
 
@@ -885,3 +885,194 @@ blog admin's real navigation and scroll behavior (§5.5); that the existing `Ava
 accepts a non-VTS implementation unmodified (§8); and that the three account voices remain
 recognizably one character across a switch (§7.5). All three are plausible from the code and the
 config. None has been run.
+
+## 18. App-owned production and T3 work items
+
+**Status:** Accepted bounded execution; ORCH-04 integrated and ORCH-05 running, 2026-11-07. The complete app-operated journey remains open.
+**Kind:** proposal remainder, child key P-067-ORCH; queue remains authoritative.
+**Verified against:** reviewed export head `8f7efc1`, integrated as main `fe30516`; earlier source inspection at `a19f9b3` and PRs #65/#92/#93/#94 is historical.
+**Handoff child assignment:** `gpt-6.1-sol` / `high` — proposal reconciliation and bounded
+execution brief; the parent Astra assignment remains unchanged.
+
+### Owner direction
+
+The owner requested that the app orchestrate an OpenTechnologyApp walkthrough, stream
+directly into YouTube while recording locally, then surface finished content in the app
+and an organized local file structure. The owner subsequently instructed:
+“This is in a proposal? Make sure the work items get labeled by what models to use and
+handoff to T3 to work with those models on!” This authorizes the bounded work below and
+handoff to the existing T3 coordinator. Priority is **YouTube long-form and Shorts,
+TikTok, then Instagram, Facebook and X**.
+
+The app owns execution, narration/capture coordination, recording finalization, rendering,
+organization and supported upload execution. The owner handles sign-in/consent and any
+remaining creative/publication review. A manual CLI recipe is not product acceptance.
+The selected App target supersedes the blog-only first-run assumption and desktop-target
+deferral for this journey; inspect a real App surface, not an invented admin route.
+Initial local proof may use existing speech and fixture visuals without deciding the
+final mascot, paid/cloned voice or unrelated reactive-commentary scope.
+
+### Work items and model assignments
+
+Each row has Kind **proposal remainder**. Initial state is not evidence of model execution.
+
+| Item | Owning proposals / output | Agent model / effort and rationale | Dependency / initial state | Done condition |
+|---|---|---|---|---|
+| P-067-ORCH-01 | P-067 with P-056/P-065/P-062/P-072: actual App target, session/artifact contracts and implementation map | `gpt-6-astra` / `xhigh` — coupled UI, speech timing, recording ownership and publication recovery need cross-runtime design | Contract and actual App fixture completed on Astra/xhigh; this is design/fixture evidence, not capture acceptance | Exact component/command/schema map, runnable fixture target, failure states and test contracts; no duplicate controller |
+| P-067-ORCH-02 | P-067: walkthrough executor, narration/capture timing, pause/cancel; reuse PR #65 loader after review | `gpt-6-astra` / `xhigh` — UI progress, speech playback and cancellation must remain synchronized | After ORCH-01; isolated walkthrough paths | Actual local walkthrough runs under app control with observable progress/cancellation and playable output; lint alone is insufficient |
+| P-067-ORCH-03 | P-056/P-065/P-072: managed YouTube/OBS lifecycle and recording handoff | `gpt-6.1-sol` / `high` — P-072 child override retains existing tested native controller and repair ownership | PR #94 repairs integrated; original P-072 owner retained; managed recording remains blocked on supported OBS ownership | Start/Stop/recovery preserve recording ownership and pinned profiles; finalized playable recording reaches Library; live acceptance separate |
+| P-067-ORCH-04 | P-065/content-creation: session folders, manifest, YouTube long-form/Shorts and TikTok exports | `gpt-6.1-sol` / `high` — bounded filesystem/render jobs reuse inbox and Shorts renderer | Bounded schema1/fixed-worker contract accepted and integrated via PR #97 at fe30516; native launcher/Library acceptance remains separate | Validated media/metadata, immutable attempts, original preserved, truthful partial failures; offline export works without OAuth |
+| P-067-ORCH-05 | P-072/P-065: production and Library UI, preview, progress, destination readiness, open-folder | `gpt-6.1-sol` / `high` — typed native/UI contracts and artifact validation | Running in the original Sol/high writer, sequential shared plugin/UI paths only; reviewed mount goes later to P-072 owner | One production groups source/master/clips; navigation/restart retain status; missing files/accounts explicit |
+| P-067-ORCH-06 | P-062: YouTube upload execution from approved Library outputs | `gpt-6.1-sol` / `xhigh` — account binding, token lifecycle and ambiguous upload outcomes need strict checks | After ORCH-04/05; reuse PR #92/#93; owner consent for live proof | Correct-account upload, recorded remote ID, no blind duplicate retry, review/failure states; private live acceptance recorded |
+| P-067-ORCH-07 | P-062/content-creation: TikTok integration route, then Instagram/Facebook/X exports and eligible adapters | `gpt-6.1-sol` / `xhigh` — provider eligibility and account-scoped capabilities | YouTube first; TikTok local exports do not wait on this item | Destination exports validated; unsupported upload paths visibly unavailable; eligible integrations pass provider acceptance |
+| P-067-ORCH-08 | Independent cross-proposal review and integrated acceptance | `gpt-6-astra` / `xhigh` — adversarial review of coupled session/artifact/publication failures | Round6 approved ORCH-04 at 8f7efc1 on actual Astra/xhigh; new exact-head reviews remain required for later slices | Exact-head review, findings fixed, app-operated walkthrough → recording → folders/Library → selected YouTube destination proven |
+
+Live T3 Codex catalog inspection on 2026-11-06 exposed Sol and Astra with high/xhigh.
+Before execution record actual provider/model/effort, thread, branch, worktree and next
+checkpoint. Catalog availability is not launch evidence. If unavailable, record a capable
+replacement and rationale before proceeding. HF is unsuitable for sole ownership of this
+coupled/security work; OpenCode was disabled in the checked runtime. No HF spend/setup.
+Use one writing owner per scope and an independent reviewer, not eight concurrent writers.
+
+### ORCH-04 acceptance and next slice (2026-11-07)
+
+Owner: “Complete these with T3”. Existing execution authority and per-item model assignments
+remain; no continuation approval, force merge, publication or release is inferred.
+
+**Accepted bounded contract:** PR97 (private development evidence; not distributed)
+exact `8f7efc1cf323536c038050e0427008d3d17fa294` was independently approved by ORCH-08
+round6 on actual Codex `gpt-6-astra` / `xhigh`. Parent accepted the reviewed schema1 DTOs
+and fixed worker as the versioned basis for ORCH-05, then normally merged it as
+`fe30516044741f07f09c2a220742a5b1fddae445` at **2026-11-08 01:11:52 UTC**.
+All nine hosted checks passed. No admin/force bypass, source rewrite or failed-check waiver.
+
+The original Codex `gpt-6.1-sol` / `high` writer completed ORCH-04 and retains repair ownership.
+Independent review passed **310 focused tests without skips**, **2,231 offline tests**
+(19 skipped, two deselected, one expected failure), and **46 executable behavioral
+mutation/revert cases**, with committed source restoration and a clean checkout. Prior
+R1–R4 findings and the Windows test-execution repair are resolved within documented limits.
+Private round6 evidence retains all dispositions, exact commands and source hashes.
+
+**Actual Windows proof:** isolated diagnostic run `42430706043`, artifact `13597123738`,
+checked out exact `8f7efc1` and passed 249 tests with 180 existing platform skips. Normal
+native run `42430705890` passed Windows 249/180 plus seven Rust setup tests, and macOS
+429 plus seven Rust setup tests. Its GitHub integration checkout was `034395b8053ae1263769bf12924eba32c4b492f0`;
+the 63 incoming paths do not overlap the 34 reviewed ORCH-04 paths. Reviewed files match,
+so this is qualified integration-tree evidence, not a claim that normal CI checked out the
+branch head directly. Actual full exit codes, held-GIL entry and settlement-before-drain
+witnesses are retained. The restricted test-only Windows callback adaptation was accepted
+with its explicit ABI inference and timing limits; arbitrary nonzero exits are not proof.
+The five historical 15-minute timeout causes remain unknown.
+
+The six malformed-wire payloads, oversized input and assertions are unchanged; short test
+IDs avoid Windows' environment limit. An already existing POSIX fixture skip became reachable.
+The Mac test retains its fatal deadline and no longer promises best-effort trace output
+within 50 ms; separate readable-trace cases remain. Product code and normal workflow are
+unchanged by this last repair. Original sources, attempts, orphan evidence and media survive.
+Real stdio/pixel/full-timeline/aspect evidence and the supplied PR100 Mac report are retained
+with their source qualifications, without repeating Mac-equivalence acceptance.
+
+**Limits remain binding:** the trusted interpreter/exclusive-reaper/fixed codec-helper launcher
+requires native certification. Windows production export remains unavailable; portable/native
+Windows CI does not implement its descriptor worker. Rotated/transformed and changing-geometry
+media remain explicitly unsupported. No native Library preview/reveal/restart or app-operated
+recording acceptance follows from this standalone contract. P-072 U-04 remains externally
+blocked under its [supported API assessment](PROPOSAL_UNIFIED_DESKTOP_AND_CLOUD_SCOPE.md#supported-recording-api-assessment-2026-11-07);
+managed Start/destructive Stop stay fenced. Accounts, channel/media/visibility, CT-D19,
+creative, migration and release decisions remain separate. No full acceptance lane is retired.
+
+**Next executing slice:** ORCH-05, actual Codex `gpt-6.1-sol` / `high`, reuses the original
+writer and native worktree sequentially after fast-forwarding to the integration commit.
+It owns the proposed shared production-jobs plugin, new Production Library/detail/DTO
+components, focused tests and the native handoff document. Existing app root/Cargo/capability
+and OBS paths remain with the P-072 owner. It must return the concrete mount patch after
+standalone review; no competing app writer or hidden mount is authorized. Its full brief
+includes the original contract and round6 report. First checkpoint grounds native launch,
+root/pack admission and packaging prerequisites in actual symbols; implementation continues
+to a reviewable PR with truthful unavailable states when a prerequisite is missing.
+
+**Checkpoint validation:** 1,048 no-skip documentation tests and scoped Ruff, generated-file,
+proposal-model/lane and diff checks passed. This documentation reconciliation does not repeat
+product/native suites or promote the remaining acceptance gates.
+
+### User flow and proposed output contract
+
+Choose production/profile and destination, run the walkthrough in the app, stream and
+record, finalize, and prepare outputs. Local rehearsal/export remains available when
+publishing is unavailable. Library displays actual files, previews, readiness and upload
+state. Separate rendering, editorial review, connection readiness and remote publication:
+“Ready to upload” never means “Published”. Proposed layout, not implemented:
+
+```text
+<content-root>/<profile>/<session-id>/
+  source/recording.mp4
+  youtube/long-form/video.mp4
+  youtube/long-form/metadata.json
+  youtube/shorts/clip-001.mp4
+  youtube/shorts/clip-001.metadata.json
+  tiktok/clip-001.mp4
+  tiktok/clip-001.metadata.json
+  manifest.json
+```
+
+Later add Instagram, Facebook and X outputs. Create only real outputs, recording hashes,
+dimensions, duration and preset versions after verification. Metadata/captions/thumbnails
+must represent actual produced assets. Do not claim autonomous highlight understanding
+or transcription from the existing metadata-based selector. Preserve the source; no
+media, tokens, stream keys or secret upload URLs enter Git/public manifests.
+
+### Injection map and first implementation slice
+
+ORCH-01 resolves exact symbols against the execution branch before code changes:
+
+| Existing location | Required integration | Verification |
+|---|---|---|
+| `modules/content-creation/` | Walkthrough runner and export jobs; PR #65 is a linter, not an executor | Real fixture run, playback, cancellation and render failure |
+| `modules/automation-control/stream_autopilot/` | Bounded lifecycle/session identity/action budget | Stale events, off-air locks, timeout/recovery |
+| `apps/shared/recording-library/` | Finalized source attribution; preserve path-only inbox compatibility | Wrong profile, changed/missing source, concurrent updates |
+| `modules/content-creation/stream_shorts/` | Reviewed/metadata plan → destination export attempt | Media dimensions/duration, partial failure, immutable retry |
+| `modules/social-management/` and `apps/shared/social-manager/` | Bound account + approved artifact/job → provider result | Wrong account, expired token, uncertain upload, redaction |
+| `apps/extend/` | Production/Library controls and native admission; reuse PR #94 controller | Navigation, restart, Stop availability and native boundaries |
+
+**First implementation slice:** after ORCH-01 review, ORCH-04's local artifact/export
+contract against a finalized fixture recording, then ORCH-05's app surface. This gives a
+usable local package while ORCH-02/03 connect production; it does not complete the whole goal.
+Each slice brief must specify versioned APIs/schemas, exact symbols, compatibility,
+migrations, telemetry/redaction and rollback before implementation.
+
+**Files intentionally unchanged by this handoff:** runtime code, credentials, media,
+design tokens and other worktrees. Preserve legacy app compatibility, existing vault/
+recording paths and module boundaries. No new top-level module, cloud service, public
+endpoint or game-autonomy expansion is required.
+
+### Acceptance and retained decisions
+
+Required cases: first run/missing dependency, invalid roots/inputs, offline export,
+wrong profile/source ownership, disk-full/partial output, pause/cancel, app restart,
+interrupted render, repeated finalization, immutable retry, lost upload response without
+blind repost, wrong account/revocation, and navigation retaining safe Stop/recovery.
+Local acceptance needs real playable picture/audio and files visible in the native app.
+Live acceptance needs a verified remote ID/destination after owner consent. Fixtures,
+mock IPC, green CI and unavailable-service screenshots do not supply that evidence.
+
+Final public visibility/schedule and unattended publication remain explicit choices
+(CT-D19 in unmerged P-062 work); the direction does not silently answer them. TikTok
+eligibility and later providers' requirements must be checked during implementation;
+local exports remain independent of API approval. Existing mascot/voice decisions only
+block the dependent final creative acceptance, not fixture-based development.
+
+Use [the verification matrix](../agent/VERIFICATION-MATRIX.md), required runtime suite,
+new-guard mutation evidence, exact-head independent review and applicable native/CI
+checks. Documentation-only scope uses relevant local documentation/model/link/generated
+checks under the owner's 2026-10-25 policy. Rollback disables new jobs/UI and retains
+source media, manifests and previous attempts; never delete output as rollback.
+
+### T3 handoff
+
+The existing coordinator owns sequencing/full briefs. Its active PR #94 writer retains
+the repair assignment; do not interrupt or overwrite it. Continue authorized development
+through review and available acceptance without repeated continuation questions. Distinct
+writing scopes use isolated worktrees. Record acknowledgement and actual selected models
+separately from a CLI receipt. No second coordinator/timer, force merge or public release.
+Verification results for this documentation-only change belong in the handoff PR;
+no runtime feature, stream, upload or module status is promoted here.

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-production-abandon-handoff"
+description = "Enables the production_abandon_handoff command without any pre-configured scope."
+commands.allow = ["production_abandon_handoff"]
+
+[[permission]]
+identifier = "deny-production-abandon-handoff"
+description = "Denies the production_abandon_handoff command without any pre-configured scope."
+commands.deny = ["production_abandon_handoff"]

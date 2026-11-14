@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-setup-last-readiness"
+description = "Enables the setup_last_readiness command without any pre-configured scope."
+commands.allow = ["setup_last_readiness"]
+
+[[permission]]
+identifier = "deny-setup-last-readiness"
+description = "Denies the setup_last_readiness command without any pre-configured scope."
+commands.deny = ["setup_last_readiness"]

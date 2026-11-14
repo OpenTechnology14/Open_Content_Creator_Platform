@@ -25,6 +25,8 @@ and public-docs source implement the separately authorized P-071/P-070 documenta
 They do not approve the companion adapter or public release. Below is historical evidence,
 not a current comprehensive audit; consult `docs/AUDIT.md` for present capability evidence.
 
+**Update, 2026-10-23:** P-075 added an MIT root `LICENSE` and a README licensing section (#84), so the root license is no longer absent; the owner's confirmation is still open (`OSS-D01`).
+
 ### Historical audit and corrections
 
 - The roadmap and module scaffolds are extensive, but `tests/` has no automated suite and CI does not enforce tests or lint.
@@ -181,7 +183,7 @@ Ship setup status first with OpenTech disabled. Enable the adapter only for test
 | Item | Owner/decision |
 |---|---|
 | Root license and accuracy of “open source” wording **Question:** Confirm MIT as the repository's root license? | Maintainer/legal before public release |
-| Local API authentication model | Backend/security design before implementation |
+| Local API authentication model. The rule recorded on 2026-09-02 in [the API ledger](../API_ROUTE_AUDIT_LEDGER.md) already covers the existing routes (changing routes need `X-API-Key`, reads are public, `/ws` takes the key); the new setup and OpenTech routes follow it unless the design finds a reason not to | Backend/security design before implementation |
 | OpenTech queue/project identifiers and template schema **Question:** Will you provide the OpenTech queue and project identifiers and the template schema? | OpenTech template owner |
 | Supported OS matrix for alpha **Question:** Make macOS and Ubuntu the supported operating systems for the alpha? | Release owner |
 | Retention limit for unsent integration events **Question:** Will you set a retention limit for unsent integration events? | Privacy/product owner |

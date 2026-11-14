@@ -47,7 +47,7 @@ branding review) is exactly as open as before, and any one of them alone keeps t
 - [x] `CONTRIBUTING.md`, `SECURITY.md`, and `CODE_OF_CONDUCT.md` exist. *(2026-09-02, `P-046`: all
   three present at root with real content — 95 lines combined, not stubs; `SECURITY.md` names a
   reporting path and response-time targets)* *(2026-10-23, `P-075`: all three rewritten for a public reader, the conduct file
-  is the Contributor Covenant 2.1; the contact for each is an `OWNER-SET` placeholder until `OSS-D04`.)*
+  is the Contributor Covenant 2.1; the contact for each was an `OWNER-SET` placeholder until `OSS-D04`.)* *(2026-11-13: the conduct and security contacts are now the public edition's private reporting form, the default until a project mailbox exists; the mailbox question in `OSS-D04` stays open.)*
 - [ ] Third-party notices and dependency licenses are reviewed. *(2026-10-23, `P-075`: every Python, Rust and Node
   dependency, the services, plugin hosts, models and tools were walked and ledgered in
   [`THIRD_PARTY_PROVENANCE.md`](THIRD_PARTY_PROVENANCE.md); [`../THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md) carries the
@@ -104,7 +104,7 @@ branding review) is exactly as open as before, and any one of them alone keeps t
 - [ ] Route/command authorization decisions are complete. *(2026-10-23, `P-075`: open; P-001 and P-053.)*
 - [ ] Uploads, dynamic paths, script launches, and sync keys have validation and limits. *(2026-10-23, `P-075`: open; P-001.)*
 - [ ] Data-flow document identifies what stays local and what can enter cloud services. *(2026-10-23, `P-075`: not started; `AUDIT.md` recommends it, and it is one small documentation change.)*
-- [ ] Vulnerability reporting contact and response policy are published. *(2026-10-23, `P-075`: the policy is rewritten; the channel is `OSS-D04`, so it carries an `OWNER-SET` placeholder.)*
+- [ ] Vulnerability reporting contact and response policy are published. *(2026-10-23, `P-075`: the policy is rewritten; the channel is `OSS-D04`, so it carried an `OWNER-SET` placeholder.)* *(2026-11-13: `SECURITY.md` and the conduct file now name the public edition's private reporting form, which is on; the box stays open until `OSS-D04` settles a mailbox.)*
 - [x] No `visibility: private` row remains in the published tree. *(2026-10-23, `P-075`: both private rows, their two subject
   files and the private target are removed. Confirm with `rg -n 'visibility: private' modules/marketing-crosswalk/crosswalk/modules.yml
   modules/marketing-crosswalk/crosswalk/targets.yml`, which finds nothing; `scripts/testing/public_release_guard.py` and

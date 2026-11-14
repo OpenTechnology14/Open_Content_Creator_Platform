@@ -31,7 +31,7 @@ DigitalOcean acceptance. Read the dated evidence before using a capability in a 
 | Shared module setup and readiness | [Setup wizard](../apps/shared/setup-wizard/README.md), [setup engine](../apps/shared/setup-engine/README.md), [settings](../apps/shared/local-settings/README.md) | P-003 readiness and settings; P-063 app-first onboarding |
 | Approved remote control | [Relay client](../apps/shared/relay-client/README.md) | P-058; two-device and native OS acceptance in the verification matrix |
 | Recording handoff and profile/account routing | [Recording library](../apps/shared/recording-library/README.md), [Social Manager](../apps/shared/social-manager/README.md) | P-065 handoff; P-062 social connections and external actions |
-| Standalone product exports | [Repository alignment](REPOSITORY_ALIGNMENT.md) | Export manifest, naming and release requirements; P-023 naming decision |
+| Public source export | [Repository alignment](REPOSITORY_ALIGNMENT.md) | Ownership, export boundaries, naming and release requirements; P-023 naming decision |
 
 Product labels describe capability selection; they do not imply that every labelled module ships
 in an app. In particular, the marketing crosswalk is a repository tool. The ContentExtend naming

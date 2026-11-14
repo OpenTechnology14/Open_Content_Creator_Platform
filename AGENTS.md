@@ -10,6 +10,7 @@ Read this **first** before generating or modifying any code in this repo.
 ## 1. Project Identity
 
 **Name:** Open Content Creator Platform
+**Naming:** say Content Creator Platform. The working name the project had before is retired as a display name, and `tests/docs/test_terminology.py` fails if it returns. A few identifiers keep their original spelling on purpose, because stored data and credentials live under them; see [Names that stay](docs/REPOSITORY_ALIGNMENT.md#names-that-stay) before changing one in a wording pass.
 **Type:** Modular, AI-native creator / streaming / sports-CV platform
 **Philosophy:** Local-first. Cloud-augmented. Stability before AI.
 
@@ -43,8 +44,10 @@ When generating or modifying code in this repo, follow these principles:
 
 ## 3. Repository Layout
 
+The root label below names the repository, not a required directory: clone it into any directory.
+
 ```
-hybrid-creator-platform/
+content-creator/
 ├── AGENTS.md                        # This file
 ├── README.md                        # Human-facing project overview
 ├── docker-compose.yml               # Local infra orchestration (MinIO, Postgres, Redis, etc.)
@@ -110,6 +113,9 @@ hybrid-creator-platform/
 │   ├── blender-addon/               # Creator Extend Blender addon — see content-creation/setup
 │   ├── obs-plugin/                  # C, OBS Studio — scene import, encoder config (~450 lines)
 │   └── krita-integration/           # Python, Krita — menu items + docker panels (~260 lines)
+│
+├── marketing/                       # Reference material for product and marketing conversations
+│   └── content-creator-wireframe/   # Click paths and screenshot placeholders per feature, each tied to the code
 │
 └── tests/                           # Cross-module integration tests
 ```
@@ -401,8 +407,8 @@ draft/review workflow; its shared tier-table authority remains specific to that 
 
 The same pattern is documented in OpenTechnologyApp and OpenTechnologyBlog so all three repos stay
 coherent. The **tier-table authority** is OpenTechnologyApp's
-[OpenTechnologyApp:docs/readable/MODEL_ROUTING_POLICY.md](https://github.com/OpenTechnology14/Task-Management/blob/main/docs/readable/MODEL_ROUTING_POLICY.md)
-— a different repository, not a file in this one. This section is the hybrid-creator-platform
+OpenTechnologyApp:docs/readable/MODEL_ROUTING_POLICY.md
+— a different repository, not a file in this one. This section is the Content Creator Platform
 boundary list, not a second policy.
 
 ### When to use it
@@ -542,7 +548,7 @@ How a change gets from a task to a pull request. The rules bind every agent and 
 
 Every agent session registers its work **before it starts** and gives each item exactly one Kind. This repository keeps no list of Kinds of its own: the work types and the gate live in the public AgentWorkflows library, read at the pinned revision below.
 
-- **Register, then start.** Look for the item first (`docs/PROPOSALS.md`, the lane docs under `docs/todo/`, open PRs and the owner's private work view). Attach to it if it exists; otherwise write one short row with its Kind and state. The project's facilitator persists the row and a worker proposes it. Work with no row does not start; urgent security triage is registered as soon as it is safe to. The library's [entry gate](https://github.com/OpenTechnology14/AgentWorkflows/blob/9495bfb6a62ddda692150b69b6f20da605cdf238/workflows/ENTRY_GATE.md) has the steps.
-- **One Kind per item**, from the library's [work types](https://github.com/OpenTechnology14/AgentWorkflows/blob/9495bfb6a62ddda692150b69b6f20da605cdf238/workflows/WORK_TYPES.md). At this pin the catch-all for upkeep, and for anything that fits no other Kind, is `housekeeping`; it is never a way around review or security gates.
-- **Hybrid's own vocabularies stay as they are.** Queue states in `docs/PROPOSALS.md`, lane row prefixes in `docs/todo/README.md` and the evidence vocabulary in `docs/PROPOSAL_CREATION_SOP.md` describe a proposal's life or what a row waits on. They are not a work's Kind.
-- Pinned library revision: `9495bfb6a62ddda692150b69b6f20da605cdf238`, a pending pull request in the library, so the links resolve while that pull request exists. `tests/docs/test_work_registration_pointers.py` keeps this section, its links and the four skills' pointers in step.
+- **Register, then start.** Look for the item first (`docs/PROPOSALS.md`, the lane docs under `docs/todo/`, open PRs and the owner's private work view). Attach to it if it exists; otherwise write one short row with its Kind and state. The project's facilitator persists the row and a worker proposes it. Work with no row does not start; urgent security triage is registered as soon as it is safe to. The library's [entry gate](https://github.com/OpenTechnology14/AgentWorkflows/blob/a2c1f3b6be2aa561717511e737a1b0ded1108684/workflows/ENTRY_GATE.md) has the steps.
+- **One Kind per item**, from the library's [work types](https://github.com/OpenTechnology14/AgentWorkflows/blob/a2c1f3b6be2aa561717511e737a1b0ded1108684/workflows/WORK_TYPES.md). At this pin the catch-all for upkeep, and for anything that fits no other Kind, is `housekeeping`; it is never a way around review or security gates.
+- **Content Creator's own vocabularies stay as they are.** Queue states in `docs/PROPOSALS.md`, lane row prefixes in `docs/todo/README.md` and the evidence vocabulary in `docs/PROPOSAL_CREATION_SOP.md` describe a proposal's life or what a row waits on. They are not a work's Kind.
+- Pinned library revision: `a2c1f3b6be2aa561717511e737a1b0ded1108684`, the first commit of the library's public repository, so the links resolve from its main branch. `tests/docs/test_work_registration_pointers.py` keeps this section, its links and the four skills' pointers in step.

@@ -224,3 +224,13 @@ Entry format:
   still govern implementation; native replacement, branding/pricing decisions and C1–C3 cloud
   implementation do not follow automatically from this planning exception. Module layering,
   independent execution and local-first realtime paths are unchanged.
+
+## 2026-11-01 — Combined desktop parity development before convergence
+
+- **What:** Owner v6 explicitly authorizes P-072 full combined desktop development beyond the
+  navigation preview; this slice begins with owned local OBS recording, scenes and mute.
+- **From:** The 2026-10-12 exception limited pre-convergence implementation to a private preview.
+- **Why:** Owner requests completion of the combined desktop product, with reviewable bounded slices.
+- **Effect on:** P-072, roadmap, queue, acceptance ledgers and native verification. Final convergence,
+  release/replacement, paid providers, live account publishing/streaming, and credential/account
+  migrations retain their gates. No cloud phase or unrelated proposal is authorized.

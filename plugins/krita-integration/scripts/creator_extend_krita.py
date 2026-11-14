@@ -88,7 +88,7 @@ class CreatorExtendExtension(Extension):
             QMessageBox.warning(
                 None, "Creator Extend",
                 f"Script not found: {script_path}\n\n"
-                f"Make sure the hybrid-creator-platform is installed."
+                f"Make sure the Content Creator Platform is installed."
             )
             return
 

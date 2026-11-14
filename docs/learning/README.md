@@ -61,6 +61,6 @@ coverage remain false. These are written lesson previews, not recordings of an a
 
 ## Naming caveat
 
-Creator Extend's product name is unsettled (`ContentExtend` per `docs/REPOSITORY_ALIGNMENT.md`).
+Creator Extend's product name is unsettled (`ContentExtend` is the candidate in `docs/REPOSITORY_ALIGNMENT.md`).
 Copy for this series names it only in the stream run of show; nothing may be published under
 either name until the rename proposal resolves.

@@ -141,7 +141,9 @@ def test_the_sentence_rules_catch_what_they_describe():
 
 def test_the_lane_docs_were_read():
     ids = {cells[0] for _r, _n, _i, cells in lane_rows()}
-    assert {"CT-A01", "CT-D01", "ST-D01", "PL-D01", "PL-D15", "PL-D16"} <= ids
+    # CT-A01 was resolved for P-067's bounded production scope on 2026-11-06.
+    # Use the still-pending CT-A02 to prove that acceptance rows are parsed.
+    assert {"CT-A02", "CT-D01", "ST-D01", "PL-D01", "PL-D15", "PL-D16"} <= ids
     assert len(ids) >= 50, f"only {len(ids)} open decision rows found: the table parser stopped reading something"
     assert "PL-D08" not in ids, "a row whose state starts with 'Resolved' is closed and needs no question"
 
